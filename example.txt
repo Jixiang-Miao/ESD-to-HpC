@@ -1,0 +1,34 @@
+@startuml
+Train -> Train: terminus := 10000
+LeftSector -> LeftSector: handover_point := 4000
+LeftSector -> LeftSector: endpoint := 5000
+RightSector -> RightSector: handover_point := 9000
+RightSector -> RightSector: endpoint := 10000
+activate Train
+note over of Train: <<ode>> {0, 0, 0 | p_dot=v, v_dot=a, a_dot=0 & p<terminus}
+LeftSector -> Train: <<sense>> p0 := p
+loop [1] LeftSector: p0 < handover_point
+  LeftSector -> Train: <<sense>> v0 := v
+  LeftSector -> LeftSector: a0 := f(p0, v0, endpoint)
+  LeftSector -> Train: <<actuate>> a := a0
+  activate LeftSector
+  note right of LeftSector: delay(1)
+  deactivate LeftSector
+  LeftSector -> Train: <<sense>> p0 := p
+end
+LeftSector -> RightSector: handover
+RightSector -> LeftSector: yes
+LeftSector -> RightSector: channels(p1, v1, a1 := p, v, a)
+RightSector -> Train: <<sense>> p0 := p1
+loop [2] RightSector: p0 < handover_point
+  RightSector -> Train: <<sense>> v0 := v1
+  RightSector -> RightSector: a0 := f(p0, v0, endpoint)
+  RightSector -> Train: <<actuate>> a1 := a0
+  activate RightSector
+  note left of RightSector: delay(1)
+  deactivate RightSector
+  RightSector -> Train: <<sense>> p0 := p1
+end
+RightSector -> Train: <<actuate>> a1 := -1
+deactivate Train
+@enduml

@@ -1,5 +1,5 @@
 # Modeling and Analysis of Cyber-Physical Systems in the Hybrid π-Calculus Using Extended Sequence Diagrams
-本项目实现了一个将扩展序列图(ESD)转换为混成$\pi$演算进程(HpC)的工具。该工具可以解析特定格式的序列图描述，并将其转换为形式化的HPC进程表达式。
+本项目实现了一个将扩展序列图(ESD)转换为混成π演算进程(HpC)的工具。该工具可以解析特定格式的序列图描述，并将其转换为形式化的HPC进程表达式。
 
 ## 文件结构
 

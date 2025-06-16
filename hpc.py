@@ -1,7 +1,7 @@
 #hpc.py
 from typing import List, Union, Optional, Set
 
-# ----- 前缀类型 -----
+# ----- Prefix types -----
 
 
 class Prefix:
@@ -81,8 +81,8 @@ class ODE:
         self.v = v
         self.e = e
         self.bound = bound
-        self.ready_set = ready_set or []  # 避免 None
-        self.final_v = final_v or []      # 避免 None
+        self.ready_set = ready_set or []
+        self.final_v = final_v or []
 
     def __str__(self):
         init_str = ", ".join(self.e0)
@@ -110,7 +110,7 @@ class Assignment(Prefix):
         return f"⟨{self.var}:={self.expr}⟩"
 
 
-# ----- 进程类型 -----
+# ----- Process types -----
 class Process:
     pass
 
@@ -207,8 +207,6 @@ class Loop(Process):
     def __str__(self):
         return f"μ{self.channel} {self.process}"
 
-
-# 测试代码
 if __name__ == "__main__":
     # Train ≜ (ν p, v, a)(overline{channels}⟨p,v,a⟩ . Run || Observer)
 

@@ -126,7 +126,7 @@ class Activation(Fragment):
         ready_set = get_ready_set(self.role, self.body)
         print(f"ready_set:{ready_set}")
         
-        # 过滤ready_set，只保留与ODE变量相关的通道
+        # Filter ready_set to keep only channels related to ODE variables.
         ode_vars = set(self.ode.v)
         filtered_ready_set = []
         for channel in ready_set:
@@ -218,37 +218,29 @@ class Loop(Fragment):
         loop_index = self.index
         loop_channel = f"loop[{loop_index}]"
 
-        # 将 loop.body 转换为进程
+        # Translate loop.body into a process.
         loop_body_frag = self.body
         loop_body_proc = loop_body_frag.translate(roles)
 
-        # 如果 loop 有后续（如 handover、yes 等）
         cont_proc = self.cont.translate(roles)
 
         ret = {}
         for role in roles:
             if role == self.role:
                 cond = self.cond
-
-                # 收集 loop_body 中当前角色的流程（组合所有 prefix）
                 body_proc = loop_body_proc[role]
 
-                # 添加递归调用（loop call）
+                # loop call
                 loop_call = hpc.PrefixProcess(
                         hpc.Output(hpc.OutChannel(loop_channel), []),
                         hpc.Inaction()
                     )
 
-                # then 分支: loop_body + loop_call
+                # then: loop_body + loop_call
                 then_proc = sequence(body_proc, loop_call)
 
-                # else 分支: 继续后续进程
                 else_proc = cont_proc[role]
-
-                # 条件结构
                 conditional = hpc.Conditional(condition=cond, branch0=then_proc, branch1=else_proc)
-
-                # μ 循环过程
                 loop_process = hpc.Loop(
                         channel=loop_channel,
                         formal_paras=[],
@@ -258,7 +250,7 @@ class Loop(Fragment):
 
                 ret[role] = loop_process
             else:
-                # 对其他角色直接串联：loop_body + cont
+                # loop_body + cont
                 ret[role] = sequence(loop_body_proc[role], cont_proc[role])
         return ret
 
@@ -295,7 +287,7 @@ def get_ready_set(role: str, frag: Fragment) -> List[hpc.Channel]:
     ready_set = []
 
     def collect(f: Fragment):
-        if f is None:  # 添加对None的检查
+        if f is None:
             return
             
         if isinstance(f, Assignment):
@@ -314,59 +306,44 @@ def get_ready_set(role: str, frag: Fragment) -> List[hpc.Channel]:
             print(f"Actuation:{f.sender},role:{role}")
             if f.sender != role:
                 ready_set.append(hpc.InChannel(f.var_v))
-        # Activation: 物理角色不能递归进入自己的连续体
         elif isinstance(f, Activation):
             if f.role == role:
-                # 物理角色的连续体ready_set来源于ode部分
                 ready_set.extend(f.ode.ready_set)
-                # 不递归进入f.body
             else:
-                # 非物理角色则递归进入body
                 if f.body:
                     collect(f.body)
-        # Alternative（alt）分支合并规则
         elif isinstance(f, Alternative):
-            # 物理角色非决策者，合并所有分支ready set
             if role != f.role:
                 if f.branch0:
                     collect(f.branch0)
                 if f.branch1:
                     collect(f.branch1)
             else:
-                # 物理角色作为决策者，通常不参与此分支决策，理论上不执行
                 pass
-        # Option和Loop，类似合并处理
         elif isinstance(f, Option):
             if role != f.role and f.body:
                 collect(f.body)
         elif isinstance(f, Loop):
             if role != f.role and f.body:
                 collect(f.body)
-
-        # Break直接递归
         elif isinstance(f, Break):
             if f.frag:
                 collect(f.frag)
-
-        # Par并行递归
         elif isinstance(f, Par):
             if f.frag0:
                 collect(f.frag0)
             if f.frag1:
                 collect(f.frag1)
-
-        # Critical递归
         elif isinstance(f, Critical):
             if f.frag:
                 collect(f.frag)
 
-        # 递归调用continuation
         if f.cont:
             collect(f.cont)
 
     collect(frag)
 
-    # 去重
+    # de-emphasize
     unique = {}
     for ch in ready_set:
         key = (ch.name, getattr(ch, 'io', ''))
@@ -457,9 +434,8 @@ def parse_conditional_expr(expr_str):
         left, op, right = cond_match.groups()
         return hpc.Conditional(left=left, op=op, right=right)
     else:
-        raise ValueError(f"无法解析的条件表达式: {expr_str}")
+        raise ValueError(f"Unparsable Conditional Expressions: {expr_str}")
 
-# 最后把链表尾节点 cont 指向 Fragment()
 def set_tail_cont_to_fragment(head: Fragment):
     node = head
     while node and node.cont:
@@ -468,13 +444,11 @@ def set_tail_cont_to_fragment(head: Fragment):
         node.cont = Fragment()
 
 def parse_channel_content(content: str):
-    # 尝试匹配变量列表 := 表达式列表
     m = re.match(r'([\w\s,]+):=\s*([\w\s,]+)', content)
     if m:
         left_vars = [v.strip() for v in m.group(1).split(',')]
         right_exprs = [e.strip() for e in m.group(2).split(',')]
     else:
-        # 没有:=，默认左边变量就是右边表达式
         left_vars = [v.strip() for v in content.split(',')]
         right_exprs = left_vars.copy()
 
@@ -517,7 +491,7 @@ def parse_example(example: str) -> Fragment:
 
     for line in lines:
         # print(f"pending_activation:{pending_activation}")
-        # === 1. loop 结构 ===
+        # === 1. loop ===
         loop_match = re.match(r"loop \[(\d+)\] (\w+): (.+)", line)
         if loop_match:
             idx, role, cond = loop_match.groups()
@@ -536,7 +510,7 @@ def parse_example(example: str) -> Fragment:
             activation_stack.append({'role': role, 'body_nodes': [], 'activation_node': None})
             continue
 
-        # === 3. note 延迟 (delay(x)) ===
+        # === 3. note delay(x) ===
         delay_match = re.match(r"note (left|right|over) of (\w+): delay\((\d+(?:\.\d+)?)\)", line)
         if delay_match:
             _, role, delay_value = delay_match.groups()
@@ -545,19 +519,13 @@ def parse_example(example: str) -> Fragment:
             continue
 
 
-        # === 3b. note 连续过程 (<<ode>> {...}) ===
+        # === 3b. note <<ode>> {...} ===
         ode_match = re.match(r"note (left|right|over) of (\w+): <<ode>>\s*\{(.+)\}", line)
         if ode_match:
             _, role, ode_str = ode_match.groups()
-            
-            # 拆分 ODE 字符串：格式为 "{初值 | 微分表达式 & 约束}"
             init_expr, rest = ode_str.split('|', 1)
             deriv_expr, bound = rest.split('&', 1)
-
-            # 提取初始值（例如 "0, 0, 0"）
             e0 = [v.strip() for v in init_expr.strip().split(',')]
-
-            # 提取微分方程（例如 "p_dot=v, v_dot=a, a_dot=0"）
             derivs = [v.strip() for v in deriv_expr.strip().split(',')]
             e = []
             v = []
@@ -565,16 +533,12 @@ def parse_example(example: str) -> Fragment:
 
             for d in derivs:
                 lhs, rhs = [x.strip() for x in d.split('=')]
-                # 将 p_dot → p, p' 用于变量名生成
                 var = lhs.replace('_dot', '')
                 v.append(var)
                 e.append(rhs)
                 final_v.append(f"{var}'")
 
-            # 边界条件
             bound = bound.strip()
-
-            # 创建 ODE 对象
             ode = hpc.ODE(
                 e0=e0,
                 e=e,
@@ -591,15 +555,12 @@ def parse_example(example: str) -> Fragment:
                 append_node(Activation(role=role, ode=ode, body=None, cont=Fragment()))
             continue
 
-        # 在 "deactivate" 时构建完整 activation 后处理 ready_set
         if line.startswith("deactivate "):
             if activation_stack:
                 item = activation_stack.pop()
                 activation_node = item['activation_node']
                 if activation_node:
                     activation_node.body = link_nodes(item['body_nodes'])
-                    
-                    # === 直接处理 ready_set ===
                     activation_node.ode.ready_set = get_ready_set(activation_node.role, activation_node.body)
 
                     append_node(activation_node)
@@ -631,7 +592,7 @@ def parse_example(example: str) -> Fragment:
             append_node(node)
             continue
 
-        # === 8. channels(...) 通信 ===
+        # === 8. channels(...) ===
         comm_match = re.match(r"(\w+)\s*->\s*(\w+)\s*:\s*(\w+)\(([^()]*)\)", line)
         if comm_match:
             sender, receiver, channel_name, content = comm_match.groups()
@@ -650,7 +611,7 @@ def parse_example(example: str) -> Fragment:
             continue
 
 
-        # === 9. 一般通信 ===
+        # === 9. General communications ===
         alt_comm_match = re.match(r"(\w+)\s*->\s*(\w+)\s*:\s*(\w+)", line)
         if alt_comm_match:
             sender, receiver, channel_name = alt_comm_match.groups()
@@ -668,7 +629,6 @@ def parse_example(example: str) -> Fragment:
         set_tail_cont_to_fragment(head)
     return head
 
-# 用于调试结构输出
 def print_fragment(fragment, indent=0):
     prefix = "  " * indent
     current = fragment
@@ -680,32 +640,26 @@ def print_fragment(fragment, indent=0):
 
 
 def main():
-    # 从文件读取序列图示例
     with open("example.txt", "r", encoding="utf-8") as f:
         example = f.read()
 
-    # 解析输入
     root = parse_example(example)
-    print("=== 解析结果 ===")
+    print("=== Parse results ===")
     print_fragment(root)
     
-    # 获取角色列表
     roles = ["Train", "LeftSector", "RightSector"]
     
-    # 创建ESD实例并调用translate
     esd = ESD(root, roles)
     translated = esd.translate()
 
-    # 输出转换结果
-    print("\n=== 转换结果 ===")
+    print("\n=== Translation results ===")
     print(translated)
 
-    # 保存转换结果到文件
     with open("translated_output.txt", "w", encoding="utf-8") as f:
         f.write(str(translated))
         f.write("\n")
 
-    print("转换结果已保存至 translated_output.txt")
+    print("Results have been saved to translated_output.txt")
 
 if __name__ == "__main__":
     main()

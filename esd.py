@@ -491,7 +491,7 @@ def parse_example(example: str) -> Fragment:
 
     for line in lines:
         # print(f"pending_activation:{pending_activation}")
-        # === 1. loop ===
+        # === loop ===
         loop_match = re.match(r"loop \[(\d+)\] (\w+): (.+)", line)
         if loop_match:
             idx, role, cond = loop_match.groups()
@@ -504,13 +504,13 @@ def parse_example(example: str) -> Fragment:
             append_node(loop_node)
             continue
 
-        # === 2. activate ===
+        # === activate ===
         if line.startswith("activate "):
             role = line.split()[1]
             activation_stack.append({'role': role, 'body_nodes': [], 'activation_node': None})
             continue
 
-        # === 3. note delay(x) ===
+        # === note delay(x) ===
         delay_match = re.match(r"note (left|right|over) of (\w+): delay\((\d+(?:\.\d+)?)\)", line)
         if delay_match:
             _, role, delay_value = delay_match.groups()
@@ -519,7 +519,7 @@ def parse_example(example: str) -> Fragment:
             continue
 
 
-        # === 3b. note <<ode>> {...} ===
+        # === note <<ode>> {...} ===
         ode_match = re.match(r"note (left|right|over) of (\w+): <<ode>>\s*\{(.+)\}", line)
         if ode_match:
             _, role, ode_str = ode_match.groups()
@@ -566,7 +566,7 @@ def parse_example(example: str) -> Fragment:
                     append_node(activation_node)
             continue
 
-        # === 5. Assignment (:=) ===
+        # === Assignment (:=) ===
         assign_match = re.match(r"(\w+)\s*->\s*(\w+)\s*:\s*(\w+)\s*:=\s*(.+)", line)
         if assign_match:
             sender, receiver, var, expr = assign_match.groups()
@@ -575,7 +575,7 @@ def parse_example(example: str) -> Fragment:
                 append_node(node)
                 continue
 
-        # === 6. <<sense>> ===
+        # === <<sense>> ===
         sense_match = re.match(r"(\w+)\s*->\s*(\w+)\s*:\s*<<sense>>\s*(\w+)\s*:=\s*(\w+)", line)
         if sense_match:
             sender, receiver, x, v = sense_match.groups()
@@ -584,7 +584,7 @@ def parse_example(example: str) -> Fragment:
             continue
 
 
-        # === 7. <<actuate>> ===
+        # === <<actuate>> ===
         act_match = re.match(r"(\w+)\s*->\s*(\w+)\s*:\s*<<actuate>>\s*(\w+)\s*[:=]+\s*(.+)", line)
         if act_match:
             sender, receiver, var, expr = act_match.groups()
@@ -592,7 +592,7 @@ def parse_example(example: str) -> Fragment:
             append_node(node)
             continue
 
-        # === 8. channels(...) ===
+        # === channels(...) ===
         comm_match = re.match(r"(\w+)\s*->\s*(\w+)\s*:\s*(\w+)\(([^()]*)\)", line)
         if comm_match:
             sender, receiver, channel_name, content = comm_match.groups()
@@ -611,7 +611,7 @@ def parse_example(example: str) -> Fragment:
             continue
 
 
-        # === 9. General communications ===
+        # === General communications ===
         alt_comm_match = re.match(r"(\w+)\s*->\s*(\w+)\s*:\s*(\w+)", line)
         if alt_comm_match:
             sender, receiver, channel_name = alt_comm_match.groups()

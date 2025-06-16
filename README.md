@@ -1,27 +1,27 @@
 # Modeling and Analysis of Cyber-Physical Systems in the Hybrid π-Calculus Using Extended Sequence Diagrams
-本项目实现了一个将扩展序列图(ESD)转换为混成π演算进程(HpC)的工具。该工具可以解析特定格式的序列图描述，并将其转换为形式化的HPC进程表达式。
+This project implements a tool that converts Extended Sequence Diagram (ESD) into Hybrid π-Calculus (HpC) processes. The tool parses ESD written in a specific format and translates them into formal HpC process expressions.
 
-## 文件结构
+## File Structure
 
-- `hpc.py`: 定义了HPC的语法结构，包括前缀(prefix)和进程(process)类型
-- `esd.py`: 实现了ESD到HpC的转换逻辑，包含各种片段类型的解析和转换
-- `example.txt`: 输入文件，包含序列图描述
-- `translated_output.txt`: 转换结果输出文件
+- `hpc.py`: Defines the syntax of HpC, including prefixes and process types.
+- `esd.py`: Contains the logic for converting ESDs to HpC, including parsing and transformation of different fragment types.
+- `example.txt`: Input file containing the sequence diagram description.
+- `translated_output.txt`: Output file containing the translated result.
 
-## 使用方法
+## Usage
 
-1. 准备输入文件`example.txt`，按照指定格式编写序列图描述
-2. 运行`esd.py`主程序:
+1. Prepare the input file 'example.txt' following the specified sequence diagram format.
+2. Run the main script 'esd.py':
    ```bash
    python esd.py
    ```
-3. 查看转换结果:
-   - 控制台输出
-   - 生成的`translated_output.txt`文件
+3. View the translation results:
+   - Console output
+   - The generated`translated_output.txt` file
 
-## 示例
+## Example
 
-输入示例(`example.txt`):
+Input(`example.txt`):
 ```
 @startuml
 Train -> Train: terminus := 10000
@@ -59,12 +59,12 @@ deactivate Train
 @enduml
 ```
 
-转换结果:
+Translated output:
 ```
 Train ::= ⟨terminus:=10000⟩.{0, 0, 0 | p_dot=v, v_dot=a, a_dot=0 & p<terminus, {p̅, v̅, a}}.0 || LeftSector ::= ⟨handover_point:=4000⟩.⟨endpoint:=5000⟩.p(p0).μloop[1] if p0 < handover_point then v(v0).⟨a0:=f(p0, v0, endpoint)⟩.a̅⟨a0⟩.wait(1.0).p(p0).loop[1]̅⟨⟩.0 else handover̅⟨⟩.yes().channels̅⟨p, v, a⟩.0 || RightSector ::= ⟨handover_point:=9000⟩.⟨endpoint:=10000⟩.handover().yes̅⟨⟩.channels(p1, v1, a1).p1(p0).μloop[2] if p0 < handover_point then v1(v0).⟨a0:=f(p0, v0, endpoint)⟩.a1̅⟨a0⟩.wait(1.0).p1(p0).loop[2]̅⟨⟩.0 else a1̅⟨-1⟩.0
 ```
 
-## 开发说明
+## Development Environment
 
 Python 3.9.18
 typing_extensions   4.12.2

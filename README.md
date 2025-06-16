@@ -4,14 +4,14 @@ This project implements a tool that converts Extended Sequence Diagram (ESD) int
 ## File Structure
 
 - `hpc.py`: Defines the syntax of HpC, including prefixes and process types.
-- `esd.py`: Contains the logic for converting ESDs to HpC, including parsing and transformation of different fragment types.
+- `esd.py`: Contains the logic for converting ESD to HpC, including parsing and transformation of different fragment types.
 - `example.txt`: Input file containing the sequence diagram description.
 - `translated_output.txt`: Output file containing the translated result.
 
 ## Usage
 
-1. Prepare the input file 'example.txt' following the specified sequence diagram format.
-2. Run the main script 'esd.py':
+1. Prepare the input file `example.txt` following the specified sequence diagram format.
+2. Run the main script `esd.py`:
    ```bash
    python esd.py
    ```

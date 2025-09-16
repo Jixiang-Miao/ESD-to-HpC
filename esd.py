@@ -1,43 +1,107 @@
 #esd.py
+from standardize_process import to_standard_form
 import hpc
-from typing import List, Set
+from typing import Dict, Set, Tuple, List
 import re
-
+from expr import Expr, Var
 
 class Fragment:
-    def __init__(self):
+    def __init__(self, assignment_tracker=None):
         self.cont = None
-
-    def __repr__(self):
-        return f""
-    
+        self.assignment_tracker = assignment_tracker or AssignmentTracker()
+        
+    def _propagate_tracker(self):
+        """Propagate the assignment tracker to continuation fragments"""
+        if self.cont:
+            self.cont.assignment_tracker = self.assignment_tracker
+            if hasattr(self.cont, '_propagate_tracker'):
+                self.cont._propagate_tracker()
+                
     def translate(self, roles: List[str]):
-        return {role:hpc.Inaction() for role in roles}
+        self._propagate_tracker()
+        return {role: hpc.Inaction() for role in roles}
 
+class AssignmentTracker:
+    def __init__(self):
+        self.assigned_vars = set()
+        self.allocated_vars = []
+
+    def is_first_assignment(self, var):
+        if var not in self.assigned_vars:
+            self.assigned_vars.add(var)
+            self.allocated_vars.append(var)
+            return True
+        return False
 
 class Assignment(Fragment):
-    def __init__(self, role: str, var: str, expr: str, cont: Fragment):
+    def __init__(self, role: str, var: str, expr: str, cont: Fragment, assignment_tracker=None):
+        super().__init__(assignment_tracker)
         self.role = role
         self.var = var
         self.expr = expr
         self.cont = cont
-
-    def __repr__(self):
-        return f"Assignment(role={self.role}, var={self.var}, expr={self.expr})"
-    
     def translate(self, roles: List[str]):
+        self._propagate_tracker()
         assert self.role in roles
-        if self.cont is None:
-            ret = {role: hpc.Inaction() for role in roles}
+        ret = self.cont.translate(roles) if self.cont else {role: hpc.Inaction() for role in roles}
+
+        is_ode_var = False
+        if hasattr(self.cont, 'ode') and self.var in getattr(self.cont.ode, 'v', []):
+            is_ode_var = True
+
+        if is_ode_var:
+            assignment = hpc.Assignment(hpc.Var(self.var), hpc.Var(self.expr))
+            prefix = assignment.to_restriction(is_first=False)
+            ret[self.role] = hpc.PrefixProcess(prefix, ret[self.role])
+            print(f"Assign {self.var}: is_first={is_first}, is_ode_var={is_ode_var}")
         else:
-            ret = self.cont.translate(roles)
-        ret[self.role] = hpc.PrefixProcess(hpc.Assignment(self.var, self.expr), ret[self.role])
+            is_first = self.assignment_tracker.is_first_assignment(self.var)
+            print(f"Assign {self.var}: is_first={is_first}, is_ode_var={is_ode_var}")
+            assignment = hpc.Assignment(hpc.Var(self.var), hpc.Var(self.expr))
+            prefix = assignment.to_restriction(is_first=is_first)
+            ret[self.role] = hpc.PrefixProcess(prefix, ret[self.role])
+
+            if is_first:
+                mem_index = len(self.assignment_tracker.allocated_vars) - 1
+
+                # !allocation(var)(y).(store(var)<y>.allocation(var)<y> + load(var)(z).allocation(var)<z>)
+                memory_proc = hpc.NamedProcess(
+                    f"Memory{mem_index}",
+                    hpc.Replication(
+                        hpc.PrefixProcess(
+                            hpc.Input(hpc.InChannel(f"{self.var}"), ["y"]),
+                            hpc.Sum([
+                                hpc.PrefixProcess(
+                                    hpc.Output(hpc.OutChannel(f"store({self.var}\u0305)"), ["y"]),
+                                    hpc.PrefixProcess(
+                                        hpc.Output(hpc.OutChannel(f"allocation({self.var})"), ["y"]),
+                                        hpc.Inaction()
+                                    )
+                                ),
+                                hpc.PrefixProcess(
+                                    hpc.Input(hpc.InChannel(f"load({self.var})"), ["z"]),
+                                    hpc.PrefixProcess(
+                                        hpc.Output(hpc.OutChannel(f"allocation({self.var})"), ["z"]),
+                                        hpc.Inaction()
+                                    )
+                                )
+                            ])
+                        )
+                    )
+                )
+
+                if not hasattr(self.assignment_tracker, "memory_processes"):
+                    self.assignment_tracker.memory_processes = []
+                self.assignment_tracker.memory_processes.append(memory_proc)
+                print(f"Assign {self.var}: is_first={is_first}, is_ode_var={is_ode_var}")
+
         return ret
-
-
+    
 class Communication(Fragment):
     def __init__(self, sender: str, receiver: str, channel: hpc.Channel,
-                 var_list: List[str], expr_list: List[str], cont: Fragment):
+                 var_list: List[str], expr_list: List[str], cont: Fragment, 
+                 assignment_tracker=None):
+        super().__init__(assignment_tracker)
         self.sender = sender
         self.receiver = receiver
         self.channel = channel
@@ -52,9 +116,9 @@ class Communication(Fragment):
         assert self.sender in roles and self.receiver in roles
 
         ret = self.cont.translate(roles)
-
+        output_channel = f"{self.channel.name}\u0305"
         ret[self.sender] = hpc.PrefixProcess(
-            hpc.Output(hpc.OutChannel(self.channel.name, self.channel.para), self.expr_list),
+            hpc.Output(hpc.OutChannel(output_channel, self.channel.para), self.expr_list),
             ret[self.sender]
         )
         ret[self.receiver] = hpc.PrefixProcess(
@@ -66,7 +130,9 @@ class Communication(Fragment):
 
 
 class Sensation(Fragment):
-    def __init__(self, sender: str, receiver: str, var_x: str, var_v: str, cont: Fragment):
+    def __init__(self, sender: str, receiver: str, var_x: str, var_v: str, 
+                 cont: Fragment, assignment_tracker=None):
+        super().__init__(assignment_tracker)
         self.sender = sender
         self.receiver = receiver
         self.var_x = var_x
@@ -103,10 +169,11 @@ class Actuation(Fragment):
     def translate(self, roles):
         assert self.sender in roles and self.receiver in roles
         ret = self.cont.translate(roles)
+        var_v_with_macron = f"{self.var_v}\u0305"
         ret[self.sender] = hpc.PrefixProcess(
-                hpc.Output(hpc.OutChannel(self.var_v), [self.expr]),
-                ret[self.sender]
-            )
+            hpc.Output(hpc.OutChannel(var_v_with_macron), [self.expr]),
+            ret[self.sender]
+        )
         return ret
 
 
@@ -122,23 +189,24 @@ class Activation(Fragment):
     
     def translate(self, roles):
         assert self.role in roles
-        print(f"role:{self.role},body:{self.body}")
         ready_set = get_ready_set(self.role, self.body)
-        print(f"ready_set:{ready_set}")
         
-        # Filter ready_set to keep only channels related to ODE variables.
         ode_vars = set(self.ode.v)
         filtered_ready_set = []
         for channel in ready_set:
-            if channel.name in ode_vars:
-                filtered_ready_set.append(channel)
+            var_name = channel.name.replace('\u0305', '')
+            if var_name in ode_vars:
+                if isinstance(channel, hpc.InChannel) and channel.io == "in":
+                    filtered_ready_set.append(hpc.InChannel(f"{var_name}"))
+                else:
+                    filtered_ready_set.append(channel)
         
         self.ode.ready_set = filtered_ready_set
         composed = compose(self.body, self.cont) if self.cont else self.body
         ret = composed.translate(roles)
+        
         ret[self.role] = hpc.PrefixProcess(hpc.Continuous(self.ode), ret[self.role])
         return ret
-
 
 class Delay(Fragment):
     def __init__(self, role: str, delay: float, cont: Fragment):
@@ -149,9 +217,13 @@ class Delay(Fragment):
     def translate(self, roles):
         assert self.role in roles
         ret = self.cont.translate(roles)
-        ret[self.role] = hpc.PrefixProcess(hpc.Wait(self.delay), ret[self.role])
+        
+        time_var = f"t_{self.role}_{id(self)}"
+        
+        wait_process = hpc.Wait(self.delay)
+        restricted = wait_process.to_restriction(t_var=time_var)
+        ret[self.role] = hpc.PrefixProcess(restricted, ret[self.role])
         return ret
-    
 
 class Alternative(Fragment):
     def __init__(self, index: int, role: str, cond: str, branch0: Fragment, branch1: Fragment, cont: Fragment):
@@ -180,7 +252,11 @@ class Alternative(Fragment):
                         hpc.PrefixProcess(hpc.Input(hpc.InChannel("alt", [str(self.index), role])), ret0[role]),
                         hpc.PrefixProcess(hpc.Input(hpc.InChannel("alt'", [str(self.index), role])), ret1[role])
                     ])
-        ret[self.role] = hpc.Conditional(self.cond, branch0, branch1)
+        
+        # Convert the conditional to a sum
+        conditional = hpc.Conditional(self.cond, branch0, branch1)
+        ret[self.role] = conditional.to_sum()
+        
         for role in roles:
             if role not in roles0 + roles1:
                 ret[role] = ret0[role]  # assuming equal
@@ -210,18 +286,12 @@ class Loop(Fragment):
         self.body = body
         self.cont = cont
 
-    def __repr__(self):
-        return f"Loop(index={self.index}, role={self.role}, cond={self.cond}, body={self.body})"
-
     def translate(self, roles):
         assert self.role in roles
         loop_index = self.index
-        loop_channel = f"loop[{loop_index}]"
-
-        # Translate loop.body into a process.
+        loop_channel = f"loop[{self.index}]"  # 添加横线
         loop_body_frag = self.body
         loop_body_proc = loop_body_frag.translate(roles)
-
         cont_proc = self.cont.translate(roles)
 
         ret = {}
@@ -229,28 +299,25 @@ class Loop(Fragment):
             if role == self.role:
                 cond = self.cond
                 body_proc = loop_body_proc[role]
-
-                # loop call
                 loop_call = hpc.PrefixProcess(
-                        hpc.Output(hpc.OutChannel(loop_channel), []),
-                        hpc.Inaction()
-                    )
-
-                # then: loop_body + loop_call
+                    hpc.Output(hpc.OutChannel(loop_channel), []),
+                    hpc.Inaction()
+                )
                 then_proc = sequence(body_proc, loop_call)
-
                 else_proc = cont_proc[role]
-                conditional = hpc.Conditional(condition=cond, branch0=then_proc, branch1=else_proc)
-                loop_process = hpc.Loop(
-                        channel=loop_channel,
-                        formal_paras=[],
-                        actual_paras=[],
-                        process=conditional
-                    )
-
-                ret[role] = loop_process
+                
+                # Convert conditional to sum
+                conditional = hpc.Conditional(cond, then_proc, else_proc)
+                
+                # Create recursion and convert to restriction
+                recursion = hpc.Recursion(
+                    var=loop_channel,
+                    params=[],
+                    proc=conditional.to_sum(),
+                    actual_params=[]
+                )
+                ret[role] = recursion.to_restriction()
             else:
-                # loop_body + cont
                 ret[role] = sequence(loop_body_proc[role], cont_proc[role])
         return ret
 
@@ -272,8 +339,8 @@ class Par(Fragment):
         cont_proc = self.cont.translate(roles)
         ret = {}
         for role in roles:
-            ret[role] = hpc.Parallel(proc0.get(role, hpc.Nil()), proc1.get(role, hpc.Nil()))
-            ret[role] = hpc.Parallel(ret[role], cont_proc.get(role, hpc.Nil()))
+            ret[role] = hpc.Parallel(proc0.get(role, hpc.Inaction()), proc1.get(role, hpc.Inaction()))
+            ret[role] = hpc.Parallel(ret[role], cont_proc.get(role, hpc.Inaction()))
         return ret
 
 
@@ -301,7 +368,7 @@ def get_ready_set(role: str, frag: Fragment) -> List[hpc.Channel]:
         elif isinstance(f, Sensation):
             print(f"Sensation:{f.receiver},role:{role}")
             if f.receiver == role:
-                ready_set.append(hpc.OutChannel(f.var_v))
+                ready_set.append(hpc.OutChannel(f"{f.var_v}\u0305"))
         elif isinstance(f, Actuation):
             print(f"Actuation:{f.sender},role:{role}")
             if f.sender != role:
@@ -309,9 +376,11 @@ def get_ready_set(role: str, frag: Fragment) -> List[hpc.Channel]:
         elif isinstance(f, Activation):
             if f.role == role:
                 ready_set.extend(f.ode.ready_set)
+
             else:
                 if f.body:
                     collect(f.body)
+        # Alternative（alt）
         elif isinstance(f, Alternative):
             if role != f.role:
                 if f.branch0:
@@ -326,14 +395,17 @@ def get_ready_set(role: str, frag: Fragment) -> List[hpc.Channel]:
         elif isinstance(f, Loop):
             if role != f.role and f.body:
                 collect(f.body)
+
         elif isinstance(f, Break):
             if f.frag:
                 collect(f.frag)
+
         elif isinstance(f, Par):
             if f.frag0:
                 collect(f.frag0)
             if f.frag1:
                 collect(f.frag1)
+
         elif isinstance(f, Critical):
             if f.frag:
                 collect(f.frag)
@@ -343,7 +415,6 @@ def get_ready_set(role: str, frag: Fragment) -> List[hpc.Channel]:
 
     collect(frag)
 
-    # de-emphasize
     unique = {}
     for ch in ready_set:
         key = (ch.name, getattr(ch, 'io', ''))
@@ -416,6 +487,23 @@ def sequence(p1: hpc.Process, p2: hpc.Process) -> hpc.Process:
     else:
         return hpc.PrefixProcess(hpc.Tau(), sequence(p1, p2))
 
+def generate_memory_processes(tracker):
+    memory_procs = []
+    for i, var in enumerate(tracker.allocated_vars):
+        mem_proc = hpc.NamedProcess(
+            name=f"Memory{i}",
+            process=hpc.Replication(
+                hpc.Input(hpc.InChannel(f"{var}"), "y", 
+                    hpc.Sum([
+                        hpc.Output(hpc.OutChannel(f"{var}"), "y", hpc.Output(hpc.OutChannel(f"{var}"), "y", hpc.Inaction())),
+                        hpc.Input(hpc.InChannel(f"{var}"), "z", hpc.Output(hpc.OutChannel(f"{var}"), "z", hpc.Inaction()))
+                    ])
+                )
+            )
+        )
+        memory_procs.append(mem_proc)
+    return memory_procs
+
 
 class ESD:
     def __init__(self, frag: Fragment, roles: List[str]):
@@ -425,7 +513,19 @@ class ESD:
 
     def translate(self):
         ret = self.frag.translate(self.roles)
+
         named_procs = [hpc.NamedProcess(role, ret[role]) for role in self.roles]
+
+        tracker = self.frag.assignment_tracker
+        if hasattr(tracker, "memory_processes"):
+            unique_mem_procs = []
+            seen = set()
+            for mem_proc in tracker.memory_processes:
+                if mem_proc.name not in seen:
+                    seen.add(mem_proc.name)
+                    unique_mem_procs.append(mem_proc)
+            named_procs.extend(unique_mem_procs)
+            
         return hpc.Parallel(named_procs)
 
 def parse_conditional_expr(expr_str):
@@ -434,7 +534,7 @@ def parse_conditional_expr(expr_str):
         left, op, right = cond_match.groups()
         return hpc.Conditional(left=left, op=op, right=right)
     else:
-        raise ValueError(f"Unparsable Conditional Expressions: {expr_str}")
+        raise ValueError(f"无法解析的条件表达式: {expr_str}")
 
 def set_tail_cont_to_fragment(head: Fragment):
     node = head
@@ -470,6 +570,10 @@ def parse_example(example: str) -> Fragment:
 
     def append_node(node):
         nonlocal head, tail
+        tracker = AssignmentTracker()
+        # When creating the first fragment, pass the tracker
+        if isinstance(node, Fragment):
+            node.assignment_tracker = tracker
         if loop_stack:
             loop_stack[-1]['nodes'].append(node)
         elif activation_stack:
@@ -491,7 +595,7 @@ def parse_example(example: str) -> Fragment:
 
     for line in lines:
         # print(f"pending_activation:{pending_activation}")
-        # === loop ===
+        # === 1. loop  ===
         loop_match = re.match(r"loop \[(\d+)\] (\w+): (.+)", line)
         if loop_match:
             idx, role, cond = loop_match.groups()
@@ -504,13 +608,13 @@ def parse_example(example: str) -> Fragment:
             append_node(loop_node)
             continue
 
-        # === activate ===
+        # === 2. activate ===
         if line.startswith("activate "):
             role = line.split()[1]
             activation_stack.append({'role': role, 'body_nodes': [], 'activation_node': None})
             continue
 
-        # === note delay(x) ===
+        # === 3. note  (delay(x)) ===
         delay_match = re.match(r"note (left|right|over) of (\w+): delay\((\d+(?:\.\d+)?)\)", line)
         if delay_match:
             _, role, delay_value = delay_match.groups()
@@ -519,13 +623,16 @@ def parse_example(example: str) -> Fragment:
             continue
 
 
-        # === note <<ode>> {...} ===
+        # === 3b. note  (<<ode>> {...}) ===
         ode_match = re.match(r"note (left|right|over) of (\w+): <<ode>>\s*\{(.+)\}", line)
         if ode_match:
             _, role, ode_str = ode_match.groups()
+            
             init_expr, rest = ode_str.split('|', 1)
             deriv_expr, bound = rest.split('&', 1)
+
             e0 = [v.strip() for v in init_expr.strip().split(',')]
+
             derivs = [v.strip() for v in deriv_expr.strip().split(',')]
             e = []
             v = []
@@ -539,6 +646,7 @@ def parse_example(example: str) -> Fragment:
                 final_v.append(f"{var}'")
 
             bound = bound.strip()
+
             ode = hpc.ODE(
                 e0=e0,
                 e=e,
@@ -561,12 +669,13 @@ def parse_example(example: str) -> Fragment:
                 activation_node = item['activation_node']
                 if activation_node:
                     activation_node.body = link_nodes(item['body_nodes'])
+                    
                     activation_node.ode.ready_set = get_ready_set(activation_node.role, activation_node.body)
 
                     append_node(activation_node)
             continue
 
-        # === Assignment (:=) ===
+        # === 5. Assignment (:=) ===
         assign_match = re.match(r"(\w+)\s*->\s*(\w+)\s*:\s*(\w+)\s*:=\s*(.+)", line)
         if assign_match:
             sender, receiver, var, expr = assign_match.groups()
@@ -575,7 +684,7 @@ def parse_example(example: str) -> Fragment:
                 append_node(node)
                 continue
 
-        # === <<sense>> ===
+        # === 6. <<sense>> ===
         sense_match = re.match(r"(\w+)\s*->\s*(\w+)\s*:\s*<<sense>>\s*(\w+)\s*:=\s*(\w+)", line)
         if sense_match:
             sender, receiver, x, v = sense_match.groups()
@@ -584,7 +693,7 @@ def parse_example(example: str) -> Fragment:
             continue
 
 
-        # === <<actuate>> ===
+        # === 7. <<actuate>> ===
         act_match = re.match(r"(\w+)\s*->\s*(\w+)\s*:\s*<<actuate>>\s*(\w+)\s*[:=]+\s*(.+)", line)
         if act_match:
             sender, receiver, var, expr = act_match.groups()
@@ -592,7 +701,7 @@ def parse_example(example: str) -> Fragment:
             append_node(node)
             continue
 
-        # === channels(...) ===
+        # === 8. channels(...)  ===
         comm_match = re.match(r"(\w+)\s*->\s*(\w+)\s*:\s*(\w+)\(([^()]*)\)", line)
         if comm_match:
             sender, receiver, channel_name, content = comm_match.groups()
@@ -611,7 +720,7 @@ def parse_example(example: str) -> Fragment:
             continue
 
 
-        # === General communications ===
+        # === 9. comm ===
         alt_comm_match = re.match(r"(\w+)\s*->\s*(\w+)\s*:\s*(\w+)", line)
         if alt_comm_match:
             sender, receiver, channel_name = alt_comm_match.groups()
@@ -634,32 +743,346 @@ def print_fragment(fragment, indent=0):
     current = fragment
     while current:
         print(f"{prefix}{current}")
+        print(f"{prefix}{current}")
         if hasattr(current, "body") and current.body:
             print_fragment(current.body, indent + 1)
         current = getattr(current, "cont", None)
 
+
+def print_nested_structure(fragment, indent=0, seen=None):
+    if fragment is None:
+        return
+    
+    if seen is None:
+        seen = set()
+    
+    frag_id = id(fragment)
+    if frag_id in seen:
+        print("  " * indent + f"[循环引用: {type(fragment).__name__}]")
+        return
+    seen.add(frag_id)
+    
+    prefix = "  " * indent
+    frag_type = type(fragment).__name__
+    
+    details = []
+    if isinstance(fragment, Assignment):
+        details = [f"role={fragment.role}", f"var={fragment.var}", f"expr={fragment.expr}"]
+    elif isinstance(fragment, Communication):
+        details = [f"sender={fragment.sender}", f"receiver={fragment.receiver}", 
+                  f"channel={fragment.channel.name}"]
+    elif isinstance(fragment, Sensation):
+        details = [f"sender={fragment.sender}", f"receiver={fragment.receiver}",
+                  f"var_x={fragment.var_x}", f"var_v={fragment.var_v}"]
+    elif isinstance(fragment, Actuation):
+        details = [f"sender={fragment.sender}", f"receiver={fragment.receiver}",
+                  f"var_v={fragment.var_v}", f"expr={fragment.expr}"]
+    elif isinstance(fragment, Activation):
+        details = [f"role={fragment.role}", f"ode_vars={fragment.ode.v}"]
+    elif isinstance(fragment, Delay):
+        details = [f"role={fragment.role}", f"delay={fragment.delay}"]
+    elif isinstance(fragment, Alternative):
+        details = [f"index={fragment.index}", f"role={fragment.role}", f"cond={fragment.cond}"]
+    elif isinstance(fragment, Option):
+        details = [f"index={fragment.index}", f"role={fragment.role}", f"cond={fragment.cond}"]
+    elif isinstance(fragment, Loop):
+        details = [f"index={fragment.index}", f"role={fragment.role}", f"cond={fragment.cond}"]
+    elif isinstance(fragment, Par):
+        details = ["并行片段"]
+    elif isinstance(fragment, Critical):
+        details = ["临界区片段"]
+    elif isinstance(fragment, Break):
+        details = ["中断片段"]
+    
+    # 打印当前片段信息
+    print(f"{prefix}{frag_type}({', '.join(details)})")
+    
+    # 递归处理子结构
+    next_indent = indent + 1
+    
+    # 处理body属性（如Activation, Loop等）
+    if hasattr(fragment, 'body') and fragment.body is not None:
+        print(f"{prefix}  body:")
+        print_nested_structure(fragment.body, next_indent, seen)
+    
+    # 处理分支结构（如Alternative）
+    if isinstance(fragment, Alternative):
+        print(f"{prefix}  branch0:")
+        print_nested_structure(fragment.branch0, next_indent, seen)
+        print(f"{prefix}  branch1:")
+        print_nested_structure(fragment.branch1, next_indent, seen)
+    
+    # 处理并行结构（Par）
+    if isinstance(fragment, Par):
+        print(f"{prefix}  frag0:")
+        print_nested_structure(fragment.frag0, next_indent, seen)
+        print(f"{prefix}  frag1:")
+        print_nested_structure(fragment.frag1, next_indent, seen)
+    
+    if isinstance(fragment, Critical) and fragment.frag is not None:
+        print(f"{prefix}  critical_frag:")
+        print_nested_structure(fragment.frag, next_indent, seen)
+    
+    if isinstance(fragment, Break) and fragment.frag is not None:
+        print(f"{prefix}  break_frag:")
+        print_nested_structure(fragment.frag, next_indent, seen)
+    
+    if hasattr(fragment, 'cont') and fragment.cont is not None:
+        print(f"{prefix}  cont:")
+        print_nested_structure(fragment.cont, next_indent, seen)
+
+def collect_role_variables(root_frag: Fragment) -> dict:
+    role_vars = {}
+    
+    def init_role(role: str):
+        """初始化角色的变量字典"""
+        if role not in role_vars:
+            role_vars[role] = {
+                'assigned': set(),
+                'delay': set(),
+                'ode': set(),
+                'sent': set(),
+                'received': set(),
+                'sensed': set(),
+                'actuated': set()
+            }
+    
+    def _collect(frag: Fragment):
+        if not frag:
+            return
+            
+        if isinstance(frag, Assignment):
+            init_role(frag.role)
+            role_vars[frag.role]['assigned'].add(frag.var)
+            expr_vars = re.findall(r'\b\w+\b', frag.expr)
+            for var in expr_vars:
+                if var not in [frag.var, frag.role]:
+                    role_vars[frag.role]['sent'].add(var)
+
+        elif isinstance(frag, Delay):
+            init_role(frag.role)
+            time_var = f"t_{frag.role}_{id(frag)}"
+            role_vars[frag.role]['delay'].add(time_var)
+        
+        elif isinstance(frag, Communication):
+            init_role(frag.sender)
+            init_role(frag.receiver)
+            for expr in frag.expr_list:
+                expr_vars = re.findall(r'\b\w+\b', expr)
+                for var in expr_vars:
+                    if var != frag.sender:
+                        role_vars[frag.sender]['sent'].add(var)
+            for var in frag.var_list:
+                role_vars[frag.receiver]['received'].add(var)
+        
+        elif isinstance(frag, Sensation):
+            init_role(frag.receiver)
+            role_vars[frag.receiver]['sensed'].add(frag.var_x)
+            role_vars[frag.receiver]['received'].add(frag.var_v)
+        
+        elif isinstance(frag, Actuation):
+            init_role(frag.sender)
+            expr_vars = re.findall(r'\b\w+\b', frag.expr)
+            for var in expr_vars:
+                if var != frag.sender:
+                    role_vars[frag.sender]['actuated'].add(var)
+            role_vars[frag.sender]['sent'].add(frag.var_v)
+        
+        elif isinstance(frag, Activation):
+            init_role(frag.role)
+            for var in frag.ode.v:
+                role_vars[frag.role]['ode'].add(var)
+            _collect(frag.body)
+        
+        elif isinstance(frag, Loop):
+            init_role(frag.role)
+            cond_vars = re.findall(r'\b\w+\b', frag.cond)
+            for var in cond_vars:
+                if var != frag.role:
+                    role_vars[frag.role]['received'].add(var)
+            _collect(frag.body)
+        
+        elif isinstance(frag, Alternative):
+            init_role(frag.role)
+            cond_vars = re.findall(r'\b\w+\b', frag.cond)
+            for var in cond_vars:
+                if var != frag.role:
+                    role_vars[frag.role]['received'].add(var)
+            _collect(frag.branch0)
+            _collect(frag.branch1)
+        
+        elif isinstance(frag, Par):
+            _collect(frag.frag0)
+            _collect(frag.frag1)
+        
+        if hasattr(frag, 'cont'):
+            _collect(frag.cont)
+    
+    _collect(root_frag)
+    return role_vars
+
+def rename_conflicting_variables(root_frag: Fragment, role_vars: Dict[str, Dict[str, Set[str]]]) -> None:
+    all_vars: Dict[str, Set[str]] = {}
+    for role, vars_dict in role_vars.items():
+        for var in vars_dict['assigned']:
+            if var not in all_vars:
+                all_vars[var] = set()
+            all_vars[var].add(role)
+    
+    conflict_vars = {var: roles for var, roles in all_vars.items() if len(roles) > 1}
+    if not conflict_vars:
+        return
+    
+    var_rename_map: Dict[str, Dict[str, str]] = {}
+    for var, roles in conflict_vars.items():
+        rename_map = {}
+        for i, role in enumerate(roles, 1):
+            new_name = f"{var}_{i}"
+            while any(new_name in role_vars[r]['assigned'] for r in role_vars if r != role):
+                i += 1
+                new_name = f"{var}_{i}"
+            rename_map[role] = new_name
+            role_vars[role]['assigned'].remove(var)
+            role_vars[role]['assigned'].add(new_name)
+        var_rename_map[var] = rename_map
+    
+    _rename_fragment_variables(root_frag, var_rename_map)
+
+def _rename_fragment_variables(frag: Fragment, var_rename_map: Dict[str, Dict[str, str]]) -> None:
+    if not frag:
+        return
+    
+    if isinstance(frag, Assignment):
+        _rename_assignment_vars(frag, var_rename_map)
+    elif isinstance(frag, Communication):
+        _rename_communication_vars(frag, var_rename_map)
+    elif isinstance(frag, Sensation):
+        _rename_sensation_vars(frag, var_rename_map)
+    elif isinstance(frag, Actuation):
+        _rename_actuation_vars(frag, var_rename_map)
+    elif isinstance(frag, Activation):
+        _rename_activation_vars(frag, var_rename_map)
+    elif isinstance(frag, Alternative):
+        _rename_alternative_vars(frag, var_rename_map)
+    elif isinstance(frag, Option):
+        _rename_option_vars(frag, var_rename_map)
+    elif isinstance(frag, Loop):
+        _rename_loop_vars(frag, var_rename_map)
+    
+    if hasattr(frag, 'body'):
+        _rename_fragment_variables(frag.body, var_rename_map)
+    if isinstance(frag, Alternative):
+        _rename_fragment_variables(frag.branch0, var_rename_map)
+        _rename_fragment_variables(frag.branch1, var_rename_map)
+    if isinstance(frag, Par):
+        _rename_fragment_variables(frag.frag0, var_rename_map)
+        _rename_fragment_variables(frag.frag1, var_rename_map)
+    if isinstance(frag, Critical):
+        _rename_fragment_variables(frag.frag, var_rename_map)
+    if isinstance(frag, Break):
+        _rename_fragment_variables(frag.frag, var_rename_map)
+    
+    if hasattr(frag, 'cont'):
+        _rename_fragment_variables(frag.cont, var_rename_map)
+
+def _rename_assignment_vars(assign: Assignment, var_rename_map: Dict[str, Dict[str, str]]) -> None:
+    for var, role_map in var_rename_map.items():
+        if var == assign.var and assign.role in role_map:
+            assign.var = role_map[assign.role]
+    
+    assign.expr = _rename_expr_vars(assign.expr, assign.role, var_rename_map)
+
+def _rename_communication_vars(comm: Communication, var_rename_map: Dict[str, Dict[str, str]]) -> None:
+    for i, var in enumerate(comm.var_list):
+        for orig_var, role_map in var_rename_map.items():
+            if var == orig_var and comm.receiver in role_map:
+                comm.var_list[i] = role_map[comm.receiver]
+    
+    for i, expr in enumerate(comm.expr_list):
+        comm.expr_list[i] = _rename_expr_vars(expr, comm.sender, var_rename_map)
+
+def _rename_sensation_vars(sense: Sensation, var_rename_map: Dict[str, Dict[str, str]]) -> None:
+    for var, role_map in var_rename_map.items():
+        if var == sense.var_x and sense.receiver in role_map:
+            sense.var_x = role_map[sense.receiver]
+        if var == sense.var_v and sense.sender in role_map:
+            sense.var_v = role_map[sense.sender]
+
+def _rename_actuation_vars(act: Actuation, var_rename_map: Dict[str, Dict[str, str]]) -> None:
+    for var, role_map in var_rename_map.items():
+        if var == act.var_v and act.sender in role_map:
+            act.var_v = role_map[act.sender]
+    
+    act.expr = _rename_expr_vars(act.expr, act.sender, var_rename_map)
+
+def _rename_activation_vars(activation: Activation, var_rename_map: Dict[str, Dict[str, str]]) -> None:
+    role = activation.role
+    for i, var in enumerate(activation.ode.v):
+        for orig_var, role_map in var_rename_map.items():
+            if var == orig_var and role in role_map:
+                activation.ode.v[i] = role_map[role]
+    
+
+    activation.ode.bound = _rename_expr_vars(activation.ode.bound, role, var_rename_map)
+
+def _rename_alternative_vars(alt: Alternative, var_rename_map: Dict[str, Dict[str, str]]) -> None:
+    alt.cond = _rename_expr_vars(alt.cond, alt.role, var_rename_map)
+
+def _rename_option_vars(option: Option, var_rename_map: Dict[str, Dict[str, str]]) -> None:
+    option.cond = _rename_expr_vars(option.cond, option.role, var_rename_map)
+
+def _rename_loop_vars(loop: Loop, var_rename_map: Dict[str, Dict[str, str]]) -> None:
+    loop.cond = _rename_expr_vars(loop.cond, loop.role, var_rename_map)
+
+def _rename_expr_vars(expr: str, role: str, var_rename_map: Dict[str, Dict[str, str]]) -> str:
+    if not expr:
+        return expr
+    
+    vars_in_expr = re.findall(r'\b\w+\b', expr)
+    
+    for var in vars_in_expr:
+        if var in var_rename_map and role in var_rename_map[var]:
+            new_var = var_rename_map[var][role]
+            expr = re.sub(rf'\b{var}\b', new_var, expr)
+    
+    return expr
 
 def main():
     with open("example.txt", "r", encoding="utf-8") as f:
         example = f.read()
 
     root = parse_example(example)
-    print("=== Parse results ===")
+    print("=== 解析结果 ===")
     print_fragment(root)
+    
+    role_variables = collect_role_variables(root)
+    print("\n=== 各角色变量收集结果 ===")
+    for role, var_types in role_variables.items():
+        print(f"\n角色: {role}")
+        for var_type, vars_set in var_types.items():
+            if vars_set:
+                print(f"  {var_type}变量: {sorted(vars_set)}")
     
     roles = ["Train", "LeftSector", "RightSector"]
     
+    role_vars = collect_role_variables(root)
+    rename_conflicting_variables(root, role_vars)
     esd = ESD(root, roles)
     translated = esd.translate()
 
-    print("\n=== Translation results ===")
+    print("\n=== 转换结果 ===")
     print(translated)
 
     with open("translated_output.txt", "w", encoding="utf-8") as f:
         f.write(str(translated))
         f.write("\n")
+    standard_form = to_standard_form(translated)
+    print("\n=== 标准型结果 ===")
+    print(standard_form)
 
-    print("Results have been saved to translated_output.txt")
+    with open("standardized_output.txt", "w", encoding="utf-8") as f:
+        f.write(str(standard_form))
+    print("转换结果已保存")
 
 if __name__ == "__main__":
     main()

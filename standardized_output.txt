@@ -1,11 +1,11 @@
 Train ::= terminus̅⟨10000⟩.{0, 0, 0 | p_dot=v, v_dot=a, a_dot=0 & p<terminus, {p̅, v̅, a}}.0
 LeftSector ::= handover_point_1̅⟨4000⟩.endpoint_1̅⟨5000⟩.p(p0).loop[1]⟨⟩.0
-Replication 1 ::= !loop[1]().([p0 < handover_point_1].v(v0).a0_1̅⟨f(p0, v0, endpoint_1)⟩.a̅⟨a0_1⟩.{0 | t_LeftSector_2068856024368_dot=1 & t_LeftSector_2068856024368<1.0, {}}.p(p0).loop[1]⟨⟩.0 + [(¬p0 < handover_point_1)].handover̅⟨⟩.yes().channels̅⟨p, v, a⟩.0)
+Replication 1 ::= !loop[1]().([p0 < handover_point_1].v(v0).a0_1̅⟨f(p0, v0, endpoint_1)⟩.a̅⟨a0_1⟩.{0 | t_dot=1 & t<1.0, {}}.p(p0).loop[1]⟨⟩.0 + [(¬p0 < handover_point_1)].handover̅⟨⟩.yes().channels̅⟨p, v, a⟩.0)
 RightSector ::= handover_point_2̅⟨9000⟩.endpoint_2̅⟨10000⟩.handover().yes̅⟨⟩.channels(p1, v1, a1).p1(p0).loop[2]⟨⟩.0
-Replication 2 ::= !loop[2]().([p0 < handover_point_2].v1(v0).a0_2̅⟨f(p0, v0, endpoint_2)⟩.a1̅⟨a0_2⟩.{0 | t_RightSector_2068855981872_dot=1 & t_RightSector_2068855981872<1.0, {}}.p1(p0).loop[2]⟨⟩.0 + [(¬p0 < handover_point_2)].a1̅⟨-1⟩.0)
+Replication 2 ::= !loop[2]().([p0 < handover_point_2].v1(v0).a0_2̅⟨f(p0, v0, endpoint_2)⟩.a1̅⟨a0_2⟩.{0 | t'_dot=1 & t'<1.0, {}}.p1(p0).loop[2]⟨⟩.0 + [(¬p0 < handover_point_2)].a1̅⟨-1⟩.0)
 Memory0 ::= !endpoint_2(y).(endpoint_2̅⟨y⟩.endpoint_2̅⟨y⟩.0 + endpoint_2(z).endpoint_2̅⟨z⟩.0)
 Memory1 ::= !handover_point_2(y).(handover_point_2̅⟨y⟩.handover_point_2̅⟨y⟩.0 + handover_point_2(z).handover_point_2̅⟨z⟩.0)
 Memory2 ::= !endpoint_1(y).(endpoint_1̅⟨y⟩.endpoint_1̅⟨y⟩.0 + endpoint_1(z).endpoint_1̅⟨z⟩.0)
 Memory3 ::= !handover_point_1(y).(handover_point_1̅⟨y⟩.handover_point_1̅⟨y⟩.0 + handover_point_1(z).handover_point_1̅⟨z⟩.0)
 Memory4 ::= !terminus(y).(terminus̅⟨y⟩.terminus̅⟨y⟩.0 + terminus(z).terminus̅⟨z⟩.0)
-System ::= (ν terminus) (ν handover_point_1) (ν endpoint_1) (ν loop[1]) (ν handover_point_2) (ν endpoint_2) (ν loop[2]) (ν a0_1) (ν t_LeftSector_2068856024368) (ν a0_2) (ν t_RightSector_2068855981872) Train || LeftSector || Replication 1 || RightSector || Replication 2 || Memory0 || Memory1 || Memory2 || Memory3 || Memory4
+System ::= (ν terminus) (ν handover_point_1) (ν endpoint_1) (ν loop[1]) (ν handover_point_2) (ν endpoint_2) (ν loop[2]) (ν a0_1) (ν t) (ν t') (ν a0_2) Train || LeftSector || Replication 1 || RightSector || Replication 2 || Memory0 || Memory1 || Memory2 || Memory3 || Memory4

@@ -208,6 +208,7 @@ class Activation(Fragment):
         ret[self.role] = hpc.PrefixProcess(hpc.Continuous(self.ode), ret[self.role])
         return ret
 
+_role_time_vars = {}
 class Delay(Fragment):
     def __init__(self, role: str, delay: float, cont: Fragment):
         self.role = role
@@ -218,7 +219,11 @@ class Delay(Fragment):
         assert self.role in roles
         ret = self.cont.translate(roles)
         
-        time_var = f"t_{self.role}_{id(self)}"
+        if self.role not in _role_time_vars:
+            time_var = "t"
+            _role_time_vars[self.role] = time_var
+        else:
+            time_var = _role_time_vars[self.role]
         
         wait_process = hpc.Wait(self.delay)
         restricted = wait_process.to_restriction(t_var=time_var)
@@ -565,7 +570,6 @@ def parse_example(example: str) -> Fragment:
     tail = None
     pending_activation = None
     loop_stack = []
-
     activation_stack = []
 
     def append_node(node):
@@ -794,25 +798,20 @@ def print_nested_structure(fragment, indent=0, seen=None):
     elif isinstance(fragment, Break):
         details = ["中断片段"]
     
-    # 打印当前片段信息
     print(f"{prefix}{frag_type}({', '.join(details)})")
     
-    # 递归处理子结构
     next_indent = indent + 1
     
-    # 处理body属性（如Activation, Loop等）
     if hasattr(fragment, 'body') and fragment.body is not None:
         print(f"{prefix}  body:")
         print_nested_structure(fragment.body, next_indent, seen)
     
-    # 处理分支结构（如Alternative）
     if isinstance(fragment, Alternative):
         print(f"{prefix}  branch0:")
         print_nested_structure(fragment.branch0, next_indent, seen)
         print(f"{prefix}  branch1:")
         print_nested_structure(fragment.branch1, next_indent, seen)
     
-    # 处理并行结构（Par）
     if isinstance(fragment, Par):
         print(f"{prefix}  frag0:")
         print_nested_structure(fragment.frag0, next_indent, seen)
@@ -835,7 +834,6 @@ def collect_role_variables(root_frag: Fragment) -> dict:
     role_vars = {}
     
     def init_role(role: str):
-        """初始化角色的变量字典"""
         if role not in role_vars:
             role_vars[role] = {
                 'assigned': set(),

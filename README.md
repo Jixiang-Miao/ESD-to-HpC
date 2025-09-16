@@ -6,7 +6,9 @@ This project implements a tool that converts Extended Sequence Diagram (ESD) int
 - `hpc.py`: Defines the syntax of HpC, including prefixes and process types.
 - `esd.py`: Contains the logic for converting ESD to HpC, including parsing and transformation of different fragment types.
 - `example.txt`: Input file containing the sequence diagram description.
-- `translated_output.txt`: Output file containing the translated result.
+- `translated_output.txt`: Output file containing the translated HpC process with syntactic sugar.
+- `standardize_process.py.txt`: Translates HpC processes with syntactic sugar to standardized HpC processes.
+- `standardized_output.txt`: Output file containing the standardized HpC process output.
 
 ## Usage
 
@@ -17,7 +19,8 @@ This project implements a tool that converts Extended Sequence Diagram (ESD) int
    ```
 3. View the translation results:
    - Console output
-   - The generated`translated_output.txt` file
+   - The generated `translated_output.txt` file (HpC process with syntactic sugar)
+   - The generated `standardized_output.txt` file (standardized HpC process)
 
 ## Example
 

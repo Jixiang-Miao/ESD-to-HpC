@@ -1,5 +1,4 @@
 #esd.py
-from standardize_process import to_standard_form
 import hpc
 from typing import Dict, Set, Tuple, List
 import re
@@ -32,7 +31,6 @@ class AssignmentTracker:
             self.allocated_vars.append(var)
             return True
         return False
-
 class Assignment(Fragment):
     def __init__(self, role: str, var: str, expr: str, cont: Fragment, assignment_tracker=None):
         super().__init__(assignment_tracker)
@@ -40,6 +38,7 @@ class Assignment(Fragment):
         self.var = var
         self.expr = expr
         self.cont = cont
+
     def translate(self, roles: List[str]):
         self._propagate_tracker()
         assert self.role in roles
@@ -53,39 +52,25 @@ class Assignment(Fragment):
             assignment = hpc.Assignment(hpc.Var(self.var), hpc.Var(self.expr))
             prefix = assignment.to_restriction(is_first=False)
             ret[self.role] = hpc.PrefixProcess(prefix, ret[self.role])
-            print(f"Assign {self.var}: is_first={is_first}, is_ode_var={is_ode_var}")
         else:
             is_first = self.assignment_tracker.is_first_assignment(self.var)
-            print(f"Assign {self.var}: is_first={is_first}, is_ode_var={is_ode_var}")
-            assignment = hpc.Assignment(hpc.Var(self.var), hpc.Var(self.expr))
-            prefix = assignment.to_restriction(is_first=is_first)
-            ret[self.role] = hpc.PrefixProcess(prefix, ret[self.role])
-
+            input_prefix = hpc.Output(hpc.OutChannel(f"{self.var}\u0305'"), [self.expr])
+            output_prefix = hpc.Input(hpc.InChannel(f"{self.var}'"), [self.var])
+            assignment_process = hpc.PrefixProcess(input_prefix, 
+                                                  hpc.PrefixProcess(output_prefix, ret[self.role]))
+            ret[self.role] = assignment_process            
             if is_first:
                 mem_index = len(self.assignment_tracker.allocated_vars) - 1
-
-                # !allocation(var)(y).(store(var)<y>.allocation(var)<y> + load(var)(z).allocation(var)<z>)
+                
                 memory_proc = hpc.NamedProcess(
                     f"Memory{mem_index}",
                     hpc.Replication(
                         hpc.PrefixProcess(
-                            hpc.Input(hpc.InChannel(f"{self.var}"), ["y"]),
-                            hpc.Sum([
-                                hpc.PrefixProcess(
-                                    hpc.Output(hpc.OutChannel(f"store({self.var}\u0305)"), ["y"]),
-                                    hpc.PrefixProcess(
-                                        hpc.Output(hpc.OutChannel(f"allocation({self.var})"), ["y"]),
-                                        hpc.Inaction()
-                                    )
-                                ),
-                                hpc.PrefixProcess(
-                                    hpc.Input(hpc.InChannel(f"load({self.var})"), ["z"]),
-                                    hpc.PrefixProcess(
-                                        hpc.Output(hpc.OutChannel(f"allocation({self.var})"), ["z"]),
-                                        hpc.Inaction()
-                                    )
-                                )
-                            ])
+                            hpc.Input(hpc.InChannel(f"{self.var}'"), [self.var]),
+                            hpc.PrefixProcess(
+                                hpc.Output(hpc.OutChannel(f"{self.var}\u0305'"), [self.var]),
+                                hpc.Inaction()
+                            )
                         )
                     )
                 )
@@ -93,10 +78,9 @@ class Assignment(Fragment):
                 if not hasattr(self.assignment_tracker, "memory_processes"):
                     self.assignment_tracker.memory_processes = []
                 self.assignment_tracker.memory_processes.append(memory_proc)
-                print(f"Assign {self.var}: is_first={is_first}, is_ode_var={is_ode_var}")
 
         return ret
-    
+
 class Communication(Fragment):
     def __init__(self, sender: str, receiver: str, channel: hpc.Channel,
                  var_list: List[str], expr_list: List[str], cont: Fragment, 
@@ -169,13 +153,11 @@ class Actuation(Fragment):
     def translate(self, roles):
         assert self.sender in roles and self.receiver in roles
         ret = self.cont.translate(roles)
-        var_v_with_macron = f"{self.var_v}\u0305"
         ret[self.sender] = hpc.PrefixProcess(
-            hpc.Output(hpc.OutChannel(var_v_with_macron), [self.expr]),
+            hpc.Output(hpc.OutChannel(f"{self.var_v}\u0305"), [self.expr]),
             ret[self.sender]
         )
         return ret
-
 
 class Activation(Fragment):
     def __init__(self, role: str, ode: hpc.ODE, body: Fragment, cont: Fragment):
@@ -294,7 +276,12 @@ class Loop(Fragment):
     def translate(self, roles):
         assert self.role in roles
         loop_index = self.index
-        loop_channel = f"loop[{self.index}]"  # 添加横线
+        loop_channel = f"loop[{self.index}]"
+        
+        cond_vars = re.findall(r'\b\w+\b', self.cond)
+        loop_params = [var for var in cond_vars if var != self.role]
+        param_str = ", ".join(loop_params) if loop_params else ""
+
         loop_body_frag = self.body
         loop_body_proc = loop_body_frag.translate(roles)
         cont_proc = self.cont.translate(roles)
@@ -304,22 +291,21 @@ class Loop(Fragment):
             if role == self.role:
                 cond = self.cond
                 body_proc = loop_body_proc[role]
+                
                 loop_call = hpc.PrefixProcess(
-                    hpc.Output(hpc.OutChannel(loop_channel), []),
+                    hpc.Output(hpc.OutChannel(loop_channel), loop_params),
                     hpc.Inaction()
                 )
                 then_proc = sequence(body_proc, loop_call)
                 else_proc = cont_proc[role]
                 
-                # Convert conditional to sum
                 conditional = hpc.Conditional(cond, then_proc, else_proc)
                 
-                # Create recursion and convert to restriction
                 recursion = hpc.Recursion(
                     var=loop_channel,
-                    params=[],
+                    params=loop_params,
                     proc=conditional.to_sum(),
-                    actual_params=[]
+                    actual_params=loop_params
                 )
                 ret[role] = recursion.to_restriction()
             else:
@@ -539,7 +525,7 @@ def parse_conditional_expr(expr_str):
         left, op, right = cond_match.groups()
         return hpc.Conditional(left=left, op=op, right=right)
     else:
-        raise ValueError(f"无法解析的条件表达式: {expr_str}")
+        raise ValueError(f"Unresolvable conditional expression: {expr_str}")
 
 def set_tail_cont_to_fragment(head: Fragment):
     node = head
@@ -571,11 +557,10 @@ def parse_example(example: str) -> Fragment:
     pending_activation = None
     loop_stack = []
     activation_stack = []
+    tracker = AssignmentTracker()
 
     def append_node(node):
         nonlocal head, tail
-        tracker = AssignmentTracker()
-        # When creating the first fragment, pass the tracker
         if isinstance(node, Fragment):
             node.assignment_tracker = tracker
         if loop_stack:
@@ -740,6 +725,9 @@ def parse_example(example: str) -> Fragment:
             continue
     if head is not None:
         set_tail_cont_to_fragment(head)
+        head.assignment_tracker = tracker
+        if hasattr(head, "_propagate_tracker"):
+            head._propagate_tracker()
     return head
 
 def print_fragment(fragment, indent=0):
@@ -762,7 +750,7 @@ def print_nested_structure(fragment, indent=0, seen=None):
     
     frag_id = id(fragment)
     if frag_id in seen:
-        print("  " * indent + f"[循环引用: {type(fragment).__name__}]")
+        print("  " * indent + f"[loop reference: {type(fragment).__name__}]")
         return
     seen.add(frag_id)
     
@@ -792,11 +780,11 @@ def print_nested_structure(fragment, indent=0, seen=None):
     elif isinstance(fragment, Loop):
         details = [f"index={fragment.index}", f"role={fragment.role}", f"cond={fragment.cond}"]
     elif isinstance(fragment, Par):
-        details = ["并行片段"]
+        details = ["parallel fragment"]
     elif isinstance(fragment, Critical):
-        details = ["临界区片段"]
+        details = ["critical section fragment"]
     elif isinstance(fragment, Break):
-        details = ["中断片段"]
+        details = ["break fragment"]
     
     print(f"{prefix}{frag_type}({', '.join(details)})")
     
@@ -1046,20 +1034,21 @@ def _rename_expr_vars(expr: str, role: str, var_rename_map: Dict[str, Dict[str, 
     return expr
 
 def main():
+    from standardize_process import to_standard_form
     with open("example.txt", "r", encoding="utf-8") as f:
         example = f.read()
 
     root = parse_example(example)
-    print("=== 解析结果 ===")
+    print("=== Parsing Result ===")
     print_fragment(root)
     
     role_variables = collect_role_variables(root)
-    print("\n=== 各角色变量收集结果 ===")
+    print("\n=== Role Variables Collection Result ===")
     for role, var_types in role_variables.items():
-        print(f"\n角色: {role}")
+        print(f"\nRole: {role}")
         for var_type, vars_set in var_types.items():
             if vars_set:
-                print(f"  {var_type}变量: {sorted(vars_set)}")
+                print(f"  {var_type} variables: {sorted(vars_set)}")
     
     roles = ["Train", "LeftSector", "RightSector"]
     
@@ -1068,19 +1057,19 @@ def main():
     esd = ESD(root, roles)
     translated = esd.translate()
 
-    print("\n=== 转换结果 ===")
+    print("\n=== Conversion Result ===")
     print(translated)
 
     with open("translated_output.txt", "w", encoding="utf-8") as f:
         f.write(str(translated))
         f.write("\n")
     standard_form = to_standard_form(translated)
-    print("\n=== 标准型结果 ===")
+    print("\n=== Standard Form Result ===")
     print(standard_form)
 
     with open("standardized_output.txt", "w", encoding="utf-8") as f:
         f.write(str(standard_form))
-    print("转换结果已保存")
+    print("Conversion result saved")
 
 if __name__ == "__main__":
     main()

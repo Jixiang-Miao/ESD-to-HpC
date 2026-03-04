@@ -5,7 +5,7 @@ LeftSector -> LeftSector: endpoint := 5000
 RightSector -> RightSector: handover_point := 9000
 RightSector -> RightSector: endpoint := 10000
 activate Train
-note over of Train: <<ode>> {0, 0, 0 | p_dot=v, v_dot=a, a_dot=0 & p<terminus}
+note over of Train: <<ode>> {0, 0, 0 | p_dot=v, v_dot=a, a_dot=0 & p<terminus and v>=0}
 LeftSector -> Train: <<sense>> p0 := p
 loop [1] LeftSector: p0 < handover_point
   LeftSector -> Train: <<sense>> v0 := v

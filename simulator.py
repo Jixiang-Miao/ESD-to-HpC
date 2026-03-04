@@ -2928,10 +2928,12 @@ if __name__ == "__main__":
         except Exception:
             return None, False
 
+
     def f_safe(p0, v0, endpoint, control_dt: float = 1.0, a_max: float = 1.0, a_min: float = -1.0, v_limit: float = 40.0):
         """
-        Implement f using user-provided safe acceleration logic.
+        Implement the safe acceleration function f.
         """
+        # parse parameters as numbers (using the existing parser in the module)
         p0n, ok_p = _parse_numeric(p0)
         v0n, ok_v = _parse_numeric(v0)
         endn, ok_e = _parse_numeric(endpoint)
@@ -2944,19 +2946,54 @@ if __name__ == "__main__":
         v = float(v0n)
         endpoint_f = float(endn)
 
-        MAX_ACCELERATION = float(a_max)
-        MAX_DECELERATION = float(a_min)
-        MAX_VELOCITY = float(v_limit) 
+        MAX_ACCELERATION = float(a_max)  # 1.0
+        MAX_DECELERATION = float(a_min)  # -1.0
+        MAX_VELOCITY = float(v_limit)    # 40.0
         CONTROL_PERIOD = float(control_dt)
         SAFETY_MARGIN = 2.0
 
-        if p < 9000:
+        distance_to_endpoint = endpoint_f - p
+
+        def is_max_acceleration_safe() -> bool:
+            predicted_v = v + MAX_ACCELERATION * CONTROL_PERIOD
+            predicted_p = p + v * CONTROL_PERIOD + 0.5 * MAX_ACCELERATION * CONTROL_PERIOD**2
+
+            # velocity not exceeding the limit
+            velocity_safe = (predicted_v <= MAX_VELOCITY + 1e-9)
+
+            # calculate the minimum braking distance required to stop from the predicted velocity
+            if predicted_v > 0:
+                braking_distance = (0 - predicted_v**2) / (2 * MAX_DECELERATION)
+            else:
+                braking_distance = 0.0
+
+            distance_safe = (predicted_p + braking_distance + SAFETY_MARGIN) <= endpoint_f
+
+            return velocity_safe and distance_safe
+
+        def is_constant_velocity_safe() -> bool:
+            predicted_v = v
+            predicted_p = p + v * CONTROL_PERIOD
+            if predicted_v > 0:
+                braking_distance = (0 - predicted_v**2) / (2 * MAX_DECELERATION)
+            else:
+                braking_distance = 0.0
+            distance_safe = (predicted_p + braking_distance + SAFETY_MARGIN) <= endpoint_f
+            log_event(f"Predicted position: {predicted_p:.2f}, Predicted velocity: {predicted_v:.2f}, Braking distance: {braking_distance:.2f}, Distance safe: {distance_safe:.2f} vs {endpoint_f:.2f}")
+            return distance_safe
+
+        if is_max_acceleration_safe():
             return float(MAX_ACCELERATION)
+        elif is_constant_velocity_safe():
+            return 0.0
+        else:
+            return float(MAX_DECELERATION)
+
     try:
         register_function('f', f_safe)
         print("registered function 'f' -> f_safe(p0,v0,endpoint)")
     except Exception as e:
         print(f"Failed to register 'f': {e}")
 
-    simulate_block(standard_form, max_steps=1200)
+    simulate_block(standard_form, max_steps=5000)
     print("=== Simulation Complete ===")

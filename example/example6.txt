@@ -1,0 +1,3 @@
+@startuml
+note right of Alice: delay(1)
+@enduml

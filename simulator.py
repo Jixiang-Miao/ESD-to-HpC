@@ -117,6 +117,7 @@ def extract_all_variables(process: Process) -> Set[str]:
             variables.update(extract_all_variables(b.continuation))
     
     elif isinstance(process, (Loop, Replication, NamedProcess)):
+        # handle different attribute names used across types
         if hasattr(process, 'process'):
             variables.update(extract_all_variables(process.process))
         if hasattr(process, 'body'):
@@ -463,9 +464,9 @@ class ChannelPayload:
         return self.__repr__()
 
 # ---------- global env ----------
-EVENTS_FILE = "simulation_events.txt"
-TRACE_FILE = "trace.txt"
-STEP_FILE = "steps.txt"
+EVENTS_FILE = "example_simulation_events.txt"
+TRACE_FILE = "example_trace.txt"
+STEP_FILE = "example_steps.txt"
 DEFAULT_INIT_STATE = {}
 MAX_CONTINUOUS_STEP = 10.0
 CONTINUOUS_PRECISION = 1e-6
@@ -528,6 +529,7 @@ def classify_process_type(proc: hpc.Process) -> str:
         pref = getattr(proc, 'prefix', None)
         if isinstance(pref, (hpc.Guard, hpc.Input, hpc.Output)):
             return "M"
+        
         return classify_process_type(getattr(proc, 'continuation', None))
 
     if isinstance(proc, hpc.Parallel):
@@ -550,7 +552,6 @@ def classify_process_type(proc: hpc.Process) -> str:
         if has_r:
             return "R"
         return "other"
-
     if isinstance(proc, hpc.Restriction):
         return classify_process_type(getattr(proc, 'process', None))
     if isinstance(proc, hpc.Replication):
@@ -673,11 +674,11 @@ def validate_canonical_form(proc: hpc.Process) -> Tuple[bool, str]:
         return False, "Process is None"
     
     if isinstance(proc, hpc.Inaction):
-        return True, "Empty process is a valid canonical form"
+        return True, "Inaction process is a valid canonical form"
     
     if not isinstance(proc, hpc.Parallel):
         return False, f"Top-level process should be of type Parallel, but got {type(proc).__name__}"
-    
+
     m_count = 0
     c_count = 0
     r_count = 0
@@ -695,7 +696,7 @@ def validate_canonical_form(proc: hpc.Process) -> Tuple[bool, str]:
             other_count += 1
     
     if m_count == 0:
-        return False, "Canonical form is missing M type processes (Sum processes)"
+        return False, "Standard form is missing M-type processes (Sum processes)"
     
     found_types = []
     current_section = "M"
@@ -705,22 +706,22 @@ def validate_canonical_form(proc: hpc.Process) -> Tuple[bool, str]:
         
         if proc_type == "M":
             if current_section not in ["M"]:
-                return False, f"Process type order error: M type process appears after {current_section} section"
+                return False, f"Process type order is incorrect: M-type processes appear after {current_section} section"
         elif proc_type == "C":
             if current_section == "M":
                 current_section = "C"
             elif current_section not in ["C"]:
-                return False, f"Process type order error: C type process appears after {current_section} section"
+                return False, f"Process type order is incorrect: C-type processes appear after {current_section} section"
         elif proc_type == "R":
             if current_section in ["M", "C"]:
                 current_section = "R"
             elif current_section not in ["R"]:
-                return False, f"Process type order error: R type process appears after {current_section} section"
+                return False, f"Process type order is incorrect: R-type processes appear after {current_section} section"
     
-    return True, f"Canonical form validation passed: M={m_count}, C={c_count}, R={r_count}, Others={other_count}"
+    return True, f"Canonical form validation passed: M={m_count}, C={c_count}, R={r_count}, Other={other_count}"
 
 def count_m_processes(proc: hpc.Process) -> int:
-    """Count the number of M type processes"""
+    """Count the number of M-type processes"""
     if isinstance(proc, hpc.Parallel):
         count = 0
         for sub_proc in proc.processes:
@@ -803,6 +804,7 @@ def normalize_channel_name(raw: str) -> str:
         return ""
     
     s = str(raw).strip()
+    
     normalized = unicodedata.normalize("NFD", s)
     base_name = "".join(ch for ch in normalized if unicodedata.category(ch) != "Mn")
     base_name = base_name.replace(" ", "")
@@ -850,7 +852,7 @@ def get_sum_branches(sum_proc: Union[hpc.Sum, hpc.PrefixProcess]) -> List[hpc.Pr
     return branches
 
 def get_free_vars(proc: hpc.Process) -> Set[str]:
-    """Calculate the set of free variables in a process"""
+    """Get the set of free variables in a process"""
     if isinstance(proc, hpc.Inaction):
         return set()
     
@@ -1854,6 +1856,7 @@ def apply_comm_rule(par: hpc.Parallel) -> Tuple[bool, hpc.Process, Optional[str]
                         inputs.append((i, proc, branch, True, j))
                     elif isinstance(branch.prefix, hpc.Output):
                         outputs.append((i, proc, branch, True, j))
+    log_event(f"input process: {len(inputs)},{inputs}，output process: {len(outputs)},{outputs}")
     for out_info in outputs:
         out_idx, out_parent, out_branch, out_is_sum, out_sum_idx = out_info
         out_prefix = out_branch.prefix
@@ -1862,14 +1865,18 @@ def apply_comm_rule(par: hpc.Parallel) -> Tuple[bool, hpc.Process, Optional[str]
         
         expr_values = []
         valid = True
+        log_event(f"output variable list: {out_prefix.expr_list}")
 
         for expr in out_prefix.expr_list:
             val, missing = try_eval_output_expr(expr, par)
+            log_event(f"evaluate output expression: {expr} -> val={val}, missing={missing}")
             if missing or val is None:
                 break
             expr_values.append(val)
             if len(expr_values) == 1:
                 global_env[out_ch_norm] = expr_values[0]
+                log_event(f"communication injection: {out_ch_norm} = {expr_values[0]}")
+        log_event(f"output expression evaluation result: valid={valid}, values={expr_values}")
         if not valid:
             continue
         
@@ -1885,20 +1892,17 @@ def apply_comm_rule(par: hpc.Parallel) -> Tuple[bool, hpc.Process, Optional[str]
                     subst = dict(zip(in_prefix.var_list, out_prefix.expr_list))
                     global alias_map
                     alias_map = subst
-
+                
                 if in_is_sum:
-                    in_branches = get_sum_branches(in_parent)
-                    in_branches[in_sum_idx] = substitute_process(in_branch.continuation, subst)
-                    new_processes[in_idx] = _reconstruct_sum(in_branches)
+                    new_processes[in_idx] = substitute_process(in_branch.continuation, subst)
                 else:
                     new_processes[in_idx] = substitute_process(in_branch.continuation, subst)
 
                 if out_is_sum:
-                    out_branches = get_sum_branches(out_parent)
-                    out_branches[out_sum_idx] = out_branch.continuation
-                    new_processes[out_idx] = _reconstruct_sum(out_branches)
+                    new_processes[out_idx] = out_branch.continuation
                 else:
                     new_processes[out_idx] = out_branch.continuation
+                
                 new_par = to_strict_canonical_form_preserve_sums(hpc.Parallel(new_processes))
                 log = f"Communication channel({out_ch})(Communication message: {','.join(map(str, expr_values))})"
                 try:
@@ -1907,6 +1911,7 @@ def apply_comm_rule(par: hpc.Parallel) -> Tuple[bool, hpc.Process, Optional[str]
                     pass
                 return True, new_par, log
     return False, par, None
+
 
 def apply_sense_rule(par: hpc.Parallel) -> Tuple[bool, hpc.Process, Optional[str]]:
     """Apply [Sense] rule: v(y).P + M || {e0|...}(y).Q → P{e/y} || Q"""
@@ -2369,19 +2374,29 @@ def simulate_block(block: Block, max_steps: int = 100000, init_state: dict = Non
     log_event("=== Starting HPC continuous process simulation ===")
     
     par, defs = prepare_system_from_block(block)
-    
+    if not isinstance(par, hpc.Parallel):
+        par = hpc.Parallel([par])
     step = 0
     global_time = 0.0
     
+    def ensure_parallel(p):
+        if isinstance(p, hpc.Parallel):
+            return p
+        if isinstance(p, hpc.Inaction) or p is None:
+            return hpc.Parallel([hpc.Inaction()])
+        return hpc.Parallel([p])
+
     while step < max_steps:
         step += 1
         log_event(f"\n--- Step {step} ---")
-        
+        par = ensure_parallel(par)
+
         pretty_print_state(par, step, global_time)
         
         reduced, new_par, event_log = apply_reduction_rules(par)
         if reduced:
             par = new_par
+            par = ensure_parallel(par)
             log_event(f"Discrete reduction: {event_log}")
             
             if is_terminated(par):
@@ -2394,7 +2409,7 @@ def simulate_block(block: Block, max_steps: int = 100000, init_state: dict = Non
                 new_par, evolve_time, trace_log = apply_continuous_rules(par, global_time)
                 
                 if evolve_time > 0:
-                    par = new_par
+                    par = ensure_parallel(new_par)
                     global_time += evolve_time
                     log_event(f"Continuous evolution completed: advanced {evolve_time:.6f} seconds")
                     
@@ -2404,7 +2419,7 @@ def simulate_block(block: Block, max_steps: int = 100000, init_state: dict = Non
                         break
                     continue
                 else:
-                    log_event("Continuous evolution with no time advance")
+                    log_event("Continuous evolution made no time advance")
             except Exception as e:
                 log_event(f"Continuous evolution error: {e}")
         
@@ -2413,11 +2428,13 @@ def simulate_block(block: Block, max_steps: int = 100000, init_state: dict = Non
             break
         
         if step >= max_steps:
-            log_event("Reached maximum step limit")
+            log_event("Maximum step limit reached")
             break
+    par = ensure_parallel(par)
     pretty_print_state(par, step, global_time)
-    log_event(f"=== Simulation ended: {step} steps, total time {global_time:.6f} seconds ===")
+    log_event(f"=== Simulation completed: {step} steps, total time {global_time:.6f} seconds ===")
     flush_logs()
+
 
 def collect_continuous_processes(par: hpc.Parallel) -> List[Tuple[int, Any, Any, Any]]:
     """Collect top-level continuous processes - C processes"""
@@ -2633,6 +2650,17 @@ def pretty_print_state(par: hpc.Parallel, step: int, global_time: float = None):
     """Print the current simulation state"""
     log_step(f"\n=== STEP {step} time: {global_time:.6f} ===")
     
+    if not isinstance(par, hpc.Parallel):
+        proc_type = classify_process_type(par)
+        log_step(f"  [0] {proc_type}: {par}")
+        m = 1 if proc_type == "M" else 0
+        c = 1 if proc_type == "C" else 0
+        r = 1 if proc_type == "R" else 0
+        o = 1 if proc_type not in ("M", "C", "R") else 0
+        log_step(f"Process counts: M={m}, C={c}, R={r}, Other={o}")
+        log_step("================================\n")
+        return
+    
     m_count = 0
     c_count = 0
     r_count = 0
@@ -2656,7 +2684,7 @@ def pretty_print_state(par: hpc.Parallel, step: int, global_time: float = None):
         s = str(proc)
         log_step(f"  [{i}] {type_symbol}: {s}")
     
-    log_step(f"Process counts: M={m_count}, C={c_count}, R={r_count}, Others={other_count}")
+    log_step(f"Process counts: M={m_count}, C={c_count}, R={r_count}, Other={other_count}")
     log_step("================================\n")
 
 # ---------- Compatibility functions ----------
@@ -2892,20 +2920,20 @@ if __name__ == "__main__":
     esd = ESD(root, roles)
     translated = esd.translate()
 
-    print("\n=== t Translation Result ===")
+    print("\n=== Translation Results ===")
     print(translated)
 
-    with open("translated_output.txt", "w", encoding="utf-8") as f:
+    with open("example_translated_output.txt", "w", encoding="utf-8") as f:
         f.write(str(translated))
         f.write("\n")
     
     standard_form = to_standard_form(translated)
     standard_str = str(standard_form)
 
-    print("\n=== Standard Form Result ===")
+    print("\n=== Standard Form Results ===")
     print(standard_str)
 
-    with open("standardized_output.txt", "w", encoding="utf-8") as f:
+    with open("example_standardized_output.txt", "w", encoding="utf-8") as f:
         f.write(standard_str)
 
     print_process_structure(standard_form, "Standard Form Process Structure")
@@ -2928,16 +2956,14 @@ if __name__ == "__main__":
         except Exception:
             return None, False
 
-
     def f_safe(p0, v0, endpoint, control_dt: float = 1.0, a_max: float = 1.0, a_min: float = -1.0, v_limit: float = 40.0):
         """
         Implement the safe acceleration function f.
         """
-        # parse parameters as numbers (using the existing parser in the module)
         p0n, ok_p = _parse_numeric(p0)
         v0n, ok_v = _parse_numeric(v0)
         endn, ok_e = _parse_numeric(endpoint)
-        log_event(f"f_safe call: p0={p0} (ok={ok_p}), v0={v0} (ok={ok_v}), endpoint={endpoint} (ok={ok_e})")
+        log_event(f"f_safe called: p0={p0} (ok={ok_p}), v0={v0} (ok={ok_v}), endpoint={endpoint} (ok={ok_e})")
 
         if not (ok_p and ok_v and ok_e):
             return ChannelPayload('f', (p0, v0, endpoint))
@@ -2946,9 +2972,9 @@ if __name__ == "__main__":
         v = float(v0n)
         endpoint_f = float(endn)
 
-        MAX_ACCELERATION = float(a_max)  # 1.0
-        MAX_DECELERATION = float(a_min)  # -1.0
-        MAX_VELOCITY = float(v_limit)    # 40.0
+        MAX_ACCELERATION = float(a_max)
+        MAX_DECELERATION = float(a_min)
+        MAX_VELOCITY = float(v_limit)
         CONTROL_PERIOD = float(control_dt)
         SAFETY_MARGIN = 2.0
 
@@ -2958,10 +2984,8 @@ if __name__ == "__main__":
             predicted_v = v + MAX_ACCELERATION * CONTROL_PERIOD
             predicted_p = p + v * CONTROL_PERIOD + 0.5 * MAX_ACCELERATION * CONTROL_PERIOD**2
 
-            # velocity not exceeding the limit
             velocity_safe = (predicted_v <= MAX_VELOCITY + 1e-9)
 
-            # calculate the minimum braking distance required to stop from the predicted velocity
             if predicted_v > 0:
                 braking_distance = (0 - predicted_v**2) / (2 * MAX_DECELERATION)
             else:
@@ -2979,7 +3003,7 @@ if __name__ == "__main__":
             else:
                 braking_distance = 0.0
             distance_safe = (predicted_p + braking_distance + SAFETY_MARGIN) <= endpoint_f
-            log_event(f"Predicted position: {predicted_p:.2f}, Predicted velocity: {predicted_v:.2f}, Braking distance: {braking_distance:.2f}, Distance safe: {distance_safe:.2f} vs {endpoint_f:.2f}")
+            log_event(f"predicted position: {predicted_p:.2f}, predicted velocity: {predicted_v:.2f}, braking distance: {braking_distance:.2f}, distance safe: {distance_safe:.2f} vs {endpoint_f:.2f}")
             return distance_safe
 
         if is_max_acceleration_safe():

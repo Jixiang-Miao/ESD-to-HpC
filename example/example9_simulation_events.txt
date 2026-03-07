@@ -1,0 +1,81 @@
+# HpC simulation event log
+=== Starting HPC continuous process simulation ===
+Collected named definition[0]: Alice
+Collected named definition[1]: Bob
+Collected named definition[2]: Charlie
+Collected named definition[3]: David
+Collected named definition[4]: System
+
+--- Step 1 ---
+Attempted to apply [Pass] rule: applied=False, new_proc=Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().0 || Authentication Request().Authentication Response̅⟨⟩.0 || Authentication Request().Authentication Response̅⟨⟩.0 || Authentication Request().Authentication Response̅⟨⟩.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc=Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().0 || Authentication Request().Authentication Response̅⟨⟩.0 || Authentication Request().Authentication Response̅⟨⟩.0 || Authentication Request().Authentication Response̅⟨⟩.0, log=None
+input process: 3,[(1, <hpc.PrefixProcess object at 0x0000027153330820>, <hpc.PrefixProcess object at 0x0000027153330820>, False, -1), (2, <hpc.PrefixProcess object at 0x0000027153330340>, <hpc.PrefixProcess object at 0x0000027153330340>, False, -1), (3, <hpc.PrefixProcess object at 0x0000027153333F10>, <hpc.PrefixProcess object at 0x0000027153333F10>, False, -1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x0000027153332500>, <hpc.PrefixProcess object at 0x0000027153332500>, False, -1)]
+output variable list: ['']
+evaluate output expression:  -> val=None, missing=set()
+output expression evaluation result: valid=True, values=[]
+COMM consumption: out_idx=0 in_idx=1 channel=AuthenticationRequest values=[]
+Attempted to apply [Comm] rule: applied=True, new_proc=Authentication Response().Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().0 || Authentication Response̅⟨⟩.0 || Authentication Request().Authentication Response̅⟨⟩.0 || Authentication Request().Authentication Response̅⟨⟩.0, log=Communication channel(Authentication Request̅)(Communication message: )
+Discrete reduction: Applied [Comm] rule (Communication channel(Authentication Request̅)(Communication message: ))
+Check process termination: Authentication Response().Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().0 || Authentication Response̅⟨⟩.0 || Authentication Request().Authentication Response̅⟨⟩.0 || Authentication Request().Authentication Response̅⟨⟩.0
+
+--- Step 2 ---
+Attempted to apply [Pass] rule: applied=False, new_proc=Authentication Response().Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().0 || Authentication Response̅⟨⟩.0 || Authentication Request().Authentication Response̅⟨⟩.0 || Authentication Request().Authentication Response̅⟨⟩.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc=Authentication Response().Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().0 || Authentication Response̅⟨⟩.0 || Authentication Request().Authentication Response̅⟨⟩.0 || Authentication Request().Authentication Response̅⟨⟩.0, log=None
+input process: 3,[(0, <hpc.PrefixProcess object at 0x0000027153332AD0>, <hpc.PrefixProcess object at 0x0000027153332AD0>, False, -1), (2, <hpc.PrefixProcess object at 0x0000027153331750>, <hpc.PrefixProcess object at 0x0000027153331750>, False, -1), (3, <hpc.PrefixProcess object at 0x0000027153333F70>, <hpc.PrefixProcess object at 0x0000027153333F70>, False, -1)]，output process: 1,[(1, <hpc.PrefixProcess object at 0x0000027153333460>, <hpc.PrefixProcess object at 0x0000027153333460>, False, -1)]
+output variable list: ['']
+evaluate output expression:  -> val=None, missing=set()
+output expression evaluation result: valid=True, values=[]
+COMM consumption: out_idx=1 in_idx=0 channel=AuthenticationResponse values=[]
+Attempted to apply [Comm] rule: applied=True, new_proc=Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().0 || Authentication Request().Authentication Response̅⟨⟩.0 || Authentication Request().Authentication Response̅⟨⟩.0, log=Communication channel(Authentication Response̅)(Communication message: )
+Discrete reduction: Applied [Comm] rule (Communication channel(Authentication Response̅)(Communication message: ))
+Check process termination: Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().0 || Authentication Request().Authentication Response̅⟨⟩.0 || Authentication Request().Authentication Response̅⟨⟩.0
+
+--- Step 3 ---
+Attempted to apply [Pass] rule: applied=False, new_proc=Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().0 || Authentication Request().Authentication Response̅⟨⟩.0 || Authentication Request().Authentication Response̅⟨⟩.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc=Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().0 || Authentication Request().Authentication Response̅⟨⟩.0 || Authentication Request().Authentication Response̅⟨⟩.0, log=None
+input process: 2,[(1, <hpc.PrefixProcess object at 0x0000027153331FF0>, <hpc.PrefixProcess object at 0x0000027153331FF0>, False, -1), (2, <hpc.PrefixProcess object at 0x0000027153331300>, <hpc.PrefixProcess object at 0x0000027153331300>, False, -1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x00000271533337C0>, <hpc.PrefixProcess object at 0x00000271533337C0>, False, -1)]
+output variable list: ['']
+evaluate output expression:  -> val=None, missing=set()
+output expression evaluation result: valid=True, values=[]
+COMM consumption: out_idx=0 in_idx=1 channel=AuthenticationRequest values=[]
+Attempted to apply [Comm] rule: applied=True, new_proc=Authentication Response().Authentication Request̅⟨⟩.Authentication Response().0 || Authentication Response̅⟨⟩.0 || Authentication Request().Authentication Response̅⟨⟩.0, log=Communication channel(Authentication Request̅)(Communication message: )
+Discrete reduction: Applied [Comm] rule (Communication channel(Authentication Request̅)(Communication message: ))
+Check process termination: Authentication Response().Authentication Request̅⟨⟩.Authentication Response().0 || Authentication Response̅⟨⟩.0 || Authentication Request().Authentication Response̅⟨⟩.0
+
+--- Step 4 ---
+Attempted to apply [Pass] rule: applied=False, new_proc=Authentication Response().Authentication Request̅⟨⟩.Authentication Response().0 || Authentication Response̅⟨⟩.0 || Authentication Request().Authentication Response̅⟨⟩.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc=Authentication Response().Authentication Request̅⟨⟩.Authentication Response().0 || Authentication Response̅⟨⟩.0 || Authentication Request().Authentication Response̅⟨⟩.0, log=None
+input process: 2,[(0, <hpc.PrefixProcess object at 0x0000027153333460>, <hpc.PrefixProcess object at 0x0000027153333460>, False, -1), (2, <hpc.PrefixProcess object at 0x0000027153331750>, <hpc.PrefixProcess object at 0x0000027153331750>, False, -1)]，output process: 1,[(1, <hpc.PrefixProcess object at 0x0000027153332E30>, <hpc.PrefixProcess object at 0x0000027153332E30>, False, -1)]
+output variable list: ['']
+evaluate output expression:  -> val=None, missing=set()
+output expression evaluation result: valid=True, values=[]
+COMM consumption: out_idx=1 in_idx=0 channel=AuthenticationResponse values=[]
+Attempted to apply [Comm] rule: applied=True, new_proc=Authentication Request̅⟨⟩.Authentication Response().0 || Authentication Request().Authentication Response̅⟨⟩.0, log=Communication channel(Authentication Response̅)(Communication message: )
+Discrete reduction: Applied [Comm] rule (Communication channel(Authentication Response̅)(Communication message: ))
+Check process termination: Authentication Request̅⟨⟩.Authentication Response().0 || Authentication Request().Authentication Response̅⟨⟩.0
+
+--- Step 5 ---
+Attempted to apply [Pass] rule: applied=False, new_proc=Authentication Request̅⟨⟩.Authentication Response().0 || Authentication Request().Authentication Response̅⟨⟩.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc=Authentication Request̅⟨⟩.Authentication Response().0 || Authentication Request().Authentication Response̅⟨⟩.0, log=None
+input process: 1,[(1, <hpc.PrefixProcess object at 0x0000027153331CC0>, <hpc.PrefixProcess object at 0x0000027153331CC0>, False, -1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x00000271533320B0>, <hpc.PrefixProcess object at 0x00000271533320B0>, False, -1)]
+output variable list: ['']
+evaluate output expression:  -> val=None, missing=set()
+output expression evaluation result: valid=True, values=[]
+COMM consumption: out_idx=0 in_idx=1 channel=AuthenticationRequest values=[]
+Attempted to apply [Comm] rule: applied=True, new_proc=Authentication Response().0 || Authentication Response̅⟨⟩.0, log=Communication channel(Authentication Request̅)(Communication message: )
+Discrete reduction: Applied [Comm] rule (Communication channel(Authentication Request̅)(Communication message: ))
+Check process termination: Authentication Response().0 || Authentication Response̅⟨⟩.0
+
+--- Step 6 ---
+Attempted to apply [Pass] rule: applied=False, new_proc=Authentication Response().0 || Authentication Response̅⟨⟩.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc=Authentication Response().0 || Authentication Response̅⟨⟩.0, log=None
+input process: 1,[(0, <hpc.PrefixProcess object at 0x00000271533303D0>, <hpc.PrefixProcess object at 0x00000271533303D0>, False, -1)]，output process: 1,[(1, <hpc.PrefixProcess object at 0x0000027153331E40>, <hpc.PrefixProcess object at 0x0000027153331E40>, False, -1)]
+output variable list: ['']
+evaluate output expression:  -> val=None, missing=set()
+output expression evaluation result: valid=True, values=[]
+COMM consumption: out_idx=1 in_idx=0 channel=AuthenticationResponse values=[]
+Attempted to apply [Comm] rule: applied=True, new_proc=0, log=Communication channel(Authentication Response̅)(Communication message: )
+Discrete reduction: Applied [Comm] rule (Communication channel(Authentication Response̅)(Communication message: ))
+Check process termination: 0
+System terminated
+=== Simulation completed: 6 steps, total time 0.000000 seconds ===

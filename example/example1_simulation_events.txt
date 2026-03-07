@@ -1,0 +1,31 @@
+# HpC simulation event log
+=== Starting HPC continuous process simulation ===
+Collected named definition[0]: Alice
+Collected named definition[1]: Bob
+Collected named definition[2]: System
+
+--- Step 1 ---
+Attempted to apply [Pass] rule: applied=False, new_proc=Authentication Request̅⟨⟩.Authentication Response().0 || Authentication Request().Authentication Response̅⟨⟩.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc=Authentication Request̅⟨⟩.Authentication Response().0 || Authentication Request().Authentication Response̅⟨⟩.0, log=None
+input process: 1,[(1, <hpc.PrefixProcess object at 0x0000027153331390>, <hpc.PrefixProcess object at 0x0000027153331390>, False, -1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x00000271533313F0>, <hpc.PrefixProcess object at 0x00000271533313F0>, False, -1)]
+output variable list: ['']
+evaluate output expression:  -> val=None, missing=set()
+output expression evaluation result: valid=True, values=[]
+COMM consumption: out_idx=0 in_idx=1 channel=AuthenticationRequest values=[]
+Attempted to apply [Comm] rule: applied=True, new_proc=Authentication Response().0 || Authentication Response̅⟨⟩.0, log=Communication channel(Authentication Request̅)(Communication message: )
+Discrete reduction: Applied [Comm] rule (Communication channel(Authentication Request̅)(Communication message: ))
+Check process termination: Authentication Response().0 || Authentication Response̅⟨⟩.0
+
+--- Step 2 ---
+Attempted to apply [Pass] rule: applied=False, new_proc=Authentication Response().0 || Authentication Response̅⟨⟩.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc=Authentication Response().0 || Authentication Response̅⟨⟩.0, log=None
+input process: 1,[(0, <hpc.PrefixProcess object at 0x0000027153331570>, <hpc.PrefixProcess object at 0x0000027153331570>, False, -1)]，output process: 1,[(1, <hpc.PrefixProcess object at 0x0000027153331B70>, <hpc.PrefixProcess object at 0x0000027153331B70>, False, -1)]
+output variable list: ['']
+evaluate output expression:  -> val=None, missing=set()
+output expression evaluation result: valid=True, values=[]
+COMM consumption: out_idx=1 in_idx=0 channel=AuthenticationResponse values=[]
+Attempted to apply [Comm] rule: applied=True, new_proc=0, log=Communication channel(Authentication Response̅)(Communication message: )
+Discrete reduction: Applied [Comm] rule (Communication channel(Authentication Response̅)(Communication message: ))
+Check process termination: 0
+System terminated
+=== Simulation completed: 2 steps, total time 0.000000 seconds ===

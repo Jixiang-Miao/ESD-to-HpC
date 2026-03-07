@@ -1,0 +1,3 @@
+Alice ::= Authentication Request̅⟨⟩.Authentication Response().0
+Bob ::= Authentication Request().Authentication Response̅⟨⟩.0
+System ::= Alice || Bob

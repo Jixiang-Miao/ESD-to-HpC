@@ -3,9 +3,9 @@ import pandas as pd
 from io import StringIO
 
 def read_trace_file_automatically(filepath):
-    """Parse trace file in segments: each time encountering a header line (containing 'global_time' and separated by commas)
-    start a new block, read subsequent data until the next header; parse each block separately into a DataFrame,
-    finally merge (outer join) and convert numeric columns to numeric types."""
+    """Parse trace file by blocks: start a new block whenever a header line (containing 'global_time' and separated by commas) is encountered,
+    read subsequent data until the next header; parse each block into a separate DataFrame,
+    finally merge them (outer join) and convert numeric columns to numeric types."""
     with open(filepath, 'r', encoding='utf-8') as f:
         lines = f.readlines()
 
@@ -38,18 +38,16 @@ def read_trace_file_automatically(filepath):
             df_block = pd.read_csv(StringIO(data_str))
             dfs.append(df_block)
         except Exception as e:
-            print(f"skipping block that could not be parsed (error: {e})")
+            print(f"Skipping unparsable block (error: {e})")
 
     if not dfs:
         return None, []
 
-    # merge all blocks (even if columns are not identical)
     df = pd.concat(dfs, ignore_index=True, sort=False)
 
     for col in df.columns:
         df[col] = pd.to_numeric(df[col], errors='coerce')
 
-    # construct variable names: ensure global_time is first (if present)
     cols = list(df.columns)
     if 'global_time' in cols:
         cols.remove('global_time')
@@ -60,19 +58,19 @@ def read_trace_file_automatically(filepath):
     return df, variable_names
 
 def plot_continuous_evolution_auto(filepath):
-    """plot continuous evolution of variables in a continuous process (supporting multiple headers in the file)"""
+    """Automatically plot line charts of variable evolution in continuous processes (supports multiple headers in file)"""
 
     df, variable_names = read_trace_file_automatically(filepath)
 
     if df is None or len(variable_names) < 2:
-        print("skipping block that could not be parsed (error: {e})")
+        print("Failed to read data or insufficient number of variables")
         return
     
-    # if 'p' in df.columns:
-    #     df = df.drop(columns=['p'])
+    if 'p' in df.columns:
+        df = df.drop(columns=['p'])
 
     print(f"data shape: {df.shape}")
-    print(f"available variables: {variable_names}")
+    print(f"variables: {variable_names}")
 
     plt.rcParams['font.sans-serif'] = ['SimHei', 'Arial', 'sans-serif']
     plt.rcParams['axes.unicode_minus'] = False
@@ -97,18 +95,19 @@ def plot_continuous_evolution_auto(filepath):
 
     plt.xlabel(f'{time_var}', fontsize=12)
     plt.ylabel('Variable Value', fontsize=12)
-    plt.title('Continuous Process Variable Evolution', fontsize=14, fontweight='bold')
+    plt.title('Continuous Process Variable Evolution Chart', fontsize=14, fontweight='bold')
     plt.grid(True, alpha=0.3)
     plt.legend(fontsize=10, loc='best')
     plt.xlim(df[time_var].min(), df[time_var].max())
     plt.tight_layout()
-    plt.savefig("trace.png", dpi=1200, bbox_inches='tight')
+    # plt.savefig("example_trace_except_p.png", dpi=1200, bbox_inches='tight')
+    plt.savefig("example_trace.png", dpi=1200, bbox_inches='tight')
     plt.show()
 
     return df, variable_names
 
 if __name__ == "__main__":
-    df, vars = plot_continuous_evolution_auto("trace.txt")
+    df, vars = plot_continuous_evolution_auto("example_trace.txt")
     if df is not None:
-        print("\nData Statistics:")
+        print("\nData statistics:")
         print(df.describe())

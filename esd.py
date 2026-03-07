@@ -111,8 +111,6 @@ class Communication(Fragment):
         )
         return ret
 
-
-
 class Sensation(Fragment):
     def __init__(self, sender: str, receiver: str, var_x: str, var_v: str, 
                  cont: Fragment, assignment_tracker=None):
@@ -137,7 +135,6 @@ class Sensation(Fragment):
                     ret[self.sender]
                 )
             return ret
-
 
 class Actuation(Fragment):
     def __init__(self, sender: str, receiver: str, var_v: str, expr: str, cont: Fragment):
@@ -222,33 +219,53 @@ class Alternative(Fragment):
         self.cont = cont
 
     def translate(self, roles):
+        """
+        Convert the alt statement to the mixed π-calculus form.
+        :param roles: Set of all participating roles
+        :return: Transformed process definition
+        """
         assert self.role in roles
-        ret = dict()
+        ret = {}
+
         ret0 = compose(self.branch0, self.cont).translate(roles)
         ret1 = compose(self.branch1, self.cont).translate(roles)
-        branch0 = ret0[self.role]
-        branch1 = ret1[self.role]
+
         roles0 = get_discrete_roles(self.branch0)
         roles1 = get_discrete_roles(self.branch1)
-        assert self.role in roles0 + roles1 and all(role in roles for role in roles0 + roles1)
-        for role in roles0 + roles1:
+        all_roles = set(roles0).union(roles1)
+
+        branch0 = ret0[self.role]
+        branch1 = ret1[self.role]
+
+        for role in all_roles:
             if role != self.role:
-                branch0 = hpc.PrefixProcess(hpc.Output(hpc.OutChannel("alt", [str(self.index), role])), branch0)
-                branch1 = hpc.PrefixProcess(hpc.Output(hpc.OutChannel("alt'", [str(self.index), role])), branch1)
+                branch0 = hpc.PrefixProcess(
+                    hpc.Output(hpc.OutChannel(f"alt1", [str(self.index), role])),
+                    branch0
+                )
+                branch1 = hpc.PrefixProcess(
+                    hpc.Output(hpc.OutChannel(f"alt2", [str(self.index), role])),
+                    branch1
+                )
                 ret[role] = hpc.Sum([
-                        hpc.PrefixProcess(hpc.Input(hpc.InChannel("alt", [str(self.index), role])), ret0[role]),
-                        hpc.PrefixProcess(hpc.Input(hpc.InChannel("alt'", [str(self.index), role])), ret1[role])
-                    ])
-        
-        # Convert the conditional to a sum
+                    hpc.PrefixProcess(
+                        hpc.Input(hpc.InChannel(f"alt1", [str(self.index), role])),
+                        ret0[role]
+                    ),
+                    hpc.PrefixProcess(
+                        hpc.Input(hpc.InChannel(f"alt2", [str(self.index), role])),
+                        ret1[role]
+                    )
+                ])
+
         conditional = hpc.Conditional(self.cond, branch0, branch1)
         ret[self.role] = conditional.to_sum()
-        
-        for role in roles:
-            if role not in roles0 + roles1:
-                ret[role] = ret0[role]  # assuming equal
-        return ret
 
+        for role in roles:
+            if role not in all_roles:
+                ret[role] = ret0[role]
+
+        return ret
 
 class Option(Fragment):
     def __init__(self, index: int, role: str, cond: str, body: Fragment, cont: Fragment):
@@ -263,7 +280,6 @@ class Option(Fragment):
     
     def translate(self, roles):
         return Alternative(self.index, self.role, self.cond, self.body, Fragment(), self.cont).translate(roles)
-
 
 class Loop(Fragment):
     def __init__(self, index: int, role: str, cond: str, body: Fragment, cont: Fragment):
@@ -317,23 +333,49 @@ class Break(Fragment):
         super().__init__()
         self.frag = frag
 
-
 class Par(Fragment):
     def __init__(self, frag0: Fragment, frag1: Fragment, cont: Fragment):
+        super().__init__()
         self.frag0 = frag0
         self.frag1 = frag1
         self.cont = cont
 
+    def _as_sum_branches(self, p: hpc.Process) -> List[hpc.PrefixProcess]:
+        if isinstance(p, hpc.Sum):
+            return list(p.branches)
+        if isinstance(p, hpc.PrefixProcess):
+            return [p]
+        
+        return [hpc.PrefixProcess(hpc.Tau(), p)]
+
+    def _choice(self, p: hpc.Process, q: hpc.Process) -> hpc.Process:
+        b = self._as_sum_branches(p) + self._as_sum_branches(q)
+        return b[0] if len(b) == 1 else hpc.Sum(b)
+
     def translate(self, roles):
         proc0 = self.frag0.translate(roles)
         proc1 = self.frag1.translate(roles)
-        cont_proc = self.cont.translate(roles)
+        cont_proc = self.cont.translate(roles) if self.cont else {r: hpc.Inaction() for r in roles}
+
         ret = {}
         for role in roles:
-            ret[role] = hpc.Parallel(proc0.get(role, hpc.Inaction()), proc1.get(role, hpc.Inaction()))
-            ret[role] = hpc.Parallel(ret[role], cont_proc.get(role, hpc.Inaction()))
-        return ret
+            p0 = proc0.get(role, hpc.Inaction())
+            p1 = proc1.get(role, hpc.Inaction())
+            pc = cont_proc.get(role, hpc.Inaction())
 
+            # par ∅ else Frag end Tail => Frag ; 对称同理
+            if isinstance(p0, hpc.Inaction):
+                ret[role] = sequence(p1, pc)
+                continue
+            if isinstance(p1, hpc.Inaction):
+                ret[role] = sequence(p0, pc)
+                continue
+
+            left_first = sequence(p0, sequence(p1, pc))
+            right_first = sequence(p1, sequence(p0, pc))
+            ret[role] = self._choice(left_first, right_first)
+
+        return ret
 
 class Critical(Fragment):
     def __init__(self, frag: Fragment, cont: Fragment):
@@ -371,7 +413,7 @@ def get_ready_set(role: str, frag: Fragment) -> List[hpc.Channel]:
             else:
                 if f.body:
                     collect(f.body)
-        # Alternative（alt）
+
         elif isinstance(f, Alternative):
             if role != f.role:
                 if f.branch0:
@@ -498,7 +540,7 @@ def generate_memory_processes(tracker):
 
 class ESD:
     def __init__(self, frag: Fragment, roles: List[str]):
-        assert len(roles) >= 2
+        assert len(roles) >= 1
         self.frag = frag
         self.roles = roles
 
@@ -556,6 +598,9 @@ def parse_example(example: str) -> Fragment:
     tail = None
     pending_activation = None
     loop_stack = []
+    alt_stack = []
+    opt_stack = []
+    par_stack = []
     activation_stack = []
     tracker = AssignmentTracker()
 
@@ -565,6 +610,12 @@ def parse_example(example: str) -> Fragment:
             node.assignment_tracker = tracker
         if loop_stack:
             loop_stack[-1]['nodes'].append(node)
+        elif alt_stack:
+            alt_stack[-1]['nodes'].append(node)
+        elif opt_stack:
+            opt_stack[-1]['nodes'].append(node)
+        elif par_stack:
+            par_stack[-1]['branches'][par_stack[-1]['active']].append(node)
         elif activation_stack:
             activation_stack[-1]['body_nodes'].append(node)
         else:
@@ -583,8 +634,65 @@ def parse_example(example: str) -> Fragment:
         return nodes[0]
 
     for line in lines:
-        # print(f"pending_activation:{pending_activation}")
-        # === 1. loop  ===
+        alt_match = re.match(r"alt \[(\d+)\] (\w+): (.+)", line)
+        if alt_match:
+            print(f"Processing alt: {line}")
+            idx, role, cond = alt_match.groups()
+            alt_stack.append({'index': int(idx), 'role': role, 'cond': cond, 'nodes': []})
+            print(f"alt_match: idx={idx}, role={role}, cond={cond}")
+            continue
+        else_match = re.match(r"else(?:\s+(.+))?", line)
+        if else_match and alt_stack:
+            print(f"Processing else for alt index={alt_stack[-1]['index']}, role={alt_stack[-1]['role']}")
+            item = alt_stack[-1]
+            print(f"else: linking branch0 for index={item['index']}, role={item['role']}")
+            item['branch0'] = link_nodes(item['nodes'])
+            print(f"else: branch0 set for index={item['index']}, role={item['role']}")
+            item['nodes'] = []
+            continue
+        if line == "end" and alt_stack:
+            item = alt_stack.pop()
+            branch0 = item.get('branch0', Fragment())
+            branch1 = link_nodes(item['nodes']) if item['nodes'] else Fragment()
+            alt_node = Alternative(index=item['index'], role=item['role'], cond=item['cond'], branch0=branch0, branch1=branch1, cont=Fragment())
+            append_node(alt_node)
+            continue
+
+        opt_match = re.match(r"opt \[(\d+)\] (\w+): (.+)", line)
+        if opt_match:
+            idx, role, cond = opt_match.groups()
+            opt_stack.append({'index': int(idx), 'role': role, 'cond': cond, 'nodes': []})
+            print(f"opt_match: idx={idx}, role={role}, cond={cond}")
+            continue
+        if line == "end" and opt_stack:
+            item = opt_stack.pop()
+            body = link_nodes(item['nodes'])
+            opt_node = Option(index=item['index'], role=item['role'], cond=item['cond'], body=body, cont=Fragment())
+            append_node(opt_node)
+            continue
+
+        par_match = re.match(r"par \[(\d+)\]", line)
+        if par_match:
+            idx = par_match.group(1)
+            par_stack.append({
+                'index': int(idx),
+                'branches': [[], []],
+                'active': 0
+            })
+            print(f"par_match: idx={idx}")
+            continue
+        if line == "else" and par_stack:
+            par_stack[-1]['active'] = 1
+            continue
+        if line == "end" and par_stack:
+            item = par_stack.pop()
+            frag0 = link_nodes(item['branches'][0]) if item['branches'][0] else Fragment()
+            frag1 = link_nodes(item['branches'][1]) if item['branches'][1] else Fragment()
+            par_node = Par(frag0=frag0, frag1=frag1, cont=Fragment())
+            print(f"par: linking branches for index={item['index']}, frag0={frag0}, frag1={frag1}")
+            append_node(par_node)
+            continue
+
         loop_match = re.match(r"loop \[(\d+)\] (\w+): (.+)", line)
         if loop_match:
             idx, role, cond = loop_match.groups()
@@ -597,13 +705,11 @@ def parse_example(example: str) -> Fragment:
             append_node(loop_node)
             continue
 
-        # === 2. activate ===
         if line.startswith("activate "):
             role = line.split()[1]
             activation_stack.append({'role': role, 'body_nodes': [], 'activation_node': None})
             continue
 
-        # === 3. note  (delay(x)) ===
         delay_match = re.match(r"note (left|right|over) of (\w+): delay\((\d+(?:\.\d+)?)\)", line)
         if delay_match:
             _, role, delay_value = delay_match.groups()
@@ -611,8 +717,6 @@ def parse_example(example: str) -> Fragment:
             append_node(delay_node)
             continue
 
-
-        # === 3b. note  (<<ode>> {...}) ===
         ode_match = re.match(r"note (left|right|over) of (\w+): <<ode>>\s*\{(.+)\}", line)
         if ode_match:
             _, role, ode_str = ode_match.groups()
@@ -664,7 +768,6 @@ def parse_example(example: str) -> Fragment:
                     append_node(activation_node)
             continue
 
-        # === 5. Assignment (:=) ===
         assign_match = re.match(r"(\w+)\s*->\s*(\w+)\s*:\s*(\w+)\s*:=\s*(.+)", line)
         if assign_match:
             sender, receiver, var, expr = assign_match.groups()
@@ -673,7 +776,6 @@ def parse_example(example: str) -> Fragment:
                 append_node(node)
                 continue
 
-        # === 6. <<sense>> ===
         sense_match = re.match(r"(\w+)\s*->\s*(\w+)\s*:\s*<<sense>>\s*(\w+)\s*:=\s*(\w+)", line)
         if sense_match:
             sender, receiver, x, v = sense_match.groups()
@@ -682,7 +784,6 @@ def parse_example(example: str) -> Fragment:
             continue
 
 
-        # === 7. <<actuate>> ===
         act_match = re.match(r"(\w+)\s*->\s*(\w+)\s*:\s*<<actuate>>\s*(\w+)\s*[:=]+\s*(.+)", line)
         if act_match:
             sender, receiver, var, expr = act_match.groups()
@@ -690,11 +791,10 @@ def parse_example(example: str) -> Fragment:
             append_node(node)
             continue
 
-        # === 8. channels(...)  ===
-        comm_match = re.match(r"(\w+)\s*->\s*(\w+)\s*:\s*(\w+)\(([^()]*)\)", line)
+        comm_match = re.match(r"(\w+)\s*->\s*(\w+)\s*:\s*([\w\s]+?)(?:\(([^()]*)\))?$", line)
         if comm_match:
             sender, receiver, channel_name, content = comm_match.groups()
-            content = content.strip()
+            content = content.strip() if content else ""
             var_list, expr_list = parse_channel_content(content)
 
             node = Communication(
@@ -708,8 +808,6 @@ def parse_example(example: str) -> Fragment:
             append_node(node)
             continue
 
-
-        # === 9. comm ===
         alt_comm_match = re.match(r"(\w+)\s*->\s*(\w+)\s*:\s*(\w+)", line)
         if alt_comm_match:
             sender, receiver, channel_name = alt_comm_match.groups()
@@ -1051,7 +1149,6 @@ def main():
                 print(f"  {var_type} variables: {sorted(vars_set)}")
     
     roles = ["Train", "LeftSector", "RightSector"]
-    
     role_vars = collect_role_variables(root)
     rename_conflicting_variables(root, role_vars)
     esd = ESD(root, roles)
@@ -1060,14 +1157,14 @@ def main():
     print("\n=== Conversion Result ===")
     print(translated)
 
-    with open("translated_output.txt", "w", encoding="utf-8") as f:
+    with open("example_translated_output.txt", "w", encoding="utf-8") as f:
         f.write(str(translated))
         f.write("\n")
     standard_form = to_standard_form(translated)
     print("\n=== Standard Form Result ===")
     print(standard_form)
 
-    with open("standardized_output.txt", "w", encoding="utf-8") as f:
+    with open("example_standardized_output.txt", "w", encoding="utf-8") as f:
         f.write(str(standard_form))
     print("Conversion result saved")
 

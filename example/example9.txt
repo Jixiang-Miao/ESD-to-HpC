@@ -1,0 +1,12 @@
+@startuml
+par
+    Alice -> Bob: Authentication Request
+    Bob -> Alice: Authentication Response
+else
+    Alice -> Charlie: Authentication Request
+    Charlie -> Alice: Authentication Response
+else
+    Alice -> David: Authentication Request
+    David -> Alice: Authentication Response
+end
+@enduml

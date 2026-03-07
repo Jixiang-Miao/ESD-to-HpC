@@ -1,0 +1,2 @@
+Alice ::= {0 | t_dot=1 & t<1.0, {}}.0
+System ::= (ν t) Alice

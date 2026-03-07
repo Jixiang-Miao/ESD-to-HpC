@@ -1,0 +1,26 @@
+# HpC simulation event log
+=== Starting HPC continuous process simulation ===
+Collected named definition[0]: Alice
+Collected named definition[1]: System
+Removing restriction: ['t']
+
+--- Step 1 ---
+Warning: Input process is not in canonical form: Standard form is missing M-type processes (Sum processes)
+Attempted to apply [Pass] rule: applied=False, new_proc={0 | t_dot=1 & t<1.0, {}}.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc={0 | t_dot=1 & t<1.0, {}}.0, log=None
+input process: 0,[]，output process: 0,[]
+Attempted to apply [Comm] rule: applied=False, new_proc={0 | t_dot=1 & t<1.0, {}}.0, log=None
+Attempted to apply [Sense] rule: applied=False, new_proc={0 | t_dot=1 & t<1.0, {}}.0, log=None
+Attempted to apply [Actuate] rule: applied=False, new_proc={0 | t_dot=1 & t<1.0, {}}.0, log=None
+Attempted to apply [Rep] rule: applied=False, new_proc={0 | t_dot=1 & t<1.0, {}}.0, log=None
+Collected 1 continuous processes for evolution
+ODE system information idx=0: {'idx': 0, 'comp': <hpc.PrefixProcess object at 0x0000027153330A60>, 'ode': <hpc.ODE object at 0x0000027153332230>, 'repl': <hpc.Inaction object at 0x0000027153331B40>, 'vars_list': ['t'], 'derivs_list': ['1'], 'bound_expr': 't<1.0', 'init_vals': ['0']}
+Iterating initial values i: 0, var: t, init_vals[i]: 0
+ODE initial value expression idx=0, var=t: expr=0
+ODE initial value evaluation idx=0, var=t: v=0, missing=set()
+ODE initial state idx=0: y0=[0.0]
+Continuous evolution completed: advanced 1.011100 seconds
+Checking 0
+Check process termination: 0
+System terminated (after continuous evolution)
+=== Simulation completed: 1 steps, total time 1.011100 seconds ===

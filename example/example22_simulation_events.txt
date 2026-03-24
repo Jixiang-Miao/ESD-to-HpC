@@ -1,0 +1,109 @@
+# HpC simulation event log
+=== Starting HPC continuous process simulation ===
+Collected named definition[0]: Alice
+Collected named definition[1]: Bob
+Collected named definition[2]: Charlie
+Collected named definition[3]: David
+Collected named definition[4]: Memory0
+Collected named definition[5]: System
+Protecting Sum process during canonical form conversion
+Protecting Sum process during canonical form conversion
+Protecting Sum process during canonical form conversion
+Protecting Sum process during canonical form conversion
+Initialized allocation constant: x=0
+
+--- Step 1 ---
+Attempted to apply [Pass] rule: applied=False, new_proc=x̅'⟨0⟩.x'(x).([x > 0].alt1(['1', 'Bob'])⟨⟩.alt1(['1', 'Charlie'])⟨⟩.alt1(['1', 'David'])⟨⟩.Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0 + [(¬x > 0)].alt2(['1', 'Bob'])⟨⟩.alt2(['1', 'Charlie'])⟨⟩.alt2(['1', 'David'])⟨⟩.finalize̅⟨⟩.0) || (alt1(['1', 'Bob'])().Authentication Request().Authentication Response̅⟨⟩.finalize().0 + alt2(['1', 'Bob'])().finalize().0) || (alt1(['1', 'Charlie'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'Charlie'])().0) || (alt1(['1', 'David'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'David'])().0) || !x'(x).x̅'⟨x⟩.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc=x̅'⟨0⟩.x'(x).([x > 0].alt1(['1', 'Bob'])⟨⟩.alt1(['1', 'Charlie'])⟨⟩.alt1(['1', 'David'])⟨⟩.Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0 + [(¬x > 0)].alt2(['1', 'Bob'])⟨⟩.alt2(['1', 'Charlie'])⟨⟩.alt2(['1', 'David'])⟨⟩.finalize̅⟨⟩.0) || (alt1(['1', 'Bob'])().Authentication Request().Authentication Response̅⟨⟩.finalize().0 + alt2(['1', 'Bob'])().finalize().0) || (alt1(['1', 'Charlie'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'Charlie'])().0) || (alt1(['1', 'David'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'David'])().0) || !x'(x).x̅'⟨x⟩.0, log=None
+input process: 6,[(1, <hpc.Sum object at 0x000001FC75567D30>, <hpc.PrefixProcess object at 0x000001FC75567790>, True, 0), (1, <hpc.Sum object at 0x000001FC75567D30>, <hpc.PrefixProcess object at 0x000001FC75566E90>, True, 1), (2, <hpc.Sum object at 0x000001FC75567610>, <hpc.PrefixProcess object at 0x000001FC75566800>, True, 0), (2, <hpc.Sum object at 0x000001FC75567610>, <hpc.PrefixProcess object at 0x000001FC75567670>, True, 1), (3, <hpc.Sum object at 0x000001FC75567100>, <hpc.PrefixProcess object at 0x000001FC75566DA0>, True, 0), (3, <hpc.Sum object at 0x000001FC75567100>, <hpc.PrefixProcess object at 0x000001FC755677F0>, True, 1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x000001FC75567010>, <hpc.PrefixProcess object at 0x000001FC75567010>, False, -1)]
+output variable list: ['0']
+evaluate output expression: 0 -> val=0, missing=set()
+communication injection: x = 0
+output expression evaluation result: valid=True, values=[0]
+Attempted to apply [Comm] rule: applied=False, new_proc=x̅'⟨0⟩.x'(x).([x > 0].alt1(['1', 'Bob'])⟨⟩.alt1(['1', 'Charlie'])⟨⟩.alt1(['1', 'David'])⟨⟩.Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0 + [(¬x > 0)].alt2(['1', 'Bob'])⟨⟩.alt2(['1', 'Charlie'])⟨⟩.alt2(['1', 'David'])⟨⟩.finalize̅⟨⟩.0) || (alt1(['1', 'Bob'])().Authentication Request().Authentication Response̅⟨⟩.finalize().0 + alt2(['1', 'Bob'])().finalize().0) || (alt1(['1', 'Charlie'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'Charlie'])().0) || (alt1(['1', 'David'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'David'])().0) || !x'(x).x̅'⟨x⟩.0, log=None
+Attempted to apply [Sense] rule: applied=False, new_proc=x̅'⟨0⟩.x'(x).([x > 0].alt1(['1', 'Bob'])⟨⟩.alt1(['1', 'Charlie'])⟨⟩.alt1(['1', 'David'])⟨⟩.Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0 + [(¬x > 0)].alt2(['1', 'Bob'])⟨⟩.alt2(['1', 'Charlie'])⟨⟩.alt2(['1', 'David'])⟨⟩.finalize̅⟨⟩.0) || (alt1(['1', 'Bob'])().Authentication Request().Authentication Response̅⟨⟩.finalize().0 + alt2(['1', 'Bob'])().finalize().0) || (alt1(['1', 'Charlie'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'Charlie'])().0) || (alt1(['1', 'David'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'David'])().0) || !x'(x).x̅'⟨x⟩.0, log=None
+Attempted to apply [Actuate] rule: applied=False, new_proc=x̅'⟨0⟩.x'(x).([x > 0].alt1(['1', 'Bob'])⟨⟩.alt1(['1', 'Charlie'])⟨⟩.alt1(['1', 'David'])⟨⟩.Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0 + [(¬x > 0)].alt2(['1', 'Bob'])⟨⟩.alt2(['1', 'Charlie'])⟨⟩.alt2(['1', 'David'])⟨⟩.finalize̅⟨⟩.0) || (alt1(['1', 'Bob'])().Authentication Request().Authentication Response̅⟨⟩.finalize().0 + alt2(['1', 'Bob'])().finalize().0) || (alt1(['1', 'Charlie'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'Charlie'])().0) || (alt1(['1', 'David'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'David'])().0) || !x'(x).x̅'⟨x⟩.0, log=None
+new_processes after Rep rule: [<hpc.PrefixProcess object at 0x000001FC75565BA0>, <hpc.Sum object at 0x000001FC75567D30>, <hpc.Sum object at 0x000001FC75567610>, <hpc.Sum object at 0x000001FC75567100>, <hpc.Replication object at 0x000001FC75567940>, <hpc.PrefixProcess object at 0x000001FC755A1120>]
+Protecting Sum process during canonical form conversion
+Protecting Sum process during canonical form conversion
+Protecting Sum process during canonical form conversion
+Protecting Sum process during canonical form conversion
+Attempted to apply [Rep] rule: applied=True, new_proc=x'(x).([x > 0].alt1(['1', 'Bob'])⟨⟩.alt1(['1', 'Charlie'])⟨⟩.alt1(['1', 'David'])⟨⟩.Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0 + [(¬x > 0)].alt2(['1', 'Bob'])⟨⟩.alt2(['1', 'Charlie'])⟨⟩.alt2(['1', 'David'])⟨⟩.finalize̅⟨⟩.0) || (alt1(['1', 'Bob'])().Authentication Request().Authentication Response̅⟨⟩.finalize().0 + alt2(['1', 'Bob'])().finalize().0) || (alt1(['1', 'Charlie'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'Charlie'])().0) || (alt1(['1', 'David'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'David'])().0) || x̅'⟨0⟩.0 || !x'(x).x̅'⟨x⟩.0, log=Communication channel (x̅') (message: 0) - [Rep] rule
+Discrete reduction: Applied [Rep] rule (Communication channel (x̅') (message: 0) - [Rep] rule)
+Check process termination: x'(x).([x > 0].alt1(['1', 'Bob'])⟨⟩.alt1(['1', 'Charlie'])⟨⟩.alt1(['1', 'David'])⟨⟩.Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0 + [(¬x > 0)].alt2(['1', 'Bob'])⟨⟩.alt2(['1', 'Charlie'])⟨⟩.alt2(['1', 'David'])⟨⟩.finalize̅⟨⟩.0) || (alt1(['1', 'Bob'])().Authentication Request().Authentication Response̅⟨⟩.finalize().0 + alt2(['1', 'Bob'])().finalize().0) || (alt1(['1', 'Charlie'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'Charlie'])().0) || (alt1(['1', 'David'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'David'])().0) || x̅'⟨0⟩.0 || !x'(x).x̅'⟨x⟩.0
+
+--- Step 2 ---
+Attempted to apply [Pass] rule: applied=False, new_proc=x'(x).([x > 0].alt1(['1', 'Bob'])⟨⟩.alt1(['1', 'Charlie'])⟨⟩.alt1(['1', 'David'])⟨⟩.Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0 + [(¬x > 0)].alt2(['1', 'Bob'])⟨⟩.alt2(['1', 'Charlie'])⟨⟩.alt2(['1', 'David'])⟨⟩.finalize̅⟨⟩.0) || (alt1(['1', 'Bob'])().Authentication Request().Authentication Response̅⟨⟩.finalize().0 + alt2(['1', 'Bob'])().finalize().0) || (alt1(['1', 'Charlie'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'Charlie'])().0) || (alt1(['1', 'David'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'David'])().0) || x̅'⟨0⟩.0 || !x'(x).x̅'⟨x⟩.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc=x'(x).([x > 0].alt1(['1', 'Bob'])⟨⟩.alt1(['1', 'Charlie'])⟨⟩.alt1(['1', 'David'])⟨⟩.Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0 + [(¬x > 0)].alt2(['1', 'Bob'])⟨⟩.alt2(['1', 'Charlie'])⟨⟩.alt2(['1', 'David'])⟨⟩.finalize̅⟨⟩.0) || (alt1(['1', 'Bob'])().Authentication Request().Authentication Response̅⟨⟩.finalize().0 + alt2(['1', 'Bob'])().finalize().0) || (alt1(['1', 'Charlie'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'Charlie'])().0) || (alt1(['1', 'David'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'David'])().0) || x̅'⟨0⟩.0 || !x'(x).x̅'⟨x⟩.0, log=None
+input process: 7,[(0, <hpc.PrefixProcess object at 0x000001FC75564250>, <hpc.PrefixProcess object at 0x000001FC75564250>, False, -1), (1, <hpc.Sum object at 0x000001FC75564730>, <hpc.PrefixProcess object at 0x000001FC755651E0>, True, 0), (1, <hpc.Sum object at 0x000001FC75564730>, <hpc.PrefixProcess object at 0x000001FC75564BE0>, True, 1), (2, <hpc.Sum object at 0x000001FC755643A0>, <hpc.PrefixProcess object at 0x000001FC75566200>, True, 0), (2, <hpc.Sum object at 0x000001FC755643A0>, <hpc.PrefixProcess object at 0x000001FC75566860>, True, 1), (3, <hpc.Sum object at 0x000001FC75565B70>, <hpc.PrefixProcess object at 0x000001FC75566680>, True, 0), (3, <hpc.Sum object at 0x000001FC75565B70>, <hpc.PrefixProcess object at 0x000001FC75566CE0>, True, 1)]，output process: 1,[(4, <hpc.PrefixProcess object at 0x000001FC75566EF0>, <hpc.PrefixProcess object at 0x000001FC75566EF0>, False, -1)]
+output variable list: ['0']
+evaluate output expression: 0 -> val=0, missing=set()
+communication injection: x = 0
+output expression evaluation result: valid=True, values=[0]
+Protecting Sum process during canonical form conversion
+Protecting Sum process during canonical form conversion
+Protecting Sum process during canonical form conversion
+Protecting Sum process during canonical form conversion
+COMM consumption: out_idx=4 in_idx=0 channel=x values=[0]
+Attempted to apply [Comm] rule: applied=True, new_proc=([0 > 0].alt1(['1', 'Bob'])⟨⟩.alt1(['1', 'Charlie'])⟨⟩.alt1(['1', 'David'])⟨⟩.Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0 + [(¬0 > 0)].alt2(['1', 'Bob'])⟨⟩.alt2(['1', 'Charlie'])⟨⟩.alt2(['1', 'David'])⟨⟩.finalize̅⟨⟩.0) || (alt1(['1', 'Bob'])().Authentication Request().Authentication Response̅⟨⟩.finalize().0 + alt2(['1', 'Bob'])().finalize().0) || (alt1(['1', 'Charlie'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'Charlie'])().0) || (alt1(['1', 'David'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'David'])().0) || !x'(x).x̅'⟨x⟩.0, log=Communication channel(x̅')(Communication message: 0)
+Discrete reduction: Applied [Comm] rule (Communication channel(x̅')(Communication message: 0))
+Check process termination: ([0 > 0].alt1(['1', 'Bob'])⟨⟩.alt1(['1', 'Charlie'])⟨⟩.alt1(['1', 'David'])⟨⟩.Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0 + [(¬0 > 0)].alt2(['1', 'Bob'])⟨⟩.alt2(['1', 'Charlie'])⟨⟩.alt2(['1', 'David'])⟨⟩.finalize̅⟨⟩.0) || (alt1(['1', 'Bob'])().Authentication Request().Authentication Response̅⟨⟩.finalize().0 + alt2(['1', 'Bob'])().finalize().0) || (alt1(['1', 'Charlie'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'Charlie'])().0) || (alt1(['1', 'David'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'David'])().0) || !x'(x).x̅'⟨x⟩.0
+
+--- Step 3 ---
+Protecting Sum process during canonical form conversion
+Protecting Sum process during canonical form conversion
+Protecting Sum process during canonical form conversion
+PASS rule applied: idx=0 msg=Condition satisfied: (¬0 > 0)
+Attempted to apply [Pass] rule: applied=True, new_proc=alt2(['1', 'Bob'])⟨⟩.alt2(['1', 'Charlie'])⟨⟩.alt2(['1', 'David'])⟨⟩.finalize̅⟨⟩.0 || (alt1(['1', 'Bob'])().Authentication Request().Authentication Response̅⟨⟩.finalize().0 + alt2(['1', 'Bob'])().finalize().0) || (alt1(['1', 'Charlie'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'Charlie'])().0) || (alt1(['1', 'David'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'David'])().0) || !x'(x).x̅'⟨x⟩.0, log=Condition satisfied: (¬0 > 0)
+Discrete reduction: Applied [Pass] rule (Condition satisfied: (¬0 > 0))
+Check process termination: alt2(['1', 'Bob'])⟨⟩.alt2(['1', 'Charlie'])⟨⟩.alt2(['1', 'David'])⟨⟩.finalize̅⟨⟩.0 || (alt1(['1', 'Bob'])().Authentication Request().Authentication Response̅⟨⟩.finalize().0 + alt2(['1', 'Bob'])().finalize().0) || (alt1(['1', 'Charlie'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'Charlie'])().0) || (alt1(['1', 'David'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'David'])().0) || !x'(x).x̅'⟨x⟩.0
+
+--- Step 4 ---
+Attempted to apply [Pass] rule: applied=False, new_proc=alt2(['1', 'Bob'])⟨⟩.alt2(['1', 'Charlie'])⟨⟩.alt2(['1', 'David'])⟨⟩.finalize̅⟨⟩.0 || (alt1(['1', 'Bob'])().Authentication Request().Authentication Response̅⟨⟩.finalize().0 + alt2(['1', 'Bob'])().finalize().0) || (alt1(['1', 'Charlie'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'Charlie'])().0) || (alt1(['1', 'David'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'David'])().0) || !x'(x).x̅'⟨x⟩.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc=alt2(['1', 'Bob'])⟨⟩.alt2(['1', 'Charlie'])⟨⟩.alt2(['1', 'David'])⟨⟩.finalize̅⟨⟩.0 || (alt1(['1', 'Bob'])().Authentication Request().Authentication Response̅⟨⟩.finalize().0 + alt2(['1', 'Bob'])().finalize().0) || (alt1(['1', 'Charlie'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'Charlie'])().0) || (alt1(['1', 'David'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'David'])().0) || !x'(x).x̅'⟨x⟩.0, log=None
+input process: 6,[(1, <hpc.Sum object at 0x000001FC75566F20>, <hpc.PrefixProcess object at 0x000001FC75564820>, True, 0), (1, <hpc.Sum object at 0x000001FC75566F20>, <hpc.PrefixProcess object at 0x000001FC75567B20>, True, 1), (2, <hpc.Sum object at 0x000001FC75564DF0>, <hpc.PrefixProcess object at 0x000001FC75565780>, True, 0), (2, <hpc.Sum object at 0x000001FC75564DF0>, <hpc.PrefixProcess object at 0x000001FC75565990>, True, 1), (3, <hpc.Sum object at 0x000001FC75565C60>, <hpc.PrefixProcess object at 0x000001FC75564E80>, True, 0), (3, <hpc.Sum object at 0x000001FC75565C60>, <hpc.PrefixProcess object at 0x000001FC75565750>, True, 1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x000001FC755646A0>, <hpc.PrefixProcess object at 0x000001FC755646A0>, False, -1)]
+output variable list: []
+output expression evaluation result: valid=True, values=[]
+Protecting Sum process during canonical form conversion
+Protecting Sum process during canonical form conversion
+COMM consumption: out_idx=0 in_idx=1 channel=alt2 values=[]
+Attempted to apply [Comm] rule: applied=True, new_proc=alt2(['1', 'Charlie'])⟨⟩.alt2(['1', 'David'])⟨⟩.finalize̅⟨⟩.0 || finalize().0 || (alt1(['1', 'Charlie'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'Charlie'])().0) || (alt1(['1', 'David'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'David'])().0) || !x'(x).x̅'⟨x⟩.0, log=Communication channel(alt2)(Communication message: )
+Discrete reduction: Applied [Comm] rule (Communication channel(alt2)(Communication message: ))
+Check process termination: alt2(['1', 'Charlie'])⟨⟩.alt2(['1', 'David'])⟨⟩.finalize̅⟨⟩.0 || finalize().0 || (alt1(['1', 'Charlie'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'Charlie'])().0) || (alt1(['1', 'David'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'David'])().0) || !x'(x).x̅'⟨x⟩.0
+
+--- Step 5 ---
+Attempted to apply [Pass] rule: applied=False, new_proc=alt2(['1', 'Charlie'])⟨⟩.alt2(['1', 'David'])⟨⟩.finalize̅⟨⟩.0 || finalize().0 || (alt1(['1', 'Charlie'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'Charlie'])().0) || (alt1(['1', 'David'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'David'])().0) || !x'(x).x̅'⟨x⟩.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc=alt2(['1', 'Charlie'])⟨⟩.alt2(['1', 'David'])⟨⟩.finalize̅⟨⟩.0 || finalize().0 || (alt1(['1', 'Charlie'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'Charlie'])().0) || (alt1(['1', 'David'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'David'])().0) || !x'(x).x̅'⟨x⟩.0, log=None
+input process: 5,[(1, <hpc.PrefixProcess object at 0x000001FC75565840>, <hpc.PrefixProcess object at 0x000001FC75565840>, False, -1), (2, <hpc.Sum object at 0x000001FC75566D70>, <hpc.PrefixProcess object at 0x000001FC75567100>, True, 0), (2, <hpc.Sum object at 0x000001FC75566D70>, <hpc.PrefixProcess object at 0x000001FC75567670>, True, 1), (3, <hpc.Sum object at 0x000001FC755679A0>, <hpc.PrefixProcess object at 0x000001FC75567AF0>, True, 0), (3, <hpc.Sum object at 0x000001FC755679A0>, <hpc.PrefixProcess object at 0x000001FC75567490>, True, 1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x000001FC75567DC0>, <hpc.PrefixProcess object at 0x000001FC75567DC0>, False, -1)]
+output variable list: []
+output expression evaluation result: valid=True, values=[]
+Protecting Sum process during canonical form conversion
+COMM consumption: out_idx=0 in_idx=2 channel=alt2 values=[]
+Attempted to apply [Comm] rule: applied=True, new_proc=alt2(['1', 'David'])⟨⟩.finalize̅⟨⟩.0 || finalize().0 || (alt1(['1', 'David'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'David'])().0) || !x'(x).x̅'⟨x⟩.0, log=Communication channel(alt2)(Communication message: )
+Discrete reduction: Applied [Comm] rule (Communication channel(alt2)(Communication message: ))
+Check process termination: alt2(['1', 'David'])⟨⟩.finalize̅⟨⟩.0 || finalize().0 || (alt1(['1', 'David'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'David'])().0) || !x'(x).x̅'⟨x⟩.0
+
+--- Step 6 ---
+Attempted to apply [Pass] rule: applied=False, new_proc=alt2(['1', 'David'])⟨⟩.finalize̅⟨⟩.0 || finalize().0 || (alt1(['1', 'David'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'David'])().0) || !x'(x).x̅'⟨x⟩.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc=alt2(['1', 'David'])⟨⟩.finalize̅⟨⟩.0 || finalize().0 || (alt1(['1', 'David'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'David'])().0) || !x'(x).x̅'⟨x⟩.0, log=None
+input process: 3,[(1, <hpc.PrefixProcess object at 0x000001FC75567FD0>, <hpc.PrefixProcess object at 0x000001FC75567FD0>, False, -1), (2, <hpc.Sum object at 0x000001FC75567370>, <hpc.PrefixProcess object at 0x000001FC75564AF0>, True, 0), (2, <hpc.Sum object at 0x000001FC75567370>, <hpc.PrefixProcess object at 0x000001FC75564D60>, True, 1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x000001FC75567C40>, <hpc.PrefixProcess object at 0x000001FC75567C40>, False, -1)]
+output variable list: []
+output expression evaluation result: valid=True, values=[]
+COMM consumption: out_idx=0 in_idx=2 channel=alt2 values=[]
+Attempted to apply [Comm] rule: applied=True, new_proc=finalize̅⟨⟩.0 || finalize().0 || !x'(x).x̅'⟨x⟩.0, log=Communication channel(alt2)(Communication message: )
+Discrete reduction: Applied [Comm] rule (Communication channel(alt2)(Communication message: ))
+Check process termination: finalize̅⟨⟩.0 || finalize().0 || !x'(x).x̅'⟨x⟩.0
+
+--- Step 7 ---
+Attempted to apply [Pass] rule: applied=False, new_proc=finalize̅⟨⟩.0 || finalize().0 || !x'(x).x̅'⟨x⟩.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc=finalize̅⟨⟩.0 || finalize().0 || !x'(x).x̅'⟨x⟩.0, log=None
+input process: 1,[(1, <hpc.PrefixProcess object at 0x000001FC75567940>, <hpc.PrefixProcess object at 0x000001FC75567940>, False, -1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x000001FC755677F0>, <hpc.PrefixProcess object at 0x000001FC755677F0>, False, -1)]
+output variable list: ['']
+evaluate output expression:  -> val=None, missing=set()
+output expression evaluation result: valid=True, values=[]
+COMM consumption: out_idx=0 in_idx=1 channel=finalize values=[]
+Attempted to apply [Comm] rule: applied=True, new_proc=!x'(x).x̅'⟨x⟩.0, log=Communication channel(finalize̅)(Communication message: )
+Discrete reduction: Applied [Comm] rule (Communication channel(finalize̅)(Communication message: ))
+Check process termination: !x'(x).x̅'⟨x⟩.0
+System terminated
+=== Simulation completed: 7 steps, total time 0.000000 seconds ===

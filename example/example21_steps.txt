@@ -1,0 +1,134 @@
+# Step log
+
+=== STEP 1 time: 0.000000 ===
+  [0] M: x̅'⟨1⟩.x'(x).([x > 0].alt1(['1', 'Bob'])⟨⟩.alt1(['1', 'Charlie'])⟨⟩.alt1(['1', 'David'])⟨⟩.Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0 + [(¬x > 0)].alt2(['1', 'Bob'])⟨⟩.alt2(['1', 'Charlie'])⟨⟩.alt2(['1', 'David'])⟨⟩.finalize̅⟨⟩.0)
+  [1] M: (alt1(['1', 'Bob'])().Authentication Request().Authentication Response̅⟨⟩.finalize().0 + alt2(['1', 'Bob'])().finalize().0)
+  [2] M: (alt1(['1', 'Charlie'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'Charlie'])().0)
+  [3] M: (alt1(['1', 'David'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'David'])().0)
+  [4] R: !x'(x).x̅'⟨x⟩.0
+Process counts: M=4, C=0, R=1, Other=0
+================================
+
+
+=== STEP 2 time: 0.000000 ===
+  [0] M: x'(x).([x > 0].alt1(['1', 'Bob'])⟨⟩.alt1(['1', 'Charlie'])⟨⟩.alt1(['1', 'David'])⟨⟩.Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0 + [(¬x > 0)].alt2(['1', 'Bob'])⟨⟩.alt2(['1', 'Charlie'])⟨⟩.alt2(['1', 'David'])⟨⟩.finalize̅⟨⟩.0)
+  [1] M: (alt1(['1', 'Bob'])().Authentication Request().Authentication Response̅⟨⟩.finalize().0 + alt2(['1', 'Bob'])().finalize().0)
+  [2] M: (alt1(['1', 'Charlie'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'Charlie'])().0)
+  [3] M: (alt1(['1', 'David'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'David'])().0)
+  [4] M: x̅'⟨1⟩.0
+  [5] R: !x'(x).x̅'⟨x⟩.0
+Process counts: M=5, C=0, R=1, Other=0
+================================
+
+
+=== STEP 3 time: 0.000000 ===
+  [0] M: ([1 > 0].alt1(['1', 'Bob'])⟨⟩.alt1(['1', 'Charlie'])⟨⟩.alt1(['1', 'David'])⟨⟩.Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0 + [(¬1 > 0)].alt2(['1', 'Bob'])⟨⟩.alt2(['1', 'Charlie'])⟨⟩.alt2(['1', 'David'])⟨⟩.finalize̅⟨⟩.0)
+  [1] M: (alt1(['1', 'Bob'])().Authentication Request().Authentication Response̅⟨⟩.finalize().0 + alt2(['1', 'Bob'])().finalize().0)
+  [2] M: (alt1(['1', 'Charlie'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'Charlie'])().0)
+  [3] M: (alt1(['1', 'David'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'David'])().0)
+  [4] R: !x'(x).x̅'⟨x⟩.0
+Process counts: M=4, C=0, R=1, Other=0
+================================
+
+
+=== STEP 4 time: 0.000000 ===
+  [0] M: alt1(['1', 'Bob'])⟨⟩.alt1(['1', 'Charlie'])⟨⟩.alt1(['1', 'David'])⟨⟩.Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0
+  [1] M: (alt1(['1', 'Bob'])().Authentication Request().Authentication Response̅⟨⟩.finalize().0 + alt2(['1', 'Bob'])().finalize().0)
+  [2] M: (alt1(['1', 'Charlie'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'Charlie'])().0)
+  [3] M: (alt1(['1', 'David'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'David'])().0)
+  [4] R: !x'(x).x̅'⟨x⟩.0
+Process counts: M=4, C=0, R=1, Other=0
+================================
+
+
+=== STEP 5 time: 0.000000 ===
+  [0] M: alt1(['1', 'Charlie'])⟨⟩.alt1(['1', 'David'])⟨⟩.Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0
+  [1] M: Authentication Request().Authentication Response̅⟨⟩.finalize().0
+  [2] M: (alt1(['1', 'Charlie'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'Charlie'])().0)
+  [3] M: (alt1(['1', 'David'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'David'])().0)
+  [4] R: !x'(x).x̅'⟨x⟩.0
+Process counts: M=4, C=0, R=1, Other=0
+================================
+
+
+=== STEP 6 time: 0.000000 ===
+  [0] M: alt1(['1', 'David'])⟨⟩.Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0
+  [1] M: Authentication Request().Authentication Response̅⟨⟩.finalize().0
+  [2] M: Authentication Request().Authentication Response̅⟨⟩.0
+  [3] M: (alt1(['1', 'David'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'David'])().0)
+  [4] R: !x'(x).x̅'⟨x⟩.0
+Process counts: M=4, C=0, R=1, Other=0
+================================
+
+
+=== STEP 7 time: 0.000000 ===
+  [0] M: Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0
+  [1] M: Authentication Request().Authentication Response̅⟨⟩.finalize().0
+  [2] M: Authentication Request().Authentication Response̅⟨⟩.0
+  [3] M: Authentication Request().Authentication Response̅⟨⟩.0
+  [4] R: !x'(x).x̅'⟨x⟩.0
+Process counts: M=4, C=0, R=1, Other=0
+================================
+
+
+=== STEP 8 time: 0.000000 ===
+  [0] M: Authentication Response().Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0
+  [1] M: Authentication Response̅⟨⟩.finalize().0
+  [2] M: Authentication Request().Authentication Response̅⟨⟩.0
+  [3] M: Authentication Request().Authentication Response̅⟨⟩.0
+  [4] R: !x'(x).x̅'⟨x⟩.0
+Process counts: M=4, C=0, R=1, Other=0
+================================
+
+
+=== STEP 9 time: 0.000000 ===
+  [0] M: Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0
+  [1] M: finalize().0
+  [2] M: Authentication Request().Authentication Response̅⟨⟩.0
+  [3] M: Authentication Request().Authentication Response̅⟨⟩.0
+  [4] R: !x'(x).x̅'⟨x⟩.0
+Process counts: M=4, C=0, R=1, Other=0
+================================
+
+
+=== STEP 10 time: 0.000000 ===
+  [0] M: Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0
+  [1] M: finalize().0
+  [2] M: Authentication Response̅⟨⟩.0
+  [3] M: Authentication Request().Authentication Response̅⟨⟩.0
+  [4] R: !x'(x).x̅'⟨x⟩.0
+Process counts: M=4, C=0, R=1, Other=0
+================================
+
+
+=== STEP 11 time: 0.000000 ===
+  [0] M: Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0
+  [1] M: finalize().0
+  [2] M: Authentication Request().Authentication Response̅⟨⟩.0
+  [3] R: !x'(x).x̅'⟨x⟩.0
+Process counts: M=3, C=0, R=1, Other=0
+================================
+
+
+=== STEP 12 time: 0.000000 ===
+  [0] M: Authentication Response().finalize̅⟨⟩.0
+  [1] M: finalize().0
+  [2] M: Authentication Response̅⟨⟩.0
+  [3] R: !x'(x).x̅'⟨x⟩.0
+Process counts: M=3, C=0, R=1, Other=0
+================================
+
+
+=== STEP 13 time: 0.000000 ===
+  [0] M: finalize̅⟨⟩.0
+  [1] M: finalize().0
+  [2] R: !x'(x).x̅'⟨x⟩.0
+Process counts: M=2, C=0, R=1, Other=0
+================================
+
+
+=== STEP 13 time: 0.000000 ===
+  [0] R: !x'(x).x̅'⟨x⟩.0
+Process counts: M=0, C=0, R=1, Other=0
+================================
+

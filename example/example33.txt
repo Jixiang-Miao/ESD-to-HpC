@@ -1,0 +1,12 @@
+@startuml
+par
+    note right of Alice: delay(1)
+else
+    Alice -> Charlie: Authentication Request
+    Charlie -> Alice: Authentication Response
+else
+    Alice -> David: Authentication Request
+    David -> Alice: Authentication Response
+end
+Alice -> Bob: finalize
+@enduml

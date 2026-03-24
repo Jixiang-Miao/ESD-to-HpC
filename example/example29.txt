@@ -1,0 +1,7 @@
+@startuml
+Alice -> Alice: x := 0
+opt [1] Alice: x > 0
+  note right of Alice: delay(1)
+end
+Alice -> Bob: finalize
+@enduml

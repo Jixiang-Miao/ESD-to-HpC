@@ -13,7 +13,7 @@ Attempted to apply [Sense] rule: applied=False, new_proc={0 | x_dot=1 & x<10, {}
 Attempted to apply [Actuate] rule: applied=False, new_proc={0 | x_dot=1 & x<10, {}}.0, log=None
 Attempted to apply [Rep] rule: applied=False, new_proc={0 | x_dot=1 & x<10, {}}.0, log=None
 Collected 1 continuous processes for evolution
-ODE system information idx=0: {'idx': 0, 'comp': <hpc.PrefixProcess object at 0x0000027153332890>, 'ode': <hpc.ODE object at 0x0000027153330A90>, 'repl': <hpc.Inaction object at 0x0000027153330F70>, 'vars_list': ['x'], 'derivs_list': ['1'], 'bound_expr': 'x<10', 'init_vals': ['0']}
+ODE system information idx=0: {'idx': 0, 'comp': <hpc.PrefixProcess object at 0x000001FC75557C70>, 'ode': <hpc.ODE object at 0x000001FC75554BE0>, 'repl': <hpc.Inaction object at 0x000001FC75557B50>, 'vars_list': ['x'], 'derivs_list': ['1'], 'bound_expr': 'x<10', 'init_vals': ['0']}
 Iterating initial values i: 0, var: x, init_vals[i]: 0
 ODE initial value expression idx=0, var=x: expr=0
 ODE initial value evaluation idx=0, var=x: v=0, missing=set()
@@ -32,7 +32,7 @@ Attempted to apply [Sense] rule: applied=False, new_proc={9.999999999999998 | x_
 Attempted to apply [Actuate] rule: applied=False, new_proc={9.999999999999998 | x_dot=1 & x<10, {}}.0, log=None
 Attempted to apply [Rep] rule: applied=False, new_proc={9.999999999999998 | x_dot=1 & x<10, {}}.0, log=None
 Collected 1 continuous processes for evolution
-ODE system information idx=0: {'idx': 0, 'comp': <hpc.PrefixProcess object at 0x00000271533801C0>, 'ode': <hpc.ODE object at 0x0000027153331600>, 'repl': <hpc.Inaction object at 0x0000027153330F70>, 'vars_list': ['x'], 'derivs_list': ['1'], 'bound_expr': 'x<10', 'init_vals': ['9.999999999999998']}
+ODE system information idx=0: {'idx': 0, 'comp': <hpc.PrefixProcess object at 0x000001FC755377C0>, 'ode': <hpc.ODE object at 0x000001FC75556020>, 'repl': <hpc.Inaction object at 0x000001FC75557B50>, 'vars_list': ['x'], 'derivs_list': ['1'], 'bound_expr': 'x<10', 'init_vals': ['9.999999999999998']}
 Iterating initial values i: 0, var: x, init_vals[i]: 9.999999999999998
 ODE initial value expression idx=0, var=x: expr=9.999999999999998
 ODE initial value evaluation idx=0, var=x: v=9.999999999999998, missing=set()

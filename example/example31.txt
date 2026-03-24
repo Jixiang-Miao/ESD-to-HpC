@@ -1,0 +1,9 @@
+@startuml
+Alice -> Alice: x := 0
+opt [1] Alice: x > 0
+  activate Alice
+  note over of Alice: <<ode>> {0 | x_dot=1 & x<10}
+  deactivate Alice
+end
+Alice -> Bob: finalize
+@enduml

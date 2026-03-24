@@ -1,0 +1,23 @@
+@startuml
+Alice -> Alice: terminus := 500
+activate Alice
+note over of Alice: <<ode>> {0, 0 | x_dot=a, a_dot=0 & x<1000}
+Bob -> Alice: <<sense>> currentx := x
+par
+  loop [1] Bob: currentx < terminus
+    Bob -> Alice: <<sense>> currentx := x
+    Bob -> Bob: a0 := 5
+    Bob -> Alice: <<actuate>> a := a0
+    activate Bob
+    note right of Bob: delay(1)
+    deactivate Bob
+  end
+  deactivate Alice
+else
+    Alice -> Charlie: Authentication Request
+    Charlie -> Alice: Authentication Response
+else
+    Alice -> David: Authentication Request
+    David -> Alice: Authentication Response
+end
+@enduml

@@ -1,0 +1,4 @@
+Alice ::= x̅'⟨0⟩.x'(x).([x > 0].alt1(['1', 'Bob'])⟨⟩.sendx̅⟨⟩.finalize̅⟨⟩.0 + [(¬x > 0)].alt2(['1', 'Bob'])⟨⟩.{0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0)
+Bob ::= (alt1(['1', 'Bob'])().sendx().finalize().0 + alt2(['1', 'Bob'])().finalize().0)
+Memory0 ::= !x'(x).x̅'⟨x⟩.0
+System ::= Alice || Bob || Memory0

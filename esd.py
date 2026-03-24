@@ -18,8 +18,11 @@ class Fragment:
                 
     def translate(self, roles: List[str]):
         self._propagate_tracker()
-        return {role: hpc.Inaction() for role in roles}
-
+        if self.cont:
+            return self.cont.translate(roles)
+        else:
+            return {role: hpc.Inaction() for role in roles}
+        
 class AssignmentTracker:
     def __init__(self):
         self.assigned_vars = set()
@@ -474,12 +477,13 @@ def compose(frag0: Fragment, frag1: Fragment, seen=None) -> Fragment:
         frag0.cont = compose(frag0.cont, frag1, seen)
     return frag0
 
-
 def get_discrete_roles(frag: Fragment) -> List[str]:
     roles = set()
     ode_roles = set()
 
     def collect(f: Fragment):
+        if f is None:
+            return
         if isinstance(f, Assignment):
             roles.add(f.role)
         elif isinstance(f, Communication):

@@ -1,0 +1,10 @@
+@startuml
+Alice -> Alice: x := 1
+Alice -> Alice: y := 1
+opt [1] Alice: x > 0
+  opt [2] Alice: y > 0
+    Alice -> Bob: sendy
+  end
+end
+Alice -> Bob: finalize
+@enduml

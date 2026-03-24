@@ -1,0 +1,110 @@
+# HpC simulation event log
+=== Starting HPC continuous process simulation ===
+Collected named definition[0]: Alice
+Collected named definition[1]: Bob
+Collected named definition[2]: Memory0
+Collected named definition[3]: System
+Protecting Sum process during canonical form conversion
+Protecting Sum process during canonical form conversion
+Initialized allocation constant: x=1
+
+--- Step 1 ---
+Attempted to apply [Pass] rule: applied=False, new_proc=x̅'⟨1⟩.x'(x).([x > 0].alt1(['1', 'Bob'])⟨⟩.{0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0 + [(¬x > 0)].alt2(['1', 'Bob'])⟨⟩.finalize̅⟨⟩.0) || (alt1(['1', 'Bob'])().finalize().0 + alt2(['1', 'Bob'])().finalize().0) || !x'(x).x̅'⟨x⟩.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc=x̅'⟨1⟩.x'(x).([x > 0].alt1(['1', 'Bob'])⟨⟩.{0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0 + [(¬x > 0)].alt2(['1', 'Bob'])⟨⟩.finalize̅⟨⟩.0) || (alt1(['1', 'Bob'])().finalize().0 + alt2(['1', 'Bob'])().finalize().0) || !x'(x).x̅'⟨x⟩.0, log=None
+input process: 2,[(1, <hpc.Sum object at 0x000001FC75537F10>, <hpc.PrefixProcess object at 0x000001FC75537E50>, True, 0), (1, <hpc.Sum object at 0x000001FC75537F10>, <hpc.PrefixProcess object at 0x000001FC75537D60>, True, 1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x000001FC75537910>, <hpc.PrefixProcess object at 0x000001FC75537910>, False, -1)]
+output variable list: ['1']
+evaluate output expression: 1 -> val=1, missing=set()
+communication injection: x = 1
+output expression evaluation result: valid=True, values=[1]
+Attempted to apply [Comm] rule: applied=False, new_proc=x̅'⟨1⟩.x'(x).([x > 0].alt1(['1', 'Bob'])⟨⟩.{0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0 + [(¬x > 0)].alt2(['1', 'Bob'])⟨⟩.finalize̅⟨⟩.0) || (alt1(['1', 'Bob'])().finalize().0 + alt2(['1', 'Bob'])().finalize().0) || !x'(x).x̅'⟨x⟩.0, log=None
+Attempted to apply [Sense] rule: applied=False, new_proc=x̅'⟨1⟩.x'(x).([x > 0].alt1(['1', 'Bob'])⟨⟩.{0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0 + [(¬x > 0)].alt2(['1', 'Bob'])⟨⟩.finalize̅⟨⟩.0) || (alt1(['1', 'Bob'])().finalize().0 + alt2(['1', 'Bob'])().finalize().0) || !x'(x).x̅'⟨x⟩.0, log=None
+Attempted to apply [Actuate] rule: applied=False, new_proc=x̅'⟨1⟩.x'(x).([x > 0].alt1(['1', 'Bob'])⟨⟩.{0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0 + [(¬x > 0)].alt2(['1', 'Bob'])⟨⟩.finalize̅⟨⟩.0) || (alt1(['1', 'Bob'])().finalize().0 + alt2(['1', 'Bob'])().finalize().0) || !x'(x).x̅'⟨x⟩.0, log=None
+new_processes after Rep rule: [<hpc.PrefixProcess object at 0x000001FC755353F0>, <hpc.Sum object at 0x000001FC75537F10>, <hpc.Replication object at 0x000001FC755A8190>, <hpc.PrefixProcess object at 0x000001FC75566B30>]
+Protecting Sum process during canonical form conversion
+Protecting Sum process during canonical form conversion
+Attempted to apply [Rep] rule: applied=True, new_proc=x'(x).([x > 0].alt1(['1', 'Bob'])⟨⟩.{0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0 + [(¬x > 0)].alt2(['1', 'Bob'])⟨⟩.finalize̅⟨⟩.0) || (alt1(['1', 'Bob'])().finalize().0 + alt2(['1', 'Bob'])().finalize().0) || x̅'⟨1⟩.0 || !x'(x).x̅'⟨x⟩.0, log=Communication channel (x̅') (message: 1) - [Rep] rule
+Discrete reduction: Applied [Rep] rule (Communication channel (x̅') (message: 1) - [Rep] rule)
+Check process termination: x'(x).([x > 0].alt1(['1', 'Bob'])⟨⟩.{0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0 + [(¬x > 0)].alt2(['1', 'Bob'])⟨⟩.finalize̅⟨⟩.0) || (alt1(['1', 'Bob'])().finalize().0 + alt2(['1', 'Bob'])().finalize().0) || x̅'⟨1⟩.0 || !x'(x).x̅'⟨x⟩.0
+
+--- Step 2 ---
+Attempted to apply [Pass] rule: applied=False, new_proc=x'(x).([x > 0].alt1(['1', 'Bob'])⟨⟩.{0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0 + [(¬x > 0)].alt2(['1', 'Bob'])⟨⟩.finalize̅⟨⟩.0) || (alt1(['1', 'Bob'])().finalize().0 + alt2(['1', 'Bob'])().finalize().0) || x̅'⟨1⟩.0 || !x'(x).x̅'⟨x⟩.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc=x'(x).([x > 0].alt1(['1', 'Bob'])⟨⟩.{0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0 + [(¬x > 0)].alt2(['1', 'Bob'])⟨⟩.finalize̅⟨⟩.0) || (alt1(['1', 'Bob'])().finalize().0 + alt2(['1', 'Bob'])().finalize().0) || x̅'⟨1⟩.0 || !x'(x).x̅'⟨x⟩.0, log=None
+input process: 3,[(0, <hpc.PrefixProcess object at 0x000001FC75566470>, <hpc.PrefixProcess object at 0x000001FC75566470>, False, -1), (1, <hpc.Sum object at 0x000001FC75565240>, <hpc.PrefixProcess object at 0x000001FC75536A10>, True, 0), (1, <hpc.Sum object at 0x000001FC75565240>, <hpc.PrefixProcess object at 0x000001FC75536A40>, True, 1)]，output process: 1,[(2, <hpc.PrefixProcess object at 0x000001FC755AA890>, <hpc.PrefixProcess object at 0x000001FC755AA890>, False, -1)]
+output variable list: ['1']
+evaluate output expression: 1 -> val=1, missing=set()
+communication injection: x = 1
+output expression evaluation result: valid=True, values=[1]
+Protecting Sum process during canonical form conversion
+Protecting Sum process during canonical form conversion
+COMM consumption: out_idx=2 in_idx=0 channel=x values=[1]
+Attempted to apply [Comm] rule: applied=True, new_proc=([1 > 0].alt1(['1', 'Bob'])⟨⟩.{0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0 + [(¬1 > 0)].alt2(['1', 'Bob'])⟨⟩.finalize̅⟨⟩.0) || (alt1(['1', 'Bob'])().finalize().0 + alt2(['1', 'Bob'])().finalize().0) || !x'(x).x̅'⟨x⟩.0, log=Communication channel(x̅')(Communication message: 1)
+Discrete reduction: Applied [Comm] rule (Communication channel(x̅')(Communication message: 1))
+Check process termination: ([1 > 0].alt1(['1', 'Bob'])⟨⟩.{0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0 + [(¬1 > 0)].alt2(['1', 'Bob'])⟨⟩.finalize̅⟨⟩.0) || (alt1(['1', 'Bob'])().finalize().0 + alt2(['1', 'Bob'])().finalize().0) || !x'(x).x̅'⟨x⟩.0
+
+--- Step 3 ---
+Protecting Sum process during canonical form conversion
+PASS rule applied: idx=0 msg=Condition satisfied: 1 > 0
+Attempted to apply [Pass] rule: applied=True, new_proc=alt1(['1', 'Bob'])⟨⟩.{0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0 || (alt1(['1', 'Bob'])().finalize().0 + alt2(['1', 'Bob'])().finalize().0) || !x'(x).x̅'⟨x⟩.0, log=Condition satisfied: 1 > 0
+Discrete reduction: Applied [Pass] rule (Condition satisfied: 1 > 0)
+Check process termination: alt1(['1', 'Bob'])⟨⟩.{0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0 || (alt1(['1', 'Bob'])().finalize().0 + alt2(['1', 'Bob'])().finalize().0) || !x'(x).x̅'⟨x⟩.0
+
+--- Step 4 ---
+Attempted to apply [Pass] rule: applied=False, new_proc=alt1(['1', 'Bob'])⟨⟩.{0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0 || (alt1(['1', 'Bob'])().finalize().0 + alt2(['1', 'Bob'])().finalize().0) || !x'(x).x̅'⟨x⟩.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc=alt1(['1', 'Bob'])⟨⟩.{0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0 || (alt1(['1', 'Bob'])().finalize().0 + alt2(['1', 'Bob'])().finalize().0) || !x'(x).x̅'⟨x⟩.0, log=None
+input process: 2,[(1, <hpc.Sum object at 0x000001FC75566230>, <hpc.PrefixProcess object at 0x000001FC75565A20>, True, 0), (1, <hpc.Sum object at 0x000001FC75566230>, <hpc.PrefixProcess object at 0x000001FC75567D30>, True, 1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x000001FC75566BC0>, <hpc.PrefixProcess object at 0x000001FC75566BC0>, False, -1)]
+output variable list: []
+output expression evaluation result: valid=True, values=[]
+COMM consumption: out_idx=0 in_idx=1 channel=alt1 values=[]
+Attempted to apply [Comm] rule: applied=True, new_proc=finalize().0 || {0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0 || !x'(x).x̅'⟨x⟩.0, log=Communication channel(alt1)(Communication message: )
+Discrete reduction: Applied [Comm] rule (Communication channel(alt1)(Communication message: ))
+Check process termination: finalize().0 || {0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0 || !x'(x).x̅'⟨x⟩.0
+
+--- Step 5 ---
+Attempted to apply [Pass] rule: applied=False, new_proc=finalize().0 || {0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0 || !x'(x).x̅'⟨x⟩.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc=finalize().0 || {0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0 || !x'(x).x̅'⟨x⟩.0, log=None
+input process: 1,[(0, <hpc.PrefixProcess object at 0x000001FC75565F00>, <hpc.PrefixProcess object at 0x000001FC75565F00>, False, -1)]，output process: 0,[]
+Attempted to apply [Comm] rule: applied=False, new_proc=finalize().0 || {0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0 || !x'(x).x̅'⟨x⟩.0, log=None
+Attempted to apply [Sense] rule: applied=False, new_proc=finalize().0 || {0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0 || !x'(x).x̅'⟨x⟩.0, log=None
+Attempted to apply [Actuate] rule: applied=False, new_proc=finalize().0 || {0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0 || !x'(x).x̅'⟨x⟩.0, log=None
+Attempted to apply [Rep] rule: applied=False, new_proc=finalize().0 || {0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0 || !x'(x).x̅'⟨x⟩.0, log=None
+Collected 1 continuous processes for evolution
+ODE system information idx=1: {'idx': 1, 'comp': <hpc.PrefixProcess object at 0x000001FC75567100>, 'ode': <hpc.ODE object at 0x000001FC755662C0>, 'repl': <hpc.PrefixProcess object at 0x000001FC75564730>, 'vars_list': ['x'], 'derivs_list': ['1'], 'bound_expr': 'x<10', 'init_vals': ['0']}
+Iterating initial values i: 0, var: x, init_vals[i]: 0
+ODE initial value expression idx=1, var=x: expr=0
+ODE initial value evaluation idx=1, var=x: v=0, missing=set()
+ODE initial state idx=1: y0=[0.0]
+Continuous evolution completed: advanced 10.000000 seconds
+Checking finalize().0 || {9.999999999999998 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0 || !x'(x).x̅'⟨x⟩.0
+Check process termination: finalize().0 || {9.999999999999998 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0 || !x'(x).x̅'⟨x⟩.0
+
+--- Step 6 ---
+Attempted to apply [Pass] rule: applied=False, new_proc=finalize().0 || {9.999999999999998 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0 || !x'(x).x̅'⟨x⟩.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc=finalize().0 || {9.999999999999998 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0 || !x'(x).x̅'⟨x⟩.0, log=None
+input process: 1,[(0, <hpc.PrefixProcess object at 0x000001FC755974C0>, <hpc.PrefixProcess object at 0x000001FC755974C0>, False, -1)]，output process: 0,[]
+Attempted to apply [Comm] rule: applied=False, new_proc=finalize().0 || {9.999999999999998 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0 || !x'(x).x̅'⟨x⟩.0, log=None
+Attempted to apply [Sense] rule: applied=False, new_proc=finalize().0 || {9.999999999999998 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0 || !x'(x).x̅'⟨x⟩.0, log=None
+Attempted to apply [Actuate] rule: applied=False, new_proc=finalize().0 || {9.999999999999998 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0 || !x'(x).x̅'⟨x⟩.0, log=None
+Attempted to apply [Rep] rule: applied=False, new_proc=finalize().0 || {9.999999999999998 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0 || !x'(x).x̅'⟨x⟩.0, log=None
+Collected 1 continuous processes for evolution
+ODE system information idx=1: {'idx': 1, 'comp': <hpc.PrefixProcess object at 0x000001FC75595900>, 'ode': <hpc.ODE object at 0x000001FC75564520>, 'repl': <hpc.PrefixProcess object at 0x000001FC75597490>, 'vars_list': ['x'], 'derivs_list': ['1'], 'bound_expr': 'x<10', 'init_vals': ['9.999999999999998']}
+Iterating initial values i: 0, var: x, init_vals[i]: 9.999999999999998
+ODE initial value expression idx=1, var=x: expr=9.999999999999998
+ODE initial value evaluation idx=1, var=x: v=9.999999999999998, missing=set()
+ODE initial state idx=1: y0=[9.999999999999998]
+Continuous evolution completed: advanced 0.039819 seconds
+Checking finalize().0 || finalize̅⟨⟩.0 || !x'(x).x̅'⟨x⟩.0
+Check process termination: finalize().0 || finalize̅⟨⟩.0 || !x'(x).x̅'⟨x⟩.0
+
+--- Step 7 ---
+Attempted to apply [Pass] rule: applied=False, new_proc=finalize().0 || finalize̅⟨⟩.0 || !x'(x).x̅'⟨x⟩.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc=finalize().0 || finalize̅⟨⟩.0 || !x'(x).x̅'⟨x⟩.0, log=None
+input process: 1,[(0, <hpc.PrefixProcess object at 0x000001FC755379D0>, <hpc.PrefixProcess object at 0x000001FC755379D0>, False, -1)]，output process: 1,[(1, <hpc.PrefixProcess object at 0x000001FC75537EE0>, <hpc.PrefixProcess object at 0x000001FC75537EE0>, False, -1)]
+output variable list: ['']
+evaluate output expression:  -> val=None, missing=set()
+output expression evaluation result: valid=True, values=[]
+COMM consumption: out_idx=1 in_idx=0 channel=finalize values=[]
+Attempted to apply [Comm] rule: applied=True, new_proc=!x'(x).x̅'⟨x⟩.0, log=Communication channel(finalize̅)(Communication message: )
+Discrete reduction: Applied [Comm] rule (Communication channel(finalize̅)(Communication message: ))
+Check process termination: !x'(x).x̅'⟨x⟩.0
+System terminated
+=== Simulation completed: 7 steps, total time 10.039819 seconds ===

@@ -1,0 +1,9 @@
+@startuml
+Alice -> Alice: x := 1
+alt [1] Alice: x > 0
+  Alice -> Bob: sendx
+else
+  note right of Alice: delay(1)
+end
+Alice -> Bob: finalize
+@enduml

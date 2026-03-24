@@ -1,0 +1,6 @@
+Alice ::= x̅'⟨1⟩.x'(x).([x > 0].alt1(['1', 'Bob'])⟨⟩.alt1(['1', 'Charlie'])⟨⟩.alt1(['1', 'David'])⟨⟩.Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0 + [(¬x > 0)].alt2(['1', 'Bob'])⟨⟩.alt2(['1', 'Charlie'])⟨⟩.alt2(['1', 'David'])⟨⟩.finalize̅⟨⟩.0)
+Bob ::= (alt1(['1', 'Bob'])().Authentication Request().Authentication Response̅⟨⟩.finalize().0 + alt2(['1', 'Bob'])().finalize().0)
+Charlie ::= (alt1(['1', 'Charlie'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'Charlie'])().0)
+David ::= (alt1(['1', 'David'])().Authentication Request().Authentication Response̅⟨⟩.0 + alt2(['1', 'David'])().0)
+Memory0 ::= !x'(x).x̅'⟨x⟩.0
+System ::= Alice || Bob || Charlie || David || Memory0

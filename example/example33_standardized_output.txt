@@ -1,0 +1,5 @@
+Alice ::= {0 | t_dot=1 & t<1.0, {}}.Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0
+Bob ::= finalize().0
+Charlie ::= Authentication Request().Authentication Response̅⟨⟩.0
+David ::= Authentication Request().Authentication Response̅⟨⟩.0
+System ::= (ν t) Alice || Bob || Charlie || David

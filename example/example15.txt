@@ -1,0 +1,14 @@
+@startuml
+Alice -> Alice: x := 0
+Alice -> Alice: y := 0
+alt [1] Alice: x > 0
+  Alice -> Bob: sendx
+else
+  alt [2] Alice: y > 0
+    Alice -> Bob: sendy
+  else
+    Alice -> Bob: terminal
+  end
+end
+Alice -> Bob: finalize
+@enduml

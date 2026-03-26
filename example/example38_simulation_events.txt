@@ -1,0 +1,98 @@
+# HpC simulation event log
+=== Starting HPC continuous process simulation ===
+Collected named definition[0]: Alice
+Collected named definition[1]: Bob
+Collected named definition[2]: Replication 1
+Collected named definition[3]: Memory0
+Collected named definition[4]: Memory1
+Collected named definition[5]: Memory2
+Collected named definition[6]: System
+Removing restriction: ['loop[1]']
+Removing restriction: ['t']
+Protecting Sum process during canonical form conversion
+Protecting Sum process during canonical form conversion
+Protecting Sum process during canonical form conversion
+Initialized allocation constant: y=0
+
+--- Step 1 ---
+Attempted to apply [Pass] rule: applied=False, new_proc=y̅'⟨0⟩.y'(y).([y > 0].alt1_1_Bob⟨⟩.terminus̅'⟨500⟩.terminus'(terminus).{0, 0 | x_dot=a, a_dot=0 & x<1000, {x̅, a}}.finalize̅⟨⟩.0 + [(¬y > 0)].alt2_1_Bob⟨⟩.sendy̅⟨⟩.finalize̅⟨⟩.0) || (alt1_1_Bob().x(currentx).loop[1]⟨currentx, terminus⟩.0 + alt2_1_Bob().sendy().finalize().0) || !loop[1](currentx, terminus).([currentx < terminus].x(currentx).a0̅'⟨5⟩.a0'(a0).a̅⟨a0⟩.{0 | t_dot=1 & t<1.0, {}}.loop[1]⟨currentx, terminus⟩.0 + [(¬currentx < terminus)].finalize().0) || !a0'(a0).a0̅'⟨a0⟩.0 || !terminus'(terminus).terminus̅'⟨terminus⟩.0 || !y'(y).y̅'⟨y⟩.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc=y̅'⟨0⟩.y'(y).([y > 0].alt1_1_Bob⟨⟩.terminus̅'⟨500⟩.terminus'(terminus).{0, 0 | x_dot=a, a_dot=0 & x<1000, {x̅, a}}.finalize̅⟨⟩.0 + [(¬y > 0)].alt2_1_Bob⟨⟩.sendy̅⟨⟩.finalize̅⟨⟩.0) || (alt1_1_Bob().x(currentx).loop[1]⟨currentx, terminus⟩.0 + alt2_1_Bob().sendy().finalize().0) || !loop[1](currentx, terminus).([currentx < terminus].x(currentx).a0̅'⟨5⟩.a0'(a0).a̅⟨a0⟩.{0 | t_dot=1 & t<1.0, {}}.loop[1]⟨currentx, terminus⟩.0 + [(¬currentx < terminus)].finalize().0) || !a0'(a0).a0̅'⟨a0⟩.0 || !terminus'(terminus).terminus̅'⟨terminus⟩.0 || !y'(y).y̅'⟨y⟩.0, log=None
+input process: 2,[(1, <hpc.Sum object at 0x0000023DFC95D0C0>, <hpc.PrefixProcess object at 0x0000023DFC95DDE0>, True, 0), (1, <hpc.Sum object at 0x0000023DFC95D0C0>, <hpc.PrefixProcess object at 0x0000023DFC95F850>, True, 1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x0000023DFC95E5C0>, <hpc.PrefixProcess object at 0x0000023DFC95E5C0>, False, -1)]
+output variable list: ['0']
+evaluate output expression: 0 -> val=0, missing=set()
+communication injection: y = 0
+output expression evaluation result: valid=True, values=[0]
+Attempted to apply [Comm] rule: applied=False, new_proc=y̅'⟨0⟩.y'(y).([y > 0].alt1_1_Bob⟨⟩.terminus̅'⟨500⟩.terminus'(terminus).{0, 0 | x_dot=a, a_dot=0 & x<1000, {x̅, a}}.finalize̅⟨⟩.0 + [(¬y > 0)].alt2_1_Bob⟨⟩.sendy̅⟨⟩.finalize̅⟨⟩.0) || (alt1_1_Bob().x(currentx).loop[1]⟨currentx, terminus⟩.0 + alt2_1_Bob().sendy().finalize().0) || !loop[1](currentx, terminus).([currentx < terminus].x(currentx).a0̅'⟨5⟩.a0'(a0).a̅⟨a0⟩.{0 | t_dot=1 & t<1.0, {}}.loop[1]⟨currentx, terminus⟩.0 + [(¬currentx < terminus)].finalize().0) || !a0'(a0).a0̅'⟨a0⟩.0 || !terminus'(terminus).terminus̅'⟨terminus⟩.0 || !y'(y).y̅'⟨y⟩.0, log=None
+Attempted to apply [Sense] rule: applied=False, new_proc=y̅'⟨0⟩.y'(y).([y > 0].alt1_1_Bob⟨⟩.terminus̅'⟨500⟩.terminus'(terminus).{0, 0 | x_dot=a, a_dot=0 & x<1000, {x̅, a}}.finalize̅⟨⟩.0 + [(¬y > 0)].alt2_1_Bob⟨⟩.sendy̅⟨⟩.finalize̅⟨⟩.0) || (alt1_1_Bob().x(currentx).loop[1]⟨currentx, terminus⟩.0 + alt2_1_Bob().sendy().finalize().0) || !loop[1](currentx, terminus).([currentx < terminus].x(currentx).a0̅'⟨5⟩.a0'(a0).a̅⟨a0⟩.{0 | t_dot=1 & t<1.0, {}}.loop[1]⟨currentx, terminus⟩.0 + [(¬currentx < terminus)].finalize().0) || !a0'(a0).a0̅'⟨a0⟩.0 || !terminus'(terminus).terminus̅'⟨terminus⟩.0 || !y'(y).y̅'⟨y⟩.0, log=None
+Attempted to apply [Actuate] rule: applied=False, new_proc=y̅'⟨0⟩.y'(y).([y > 0].alt1_1_Bob⟨⟩.terminus̅'⟨500⟩.terminus'(terminus).{0, 0 | x_dot=a, a_dot=0 & x<1000, {x̅, a}}.finalize̅⟨⟩.0 + [(¬y > 0)].alt2_1_Bob⟨⟩.sendy̅⟨⟩.finalize̅⟨⟩.0) || (alt1_1_Bob().x(currentx).loop[1]⟨currentx, terminus⟩.0 + alt2_1_Bob().sendy().finalize().0) || !loop[1](currentx, terminus).([currentx < terminus].x(currentx).a0̅'⟨5⟩.a0'(a0).a̅⟨a0⟩.{0 | t_dot=1 & t<1.0, {}}.loop[1]⟨currentx, terminus⟩.0 + [(¬currentx < terminus)].finalize().0) || !a0'(a0).a0̅'⟨a0⟩.0 || !terminus'(terminus).terminus̅'⟨terminus⟩.0 || !y'(y).y̅'⟨y⟩.0, log=None
+new_processes after Rep rule: [<hpc.PrefixProcess object at 0x0000023DFC95EB30>, <hpc.Sum object at 0x0000023DFC95D0C0>, <hpc.Replication object at 0x0000023DFC98FBE0>, <hpc.Replication object at 0x0000023DFC98C2B0>, <hpc.Replication object at 0x0000023DFC98DF00>, <hpc.Replication object at 0x0000023DFC98CEB0>, <hpc.PrefixProcess object at 0x0000023DBD4A0160>]
+Protecting Sum process during canonical form conversion
+Protecting Sum process during canonical form conversion
+Protecting Sum process during canonical form conversion
+Attempted to apply [Rep] rule: applied=True, new_proc=y'(y).([y > 0].alt1_1_Bob⟨⟩.terminus̅'⟨500⟩.terminus'(terminus).{0, 0 | x_dot=a, a_dot=0 & x<1000, {x̅, a}}.finalize̅⟨⟩.0 + [(¬y > 0)].alt2_1_Bob⟨⟩.sendy̅⟨⟩.finalize̅⟨⟩.0) || (alt1_1_Bob().x(currentx).loop[1]⟨currentx, terminus⟩.0 + alt2_1_Bob().sendy().finalize().0) || y̅'⟨0⟩.0 || !loop[1](currentx, terminus).([currentx < terminus].x(currentx).a0̅'⟨5⟩.a0'(a0).a̅⟨a0⟩.{0 | t_dot=1 & t<1.0, {}}.loop[1]⟨currentx, terminus⟩.0 + [(¬currentx < terminus)].finalize().0) || !a0'(a0).a0̅'⟨a0⟩.0 || !terminus'(terminus).terminus̅'⟨terminus⟩.0 || !y'(y).y̅'⟨y⟩.0, log=Communication channel (y̅') (message: 0) - [Rep] rule
+Discrete reduction: Applied [Rep] rule (Communication channel (y̅') (message: 0) - [Rep] rule)
+Check process termination: y'(y).([y > 0].alt1_1_Bob⟨⟩.terminus̅'⟨500⟩.terminus'(terminus).{0, 0 | x_dot=a, a_dot=0 & x<1000, {x̅, a}}.finalize̅⟨⟩.0 + [(¬y > 0)].alt2_1_Bob⟨⟩.sendy̅⟨⟩.finalize̅⟨⟩.0) || (alt1_1_Bob().x(currentx).loop[1]⟨currentx, terminus⟩.0 + alt2_1_Bob().sendy().finalize().0) || y̅'⟨0⟩.0 || !loop[1](currentx, terminus).([currentx < terminus].x(currentx).a0̅'⟨5⟩.a0'(a0).a̅⟨a0⟩.{0 | t_dot=1 & t<1.0, {}}.loop[1]⟨currentx, terminus⟩.0 + [(¬currentx < terminus)].finalize().0) || !a0'(a0).a0̅'⟨a0⟩.0 || !terminus'(terminus).terminus̅'⟨terminus⟩.0 || !y'(y).y̅'⟨y⟩.0
+
+--- Step 2 ---
+Attempted to apply [Pass] rule: applied=False, new_proc=y'(y).([y > 0].alt1_1_Bob⟨⟩.terminus̅'⟨500⟩.terminus'(terminus).{0, 0 | x_dot=a, a_dot=0 & x<1000, {x̅, a}}.finalize̅⟨⟩.0 + [(¬y > 0)].alt2_1_Bob⟨⟩.sendy̅⟨⟩.finalize̅⟨⟩.0) || (alt1_1_Bob().x(currentx).loop[1]⟨currentx, terminus⟩.0 + alt2_1_Bob().sendy().finalize().0) || y̅'⟨0⟩.0 || !loop[1](currentx, terminus).([currentx < terminus].x(currentx).a0̅'⟨5⟩.a0'(a0).a̅⟨a0⟩.{0 | t_dot=1 & t<1.0, {}}.loop[1]⟨currentx, terminus⟩.0 + [(¬currentx < terminus)].finalize().0) || !a0'(a0).a0̅'⟨a0⟩.0 || !terminus'(terminus).terminus̅'⟨terminus⟩.0 || !y'(y).y̅'⟨y⟩.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc=y'(y).([y > 0].alt1_1_Bob⟨⟩.terminus̅'⟨500⟩.terminus'(terminus).{0, 0 | x_dot=a, a_dot=0 & x<1000, {x̅, a}}.finalize̅⟨⟩.0 + [(¬y > 0)].alt2_1_Bob⟨⟩.sendy̅⟨⟩.finalize̅⟨⟩.0) || (alt1_1_Bob().x(currentx).loop[1]⟨currentx, terminus⟩.0 + alt2_1_Bob().sendy().finalize().0) || y̅'⟨0⟩.0 || !loop[1](currentx, terminus).([currentx < terminus].x(currentx).a0̅'⟨5⟩.a0'(a0).a̅⟨a0⟩.{0 | t_dot=1 & t<1.0, {}}.loop[1]⟨currentx, terminus⟩.0 + [(¬currentx < terminus)].finalize().0) || !a0'(a0).a0̅'⟨a0⟩.0 || !terminus'(terminus).terminus̅'⟨terminus⟩.0 || !y'(y).y̅'⟨y⟩.0, log=None
+input process: 3,[(0, <hpc.PrefixProcess object at 0x0000023DFC95CF70>, <hpc.PrefixProcess object at 0x0000023DFC95CF70>, False, -1), (1, <hpc.Sum object at 0x0000023DFC95DC30>, <hpc.PrefixProcess object at 0x0000023DFC95F160>, True, 0), (1, <hpc.Sum object at 0x0000023DFC95DC30>, <hpc.PrefixProcess object at 0x0000023DFC95CAC0>, True, 1)]，output process: 1,[(2, <hpc.PrefixProcess object at 0x0000023DFC98FB50>, <hpc.PrefixProcess object at 0x0000023DFC98FB50>, False, -1)]
+output variable list: ['0']
+evaluate output expression: 0 -> val=0, missing=set()
+communication injection: y = 0
+output expression evaluation result: valid=True, values=[0]
+Protecting Sum process during canonical form conversion
+Protecting Sum process during canonical form conversion
+Protecting Sum process during canonical form conversion
+COMM consumption: out_idx=2 in_idx=0 channel=y values=[0]
+Attempted to apply [Comm] rule: applied=True, new_proc=([0 > 0].alt1_1_Bob⟨⟩.terminus̅'⟨500⟩.terminus'(terminus).{0, 0 | x_dot=a, a_dot=0 & x<1000, {x̅, a}}.finalize̅⟨⟩.0 + [(¬0 > 0)].alt2_1_Bob⟨⟩.sendy̅⟨⟩.finalize̅⟨⟩.0) || (alt1_1_Bob().x(currentx).loop[1]⟨currentx, terminus⟩.0 + alt2_1_Bob().sendy().finalize().0) || !loop[1](currentx, terminus).([currentx < terminus].x(currentx).a0̅'⟨5⟩.a0'(a0).a̅⟨a0⟩.{0 | t_dot=1 & t<1.0, {}}.loop[1]⟨currentx, terminus⟩.0 + [(¬currentx < terminus)].finalize().0) || !a0'(a0).a0̅'⟨a0⟩.0 || !terminus'(terminus).terminus̅'⟨terminus⟩.0 || !y'(y).y̅'⟨y⟩.0, log=Communication channel(y̅')(Communication message: 0)
+Discrete reduction: Applied [Comm] rule (Communication channel(y̅')(Communication message: 0))
+Check process termination: ([0 > 0].alt1_1_Bob⟨⟩.terminus̅'⟨500⟩.terminus'(terminus).{0, 0 | x_dot=a, a_dot=0 & x<1000, {x̅, a}}.finalize̅⟨⟩.0 + [(¬0 > 0)].alt2_1_Bob⟨⟩.sendy̅⟨⟩.finalize̅⟨⟩.0) || (alt1_1_Bob().x(currentx).loop[1]⟨currentx, terminus⟩.0 + alt2_1_Bob().sendy().finalize().0) || !loop[1](currentx, terminus).([currentx < terminus].x(currentx).a0̅'⟨5⟩.a0'(a0).a̅⟨a0⟩.{0 | t_dot=1 & t<1.0, {}}.loop[1]⟨currentx, terminus⟩.0 + [(¬currentx < terminus)].finalize().0) || !a0'(a0).a0̅'⟨a0⟩.0 || !terminus'(terminus).terminus̅'⟨terminus⟩.0 || !y'(y).y̅'⟨y⟩.0
+
+--- Step 3 ---
+Protecting Sum process during canonical form conversion
+Protecting Sum process during canonical form conversion
+PASS rule applied: idx=0 msg=Condition satisfied: (¬0 > 0)
+Attempted to apply [Pass] rule: applied=True, new_proc=alt2_1_Bob⟨⟩.sendy̅⟨⟩.finalize̅⟨⟩.0 || (alt1_1_Bob().x(currentx).loop[1]⟨currentx, terminus⟩.0 + alt2_1_Bob().sendy().finalize().0) || !loop[1](currentx, terminus).([currentx < terminus].x(currentx).a0̅'⟨5⟩.a0'(a0).a̅⟨a0⟩.{0 | t_dot=1 & t<1.0, {}}.loop[1]⟨currentx, terminus⟩.0 + [(¬currentx < terminus)].finalize().0) || !a0'(a0).a0̅'⟨a0⟩.0 || !terminus'(terminus).terminus̅'⟨terminus⟩.0 || !y'(y).y̅'⟨y⟩.0, log=Condition satisfied: (¬0 > 0)
+Discrete reduction: Applied [Pass] rule (Condition satisfied: (¬0 > 0))
+Check process termination: alt2_1_Bob⟨⟩.sendy̅⟨⟩.finalize̅⟨⟩.0 || (alt1_1_Bob().x(currentx).loop[1]⟨currentx, terminus⟩.0 + alt2_1_Bob().sendy().finalize().0) || !loop[1](currentx, terminus).([currentx < terminus].x(currentx).a0̅'⟨5⟩.a0'(a0).a̅⟨a0⟩.{0 | t_dot=1 & t<1.0, {}}.loop[1]⟨currentx, terminus⟩.0 + [(¬currentx < terminus)].finalize().0) || !a0'(a0).a0̅'⟨a0⟩.0 || !terminus'(terminus).terminus̅'⟨terminus⟩.0 || !y'(y).y̅'⟨y⟩.0
+
+--- Step 4 ---
+Attempted to apply [Pass] rule: applied=False, new_proc=alt2_1_Bob⟨⟩.sendy̅⟨⟩.finalize̅⟨⟩.0 || (alt1_1_Bob().x(currentx).loop[1]⟨currentx, terminus⟩.0 + alt2_1_Bob().sendy().finalize().0) || !loop[1](currentx, terminus).([currentx < terminus].x(currentx).a0̅'⟨5⟩.a0'(a0).a̅⟨a0⟩.{0 | t_dot=1 & t<1.0, {}}.loop[1]⟨currentx, terminus⟩.0 + [(¬currentx < terminus)].finalize().0) || !a0'(a0).a0̅'⟨a0⟩.0 || !terminus'(terminus).terminus̅'⟨terminus⟩.0 || !y'(y).y̅'⟨y⟩.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc=alt2_1_Bob⟨⟩.sendy̅⟨⟩.finalize̅⟨⟩.0 || (alt1_1_Bob().x(currentx).loop[1]⟨currentx, terminus⟩.0 + alt2_1_Bob().sendy().finalize().0) || !loop[1](currentx, terminus).([currentx < terminus].x(currentx).a0̅'⟨5⟩.a0'(a0).a̅⟨a0⟩.{0 | t_dot=1 & t<1.0, {}}.loop[1]⟨currentx, terminus⟩.0 + [(¬currentx < terminus)].finalize().0) || !a0'(a0).a0̅'⟨a0⟩.0 || !terminus'(terminus).terminus̅'⟨terminus⟩.0 || !y'(y).y̅'⟨y⟩.0, log=None
+input process: 2,[(1, <hpc.Sum object at 0x0000023DFC987760>, <hpc.PrefixProcess object at 0x0000023DFC931570>, True, 0), (1, <hpc.Sum object at 0x0000023DFC987760>, <hpc.PrefixProcess object at 0x0000023DFC930760>, True, 1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x0000023DBD4A1870>, <hpc.PrefixProcess object at 0x0000023DBD4A1870>, False, -1)]
+output variable list: []
+output expression evaluation result: valid=True, values=[]
+Protecting Sum process during canonical form conversion
+COMM consumption: out_idx=0 in_idx=1 channel=alt2_1_Bob values=[]
+Attempted to apply [Comm] rule: applied=True, new_proc=sendy̅⟨⟩.finalize̅⟨⟩.0 || sendy().finalize().0 || !loop[1](currentx, terminus).([currentx < terminus].x(currentx).a0̅'⟨5⟩.a0'(a0).a̅⟨a0⟩.{0 | t_dot=1 & t<1.0, {}}.loop[1]⟨currentx, terminus⟩.0 + [(¬currentx < terminus)].finalize().0) || !a0'(a0).a0̅'⟨a0⟩.0 || !terminus'(terminus).terminus̅'⟨terminus⟩.0 || !y'(y).y̅'⟨y⟩.0, log=Communication channel(alt2_1_Bob)(Communication message: )
+Discrete reduction: Applied [Comm] rule (Communication channel(alt2_1_Bob)(Communication message: ))
+Check process termination: sendy̅⟨⟩.finalize̅⟨⟩.0 || sendy().finalize().0 || !loop[1](currentx, terminus).([currentx < terminus].x(currentx).a0̅'⟨5⟩.a0'(a0).a̅⟨a0⟩.{0 | t_dot=1 & t<1.0, {}}.loop[1]⟨currentx, terminus⟩.0 + [(¬currentx < terminus)].finalize().0) || !a0'(a0).a0̅'⟨a0⟩.0 || !terminus'(terminus).terminus̅'⟨terminus⟩.0 || !y'(y).y̅'⟨y⟩.0
+
+--- Step 5 ---
+Attempted to apply [Pass] rule: applied=False, new_proc=sendy̅⟨⟩.finalize̅⟨⟩.0 || sendy().finalize().0 || !loop[1](currentx, terminus).([currentx < terminus].x(currentx).a0̅'⟨5⟩.a0'(a0).a̅⟨a0⟩.{0 | t_dot=1 & t<1.0, {}}.loop[1]⟨currentx, terminus⟩.0 + [(¬currentx < terminus)].finalize().0) || !a0'(a0).a0̅'⟨a0⟩.0 || !terminus'(terminus).terminus̅'⟨terminus⟩.0 || !y'(y).y̅'⟨y⟩.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc=sendy̅⟨⟩.finalize̅⟨⟩.0 || sendy().finalize().0 || !loop[1](currentx, terminus).([currentx < terminus].x(currentx).a0̅'⟨5⟩.a0'(a0).a̅⟨a0⟩.{0 | t_dot=1 & t<1.0, {}}.loop[1]⟨currentx, terminus⟩.0 + [(¬currentx < terminus)].finalize().0) || !a0'(a0).a0̅'⟨a0⟩.0 || !terminus'(terminus).terminus̅'⟨terminus⟩.0 || !y'(y).y̅'⟨y⟩.0, log=None
+input process: 1,[(1, <hpc.PrefixProcess object at 0x0000023DFC95F340>, <hpc.PrefixProcess object at 0x0000023DFC95F340>, False, -1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x0000023DFC95F970>, <hpc.PrefixProcess object at 0x0000023DFC95F970>, False, -1)]
+output variable list: ['']
+evaluate output expression:  -> val=None, missing=set()
+output expression evaluation result: valid=True, values=[]
+Protecting Sum process during canonical form conversion
+COMM consumption: out_idx=0 in_idx=1 channel=sendy values=[]
+Attempted to apply [Comm] rule: applied=True, new_proc=finalize̅⟨⟩.0 || finalize().0 || !loop[1](currentx, terminus).([currentx < terminus].x(currentx).a0̅'⟨5⟩.a0'(a0).a̅⟨a0⟩.{0 | t_dot=1 & t<1.0, {}}.loop[1]⟨currentx, terminus⟩.0 + [(¬currentx < terminus)].finalize().0) || !a0'(a0).a0̅'⟨a0⟩.0 || !terminus'(terminus).terminus̅'⟨terminus⟩.0 || !y'(y).y̅'⟨y⟩.0, log=Communication channel(sendy̅)(Communication message: )
+Discrete reduction: Applied [Comm] rule (Communication channel(sendy̅)(Communication message: ))
+Check process termination: finalize̅⟨⟩.0 || finalize().0 || !loop[1](currentx, terminus).([currentx < terminus].x(currentx).a0̅'⟨5⟩.a0'(a0).a̅⟨a0⟩.{0 | t_dot=1 & t<1.0, {}}.loop[1]⟨currentx, terminus⟩.0 + [(¬currentx < terminus)].finalize().0) || !a0'(a0).a0̅'⟨a0⟩.0 || !terminus'(terminus).terminus̅'⟨terminus⟩.0 || !y'(y).y̅'⟨y⟩.0
+
+--- Step 6 ---
+Attempted to apply [Pass] rule: applied=False, new_proc=finalize̅⟨⟩.0 || finalize().0 || !loop[1](currentx, terminus).([currentx < terminus].x(currentx).a0̅'⟨5⟩.a0'(a0).a̅⟨a0⟩.{0 | t_dot=1 & t<1.0, {}}.loop[1]⟨currentx, terminus⟩.0 + [(¬currentx < terminus)].finalize().0) || !a0'(a0).a0̅'⟨a0⟩.0 || !terminus'(terminus).terminus̅'⟨terminus⟩.0 || !y'(y).y̅'⟨y⟩.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc=finalize̅⟨⟩.0 || finalize().0 || !loop[1](currentx, terminus).([currentx < terminus].x(currentx).a0̅'⟨5⟩.a0'(a0).a̅⟨a0⟩.{0 | t_dot=1 & t<1.0, {}}.loop[1]⟨currentx, terminus⟩.0 + [(¬currentx < terminus)].finalize().0) || !a0'(a0).a0̅'⟨a0⟩.0 || !terminus'(terminus).terminus̅'⟨terminus⟩.0 || !y'(y).y̅'⟨y⟩.0, log=None
+input process: 1,[(1, <hpc.PrefixProcess object at 0x0000023DFC9558A0>, <hpc.PrefixProcess object at 0x0000023DFC9558A0>, False, -1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x0000023DFC956C50>, <hpc.PrefixProcess object at 0x0000023DFC956C50>, False, -1)]
+output variable list: ['']
+evaluate output expression:  -> val=None, missing=set()
+output expression evaluation result: valid=True, values=[]
+Protecting Sum process during canonical form conversion
+COMM consumption: out_idx=0 in_idx=1 channel=finalize values=[]
+Attempted to apply [Comm] rule: applied=True, new_proc=!loop[1](currentx, terminus).([currentx < terminus].x(currentx).a0̅'⟨5⟩.a0'(a0).a̅⟨a0⟩.{0 | t_dot=1 & t<1.0, {}}.loop[1]⟨currentx, terminus⟩.0 + [(¬currentx < terminus)].finalize().0) || !a0'(a0).a0̅'⟨a0⟩.0 || !terminus'(terminus).terminus̅'⟨terminus⟩.0 || !y'(y).y̅'⟨y⟩.0, log=Communication channel(finalize̅)(Communication message: )
+Discrete reduction: Applied [Comm] rule (Communication channel(finalize̅)(Communication message: ))
+Check process termination: !loop[1](currentx, terminus).([currentx < terminus].x(currentx).a0̅'⟨5⟩.a0'(a0).a̅⟨a0⟩.{0 | t_dot=1 & t<1.0, {}}.loop[1]⟨currentx, terminus⟩.0 + [(¬currentx < terminus)].finalize().0) || !a0'(a0).a0̅'⟨a0⟩.0 || !terminus'(terminus).terminus̅'⟨terminus⟩.0 || !y'(y).y̅'⟨y⟩.0
+System terminated
+=== Simulation completed: 6 steps, total time 0.000000 seconds ===

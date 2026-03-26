@@ -1,15 +1,12 @@
 @startuml
 Alice -> Alice: x := 0
 opt [1] Alice: x > 0
-  par
-      Alice -> Bob: Authentication Request
-      Bob -> Alice: Authentication Response
+  par [1]
+      Alice -> Bob: Bob Request
+      Bob -> Alice: Bob Response
   else
-      Alice -> Charlie: Authentication Request
-      Charlie -> Alice: Authentication Response
-  else
-      Alice -> David: Authentication Request
-      David -> Alice: Authentication Response
+      Alice -> Charlie: Charlie Request
+      Charlie -> Alice: Charlie Response
   end
 end
 Alice -> Bob: finalize

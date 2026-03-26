@@ -12,7 +12,7 @@ TEST_CASES = [
     ("example\\example6.txt", ["Alice"], 6),
     ("example\\example7.txt", ["Alice", "Bob"], 7),
     ("example\\example8.txt", ["Alice", "Bob"], 8),
-    ("example\\example9.txt", ["Alice", "Bob", "Charlie", "David"], 9),
+    ("example\\example9.txt", ["Alice", "Bob", "Charlie"], 9),
     ("example\\example10.txt", ["Alice", "Bob"], 10),
     ("example\\example11.txt", ["Alice", "Bob"], 11),
     ("example\\example12.txt", ["Alice", "Bob"], 12),
@@ -24,10 +24,10 @@ TEST_CASES = [
     ("example\\example18.txt", ["Alice", "Bob"], 18),
     ("example\\example19.txt", ["Alice", "Bob"], 19),
     ("example\\example20.txt", ["Alice", "Bob"], 20),
-    ("example\\example21.txt", ["Alice", "Bob", "Charlie", "David"], 21),
-    ("example\\example22.txt", ["Alice", "Bob", "Charlie", "David"], 22),
+    ("example\\example21.txt", ["Alice", "Bob", "Charlie"], 21),
+    ("example\\example22.txt", ["Alice", "Bob", "Charlie"], 22),
     ("example\\example23.txt", ["Alice", "Bob"], 23),
-    ("example\\example24.txt", ["Alice", "Bob", "Charlie", "David"], 24),
+    ("example\\example24.txt", ["Alice", "Bob", "Charlie"], 24),
     ("example\\example25.txt", ["Alice", "Bob", "Charlie", "David"], 25),
     ("example\\example26.txt", ["Alice", "Bob"], 26),
     ("example\\example27.txt", ["Alice", "Bob"], 27),
@@ -35,8 +35,13 @@ TEST_CASES = [
     ("example\\example29.txt", ["Alice", "Bob"], 29),
     ("example\\example30.txt", ["Alice", "Bob"], 30),
     ("example\\example31.txt", ["Alice", "Bob"], 31),
-    ("example\\example32.txt", ["Alice", "Bob", "Charlie", "David"], 32),
-    ("example\\example33.txt", ["Alice", "Bob", "Charlie", "David"], 33)
+    ("example\\example32.txt", ["Alice", "Bob"], 32),
+    ("example\\example33.txt", ["Alice", "Bob"], 33),
+    ("example\\example34.txt", ["Alice", "Bob"], 34),
+    ("example\\example35.txt", ["Alice", "Bob", "Charlie"], 35),
+    ("example\\example36.txt", ["Alice", "Bob", "Charlie"], 36),
+    ("example\\example37.txt", ["Alice", "Bob"], 37),
+    ("example\\example38.txt", ["Alice", "Bob"], 38)
 ]
 
 def run_single_case(input_file, roles, case_num):

@@ -1,8 +1,8 @@
 # Step log
 
 === STEP 1 time: 0.000000 ===
-  [0] M: x̅'⟨1⟩.x'(x).y̅'⟨0⟩.y'(y).([x > 0].alt1(['1', 'Bob'])⟨⟩.([y > 0].alt1(['2', 'Bob'])⟨⟩.sendy̅⟨⟩.finalize̅⟨⟩.0 + [(¬y > 0)].alt2(['2', 'Bob'])⟨⟩.finalize̅⟨⟩.0) + [(¬x > 0)].alt2(['1', 'Bob'])⟨⟩.finalize̅⟨⟩.0)
-  [1] M: (alt1(['1', 'Bob'])().(alt1(['2', 'Bob'])().sendy().finalize().0 + alt2(['2', 'Bob'])().finalize().0) + alt2(['1', 'Bob'])().finalize().0)
+  [0] M: x̅'⟨1⟩.x'(x).y̅'⟨0⟩.y'(y).([x > 0].alt1_1_Bob⟨⟩.([y > 0].alt1_2_Bob⟨⟩.sendy̅⟨⟩.finalize̅⟨⟩.0 + [(¬y > 0)].alt2_2_Bob⟨⟩.finalize̅⟨⟩.0) + [(¬x > 0)].alt2_1_Bob⟨⟩.finalize̅⟨⟩.0)
+  [1] M: (alt1_1_Bob().(alt1_2_Bob().sendy().finalize().0 + alt2_2_Bob().finalize().0) + alt2_1_Bob().finalize().0)
   [2] R: !y'(y).y̅'⟨y⟩.0
   [3] R: !x'(x).x̅'⟨x⟩.0
 Process counts: M=2, C=0, R=2, Other=0
@@ -10,8 +10,8 @@ Process counts: M=2, C=0, R=2, Other=0
 
 
 === STEP 2 time: 0.000000 ===
-  [0] M: x'(x).y̅'⟨0⟩.y'(y).([x > 0].alt1(['1', 'Bob'])⟨⟩.([y > 0].alt1(['2', 'Bob'])⟨⟩.sendy̅⟨⟩.finalize̅⟨⟩.0 + [(¬y > 0)].alt2(['2', 'Bob'])⟨⟩.finalize̅⟨⟩.0) + [(¬x > 0)].alt2(['1', 'Bob'])⟨⟩.finalize̅⟨⟩.0)
-  [1] M: (alt1(['1', 'Bob'])().(alt1(['2', 'Bob'])().sendy().finalize().0 + alt2(['2', 'Bob'])().finalize().0) + alt2(['1', 'Bob'])().finalize().0)
+  [0] M: x'(x).y̅'⟨0⟩.y'(y).([x > 0].alt1_1_Bob⟨⟩.([y > 0].alt1_2_Bob⟨⟩.sendy̅⟨⟩.finalize̅⟨⟩.0 + [(¬y > 0)].alt2_2_Bob⟨⟩.finalize̅⟨⟩.0) + [(¬x > 0)].alt2_1_Bob⟨⟩.finalize̅⟨⟩.0)
+  [1] M: (alt1_1_Bob().(alt1_2_Bob().sendy().finalize().0 + alt2_2_Bob().finalize().0) + alt2_1_Bob().finalize().0)
   [2] M: x̅'⟨1⟩.0
   [3] R: !y'(y).y̅'⟨y⟩.0
   [4] R: !x'(x).x̅'⟨x⟩.0
@@ -20,8 +20,8 @@ Process counts: M=3, C=0, R=2, Other=0
 
 
 === STEP 3 time: 0.000000 ===
-  [0] M: y̅'⟨0⟩.y'(y).([1 > 0].alt1(['1', 'Bob'])⟨⟩.([y > 0].alt1(['2', 'Bob'])⟨⟩.sendy̅⟨⟩.finalize̅⟨⟩.0 + [(¬y > 0)].alt2(['2', 'Bob'])⟨⟩.finalize̅⟨⟩.0) + [(¬1 > 0)].alt2(['1', 'Bob'])⟨⟩.finalize̅⟨⟩.0)
-  [1] M: (alt1(['1', 'Bob'])().(alt1(['2', 'Bob'])().sendy().finalize().0 + alt2(['2', 'Bob'])().finalize().0) + alt2(['1', 'Bob'])().finalize().0)
+  [0] M: y̅'⟨0⟩.y'(y).([1 > 0].alt1_1_Bob⟨⟩.([y > 0].alt1_2_Bob⟨⟩.sendy̅⟨⟩.finalize̅⟨⟩.0 + [(¬y > 0)].alt2_2_Bob⟨⟩.finalize̅⟨⟩.0) + [(¬1 > 0)].alt2_1_Bob⟨⟩.finalize̅⟨⟩.0)
+  [1] M: (alt1_1_Bob().(alt1_2_Bob().sendy().finalize().0 + alt2_2_Bob().finalize().0) + alt2_1_Bob().finalize().0)
   [2] R: !y'(y).y̅'⟨y⟩.0
   [3] R: !x'(x).x̅'⟨x⟩.0
 Process counts: M=2, C=0, R=2, Other=0
@@ -29,8 +29,8 @@ Process counts: M=2, C=0, R=2, Other=0
 
 
 === STEP 4 time: 0.000000 ===
-  [0] M: y'(y).([1 > 0].alt1(['1', 'Bob'])⟨⟩.([y > 0].alt1(['2', 'Bob'])⟨⟩.sendy̅⟨⟩.finalize̅⟨⟩.0 + [(¬y > 0)].alt2(['2', 'Bob'])⟨⟩.finalize̅⟨⟩.0) + [(¬1 > 0)].alt2(['1', 'Bob'])⟨⟩.finalize̅⟨⟩.0)
-  [1] M: (alt1(['1', 'Bob'])().(alt1(['2', 'Bob'])().sendy().finalize().0 + alt2(['2', 'Bob'])().finalize().0) + alt2(['1', 'Bob'])().finalize().0)
+  [0] M: y'(y).([1 > 0].alt1_1_Bob⟨⟩.([y > 0].alt1_2_Bob⟨⟩.sendy̅⟨⟩.finalize̅⟨⟩.0 + [(¬y > 0)].alt2_2_Bob⟨⟩.finalize̅⟨⟩.0) + [(¬1 > 0)].alt2_1_Bob⟨⟩.finalize̅⟨⟩.0)
+  [1] M: (alt1_1_Bob().(alt1_2_Bob().sendy().finalize().0 + alt2_2_Bob().finalize().0) + alt2_1_Bob().finalize().0)
   [2] M: y̅'⟨0⟩.0
   [3] R: !y'(y).y̅'⟨y⟩.0
   [4] R: !x'(x).x̅'⟨x⟩.0
@@ -39,8 +39,8 @@ Process counts: M=3, C=0, R=2, Other=0
 
 
 === STEP 5 time: 0.000000 ===
-  [0] M: ([1 > 0].alt1(['1', 'Bob'])⟨⟩.([0 > 0].alt1(['2', 'Bob'])⟨⟩.sendy̅⟨⟩.finalize̅⟨⟩.0 + [(¬0 > 0)].alt2(['2', 'Bob'])⟨⟩.finalize̅⟨⟩.0) + [(¬1 > 0)].alt2(['1', 'Bob'])⟨⟩.finalize̅⟨⟩.0)
-  [1] M: (alt1(['1', 'Bob'])().(alt1(['2', 'Bob'])().sendy().finalize().0 + alt2(['2', 'Bob'])().finalize().0) + alt2(['1', 'Bob'])().finalize().0)
+  [0] M: ([1 > 0].alt1_1_Bob⟨⟩.([0 > 0].alt1_2_Bob⟨⟩.sendy̅⟨⟩.finalize̅⟨⟩.0 + [(¬0 > 0)].alt2_2_Bob⟨⟩.finalize̅⟨⟩.0) + [(¬1 > 0)].alt2_1_Bob⟨⟩.finalize̅⟨⟩.0)
+  [1] M: (alt1_1_Bob().(alt1_2_Bob().sendy().finalize().0 + alt2_2_Bob().finalize().0) + alt2_1_Bob().finalize().0)
   [2] R: !y'(y).y̅'⟨y⟩.0
   [3] R: !x'(x).x̅'⟨x⟩.0
 Process counts: M=2, C=0, R=2, Other=0
@@ -48,8 +48,8 @@ Process counts: M=2, C=0, R=2, Other=0
 
 
 === STEP 6 time: 0.000000 ===
-  [0] M: alt1(['1', 'Bob'])⟨⟩.([0 > 0].alt1(['2', 'Bob'])⟨⟩.sendy̅⟨⟩.finalize̅⟨⟩.0 + [(¬0 > 0)].alt2(['2', 'Bob'])⟨⟩.finalize̅⟨⟩.0)
-  [1] M: (alt1(['1', 'Bob'])().(alt1(['2', 'Bob'])().sendy().finalize().0 + alt2(['2', 'Bob'])().finalize().0) + alt2(['1', 'Bob'])().finalize().0)
+  [0] M: alt1_1_Bob⟨⟩.([0 > 0].alt1_2_Bob⟨⟩.sendy̅⟨⟩.finalize̅⟨⟩.0 + [(¬0 > 0)].alt2_2_Bob⟨⟩.finalize̅⟨⟩.0)
+  [1] M: (alt1_1_Bob().(alt1_2_Bob().sendy().finalize().0 + alt2_2_Bob().finalize().0) + alt2_1_Bob().finalize().0)
   [2] R: !y'(y).y̅'⟨y⟩.0
   [3] R: !x'(x).x̅'⟨x⟩.0
 Process counts: M=2, C=0, R=2, Other=0
@@ -57,8 +57,8 @@ Process counts: M=2, C=0, R=2, Other=0
 
 
 === STEP 7 time: 0.000000 ===
-  [0] M: ([0 > 0].alt1(['2', 'Bob'])⟨⟩.sendy̅⟨⟩.finalize̅⟨⟩.0 + [(¬0 > 0)].alt2(['2', 'Bob'])⟨⟩.finalize̅⟨⟩.0)
-  [1] M: (alt1(['2', 'Bob'])().sendy().finalize().0 + alt2(['2', 'Bob'])().finalize().0)
+  [0] M: ([0 > 0].alt1_2_Bob⟨⟩.sendy̅⟨⟩.finalize̅⟨⟩.0 + [(¬0 > 0)].alt2_2_Bob⟨⟩.finalize̅⟨⟩.0)
+  [1] M: (alt1_2_Bob().sendy().finalize().0 + alt2_2_Bob().finalize().0)
   [2] R: !y'(y).y̅'⟨y⟩.0
   [3] R: !x'(x).x̅'⟨x⟩.0
 Process counts: M=2, C=0, R=2, Other=0
@@ -66,8 +66,8 @@ Process counts: M=2, C=0, R=2, Other=0
 
 
 === STEP 8 time: 0.000000 ===
-  [0] M: alt2(['2', 'Bob'])⟨⟩.finalize̅⟨⟩.0
-  [1] M: (alt1(['2', 'Bob'])().sendy().finalize().0 + alt2(['2', 'Bob'])().finalize().0)
+  [0] M: alt2_2_Bob⟨⟩.finalize̅⟨⟩.0
+  [1] M: (alt1_2_Bob().sendy().finalize().0 + alt2_2_Bob().finalize().0)
   [2] R: !y'(y).y̅'⟨y⟩.0
   [3] R: !x'(x).x̅'⟨x⟩.0
 Process counts: M=2, C=0, R=2, Other=0

@@ -100,6 +100,7 @@ class Communication(Fragment):
         return f"Communication(sender={self.sender}, receiver={self.receiver}, channel={self.channel}, var_list={self.var_list},expr_list={self.expr_list})"
 
     def translate(self, roles):
+        print(f"Translating Communication: sender={self.sender}, receiver={self.receiver}")
         assert self.sender in roles and self.receiver in roles
 
         ret = self.cont.translate(roles)
@@ -241,22 +242,24 @@ class Alternative(Fragment):
         branch1 = ret1[self.role]
 
         for role in all_roles:
+            ch1 = f"alt1_{self.index}_{role}"
+            ch2 = f"alt2_{self.index}_{role}"
             if role != self.role:
                 branch0 = hpc.PrefixProcess(
-                    hpc.Output(hpc.OutChannel(f"alt1", [str(self.index), role])),
+                    hpc.Output(hpc.OutChannel(ch1)),
                     branch0
                 )
                 branch1 = hpc.PrefixProcess(
-                    hpc.Output(hpc.OutChannel(f"alt2", [str(self.index), role])),
+                    hpc.Output(hpc.OutChannel(ch2)),
                     branch1
                 )
                 ret[role] = hpc.Sum([
                     hpc.PrefixProcess(
-                        hpc.Input(hpc.InChannel(f"alt1", [str(self.index), role])),
+                        hpc.Input(hpc.InChannel(ch1)),
                         ret0[role]
                     ),
                     hpc.PrefixProcess(
-                        hpc.Input(hpc.InChannel(f"alt2", [str(self.index), role])),
+                        hpc.Input(hpc.InChannel(ch2)),
                         ret1[role]
                     )
                 ])
@@ -265,8 +268,10 @@ class Alternative(Fragment):
         ret[self.role] = conditional.to_sum()
 
         for role in roles:
-            if role not in all_roles:
-                ret[role] = ret0[role]
+            if role == self.role:
+                continue
+            if role not in ret:
+                ret[role] = ret0.get(role, hpc.Inaction())
 
         return ret
 
@@ -366,7 +371,6 @@ class Par(Fragment):
             p1 = proc1.get(role, hpc.Inaction())
             pc = cont_proc.get(role, hpc.Inaction())
 
-            # par ∅ else Frag end Tail => Frag ; 对称同理
             if isinstance(p0, hpc.Inaction):
                 ret[role] = sequence(p1, pc)
                 continue
@@ -418,18 +422,15 @@ def get_ready_set(role: str, frag: Fragment) -> List[hpc.Channel]:
                     collect(f.body)
 
         elif isinstance(f, Alternative):
-            if role != f.role:
-                if f.branch0:
-                    collect(f.branch0)
-                if f.branch1:
-                    collect(f.branch1)
-            else:
-                pass
+            if f.branch0:
+                collect(f.branch0)
+            if f.branch1:
+                collect(f.branch1)
         elif isinstance(f, Option):
-            if role != f.role and f.body:
+            if f.body:
                 collect(f.body)
         elif isinstance(f, Loop):
-            if role != f.role and f.body:
+            if f.body:
                 collect(f.body)
 
         elif isinstance(f, Break):
@@ -514,15 +515,39 @@ def get_discrete_roles(frag: Fragment) -> List[str]:
             collect(f.cont)
 
     collect(frag)
-    return list(roles - ode_roles)
+    return list(roles)
 
 def sequence(p1: hpc.Process, p2: hpc.Process) -> hpc.Process:
+    if isinstance(p2, hpc.Inaction):
+        return p1
+
     if isinstance(p1, hpc.Inaction):
         return p2
-    elif isinstance(p1, hpc.PrefixProcess):
+
+    if isinstance(p1, hpc.PrefixProcess):
         return hpc.PrefixProcess(p1.prefix, sequence(p1.continuation, p2))
-    else:
-        return hpc.PrefixProcess(hpc.Tau(), sequence(p1, p2))
+
+    if isinstance(p1, hpc.Sum):
+        new_branches = [
+            hpc.PrefixProcess(b.prefix, sequence(b.continuation, p2))
+            for b in p1.branches
+        ]
+        return hpc.Sum(new_branches) if new_branches else p2
+
+    if isinstance(p1, hpc.Restriction):
+        return hpc.Restriction(list(p1.names), sequence(p1.process, p2))
+
+    if isinstance(p1, hpc.NamedProcess):
+        return hpc.NamedProcess(p1.name, sequence(p1.body, p2))
+
+    if isinstance(p1, hpc.Recursion):
+        return p1
+    if isinstance(p1, hpc.Replication):
+        return p1
+    if isinstance(p1, hpc.Parallel):
+        return p1
+
+    return p1
 
 def generate_memory_processes(tracker):
     memory_procs = []
@@ -600,34 +625,39 @@ def parse_example(example: str) -> Fragment:
 
     head = None
     tail = None
-    pending_activation = None
-    loop_stack = []
-    alt_stack = []
-    opt_stack = []
-    par_stack = []
-    activation_stack = []
     tracker = AssignmentTracker()
+    block_stack = []
+
+    def append_top_level(node):
+        nonlocal head, tail
+        if head is None:
+            head = tail = node
+        else:
+            tail.cont = node
+            tail = node
 
     def append_node(node):
-        nonlocal head, tail
         if isinstance(node, Fragment):
             node.assignment_tracker = tracker
-        if loop_stack:
-            loop_stack[-1]['nodes'].append(node)
-        elif alt_stack:
-            alt_stack[-1]['nodes'].append(node)
-        elif opt_stack:
-            opt_stack[-1]['nodes'].append(node)
-        elif par_stack:
-            par_stack[-1]['branches'][par_stack[-1]['active']].append(node)
-        elif activation_stack:
-            activation_stack[-1]['body_nodes'].append(node)
-        else:
-            if head is None:
-                head = tail = node
+
+        if block_stack:
+            top = block_stack[-1]
+            t = top["type"]
+            if t in ("opt", "loop"):
+                top["nodes"].append(node)
+            elif t == "alt":
+                if top["phase"] == "then":
+                    top["then_nodes"].append(node)
+                else:
+                    top["else_nodes"].append(node)
+            elif t == "par":
+                top["branches"][top["active"]].append(node)
+            elif t == "activation":
+                top["body_nodes"].append(node)
             else:
-                tail.cont = node
-                tail = node
+                raise ValueError(f"Unknown block type: {t}")
+        else:
+            append_top_level(node)
 
     def link_nodes(nodes):
         if not nodes:
@@ -635,83 +665,159 @@ def parse_example(example: str) -> Fragment:
         for i in range(len(nodes) - 1):
             nodes[i].cont = nodes[i + 1]
         nodes[-1].cont = Fragment()
+        print(f"Linked nodes: {[id(node) for node in nodes]}")
         return nodes[0]
 
+    def close_top_block():
+        if not block_stack:
+            raise ValueError("Unexpected 'end': no open block")
+
+        item = block_stack.pop()
+        t = item["type"]
+
+        if t == "loop":
+            body = link_nodes(item["nodes"])
+            node = Loop(
+                index=item["index"],
+                role=item["role"],
+                cond=item["cond"],
+                body=body if body else Fragment(),
+                cont=Fragment()
+            )
+            append_node(node)
+            return
+
+        if t == "opt":
+            body = link_nodes(item["nodes"])
+            node = Option(
+                index=item["index"],
+                role=item["role"],
+                cond=item["cond"],
+                body=body if body else Fragment(),
+                cont=Fragment()
+            )
+            append_node(node)
+            return
+
+        if t == "alt":
+            branch0 = link_nodes(item["then_nodes"]) if item["then_nodes"] else Fragment()
+            branch1 = link_nodes(item["else_nodes"]) if item["else_nodes"] else Fragment()
+            node = Alternative(
+                index=item["index"],
+                role=item["role"],
+                cond=item["cond"],
+                branch0=branch0,
+                branch1=branch1,
+                cont=Fragment()
+            )
+            append_node(node)
+            return
+
+        if t == "par":
+            frag0 = link_nodes(item["branches"][0]) if item["branches"][0] else Fragment()
+            frag1 = link_nodes(item["branches"][1]) if item["branches"][1] else Fragment()
+            node = Par(frag0=frag0, frag1=frag1, cont=Fragment())
+            append_node(node)
+            return
+
+        if t == "activation":
+            activation_node = item["activation_node"]
+            body = link_nodes(item["body_nodes"]) if item["body_nodes"] else None
+
+            if activation_node:
+                activation_node.body = body if body else Fragment()
+                activation_node.ode.ready_set = get_ready_set(activation_node.role, activation_node.body)
+                append_node(activation_node)
+                return
+
+            if body:
+                append_node(body)
+            return
+
+        raise ValueError(f"Unsupported block type on close: {t}")
+
     for line in lines:
-        alt_match = re.match(r"alt \[(\d+)\] (\w+): (.+)", line)
-        if alt_match:
-            print(f"Processing alt: {line}")
-            idx, role, cond = alt_match.groups()
-            alt_stack.append({'index': int(idx), 'role': role, 'cond': cond, 'nodes': []})
-            print(f"alt_match: idx={idx}, role={role}, cond={cond}")
-            continue
-        else_match = re.match(r"else(?:\s+(.+))?", line)
-        if else_match and alt_stack:
-            print(f"Processing else for alt index={alt_stack[-1]['index']}, role={alt_stack[-1]['role']}")
-            item = alt_stack[-1]
-            print(f"else: linking branch0 for index={item['index']}, role={item['role']}")
-            item['branch0'] = link_nodes(item['nodes'])
-            print(f"else: branch0 set for index={item['index']}, role={item['role']}")
-            item['nodes'] = []
-            continue
-        if line == "end" and alt_stack:
-            item = alt_stack.pop()
-            branch0 = item.get('branch0', Fragment())
-            branch1 = link_nodes(item['nodes']) if item['nodes'] else Fragment()
-            alt_node = Alternative(index=item['index'], role=item['role'], cond=item['cond'], branch0=branch0, branch1=branch1, cont=Fragment())
-            append_node(alt_node)
-            continue
-
-        opt_match = re.match(r"opt \[(\d+)\] (\w+): (.+)", line)
-        if opt_match:
-            idx, role, cond = opt_match.groups()
-            opt_stack.append({'index': int(idx), 'role': role, 'cond': cond, 'nodes': []})
-            print(f"opt_match: idx={idx}, role={role}, cond={cond}")
-            continue
-        if line == "end" and opt_stack:
-            item = opt_stack.pop()
-            body = link_nodes(item['nodes'])
-            opt_node = Option(index=item['index'], role=item['role'], cond=item['cond'], body=body, cont=Fragment())
-            append_node(opt_node)
-            continue
-
-        par_match = re.match(r"par \[(\d+)\]", line)
-        if par_match:
-            idx = par_match.group(1)
-            par_stack.append({
-                'index': int(idx),
-                'branches': [[], []],
-                'active': 0
+        print(f"Parsed line: {line}")
+        m = re.match(r"alt \[(\d+)\] (\w+): (.+)", line)
+        if m:
+            idx, role, cond = m.groups()
+            block_stack.append({
+                "type": "alt",
+                "index": int(idx),
+                "role": role,
+                "cond": cond,
+                "phase": "then",
+                "then_nodes": [],
+                "else_nodes": []
             })
-            print(f"par_match: idx={idx}")
-            continue
-        if line == "else" and par_stack:
-            par_stack[-1]['active'] = 1
-            continue
-        if line == "end" and par_stack:
-            item = par_stack.pop()
-            frag0 = link_nodes(item['branches'][0]) if item['branches'][0] else Fragment()
-            frag1 = link_nodes(item['branches'][1]) if item['branches'][1] else Fragment()
-            par_node = Par(frag0=frag0, frag1=frag1, cont=Fragment())
-            print(f"par: linking branches for index={item['index']}, frag0={frag0}, frag1={frag1}")
-            append_node(par_node)
             continue
 
-        loop_match = re.match(r"loop \[(\d+)\] (\w+): (.+)", line)
-        if loop_match:
-            idx, role, cond = loop_match.groups()
-            loop_stack.append({'index': int(idx), 'role': role, 'cond': cond, 'nodes': []})
+        m = re.match(r"opt \[(\d+)\] (\w+): (.+)", line)
+        if m:
+            idx, role, cond = m.groups()
+            block_stack.append({
+                "type": "opt",
+                "index": int(idx),
+                "role": role,
+                "cond": cond,
+                "nodes": []
+            })
             continue
-        if line == "end" and loop_stack:
-            loop = loop_stack.pop()
-            body_head = link_nodes(loop['nodes'])
-            loop_node = Loop(index=loop['index'], role=loop['role'], cond=loop['cond'], body=body_head, cont=Fragment())
-            append_node(loop_node)
+
+        m = re.match(r"par \[(\d+)\]", line)
+        if m:
+            idx = m.group(1)
+            block_stack.append({
+                "type": "par",
+                "index": int(idx),
+                "active": 0,
+                "branches": [[], []]
+            })
+            continue
+
+        m = re.match(r"loop \[(\d+)\] (\w+): (.+)", line)
+        if m:
+            idx, role, cond = m.groups()
+            block_stack.append({
+                "type": "loop",
+                "index": int(idx),
+                "role": role,
+                "cond": cond,
+                "nodes": []
+            })
             continue
 
         if line.startswith("activate "):
             role = line.split()[1]
-            activation_stack.append({'role': role, 'body_nodes': [], 'activation_node': None})
+            block_stack.append({
+                "type": "activation",
+                "role": role,
+                "activation_node": None,
+                "body_nodes": []
+            })
+            continue
+
+        if line == "else":
+            if not block_stack:
+                raise ValueError("Unexpected 'else': no open block")
+            top = block_stack[-1]
+            if top["type"] == "alt":
+                top["phase"] = "else"
+                continue
+            if top["type"] == "par":
+                top["active"] = 1
+                continue
+            raise ValueError(f"Unexpected 'else' in block type {top['type']}")
+
+        else_m = re.match(r"else(?:\s+(.+))?", line)
+        if else_m:
+            if not block_stack or block_stack[-1]["type"] != "alt":
+                raise ValueError("Unexpected 'else ...': current block is not alt")
+            block_stack[-1]["phase"] = "else"
+            continue
+
+        if line == "end":
+            close_top_block()
             continue
 
         delay_match = re.match(r"note (left|right|over) of (\w+): delay\((\d+(?:\.\d+)?)\)", line)
@@ -753,23 +859,28 @@ def parse_example(example: str) -> Fragment:
                 final_v=final_v
             )
 
-            if activation_stack:
-                activation = Activation(role=role, ode=ode, body=None, cont=Fragment())
-                activation_stack[-1]['activation_node'] = activation
+            if block_stack and block_stack[-1]["type"] == "activation":
+                active_role = block_stack[-1].get("role")
+                if active_role != role:
+                    raise ValueError(
+                        f"ODE role mismatch: ODE note role={role}, current activation role={active_role}"
+                    )
+                block_stack[-1]["activation_node"] = Activation(
+                    role=role, ode=ode, body=None, cont=Fragment()
+                )
             else:
                 append_node(Activation(role=role, ode=ode, body=None, cont=Fragment()))
             continue
 
         if line.startswith("deactivate "):
-            if activation_stack:
-                item = activation_stack.pop()
-                activation_node = item['activation_node']
-                if activation_node:
-                    activation_node.body = link_nodes(item['body_nodes'])
-                    
-                    activation_node.ode.ready_set = get_ready_set(activation_node.role, activation_node.body)
-
-                    append_node(activation_node)
+            role = line.split()[1]
+            if not block_stack or block_stack[-1]["type"] != "activation":
+                raise ValueError("Unexpected deactivate without matching activate")
+            if block_stack[-1].get("role") != role:
+                raise ValueError(
+                    f"Mismatched deactivate role: got {role}, expected {block_stack[-1].get('role')}"
+                )
+            close_top_block()
             continue
 
         assign_match = re.match(r"(\w+)\s*->\s*(\w+)\s*:\s*(\w+)\s*:=\s*(.+)", line)
@@ -825,6 +936,11 @@ def parse_example(example: str) -> Fragment:
             )
             append_node(node)
             continue
+
+    if block_stack:
+        open_types = [b["type"] for b in block_stack]
+        raise ValueError(f"Unclosed blocks at EOF: {open_types}")
+
     if head is not None:
         set_tail_cont_to_fragment(head)
         head.assignment_tracker = tracker

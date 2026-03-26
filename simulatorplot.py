@@ -66,8 +66,8 @@ def plot_continuous_evolution_auto(filepath):
         print("Failed to read data or insufficient number of variables")
         return
     
-    if 'p' in df.columns:
-        df = df.drop(columns=['p'])
+    # if 'p' in df.columns:
+    #     df = df.drop(columns=['p'])
 
     print(f"data shape: {df.shape}")
     print(f"variables: {variable_names}")

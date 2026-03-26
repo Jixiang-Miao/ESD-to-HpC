@@ -1,16 +1,16 @@
 # Step log
 
 === STEP 1 time: 0.000000 ===
-  [0] M: x̅'⟨0⟩.x'(x).([x > 0].alt1(['1', 'Bob'])⟨⟩.sendx̅⟨⟩.finalize̅⟨⟩.0 + [(¬x > 0)].alt2(['1', 'Bob'])⟨⟩.{0 | t_dot=1 & t<1.0, {}}.finalize̅⟨⟩.0)
-  [1] M: (alt1(['1', 'Bob'])().sendx().finalize().0 + alt2(['1', 'Bob'])().finalize().0)
+  [0] M: x̅'⟨0⟩.x'(x).([x > 0].alt1_1_Bob⟨⟩.sendx̅⟨⟩.finalize̅⟨⟩.0 + [(¬x > 0)].alt2_1_Bob⟨⟩.{0 | t_dot=1 & t<1.0, {}}.finalize̅⟨⟩.0)
+  [1] M: (alt1_1_Bob().sendx().finalize().0 + alt2_1_Bob().finalize().0)
   [2] R: !x'(x).x̅'⟨x⟩.0
 Process counts: M=2, C=0, R=1, Other=0
 ================================
 
 
 === STEP 2 time: 0.000000 ===
-  [0] M: x'(x).([x > 0].alt1(['1', 'Bob'])⟨⟩.sendx̅⟨⟩.finalize̅⟨⟩.0 + [(¬x > 0)].alt2(['1', 'Bob'])⟨⟩.{0 | t_dot=1 & t<1.0, {}}.finalize̅⟨⟩.0)
-  [1] M: (alt1(['1', 'Bob'])().sendx().finalize().0 + alt2(['1', 'Bob'])().finalize().0)
+  [0] M: x'(x).([x > 0].alt1_1_Bob⟨⟩.sendx̅⟨⟩.finalize̅⟨⟩.0 + [(¬x > 0)].alt2_1_Bob⟨⟩.{0 | t_dot=1 & t<1.0, {}}.finalize̅⟨⟩.0)
+  [1] M: (alt1_1_Bob().sendx().finalize().0 + alt2_1_Bob().finalize().0)
   [2] M: x̅'⟨0⟩.0
   [3] R: !x'(x).x̅'⟨x⟩.0
 Process counts: M=3, C=0, R=1, Other=0
@@ -18,16 +18,16 @@ Process counts: M=3, C=0, R=1, Other=0
 
 
 === STEP 3 time: 0.000000 ===
-  [0] M: ([0 > 0].alt1(['1', 'Bob'])⟨⟩.sendx̅⟨⟩.finalize̅⟨⟩.0 + [(¬0 > 0)].alt2(['1', 'Bob'])⟨⟩.{0 | t_dot=1 & t<1.0, {}}.finalize̅⟨⟩.0)
-  [1] M: (alt1(['1', 'Bob'])().sendx().finalize().0 + alt2(['1', 'Bob'])().finalize().0)
+  [0] M: ([0 > 0].alt1_1_Bob⟨⟩.sendx̅⟨⟩.finalize̅⟨⟩.0 + [(¬0 > 0)].alt2_1_Bob⟨⟩.{0 | t_dot=1 & t<1.0, {}}.finalize̅⟨⟩.0)
+  [1] M: (alt1_1_Bob().sendx().finalize().0 + alt2_1_Bob().finalize().0)
   [2] R: !x'(x).x̅'⟨x⟩.0
 Process counts: M=2, C=0, R=1, Other=0
 ================================
 
 
 === STEP 4 time: 0.000000 ===
-  [0] M: alt2(['1', 'Bob'])⟨⟩.{0 | t_dot=1 & t<1.0, {}}.finalize̅⟨⟩.0
-  [1] M: (alt1(['1', 'Bob'])().sendx().finalize().0 + alt2(['1', 'Bob'])().finalize().0)
+  [0] M: alt2_1_Bob⟨⟩.{0 | t_dot=1 & t<1.0, {}}.finalize̅⟨⟩.0
+  [1] M: (alt1_1_Bob().sendx().finalize().0 + alt2_1_Bob().finalize().0)
   [2] R: !x'(x).x̅'⟨x⟩.0
 Process counts: M=2, C=0, R=1, Other=0
 ================================

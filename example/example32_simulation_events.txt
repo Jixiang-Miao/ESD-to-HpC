@@ -2,98 +2,73 @@
 === Starting HPC continuous process simulation ===
 Collected named definition[0]: Alice
 Collected named definition[1]: Bob
-Collected named definition[2]: Charlie
-Collected named definition[3]: David
-Collected named definition[4]: System
+Collected named definition[2]: System
+Protecting Sum process during canonical form conversion
 
 --- Step 1 ---
-Attempted to apply [Pass] rule: applied=False, new_proc=finalize().0 || Authentication Request().Authentication Response̅⟨⟩.0 || Authentication Request().Authentication Response̅⟨⟩.0 || {0 | x_dot=1 & x<10, {}}.Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0, log=None
-Attempted to apply [Stop] rule: applied=False, new_proc=finalize().0 || Authentication Request().Authentication Response̅⟨⟩.0 || Authentication Request().Authentication Response̅⟨⟩.0 || {0 | x_dot=1 & x<10, {}}.Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0, log=None
-input process: 3,[(0, <hpc.PrefixProcess object at 0x000001FC7557A5C0>, <hpc.PrefixProcess object at 0x000001FC7557A5C0>, False, -1), (1, <hpc.PrefixProcess object at 0x000001FC7557A170>, <hpc.PrefixProcess object at 0x000001FC7557A170>, False, -1), (2, <hpc.PrefixProcess object at 0x000001FC7557A680>, <hpc.PrefixProcess object at 0x000001FC7557A680>, False, -1)]，output process: 0,[]
-Attempted to apply [Comm] rule: applied=False, new_proc=finalize().0 || Authentication Request().Authentication Response̅⟨⟩.0 || Authentication Request().Authentication Response̅⟨⟩.0 || {0 | x_dot=1 & x<10, {}}.Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0, log=None
-Attempted to apply [Sense] rule: applied=False, new_proc=finalize().0 || Authentication Request().Authentication Response̅⟨⟩.0 || Authentication Request().Authentication Response̅⟨⟩.0 || {0 | x_dot=1 & x<10, {}}.Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0, log=None
-Attempted to apply [Actuate] rule: applied=False, new_proc=finalize().0 || Authentication Request().Authentication Response̅⟨⟩.0 || Authentication Request().Authentication Response̅⟨⟩.0 || {0 | x_dot=1 & x<10, {}}.Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0, log=None
-Attempted to apply [Rep] rule: applied=False, new_proc=finalize().0 || Authentication Request().Authentication Response̅⟨⟩.0 || Authentication Request().Authentication Response̅⟨⟩.0 || {0 | x_dot=1 & x<10, {}}.Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0, log=None
-Collected 1 continuous processes for evolution
-ODE system information idx=3: {'idx': 3, 'comp': <hpc.PrefixProcess object at 0x000001FC35CE0370>, 'ode': <hpc.ODE object at 0x000001FC35CE04C0>, 'repl': <hpc.PrefixProcess object at 0x000001FC75597E80>, 'vars_list': ['x'], 'derivs_list': ['1'], 'bound_expr': 'x<10', 'init_vals': ['0']}
-Iterating initial values i: 0, var: x, init_vals[i]: 0
-ODE initial value expression idx=3, var=x: expr=0
-ODE initial value evaluation idx=3, var=x: v=0, missing=set()
-ODE initial state idx=3: y0=[0.0]
-Continuous evolution completed: advanced 10.000000 seconds
-Checking finalize().0 || Authentication Request().Authentication Response̅⟨⟩.0 || Authentication Request().Authentication Response̅⟨⟩.0 || {9.999999999999998 | x_dot=1 & x<10, {}}.Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0
-Check process termination: finalize().0 || Authentication Request().Authentication Response̅⟨⟩.0 || Authentication Request().Authentication Response̅⟨⟩.0 || {9.999999999999998 | x_dot=1 & x<10, {}}.Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0
+Attempted to apply [Pass] rule: applied=False, new_proc=({0 | x_dot=1 & x<10, {}}.Bob Request̅⟨⟩.Bob Response().finalize̅⟨⟩.0 + Bob Request̅⟨⟩.Bob Response().{0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0) || Bob Request().Bob Response̅⟨⟩.finalize().0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc=({0 | x_dot=1 & x<10, {}}.Bob Request̅⟨⟩.Bob Response().finalize̅⟨⟩.0 + Bob Request̅⟨⟩.Bob Response().{0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0) || Bob Request().Bob Response̅⟨⟩.finalize().0, log=None
+input process: 1,[(1, <hpc.PrefixProcess object at 0x0000023DFC98B430>, <hpc.PrefixProcess object at 0x0000023DFC98B430>, False, -1)]，output process: 1,[(0, <hpc.Sum object at 0x0000023DFC98DB10>, <hpc.PrefixProcess object at 0x0000023DFC989450>, True, 1)]
+output variable list: ['']
+evaluate output expression:  -> val=None, missing=set()
+output expression evaluation result: valid=True, values=[]
+COMM consumption: out_idx=0 in_idx=1 channel=BobRequest values=[]
+Attempted to apply [Comm] rule: applied=True, new_proc=Bob Response().{0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0 || Bob Response̅⟨⟩.finalize().0, log=Communication channel(Bob Request̅)(Communication message: )
+Discrete reduction: Applied [Comm] rule (Communication channel(Bob Request̅)(Communication message: ))
+Check process termination: Bob Response().{0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0 || Bob Response̅⟨⟩.finalize().0
 
 --- Step 2 ---
-Attempted to apply [Pass] rule: applied=False, new_proc=finalize().0 || Authentication Request().Authentication Response̅⟨⟩.0 || Authentication Request().Authentication Response̅⟨⟩.0 || {9.999999999999998 | x_dot=1 & x<10, {}}.Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0, log=None
-Attempted to apply [Stop] rule: applied=False, new_proc=finalize().0 || Authentication Request().Authentication Response̅⟨⟩.0 || Authentication Request().Authentication Response̅⟨⟩.0 || {9.999999999999998 | x_dot=1 & x<10, {}}.Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0, log=None
-input process: 3,[(0, <hpc.PrefixProcess object at 0x000001FC755356F0>, <hpc.PrefixProcess object at 0x000001FC755356F0>, False, -1), (1, <hpc.PrefixProcess object at 0x000001FC75537EE0>, <hpc.PrefixProcess object at 0x000001FC75537EE0>, False, -1), (2, <hpc.PrefixProcess object at 0x000001FC755379D0>, <hpc.PrefixProcess object at 0x000001FC755379D0>, False, -1)]，output process: 0,[]
-Attempted to apply [Comm] rule: applied=False, new_proc=finalize().0 || Authentication Request().Authentication Response̅⟨⟩.0 || Authentication Request().Authentication Response̅⟨⟩.0 || {9.999999999999998 | x_dot=1 & x<10, {}}.Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0, log=None
-Attempted to apply [Sense] rule: applied=False, new_proc=finalize().0 || Authentication Request().Authentication Response̅⟨⟩.0 || Authentication Request().Authentication Response̅⟨⟩.0 || {9.999999999999998 | x_dot=1 & x<10, {}}.Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0, log=None
-Attempted to apply [Actuate] rule: applied=False, new_proc=finalize().0 || Authentication Request().Authentication Response̅⟨⟩.0 || Authentication Request().Authentication Response̅⟨⟩.0 || {9.999999999999998 | x_dot=1 & x<10, {}}.Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0, log=None
-Attempted to apply [Rep] rule: applied=False, new_proc=finalize().0 || Authentication Request().Authentication Response̅⟨⟩.0 || Authentication Request().Authentication Response̅⟨⟩.0 || {9.999999999999998 | x_dot=1 & x<10, {}}.Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0, log=None
-Collected 1 continuous processes for evolution
-ODE system information idx=3: {'idx': 3, 'comp': <hpc.PrefixProcess object at 0x000001FC75536050>, 'ode': <hpc.ODE object at 0x000001FC35CE02B0>, 'repl': <hpc.PrefixProcess object at 0x000001FC75537BE0>, 'vars_list': ['x'], 'derivs_list': ['1'], 'bound_expr': 'x<10', 'init_vals': ['9.999999999999998']}
-Iterating initial values i: 0, var: x, init_vals[i]: 9.999999999999998
-ODE initial value expression idx=3, var=x: expr=9.999999999999998
-ODE initial value evaluation idx=3, var=x: v=9.999999999999998, missing=set()
-ODE initial state idx=3: y0=[9.999999999999998]
-Continuous evolution completed: advanced 0.039819 seconds
-Checking finalize().0 || Authentication Request().Authentication Response̅⟨⟩.0 || Authentication Request().Authentication Response̅⟨⟩.0 || Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0
-Check process termination: finalize().0 || Authentication Request().Authentication Response̅⟨⟩.0 || Authentication Request().Authentication Response̅⟨⟩.0 || Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0
+Attempted to apply [Pass] rule: applied=False, new_proc=Bob Response().{0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0 || Bob Response̅⟨⟩.finalize().0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc=Bob Response().{0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0 || Bob Response̅⟨⟩.finalize().0, log=None
+input process: 1,[(0, <hpc.PrefixProcess object at 0x0000023DFC989C60>, <hpc.PrefixProcess object at 0x0000023DFC989C60>, False, -1)]，output process: 1,[(1, <hpc.PrefixProcess object at 0x0000023DFC9895A0>, <hpc.PrefixProcess object at 0x0000023DFC9895A0>, False, -1)]
+output variable list: ['']
+evaluate output expression:  -> val=None, missing=set()
+output expression evaluation result: valid=True, values=[]
+COMM consumption: out_idx=1 in_idx=0 channel=BobResponse values=[]
+Attempted to apply [Comm] rule: applied=True, new_proc=finalize().0 || {0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0, log=Communication channel(Bob Response̅)(Communication message: )
+Discrete reduction: Applied [Comm] rule (Communication channel(Bob Response̅)(Communication message: ))
+Check process termination: finalize().0 || {0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0
 
 --- Step 3 ---
-Attempted to apply [Pass] rule: applied=False, new_proc=finalize().0 || Authentication Request().Authentication Response̅⟨⟩.0 || Authentication Request().Authentication Response̅⟨⟩.0 || Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0, log=None
-Attempted to apply [Stop] rule: applied=False, new_proc=finalize().0 || Authentication Request().Authentication Response̅⟨⟩.0 || Authentication Request().Authentication Response̅⟨⟩.0 || Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0, log=None
-input process: 3,[(0, <hpc.PrefixProcess object at 0x000001FC35CE0580>, <hpc.PrefixProcess object at 0x000001FC35CE0580>, False, -1), (1, <hpc.PrefixProcess object at 0x000001FC75579330>, <hpc.PrefixProcess object at 0x000001FC75579330>, False, -1), (2, <hpc.PrefixProcess object at 0x000001FC75579D80>, <hpc.PrefixProcess object at 0x000001FC75579D80>, False, -1)]，output process: 1,[(3, <hpc.PrefixProcess object at 0x000001FC7557BDC0>, <hpc.PrefixProcess object at 0x000001FC7557BDC0>, False, -1)]
-output variable list: ['']
-evaluate output expression:  -> val=None, missing=set()
-output expression evaluation result: valid=True, values=[]
-COMM consumption: out_idx=3 in_idx=1 channel=AuthenticationRequest values=[]
-Attempted to apply [Comm] rule: applied=True, new_proc=finalize().0 || Authentication Response̅⟨⟩.0 || Authentication Request().Authentication Response̅⟨⟩.0 || Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0, log=Communication channel(Authentication Request̅)(Communication message: )
-Discrete reduction: Applied [Comm] rule (Communication channel(Authentication Request̅)(Communication message: ))
-Check process termination: finalize().0 || Authentication Response̅⟨⟩.0 || Authentication Request().Authentication Response̅⟨⟩.0 || Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0
+Attempted to apply [Pass] rule: applied=False, new_proc=finalize().0 || {0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc=finalize().0 || {0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0, log=None
+input process: 1,[(0, <hpc.PrefixProcess object at 0x0000023DFC98A1D0>, <hpc.PrefixProcess object at 0x0000023DFC98A1D0>, False, -1)]，output process: 0,[]
+Attempted to apply [Comm] rule: applied=False, new_proc=finalize().0 || {0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0, log=None
+Attempted to apply [Sense] rule: applied=False, new_proc=finalize().0 || {0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0, log=None
+Attempted to apply [Actuate] rule: applied=False, new_proc=finalize().0 || {0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0, log=None
+Attempted to apply [Rep] rule: applied=False, new_proc=finalize().0 || {0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0, log=None
+Collected 1 continuous processes for evolution
+ODE system information idx=1: {'idx': 1, 'comp': <hpc.PrefixProcess object at 0x0000023DFC98B610>, 'ode': <hpc.ODE object at 0x0000023DFC98BDF0>, 'repl': <hpc.PrefixProcess object at 0x0000023DFC98AB30>, 'vars_list': ['x'], 'derivs_list': ['1'], 'bound_expr': 'x<10', 'init_vals': ['0']}
+Iterating initial values i: 0, var: x, init_vals[i]: 0
+ODE initial value expression idx=1, var=x: expr=0
+ODE initial value evaluation idx=1, var=x: v=0, missing=set()
+ODE initial state idx=1: y0=[0.0]
+Continuous evolution completed: advanced 10.000000 seconds
+Checking finalize().0 || {9.999999999999998 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0
+Check process termination: finalize().0 || {9.999999999999998 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0
 
 --- Step 4 ---
-Attempted to apply [Pass] rule: applied=False, new_proc=finalize().0 || Authentication Response̅⟨⟩.0 || Authentication Request().Authentication Response̅⟨⟩.0 || Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0, log=None
-Attempted to apply [Stop] rule: applied=False, new_proc=finalize().0 || Authentication Response̅⟨⟩.0 || Authentication Request().Authentication Response̅⟨⟩.0 || Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0, log=None
-input process: 3,[(0, <hpc.PrefixProcess object at 0x000001FC755A1ED0>, <hpc.PrefixProcess object at 0x000001FC755A1ED0>, False, -1), (2, <hpc.PrefixProcess object at 0x000001FC7557A080>, <hpc.PrefixProcess object at 0x000001FC7557A080>, False, -1), (3, <hpc.PrefixProcess object at 0x000001FC75578580>, <hpc.PrefixProcess object at 0x000001FC75578580>, False, -1)]，output process: 1,[(1, <hpc.PrefixProcess object at 0x000001FC75579F00>, <hpc.PrefixProcess object at 0x000001FC75579F00>, False, -1)]
-output variable list: ['']
-evaluate output expression:  -> val=None, missing=set()
-output expression evaluation result: valid=True, values=[]
-COMM consumption: out_idx=1 in_idx=3 channel=AuthenticationResponse values=[]
-Attempted to apply [Comm] rule: applied=True, new_proc=finalize().0 || Authentication Request().Authentication Response̅⟨⟩.0 || Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0, log=Communication channel(Authentication Response̅)(Communication message: )
-Discrete reduction: Applied [Comm] rule (Communication channel(Authentication Response̅)(Communication message: ))
-Check process termination: finalize().0 || Authentication Request().Authentication Response̅⟨⟩.0 || Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0
-
---- Step 5 ---
-Attempted to apply [Pass] rule: applied=False, new_proc=finalize().0 || Authentication Request().Authentication Response̅⟨⟩.0 || Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0, log=None
-Attempted to apply [Stop] rule: applied=False, new_proc=finalize().0 || Authentication Request().Authentication Response̅⟨⟩.0 || Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0, log=None
-input process: 2,[(0, <hpc.PrefixProcess object at 0x000001FC7557BD60>, <hpc.PrefixProcess object at 0x000001FC7557BD60>, False, -1), (1, <hpc.PrefixProcess object at 0x000001FC75578D30>, <hpc.PrefixProcess object at 0x000001FC75578D30>, False, -1)]，output process: 1,[(2, <hpc.PrefixProcess object at 0x000001FC7557B610>, <hpc.PrefixProcess object at 0x000001FC7557B610>, False, -1)]
-output variable list: ['']
-evaluate output expression:  -> val=None, missing=set()
-output expression evaluation result: valid=True, values=[]
-COMM consumption: out_idx=2 in_idx=1 channel=AuthenticationRequest values=[]
-Attempted to apply [Comm] rule: applied=True, new_proc=finalize().0 || Authentication Response̅⟨⟩.0 || Authentication Response().finalize̅⟨⟩.0, log=Communication channel(Authentication Request̅)(Communication message: )
-Discrete reduction: Applied [Comm] rule (Communication channel(Authentication Request̅)(Communication message: ))
-Check process termination: finalize().0 || Authentication Response̅⟨⟩.0 || Authentication Response().finalize̅⟨⟩.0
-
---- Step 6 ---
-Attempted to apply [Pass] rule: applied=False, new_proc=finalize().0 || Authentication Response̅⟨⟩.0 || Authentication Response().finalize̅⟨⟩.0, log=None
-Attempted to apply [Stop] rule: applied=False, new_proc=finalize().0 || Authentication Response̅⟨⟩.0 || Authentication Response().finalize̅⟨⟩.0, log=None
-input process: 2,[(0, <hpc.PrefixProcess object at 0x000001FC35CE0370>, <hpc.PrefixProcess object at 0x000001FC35CE0370>, False, -1), (2, <hpc.PrefixProcess object at 0x000001FC7557A7D0>, <hpc.PrefixProcess object at 0x000001FC7557A7D0>, False, -1)]，output process: 1,[(1, <hpc.PrefixProcess object at 0x000001FC75579150>, <hpc.PrefixProcess object at 0x000001FC75579150>, False, -1)]
-output variable list: ['']
-evaluate output expression:  -> val=None, missing=set()
-output expression evaluation result: valid=True, values=[]
-COMM consumption: out_idx=1 in_idx=2 channel=AuthenticationResponse values=[]
-Attempted to apply [Comm] rule: applied=True, new_proc=finalize().0 || finalize̅⟨⟩.0, log=Communication channel(Authentication Response̅)(Communication message: )
-Discrete reduction: Applied [Comm] rule (Communication channel(Authentication Response̅)(Communication message: ))
+Attempted to apply [Pass] rule: applied=False, new_proc=finalize().0 || {9.999999999999998 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc=finalize().0 || {9.999999999999998 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0, log=None
+input process: 1,[(0, <hpc.PrefixProcess object at 0x0000023DFC985270>, <hpc.PrefixProcess object at 0x0000023DFC985270>, False, -1)]，output process: 0,[]
+Attempted to apply [Comm] rule: applied=False, new_proc=finalize().0 || {9.999999999999998 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0, log=None
+Attempted to apply [Sense] rule: applied=False, new_proc=finalize().0 || {9.999999999999998 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0, log=None
+Attempted to apply [Actuate] rule: applied=False, new_proc=finalize().0 || {9.999999999999998 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0, log=None
+Attempted to apply [Rep] rule: applied=False, new_proc=finalize().0 || {9.999999999999998 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0, log=None
+Collected 1 continuous processes for evolution
+ODE system information idx=1: {'idx': 1, 'comp': <hpc.PrefixProcess object at 0x0000023DFC987B20>, 'ode': <hpc.ODE object at 0x0000023DFC98BE50>, 'repl': <hpc.PrefixProcess object at 0x0000023DFC984310>, 'vars_list': ['x'], 'derivs_list': ['1'], 'bound_expr': 'x<10', 'init_vals': ['9.999999999999998']}
+Iterating initial values i: 0, var: x, init_vals[i]: 9.999999999999998
+ODE initial value expression idx=1, var=x: expr=9.999999999999998
+ODE initial value evaluation idx=1, var=x: v=9.999999999999998, missing=set()
+ODE initial state idx=1: y0=[9.999999999999998]
+Continuous evolution completed: advanced 0.039819 seconds
+Checking finalize().0 || finalize̅⟨⟩.0
 Check process termination: finalize().0 || finalize̅⟨⟩.0
 
---- Step 7 ---
+--- Step 5 ---
 Attempted to apply [Pass] rule: applied=False, new_proc=finalize().0 || finalize̅⟨⟩.0, log=None
 Attempted to apply [Stop] rule: applied=False, new_proc=finalize().0 || finalize̅⟨⟩.0, log=None
-input process: 1,[(0, <hpc.PrefixProcess object at 0x000001FC7557AD10>, <hpc.PrefixProcess object at 0x000001FC7557AD10>, False, -1)]，output process: 1,[(1, <hpc.PrefixProcess object at 0x000001FC7557B280>, <hpc.PrefixProcess object at 0x000001FC7557B280>, False, -1)]
+input process: 1,[(0, <hpc.PrefixProcess object at 0x0000023DFC98BC10>, <hpc.PrefixProcess object at 0x0000023DFC98BC10>, False, -1)]，output process: 1,[(1, <hpc.PrefixProcess object at 0x0000023DFC98A140>, <hpc.PrefixProcess object at 0x0000023DFC98A140>, False, -1)]
 output variable list: ['']
 evaluate output expression:  -> val=None, missing=set()
 output expression evaluation result: valid=True, values=[]
@@ -102,4 +77,4 @@ Attempted to apply [Comm] rule: applied=True, new_proc=0, log=Communication chan
 Discrete reduction: Applied [Comm] rule (Communication channel(finalize̅)(Communication message: ))
 Check process termination: 0
 System terminated
-=== Simulation completed: 7 steps, total time 10.039819 seconds ===
+=== Simulation completed: 5 steps, total time 10.039819 seconds ===

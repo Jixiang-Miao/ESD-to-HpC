@@ -1,1 +1,1 @@
-Alice ::= {0 | x_dot=1 & x<10, {}}.Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0 || Bob ::= finalize().0 || Charlie ::= Authentication Request().Authentication Response̅⟨⟩.0 || David ::= Authentication Request().Authentication Response̅⟨⟩.0
+Alice ::= ({0 | x_dot=1 & x<10, {}}.Bob Request̅⟨⟩.Bob Response().finalize̅⟨⟩.0 + Bob Request̅⟨⟩.Bob Response().{0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0) || Bob ::= Bob Request().Bob Response̅⟨⟩.finalize().0

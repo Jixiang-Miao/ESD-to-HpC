@@ -4,17 +4,17 @@ Alice -> Alice: endpoint := 300
 activate Alice
 note over of Alice: <<ode>> {0, 0 | x_dot=a, a_dot=0 & x<1000}
 Bob -> Alice: <<sense>> currentx := x
-loop [1] Bob: currentx < endpoint
+loop [1] Bob: currentx < terminus
+  loop [2] Bob: currentx < endpoint
+    Bob -> Alice: <<sense>> currentx := x
+    Bob -> Bob: a0 := 10
+    Bob -> Alice: <<actuate>> a := a0
+    activate Bob
+    note right of Bob: delay(1)
+    deactivate Bob
+  end
   Bob -> Alice: <<sense>> currentx := x
   Bob -> Bob: a0 := 5
-  Bob -> Alice: <<actuate>> a := a0
-  activate Bob
-  note right of Bob: delay(1)
-  deactivate Bob
-end
-loop [2] Bob: currentx < terminus
-  Bob -> Alice: <<sense>> currentx := x
-  Bob -> Bob: a0 := 10
   Bob -> Alice: <<actuate>> a := a0
   activate Bob
   note right of Bob: delay(1)

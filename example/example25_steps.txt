@@ -1,108 +1,54 @@
 # Step log
 
 === STEP 1 time: 0.000000 ===
-  [0] M: (Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().(Finalization Request̅⟨⟩.Finalization Response().Finalization Request̅⟨⟩.Finalization Response().Finalization Request̅⟨⟩.Finalization Response().0 + Finalization Request̅⟨⟩.Finalization Response().Finalization Request̅⟨⟩.Finalization Response().Finalization Request̅⟨⟩.Finalization Response().0) + Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().(Finalization Request̅⟨⟩.Finalization Response().Finalization Request̅⟨⟩.Finalization Response().Finalization Request̅⟨⟩.Finalization Response().0 + Finalization Request̅⟨⟩.Finalization Response().Finalization Request̅⟨⟩.Finalization Response().Finalization Request̅⟨⟩.Finalization Response().0))
-  [1] M: Authentication Request().Authentication Response̅⟨⟩.Finalization Request().Finalization Response̅⟨⟩.0
-  [2] M: Authentication Request().Authentication Response̅⟨⟩.Finalization Request().Finalization Response̅⟨⟩.0
-  [3] M: Authentication Request().Authentication Response̅⟨⟩.Finalization Request().Finalization Response̅⟨⟩.0
+  [0] M: (Bob Request̅⟨⟩.Bob Response().(Charlie Request̅⟨⟩.Charlie Response().David Request̅⟨⟩.David Response().0 + David Request̅⟨⟩.David Response().Charlie Request̅⟨⟩.Charlie Response().0) + Charlie Request̅⟨⟩.Charlie Response().David Request̅⟨⟩.David Response().Bob Request̅⟨⟩.Bob Response().0 + David Request̅⟨⟩.David Response().Charlie Request̅⟨⟩.Charlie Response().Bob Request̅⟨⟩.Bob Response().0)
+  [1] M: Bob Request().Bob Response̅⟨⟩.0
+  [2] M: Charlie Request().Charlie Response̅⟨⟩.0
+  [3] M: David Request().David Response̅⟨⟩.0
 Process counts: M=4, C=0, R=0, Other=0
 ================================
 
 
 === STEP 2 time: 0.000000 ===
-  [0] M: Authentication Response().Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().(Finalization Request̅⟨⟩.Finalization Response().Finalization Request̅⟨⟩.Finalization Response().Finalization Request̅⟨⟩.Finalization Response().0 + Finalization Request̅⟨⟩.Finalization Response().Finalization Request̅⟨⟩.Finalization Response().Finalization Request̅⟨⟩.Finalization Response().0)
-  [1] M: Authentication Response̅⟨⟩.Finalization Request().Finalization Response̅⟨⟩.0
-  [2] M: Authentication Request().Authentication Response̅⟨⟩.Finalization Request().Finalization Response̅⟨⟩.0
-  [3] M: Authentication Request().Authentication Response̅⟨⟩.Finalization Request().Finalization Response̅⟨⟩.0
+  [0] M: Bob Response().(Charlie Request̅⟨⟩.Charlie Response().David Request̅⟨⟩.David Response().0 + David Request̅⟨⟩.David Response().Charlie Request̅⟨⟩.Charlie Response().0)
+  [1] M: Bob Response̅⟨⟩.0
+  [2] M: Charlie Request().Charlie Response̅⟨⟩.0
+  [3] M: David Request().David Response̅⟨⟩.0
 Process counts: M=4, C=0, R=0, Other=0
 ================================
 
 
 === STEP 3 time: 0.000000 ===
-  [0] M: Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().(Finalization Request̅⟨⟩.Finalization Response().Finalization Request̅⟨⟩.Finalization Response().Finalization Request̅⟨⟩.Finalization Response().0 + Finalization Request̅⟨⟩.Finalization Response().Finalization Request̅⟨⟩.Finalization Response().Finalization Request̅⟨⟩.Finalization Response().0)
-  [1] M: Finalization Request().Finalization Response̅⟨⟩.0
-  [2] M: Authentication Request().Authentication Response̅⟨⟩.Finalization Request().Finalization Response̅⟨⟩.0
-  [3] M: Authentication Request().Authentication Response̅⟨⟩.Finalization Request().Finalization Response̅⟨⟩.0
-Process counts: M=4, C=0, R=0, Other=0
+  [0] M: (Charlie Request̅⟨⟩.Charlie Response().David Request̅⟨⟩.David Response().0 + David Request̅⟨⟩.David Response().Charlie Request̅⟨⟩.Charlie Response().0)
+  [1] M: Charlie Request().Charlie Response̅⟨⟩.0
+  [2] M: David Request().David Response̅⟨⟩.0
+Process counts: M=3, C=0, R=0, Other=0
 ================================
 
 
 === STEP 4 time: 0.000000 ===
-  [0] M: Authentication Response().Authentication Request̅⟨⟩.Authentication Response().(Finalization Request̅⟨⟩.Finalization Response().Finalization Request̅⟨⟩.Finalization Response().Finalization Request̅⟨⟩.Finalization Response().0 + Finalization Request̅⟨⟩.Finalization Response().Finalization Request̅⟨⟩.Finalization Response().Finalization Request̅⟨⟩.Finalization Response().0)
-  [1] M: Finalization Request().Finalization Response̅⟨⟩.0
-  [2] M: Authentication Response̅⟨⟩.Finalization Request().Finalization Response̅⟨⟩.0
-  [3] M: Authentication Request().Authentication Response̅⟨⟩.Finalization Request().Finalization Response̅⟨⟩.0
-Process counts: M=4, C=0, R=0, Other=0
+  [0] M: Charlie Response().David Request̅⟨⟩.David Response().0
+  [1] M: Charlie Response̅⟨⟩.0
+  [2] M: David Request().David Response̅⟨⟩.0
+Process counts: M=3, C=0, R=0, Other=0
 ================================
 
 
 === STEP 5 time: 0.000000 ===
-  [0] M: Authentication Request̅⟨⟩.Authentication Response().(Finalization Request̅⟨⟩.Finalization Response().Finalization Request̅⟨⟩.Finalization Response().Finalization Request̅⟨⟩.Finalization Response().0 + Finalization Request̅⟨⟩.Finalization Response().Finalization Request̅⟨⟩.Finalization Response().Finalization Request̅⟨⟩.Finalization Response().0)
-  [1] M: Finalization Request().Finalization Response̅⟨⟩.0
-  [2] M: Finalization Request().Finalization Response̅⟨⟩.0
-  [3] M: Authentication Request().Authentication Response̅⟨⟩.Finalization Request().Finalization Response̅⟨⟩.0
-Process counts: M=4, C=0, R=0, Other=0
+  [0] M: David Request̅⟨⟩.David Response().0
+  [1] M: David Request().David Response̅⟨⟩.0
+Process counts: M=2, C=0, R=0, Other=0
 ================================
 
 
 === STEP 6 time: 0.000000 ===
-  [0] M: Authentication Response().(Finalization Request̅⟨⟩.Finalization Response().Finalization Request̅⟨⟩.Finalization Response().Finalization Request̅⟨⟩.Finalization Response().0 + Finalization Request̅⟨⟩.Finalization Response().Finalization Request̅⟨⟩.Finalization Response().Finalization Request̅⟨⟩.Finalization Response().0)
-  [1] M: Finalization Request().Finalization Response̅⟨⟩.0
-  [2] M: Finalization Request().Finalization Response̅⟨⟩.0
-  [3] M: Authentication Response̅⟨⟩.Finalization Request().Finalization Response̅⟨⟩.0
-Process counts: M=4, C=0, R=0, Other=0
-================================
-
-
-=== STEP 7 time: 0.000000 ===
-  [0] M: (Finalization Request̅⟨⟩.Finalization Response().Finalization Request̅⟨⟩.Finalization Response().Finalization Request̅⟨⟩.Finalization Response().0 + Finalization Request̅⟨⟩.Finalization Response().Finalization Request̅⟨⟩.Finalization Response().Finalization Request̅⟨⟩.Finalization Response().0)
-  [1] M: Finalization Request().Finalization Response̅⟨⟩.0
-  [2] M: Finalization Request().Finalization Response̅⟨⟩.0
-  [3] M: Finalization Request().Finalization Response̅⟨⟩.0
-Process counts: M=4, C=0, R=0, Other=0
-================================
-
-
-=== STEP 8 time: 0.000000 ===
-  [0] M: Finalization Response().Finalization Request̅⟨⟩.Finalization Response().Finalization Request̅⟨⟩.Finalization Response().0
-  [1] M: Finalization Response̅⟨⟩.0
-  [2] M: Finalization Request().Finalization Response̅⟨⟩.0
-  [3] M: Finalization Request().Finalization Response̅⟨⟩.0
-Process counts: M=4, C=0, R=0, Other=0
-================================
-
-
-=== STEP 9 time: 0.000000 ===
-  [0] M: Finalization Request̅⟨⟩.Finalization Response().Finalization Request̅⟨⟩.Finalization Response().0
-  [1] M: Finalization Request().Finalization Response̅⟨⟩.0
-  [2] M: Finalization Request().Finalization Response̅⟨⟩.0
-Process counts: M=3, C=0, R=0, Other=0
-================================
-
-
-=== STEP 10 time: 0.000000 ===
-  [0] M: Finalization Response().Finalization Request̅⟨⟩.Finalization Response().0
-  [1] M: Finalization Response̅⟨⟩.0
-  [2] M: Finalization Request().Finalization Response̅⟨⟩.0
-Process counts: M=3, C=0, R=0, Other=0
-================================
-
-
-=== STEP 11 time: 0.000000 ===
-  [0] M: Finalization Request̅⟨⟩.Finalization Response().0
-  [1] M: Finalization Request().Finalization Response̅⟨⟩.0
+  [0] M: David Response().0
+  [1] M: David Response̅⟨⟩.0
 Process counts: M=2, C=0, R=0, Other=0
 ================================
 
 
-=== STEP 12 time: 0.000000 ===
-  [0] M: Finalization Response().0
-  [1] M: Finalization Response̅⟨⟩.0
-Process counts: M=2, C=0, R=0, Other=0
-================================
-
-
-=== STEP 12 time: 0.000000 ===
+=== STEP 6 time: 0.000000 ===
   [0] M: 0
 Process counts: M=1, C=0, R=0, Other=0
 ================================

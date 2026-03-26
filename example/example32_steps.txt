@@ -1,65 +1,41 @@
 # Step log
 
 === STEP 1 time: 0.000000 ===
-  [0] M: finalize().0
-  [1] M: Authentication Request().Authentication Response̅⟨⟩.0
-  [2] M: Authentication Request().Authentication Response̅⟨⟩.0
-  [3] C: {0 | x_dot=1 & x<10, {}}.Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0
-Process counts: M=3, C=1, R=0, Other=0
+  [0] M: ({0 | x_dot=1 & x<10, {}}.Bob Request̅⟨⟩.Bob Response().finalize̅⟨⟩.0 + Bob Request̅⟨⟩.Bob Response().{0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0)
+  [1] M: Bob Request().Bob Response̅⟨⟩.finalize().0
+Process counts: M=2, C=0, R=0, Other=0
 ================================
 
 
-=== STEP 2 time: 10.000000 ===
-  [0] M: finalize().0
-  [1] M: Authentication Request().Authentication Response̅⟨⟩.0
-  [2] M: Authentication Request().Authentication Response̅⟨⟩.0
-  [3] C: {9.999999999999998 | x_dot=1 & x<10, {}}.Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0
-Process counts: M=3, C=1, R=0, Other=0
+=== STEP 2 time: 0.000000 ===
+  [0] M: Bob Response().{0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0
+  [1] M: Bob Response̅⟨⟩.finalize().0
+Process counts: M=2, C=0, R=0, Other=0
 ================================
 
 
-=== STEP 3 time: 10.039819 ===
+=== STEP 3 time: 0.000000 ===
   [0] M: finalize().0
-  [1] M: Authentication Request().Authentication Response̅⟨⟩.0
-  [2] M: Authentication Request().Authentication Response̅⟨⟩.0
-  [3] M: Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0
-Process counts: M=4, C=0, R=0, Other=0
+  [1] C: {0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0
+Process counts: M=1, C=1, R=0, Other=0
 ================================
 
 
-=== STEP 4 time: 10.039819 ===
+=== STEP 4 time: 10.000000 ===
   [0] M: finalize().0
-  [1] M: Authentication Response̅⟨⟩.0
-  [2] M: Authentication Request().Authentication Response̅⟨⟩.0
-  [3] M: Authentication Response().Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0
-Process counts: M=4, C=0, R=0, Other=0
+  [1] C: {9.999999999999998 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0
+Process counts: M=1, C=1, R=0, Other=0
 ================================
 
 
 === STEP 5 time: 10.039819 ===
-  [0] M: finalize().0
-  [1] M: Authentication Request().Authentication Response̅⟨⟩.0
-  [2] M: Authentication Request̅⟨⟩.Authentication Response().finalize̅⟨⟩.0
-Process counts: M=3, C=0, R=0, Other=0
-================================
-
-
-=== STEP 6 time: 10.039819 ===
-  [0] M: finalize().0
-  [1] M: Authentication Response̅⟨⟩.0
-  [2] M: Authentication Response().finalize̅⟨⟩.0
-Process counts: M=3, C=0, R=0, Other=0
-================================
-
-
-=== STEP 7 time: 10.039819 ===
   [0] M: finalize().0
   [1] M: finalize̅⟨⟩.0
 Process counts: M=2, C=0, R=0, Other=0
 ================================
 
 
-=== STEP 7 time: 10.039819 ===
+=== STEP 5 time: 10.039819 ===
   [0] M: 0
 Process counts: M=1, C=0, R=0, Other=0
 ================================

@@ -1,0 +1,14 @@
+@startuml
+Alice -> Alice: x := 1
+alt [1] Alice: x > 0
+  par [1]
+      Alice -> Bob: Bob Request
+      Bob -> Alice: Bob Response
+  else
+      Alice -> Charlie: Charlie Request
+      Charlie -> Alice: Charlie Response
+  end
+else
+  Alice -> Bob: finalize
+end
+@enduml

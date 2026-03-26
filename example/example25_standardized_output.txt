@@ -1,5 +1,5 @@
-Alice ::= (Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().(Finalization Request̅⟨⟩.Finalization Response().Finalization Request̅⟨⟩.Finalization Response().Finalization Request̅⟨⟩.Finalization Response().0 + Finalization Request̅⟨⟩.Finalization Response().Finalization Request̅⟨⟩.Finalization Response().Finalization Request̅⟨⟩.Finalization Response().0) + Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().Authentication Request̅⟨⟩.Authentication Response().(Finalization Request̅⟨⟩.Finalization Response().Finalization Request̅⟨⟩.Finalization Response().Finalization Request̅⟨⟩.Finalization Response().0 + Finalization Request̅⟨⟩.Finalization Response().Finalization Request̅⟨⟩.Finalization Response().Finalization Request̅⟨⟩.Finalization Response().0))
-Bob ::= Authentication Request().Authentication Response̅⟨⟩.Finalization Request().Finalization Response̅⟨⟩.0
-Charlie ::= Authentication Request().Authentication Response̅⟨⟩.Finalization Request().Finalization Response̅⟨⟩.0
-David ::= Authentication Request().Authentication Response̅⟨⟩.Finalization Request().Finalization Response̅⟨⟩.0
+Alice ::= (Bob Request̅⟨⟩.Bob Response().(Charlie Request̅⟨⟩.Charlie Response().David Request̅⟨⟩.David Response().0 + David Request̅⟨⟩.David Response().Charlie Request̅⟨⟩.Charlie Response().0) + Charlie Request̅⟨⟩.Charlie Response().David Request̅⟨⟩.David Response().Bob Request̅⟨⟩.Bob Response().0 + David Request̅⟨⟩.David Response().Charlie Request̅⟨⟩.Charlie Response().Bob Request̅⟨⟩.Bob Response().0)
+Bob ::= Bob Request().Bob Response̅⟨⟩.0
+Charlie ::= Charlie Request().Charlie Response̅⟨⟩.0
+David ::= David Request().David Response̅⟨⟩.0
 System ::= Alice || Bob || Charlie || David

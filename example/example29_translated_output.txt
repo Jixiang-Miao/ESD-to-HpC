@@ -1,1 +1,1 @@
-Alice ::= x̅'⟨0⟩.x'(x).([x > 0].alt1(['1', 'Bob'])⟨⟩.(ν t) {0 | t_dot=1 & t<1.0, {}}.finalize̅⟨⟩.0 + [(¬x > 0)].alt2(['1', 'Bob'])⟨⟩.finalize̅⟨⟩.0) || Bob ::= (alt1(['1', 'Bob'])().finalize().0 + alt2(['1', 'Bob'])().finalize().0) || Memory0 ::= !x'(x).x̅'⟨x⟩.0
+Alice ::= x̅'⟨0⟩.x'(x).([x > 0].alt1_1_Bob⟨⟩.(ν t) {0 | t_dot=1 & t<1.0, {}}.finalize̅⟨⟩.0 + [(¬x > 0)].alt2_1_Bob⟨⟩.finalize̅⟨⟩.0) || Bob ::= (alt1_1_Bob().finalize().0 + alt2_1_Bob().finalize().0) || Memory0 ::= !x'(x).x̅'⟨x⟩.0

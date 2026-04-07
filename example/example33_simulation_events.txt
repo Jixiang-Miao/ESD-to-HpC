@@ -9,7 +9,7 @@ Protecting Sum process during canonical form conversion
 --- Step 1 ---
 Attempted to apply [Pass] rule: applied=False, new_proc=({0 | t_dot=1 & t<1.0, {}}.Bob Request̅⟨⟩.Bob Response().finalize̅⟨⟩.0 + Bob Request̅⟨⟩.Bob Response().{0 | t_dot=1 & t<1.0, {}}.finalize̅⟨⟩.0) || Bob Request().Bob Response̅⟨⟩.finalize().0, log=None
 Attempted to apply [Stop] rule: applied=False, new_proc=({0 | t_dot=1 & t<1.0, {}}.Bob Request̅⟨⟩.Bob Response().finalize̅⟨⟩.0 + Bob Request̅⟨⟩.Bob Response().{0 | t_dot=1 & t<1.0, {}}.finalize̅⟨⟩.0) || Bob Request().Bob Response̅⟨⟩.finalize().0, log=None
-input process: 1,[(1, <hpc.PrefixProcess object at 0x0000023DFC9840A0>, <hpc.PrefixProcess object at 0x0000023DFC9840A0>, False, -1)]，output process: 1,[(0, <hpc.Sum object at 0x0000023DFC98C070>, <hpc.PrefixProcess object at 0x0000023DFC986CB0>, True, 1)]
+input process: 1,[(1, <hpc.PrefixProcess object at 0x0000023EAE102620>, <hpc.PrefixProcess object at 0x0000023EAE102620>, False, -1)]，output process: 1,[(0, <hpc.Sum object at 0x0000023EAE156500>, <hpc.PrefixProcess object at 0x0000023EAE103730>, True, 1)]
 output variable list: ['']
 evaluate output expression:  -> val=None, missing=set()
 output expression evaluation result: valid=True, values=[]
@@ -21,7 +21,7 @@ Check process termination: Bob Response().{0 | t_dot=1 & t<1.0, {}}.finalize̅�
 --- Step 2 ---
 Attempted to apply [Pass] rule: applied=False, new_proc=Bob Response().{0 | t_dot=1 & t<1.0, {}}.finalize̅⟨⟩.0 || Bob Response̅⟨⟩.finalize().0, log=None
 Attempted to apply [Stop] rule: applied=False, new_proc=Bob Response().{0 | t_dot=1 & t<1.0, {}}.finalize̅⟨⟩.0 || Bob Response̅⟨⟩.finalize().0, log=None
-input process: 1,[(0, <hpc.PrefixProcess object at 0x0000023DFC986680>, <hpc.PrefixProcess object at 0x0000023DFC986680>, False, -1)]，output process: 1,[(1, <hpc.PrefixProcess object at 0x0000023DFC984A30>, <hpc.PrefixProcess object at 0x0000023DFC984A30>, False, -1)]
+input process: 1,[(0, <hpc.PrefixProcess object at 0x0000023EAE1011E0>, <hpc.PrefixProcess object at 0x0000023EAE1011E0>, False, -1)]，output process: 1,[(1, <hpc.PrefixProcess object at 0x0000023EAE101780>, <hpc.PrefixProcess object at 0x0000023EAE101780>, False, -1)]
 output variable list: ['']
 evaluate output expression:  -> val=None, missing=set()
 output expression evaluation result: valid=True, values=[]
@@ -33,13 +33,13 @@ Check process termination: finalize().0 || {0 | t_dot=1 & t<1.0, {}}.finalize̅�
 --- Step 3 ---
 Attempted to apply [Pass] rule: applied=False, new_proc=finalize().0 || {0 | t_dot=1 & t<1.0, {}}.finalize̅⟨⟩.0, log=None
 Attempted to apply [Stop] rule: applied=False, new_proc=finalize().0 || {0 | t_dot=1 & t<1.0, {}}.finalize̅⟨⟩.0, log=None
-input process: 1,[(0, <hpc.PrefixProcess object at 0x0000023DFC9851E0>, <hpc.PrefixProcess object at 0x0000023DFC9851E0>, False, -1)]，output process: 0,[]
+input process: 1,[(0, <hpc.PrefixProcess object at 0x0000023EAE102560>, <hpc.PrefixProcess object at 0x0000023EAE102560>, False, -1)]，output process: 0,[]
 Attempted to apply [Comm] rule: applied=False, new_proc=finalize().0 || {0 | t_dot=1 & t<1.0, {}}.finalize̅⟨⟩.0, log=None
 Attempted to apply [Sense] rule: applied=False, new_proc=finalize().0 || {0 | t_dot=1 & t<1.0, {}}.finalize̅⟨⟩.0, log=None
 Attempted to apply [Actuate] rule: applied=False, new_proc=finalize().0 || {0 | t_dot=1 & t<1.0, {}}.finalize̅⟨⟩.0, log=None
 Attempted to apply [Rep] rule: applied=False, new_proc=finalize().0 || {0 | t_dot=1 & t<1.0, {}}.finalize̅⟨⟩.0, log=None
 Collected 1 continuous processes for evolution
-ODE system information idx=1: {'idx': 1, 'comp': <hpc.PrefixProcess object at 0x0000023DFC986E00>, 'ode': <hpc.ODE object at 0x0000023DFC984370>, 'repl': <hpc.PrefixProcess object at 0x0000023DFC986A10>, 'vars_list': ['t'], 'derivs_list': ['1'], 'bound_expr': 't<1.0', 'init_vals': ['0']}
+ODE system information idx=1: {'idx': 1, 'comp': <hpc.PrefixProcess object at 0x0000023EAE1030A0>, 'ode': <hpc.ODE object at 0x0000023EAE103A00>, 'repl': <hpc.PrefixProcess object at 0x0000023EAE103D00>, 'vars_list': ['t'], 'derivs_list': ['1'], 'bound_expr': 't<1.0', 'init_vals': ['0']}
 Iterating initial values i: 0, var: t, init_vals[i]: 0
 ODE initial value expression idx=1, var=t: expr=0
 ODE initial value evaluation idx=1, var=t: v=0, missing=set()
@@ -51,7 +51,7 @@ Check process termination: finalize().0 || finalize̅⟨⟩.0
 --- Step 4 ---
 Attempted to apply [Pass] rule: applied=False, new_proc=finalize().0 || finalize̅⟨⟩.0, log=None
 Attempted to apply [Stop] rule: applied=False, new_proc=finalize().0 || finalize̅⟨⟩.0, log=None
-input process: 1,[(0, <hpc.PrefixProcess object at 0x0000023DFC985120>, <hpc.PrefixProcess object at 0x0000023DFC985120>, False, -1)]，output process: 1,[(1, <hpc.PrefixProcess object at 0x0000023DFC986CB0>, <hpc.PrefixProcess object at 0x0000023DFC986CB0>, False, -1)]
+input process: 1,[(0, <hpc.PrefixProcess object at 0x0000023EAE103DF0>, <hpc.PrefixProcess object at 0x0000023EAE103DF0>, False, -1)]，output process: 1,[(1, <hpc.PrefixProcess object at 0x0000023EAE101390>, <hpc.PrefixProcess object at 0x0000023EAE101390>, False, -1)]
 output variable list: ['']
 evaluate output expression:  -> val=None, missing=set()
 output expression evaluation result: valid=True, values=[]

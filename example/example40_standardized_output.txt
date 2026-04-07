@@ -1,0 +1,4 @@
+Alice ::= initialize̅⟨⟩.ok().x̅'⟨1⟩.x'(x).(restart̅⟨⟩.ok().0 + finish̅⟨⟩.ok().0)
+Bob ::= initialize().ok̅⟨⟩.([x == 0].restart().ok̅⟨⟩.0 + [(¬x == 0)].finish().ok̅⟨⟩.0)
+Memory0 ::= !x'(x).x̅'⟨x⟩.0
+System ::= Alice || Bob || Memory0

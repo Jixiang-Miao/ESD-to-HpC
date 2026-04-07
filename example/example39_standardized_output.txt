@@ -1,0 +1,7 @@
+Alice ::= terminus̅'⟨500⟩.terminus'(terminus).{0, 0 | x_dot=a, a_dot=0 & x<1000, {x̅, a}}.0
+Bob ::= x(currentx).break_1̅'⟨0⟩.break_1'(break_1).loop[1]⟨currentx, terminus, break_1⟩.0
+Replication 1 ::= !loop[1](currentx, terminus, break_1).([(currentx < terminus) and break_1 == 0].x(currentx).([currentx >= 400].a0̅'⟨10⟩.a0'(a0).a̅⟨a0⟩.{0 | t_dot=1 & t<1.0, {}}.break_1̅'⟨1⟩.break_1'(break_1).loop[1]⟨currentx, terminus, break_1⟩.0 + [(¬currentx >= 400)].a0̅'⟨5⟩.a0'(a0).a̅⟨a0⟩.{0 | t_dot=1 & t<1.0, {}}.loop[1]⟨currentx, terminus, break_1⟩.0) + [(¬(currentx < terminus) and break_1 == 0)].0)
+Memory0 ::= !break_1'(break_1).break_1̅'⟨break_1⟩.0
+Memory1 ::= !a0'(a0).a0̅'⟨a0⟩.0
+Memory2 ::= !terminus'(terminus).terminus̅'⟨terminus⟩.0
+System ::= (ν loop[1]) (ν t) Alice || Bob || Replication 1 || Memory0 || Memory1 || Memory2

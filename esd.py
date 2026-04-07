@@ -289,6 +289,85 @@ class Option(Fragment):
     def translate(self, roles):
         return Alternative(self.index, self.role, self.cond, self.body, Fragment(), self.cont).translate(roles)
 
+
+def extract_condition_variables(cond: str) -> List[str]:
+    if not cond:
+        return []
+
+    reserved = {"and", "or", "not", "True", "False"}
+    tokens = re.findall(r"\b[a-zA-Z_]\w*\b", cond)
+    ordered = []
+    for token in tokens:
+        if token in reserved:
+            continue
+        if token not in ordered:
+            ordered.append(token)
+    return ordered
+
+def rewrite_break_in_loop(loop: "Loop") -> Fragment:
+    break_var = f"break_{loop.index}"
+    loop.cond = f"({loop.cond}) and {break_var} == 0"
+    
+    init_assign = Assignment(
+        role=loop.role,
+        var=break_var,
+        expr="0",
+        cont=None,
+        assignment_tracker=loop.assignment_tracker
+    )
+    
+    visited = set()
+    
+    def transform(frag):
+        if isinstance(frag, Fragment):
+            frag.assignment_tracker = loop.assignment_tracker
+        if frag is None:
+            return None
+        
+        if id(frag) in visited:
+            return frag
+        visited.add(id(frag))
+        
+        if isinstance(frag, Break) and frag.in_loop:
+            # 设置 break 变量为 1
+            set_break = Assignment(
+                role=frag.role,
+                var=break_var,
+                expr="1",
+                cont=None,
+                assignment_tracker=loop.assignment_tracker
+            )
+            
+            break_body = compose(frag.body, set_break) if frag.body else set_break
+            
+            normal_branch = frag.cont if frag.cont else Fragment()
+            
+            return Break(
+                index=frag.index,
+                role=frag.role,
+                cond=frag.cond,
+                body=break_body,
+                normal_branch=normal_branch,
+                cont=loop.cont,
+                in_loop=True,
+                loop_channel=f"loop[{loop.index}]",
+                loop_actual_params=extract_condition_variables(loop.cond)
+            )
+        
+        for attr in ["body", "branch0", "branch1", "frag0", "frag1"]:
+            if hasattr(frag, attr):
+                child = getattr(frag, attr)
+                new_child = transform(child)
+                setattr(frag, attr, new_child)
+        
+        if hasattr(frag, "cont") and frag.cont:
+            frag.cont = transform(frag.cont)
+        
+        return frag
+    
+    loop.body = transform(loop.body)
+    return compose(init_assign, loop)
+
 class Loop(Fragment):
     def __init__(self, index: int, role: str, cond: str, body: Fragment, cont: Fragment):
         self.index = index
@@ -296,35 +375,41 @@ class Loop(Fragment):
         self.cond = cond
         self.body = body
         self.cont = cont
+        self._break_rewritten = False
 
     def translate(self, roles):
         assert self.role in roles
-        loop_index = self.index
-        loop_channel = f"loop[{self.index}]"
-        
-        cond_vars = re.findall(r'\b\w+\b', self.cond)
-        loop_params = [var for var in cond_vars if var != self.role]
-        param_str = ", ".join(loop_params) if loop_params else ""
 
-        loop_body_frag = self.body
-        loop_body_proc = loop_body_frag.translate(roles)
+        if not getattr(self, "_break_rewritten", False):
+            if self._has_loop_break(self.body):
+                rewritten = rewrite_break_in_loop(self)
+                self._break_rewritten = True
+                if rewritten is not self:
+                    return rewritten.translate(roles)
+
+        loop_channel = f"loop[{self.index}]"
+        loop_params = extract_condition_variables(self.cond)
+
+        body_proc = self.body.translate(roles)
         cont_proc = self.cont.translate(roles)
 
         ret = {}
         for role in roles:
             if role == self.role:
                 cond = self.cond
-                body_proc = loop_body_proc[role]
                 
-                loop_call = hpc.PrefixProcess(
-                    hpc.Output(hpc.OutChannel(loop_channel), loop_params),
-                    hpc.Inaction()
-                )
-                then_proc = sequence(body_proc, loop_call)
+                if self._has_loop_break(self.body):
+                    then_proc = body_proc[role]
+                else:
+                    loop_call = hpc.PrefixProcess(
+                        hpc.Output(hpc.OutChannel(loop_channel), loop_params),
+                        hpc.Inaction()
+                    )
+                    then_proc = sequence(body_proc[role], loop_call)
+                
                 else_proc = cont_proc[role]
-                
+
                 conditional = hpc.Conditional(cond, then_proc, else_proc)
-                
                 recursion = hpc.Recursion(
                     var=loop_channel,
                     params=loop_params,
@@ -333,13 +418,137 @@ class Loop(Fragment):
                 )
                 ret[role] = recursion.to_restriction()
             else:
-                ret[role] = sequence(loop_body_proc[role], cont_proc[role])
-        return ret
+                ret[role] = sequence(body_proc[role], cont_proc[role])
 
+        return ret
+    
+    def _has_loop_break(self, frag):
+        if frag is None:
+            return False
+        
+        if isinstance(frag, Break) and frag.in_loop:
+            return True
+        
+        for attr in ["body", "branch0", "branch1", "frag0", "frag1", "cont"]:
+            if hasattr(frag, attr):
+                if self._has_loop_break(getattr(frag, attr)):
+                    return True
+        
+        return False
+    
 class Break(Fragment):
-    def __init__(self, frag: Fragment):
+    def __init__(self, index, role, cond, body, normal_branch, cont, in_loop=False,
+                 loop_channel=None, loop_actual_params=None):
         super().__init__()
-        self.frag = frag
+        self.index = index
+        self.role = role
+        self.cond = cond
+        self.body = body
+        self.normal_branch = normal_branch
+        self.cont = cont
+        self.in_loop = in_loop
+        self.loop_channel = loop_channel
+        self.loop_actual_params = loop_actual_params or []
+
+    def translate(self, roles):
+        print(f"in_loop: {self.in_loop}")
+        if self.in_loop:
+            return self._translate_loop_break(roles)
+        else:
+            return self._translate_outer_break(roles)
+
+    def _translate_outer_break(self, roles):
+            ret_exceptional = self.body.translate(roles) if self.body else {r: hpc.Inaction() for r in roles}
+
+            ret_normal = self.cont.translate(roles) if self.cont else {r: hpc.Inaction() for r in roles}
+            
+            ret = {}
+            
+            for role in roles:
+                if role == self.role:
+                    cond = self.cond
+                    exceptional_branch = ret_exceptional[role]                    
+                    normal_branch = ret_normal[role]
+                    conditional = hpc.Conditional(
+                        cond, 
+                        exceptional_branch, 
+                        normal_branch
+                    )
+                    ret[role] = conditional.to_sum()
+                else:
+                    except_ch = f"break_except_{self.index}_{role}"
+                    normal_ch = f"break_normal_{self.index}_{role}"
+                    
+                    if not isinstance(ret_exceptional.get(role, hpc.Inaction()), hpc.Inaction):
+                        exceptional_with_notify = hpc.PrefixProcess(
+                            hpc.Output(hpc.OutChannel(except_ch), []),
+                            ret_exceptional[role]
+                        )
+                    else:
+                        exceptional_with_notify = hpc.Inaction()
+                        
+                    if not isinstance(ret_normal.get(role, hpc.Inaction()), hpc.Inaction):
+                        normal_with_notify = hpc.PrefixProcess(
+                            hpc.Output(hpc.OutChannel(normal_ch), []),
+                            ret_normal[role]
+                        )
+                    else:
+                        normal_with_notify = hpc.Inaction()
+                    
+                    ret[role] = hpc.Sum([
+                      ret_exceptional.get(role, hpc.Inaction()
+                        ),
+                        ret_normal.get(role, hpc.Inaction())
+                    ])
+            
+            return ret
+    
+    def _translate_loop_break(self, roles):
+            ret_break = self.body.translate(roles) if self.body else {r: hpc.Inaction() for r in roles}
+            ret_normal = self.normal_branch.translate(roles) if self.normal_branch else {r: hpc.Inaction() for r in roles}
+
+            ret = {}
+            loop_channel = self.loop_channel or f"loop[{self.index}]"
+            loop_actual_params = self.loop_actual_params or extract_condition_variables(self.cond)
+
+            for role in roles:
+                if role == self.role:
+                    loop_call = hpc.PrefixProcess(
+                        hpc.Output(hpc.OutChannel(loop_channel), loop_actual_params),
+                        hpc.Inaction()
+                    )
+
+                    exceptional_branch = sequence(ret_break.get(role, hpc.Inaction()), loop_call)
+                    normal_branch = sequence(ret_normal.get(role, hpc.Inaction()), loop_call)
+
+                    cond = hpc.Conditional(
+                        self.cond,
+                        exceptional_branch,
+                        normal_branch
+                    )
+                    ret[role] = cond.to_sum()
+                else:
+                    br = ret_break.get(role, hpc.Inaction())
+                    nr = ret_normal.get(role, hpc.Inaction())
+
+                    def as_prefix_list(p):
+                        if isinstance(p, hpc.Inaction):
+                            return []
+                        if isinstance(p, hpc.Sum):
+                            return list(p.branches)
+                        if isinstance(p, hpc.PrefixProcess):
+                            return [p]
+                        return [hpc.PrefixProcess(hpc.Tau(), p)]
+
+                    branches = as_prefix_list(br) + as_prefix_list(nr)
+                    if len(branches) == 0:
+                        ret[role] = hpc.Inaction()
+                    elif len(branches) == 1:
+                        ret[role] = branches[0]
+                    else:
+                        ret[role] = hpc.Sum(branches)
+            
+            return ret
 
 class Par(Fragment):
     def __init__(self, frag0: Fragment, frag1: Fragment, cont: Fragment):
@@ -434,8 +643,8 @@ def get_ready_set(role: str, frag: Fragment) -> List[hpc.Channel]:
                 collect(f.body)
 
         elif isinstance(f, Break):
-            if f.frag:
-                collect(f.frag)
+            if f.body:
+                collect(f.body)
 
         elif isinstance(f, Par):
             if f.frag0:
@@ -509,7 +718,7 @@ def get_discrete_roles(frag: Fragment) -> List[str]:
         elif isinstance(f, Critical):
             collect(f.frag)
         elif isinstance(f, Break):
-            collect(f.frag)
+            collect(f.body)
 
         if f.cont:
             collect(f.cont)
@@ -643,7 +852,7 @@ def parse_example(example: str) -> Fragment:
         if block_stack:
             top = block_stack[-1]
             t = top["type"]
-            if t in ("opt", "loop"):
+            if t in ("opt", "loop", "break"):
                 top["nodes"].append(node)
             elif t == "alt":
                 if top["phase"] == "then":
@@ -695,6 +904,21 @@ def parse_example(example: str) -> Fragment:
                 cond=item["cond"],
                 body=body if body else Fragment(),
                 cont=Fragment()
+            )
+            append_node(node)
+            return
+
+        if t == "break":
+            body = link_nodes(item["nodes"])
+            in_loop = item.get("in_loop", False)
+            node = Break(
+                index=item["index"],
+                role=item["role"],
+                cond=item["cond"],
+                body=body if body else Fragment(),
+                normal_branch=Fragment(),
+                cont=Fragment(),
+                in_loop=in_loop
             )
             append_node(node)
             return
@@ -760,6 +984,20 @@ def parse_example(example: str) -> Fragment:
                 "index": int(idx),
                 "role": role,
                 "cond": cond,
+                "nodes": []
+            })
+            continue
+
+        m = re.match(r"break \[(\d+)\] (\w+): (.+)", line)
+        if m:
+            idx, role, cond = m.groups()
+            in_loop = any(b["type"] == "loop" for b in block_stack)
+            block_stack.append({
+                "type": "break",
+                "index": int(idx),
+                "role": role,
+                "cond": cond,
+                "in_loop": in_loop,
                 "nodes": []
             })
             continue

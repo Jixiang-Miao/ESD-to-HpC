@@ -1,0 +1,11 @@
+@startuml
+Alice -> Bob: initialize
+Bob -> Alice: ok
+Alice -> Alice: x := 0
+break [1] Bob: x == 0
+  Alice -> Bob: restart
+  Bob -> Alice: ok
+end
+Alice -> Bob: finish
+Bob -> Alice: ok
+@enduml

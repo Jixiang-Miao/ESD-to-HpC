@@ -1,0 +1,101 @@
+# HpC simulation event log
+=== Starting HPC continuous process simulation ===
+Collected named definition[0]: Alice
+Collected named definition[1]: Bob
+Collected named definition[2]: Memory0
+Collected named definition[3]: System
+Protecting Sum process during canonical form conversion
+Protecting Sum process during canonical form conversion
+
+--- Step 1 ---
+Attempted to apply [Pass] rule: applied=False, new_proc=initialize̅⟨⟩.ok().x̅'⟨0⟩.x'(x).(restart̅⟨⟩.ok().0 + finish̅⟨⟩.ok().0) || initialize().ok̅⟨⟩.([x == 0].restart().ok̅⟨⟩.0 + [(¬x == 0)].finish().ok̅⟨⟩.0) || !x'(x).x̅'⟨x⟩.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc=initialize̅⟨⟩.ok().x̅'⟨0⟩.x'(x).(restart̅⟨⟩.ok().0 + finish̅⟨⟩.ok().0) || initialize().ok̅⟨⟩.([x == 0].restart().ok̅⟨⟩.0 + [(¬x == 0)].finish().ok̅⟨⟩.0) || !x'(x).x̅'⟨x⟩.0, log=None
+input process: 1,[(1, <hpc.PrefixProcess object at 0x0000010826B34B20>, <hpc.PrefixProcess object at 0x0000010826B34B20>, False, -1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x0000010826B679D0>, <hpc.PrefixProcess object at 0x0000010826B679D0>, False, -1)]
+output variable list: ['']
+evaluate output expression:  -> val=None, missing=set()
+output expression evaluation result: valid=True, values=[]
+Protecting Sum process during canonical form conversion
+Protecting Sum process during canonical form conversion
+COMM consumption: out_idx=0 in_idx=1 channel=initialize values=[]
+Attempted to apply [Comm] rule: applied=True, new_proc=ok().x̅'⟨0⟩.x'(x).(restart̅⟨⟩.ok().0 + finish̅⟨⟩.ok().0) || ok̅⟨⟩.([x == 0].restart().ok̅⟨⟩.0 + [(¬x == 0)].finish().ok̅⟨⟩.0) || !x'(x).x̅'⟨x⟩.0, log=Communication channel(initialize̅)(Communication message: )
+Discrete reduction: Applied [Comm] rule (Communication channel(initialize̅)(Communication message: ))
+Check process termination: ok().x̅'⟨0⟩.x'(x).(restart̅⟨⟩.ok().0 + finish̅⟨⟩.ok().0) || ok̅⟨⟩.([x == 0].restart().ok̅⟨⟩.0 + [(¬x == 0)].finish().ok̅⟨⟩.0) || !x'(x).x̅'⟨x⟩.0
+
+--- Step 2 ---
+Attempted to apply [Pass] rule: applied=False, new_proc=ok().x̅'⟨0⟩.x'(x).(restart̅⟨⟩.ok().0 + finish̅⟨⟩.ok().0) || ok̅⟨⟩.([x == 0].restart().ok̅⟨⟩.0 + [(¬x == 0)].finish().ok̅⟨⟩.0) || !x'(x).x̅'⟨x⟩.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc=ok().x̅'⟨0⟩.x'(x).(restart̅⟨⟩.ok().0 + finish̅⟨⟩.ok().0) || ok̅⟨⟩.([x == 0].restart().ok̅⟨⟩.0 + [(¬x == 0)].finish().ok̅⟨⟩.0) || !x'(x).x̅'⟨x⟩.0, log=None
+input process: 1,[(0, <hpc.PrefixProcess object at 0x0000010826B341F0>, <hpc.PrefixProcess object at 0x0000010826B341F0>, False, -1)]，output process: 1,[(1, <hpc.PrefixProcess object at 0x0000010826B37A90>, <hpc.PrefixProcess object at 0x0000010826B37A90>, False, -1)]
+output variable list: ['']
+evaluate output expression:  -> val=None, missing=set()
+output expression evaluation result: valid=True, values=[]
+Protecting Sum process during canonical form conversion
+Protecting Sum process during canonical form conversion
+COMM consumption: out_idx=1 in_idx=0 channel=ok values=[]
+Attempted to apply [Comm] rule: applied=True, new_proc=x̅'⟨0⟩.x'(x).(restart̅⟨⟩.ok().0 + finish̅⟨⟩.ok().0) || ([x == 0].restart().ok̅⟨⟩.0 + [(¬x == 0)].finish().ok̅⟨⟩.0) || !x'(x).x̅'⟨x⟩.0, log=Communication channel(ok̅)(Communication message: )
+Discrete reduction: Applied [Comm] rule (Communication channel(ok̅)(Communication message: ))
+Check process termination: x̅'⟨0⟩.x'(x).(restart̅⟨⟩.ok().0 + finish̅⟨⟩.ok().0) || ([x == 0].restart().ok̅⟨⟩.0 + [(¬x == 0)].finish().ok̅⟨⟩.0) || !x'(x).x̅'⟨x⟩.0
+
+--- Step 3 ---
+Attempted to apply [Pass] rule: applied=False, new_proc=x̅'⟨0⟩.x'(x).(restart̅⟨⟩.ok().0 + finish̅⟨⟩.ok().0) || ([x == 0].restart().ok̅⟨⟩.0 + [(¬x == 0)].finish().ok̅⟨⟩.0) || !x'(x).x̅'⟨x⟩.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc=x̅'⟨0⟩.x'(x).(restart̅⟨⟩.ok().0 + finish̅⟨⟩.ok().0) || ([x == 0].restart().ok̅⟨⟩.0 + [(¬x == 0)].finish().ok̅⟨⟩.0) || !x'(x).x̅'⟨x⟩.0, log=None
+input process: 0,[]，output process: 1,[(0, <hpc.PrefixProcess object at 0x0000010826B66590>, <hpc.PrefixProcess object at 0x0000010826B66590>, False, -1)]
+output variable list: ['0']
+evaluate output expression: 0 -> val=0, missing=set()
+communication injection: x = 0
+output expression evaluation result: valid=True, values=[0]
+Attempted to apply [Comm] rule: applied=False, new_proc=x̅'⟨0⟩.x'(x).(restart̅⟨⟩.ok().0 + finish̅⟨⟩.ok().0) || ([x == 0].restart().ok̅⟨⟩.0 + [(¬x == 0)].finish().ok̅⟨⟩.0) || !x'(x).x̅'⟨x⟩.0, log=None
+Attempted to apply [Sense] rule: applied=False, new_proc=x̅'⟨0⟩.x'(x).(restart̅⟨⟩.ok().0 + finish̅⟨⟩.ok().0) || ([x == 0].restart().ok̅⟨⟩.0 + [(¬x == 0)].finish().ok̅⟨⟩.0) || !x'(x).x̅'⟨x⟩.0, log=None
+Attempted to apply [Actuate] rule: applied=False, new_proc=x̅'⟨0⟩.x'(x).(restart̅⟨⟩.ok().0 + finish̅⟨⟩.ok().0) || ([x == 0].restart().ok̅⟨⟩.0 + [(¬x == 0)].finish().ok̅⟨⟩.0) || !x'(x).x̅'⟨x⟩.0, log=None
+new_processes after Rep rule: [<hpc.PrefixProcess object at 0x0000010826B64340>, <hpc.Sum object at 0x0000010826B640D0>, <hpc.Replication object at 0x0000010826B14850>, <hpc.PrefixProcess object at 0x0000010826B66080>]
+Protecting Sum process during canonical form conversion
+Protecting Sum process during canonical form conversion
+Attempted to apply [Rep] rule: applied=True, new_proc=x'(x).(restart̅⟨⟩.ok().0 + finish̅⟨⟩.ok().0) || ([x == 0].restart().ok̅⟨⟩.0 + [(¬x == 0)].finish().ok̅⟨⟩.0) || x̅'⟨0⟩.0 || !x'(x).x̅'⟨x⟩.0, log=Communication channel (x̅') (message: 0) - [Rep] rule
+Discrete reduction: Applied [Rep] rule (Communication channel (x̅') (message: 0) - [Rep] rule)
+Check process termination: x'(x).(restart̅⟨⟩.ok().0 + finish̅⟨⟩.ok().0) || ([x == 0].restart().ok̅⟨⟩.0 + [(¬x == 0)].finish().ok̅⟨⟩.0) || x̅'⟨0⟩.0 || !x'(x).x̅'⟨x⟩.0
+
+--- Step 4 ---
+Protecting Sum process during canonical form conversion
+PASS rule applied: idx=1 msg=Condition satisfied: x == 0
+Attempted to apply [Pass] rule: applied=True, new_proc=x'(x).(restart̅⟨⟩.ok().0 + finish̅⟨⟩.ok().0) || restart().ok̅⟨⟩.0 || x̅'⟨0⟩.0 || !x'(x).x̅'⟨x⟩.0, log=Condition satisfied: x == 0
+Discrete reduction: Applied [Pass] rule (Condition satisfied: x == 0)
+Check process termination: x'(x).(restart̅⟨⟩.ok().0 + finish̅⟨⟩.ok().0) || restart().ok̅⟨⟩.0 || x̅'⟨0⟩.0 || !x'(x).x̅'⟨x⟩.0
+
+--- Step 5 ---
+Attempted to apply [Pass] rule: applied=False, new_proc=x'(x).(restart̅⟨⟩.ok().0 + finish̅⟨⟩.ok().0) || restart().ok̅⟨⟩.0 || x̅'⟨0⟩.0 || !x'(x).x̅'⟨x⟩.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc=x'(x).(restart̅⟨⟩.ok().0 + finish̅⟨⟩.ok().0) || restart().ok̅⟨⟩.0 || x̅'⟨0⟩.0 || !x'(x).x̅'⟨x⟩.0, log=None
+input process: 2,[(0, <hpc.PrefixProcess object at 0x0000010826B66710>, <hpc.PrefixProcess object at 0x0000010826B66710>, False, -1), (1, <hpc.PrefixProcess object at 0x0000010826B66DD0>, <hpc.PrefixProcess object at 0x0000010826B66DD0>, False, -1)]，output process: 1,[(2, <hpc.PrefixProcess object at 0x0000010826B651E0>, <hpc.PrefixProcess object at 0x0000010826B651E0>, False, -1)]
+output variable list: ['0']
+evaluate output expression: 0 -> val=0, missing=set()
+communication injection: x = 0
+output expression evaluation result: valid=True, values=[0]
+Protecting Sum process during canonical form conversion
+COMM consumption: out_idx=2 in_idx=0 channel=x values=[0]
+Attempted to apply [Comm] rule: applied=True, new_proc=(restart̅⟨⟩.ok().0 + finish̅⟨⟩.ok().0) || restart().ok̅⟨⟩.0 || !x'(x).x̅'⟨x⟩.0, log=Communication channel(x̅')(Communication message: 0)
+Discrete reduction: Applied [Comm] rule (Communication channel(x̅')(Communication message: 0))
+Check process termination: (restart̅⟨⟩.ok().0 + finish̅⟨⟩.ok().0) || restart().ok̅⟨⟩.0 || !x'(x).x̅'⟨x⟩.0
+
+--- Step 6 ---
+Attempted to apply [Pass] rule: applied=False, new_proc=(restart̅⟨⟩.ok().0 + finish̅⟨⟩.ok().0) || restart().ok̅⟨⟩.0 || !x'(x).x̅'⟨x⟩.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc=(restart̅⟨⟩.ok().0 + finish̅⟨⟩.ok().0) || restart().ok̅⟨⟩.0 || !x'(x).x̅'⟨x⟩.0, log=None
+input process: 1,[(1, <hpc.PrefixProcess object at 0x0000010826B341F0>, <hpc.PrefixProcess object at 0x0000010826B341F0>, False, -1)]，output process: 2,[(0, <hpc.Sum object at 0x0000010826B67FA0>, <hpc.PrefixProcess object at 0x0000010826B65540>, True, 0), (0, <hpc.Sum object at 0x0000010826B67FA0>, <hpc.PrefixProcess object at 0x0000010826B66800>, True, 1)]
+output variable list: ['']
+evaluate output expression:  -> val=None, missing=set()
+output expression evaluation result: valid=True, values=[]
+COMM consumption: out_idx=0 in_idx=1 channel=restart values=[]
+Attempted to apply [Comm] rule: applied=True, new_proc=ok().0 || ok̅⟨⟩.0 || !x'(x).x̅'⟨x⟩.0, log=Communication channel(restart̅)(Communication message: )
+Discrete reduction: Applied [Comm] rule (Communication channel(restart̅)(Communication message: ))
+Check process termination: ok().0 || ok̅⟨⟩.0 || !x'(x).x̅'⟨x⟩.0
+
+--- Step 7 ---
+Attempted to apply [Pass] rule: applied=False, new_proc=ok().0 || ok̅⟨⟩.0 || !x'(x).x̅'⟨x⟩.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc=ok().0 || ok̅⟨⟩.0 || !x'(x).x̅'⟨x⟩.0, log=None
+input process: 1,[(0, <hpc.PrefixProcess object at 0x0000010826B65FC0>, <hpc.PrefixProcess object at 0x0000010826B65FC0>, False, -1)]，output process: 1,[(1, <hpc.PrefixProcess object at 0x0000010826B66EF0>, <hpc.PrefixProcess object at 0x0000010826B66EF0>, False, -1)]
+output variable list: ['']
+evaluate output expression:  -> val=None, missing=set()
+output expression evaluation result: valid=True, values=[]
+COMM consumption: out_idx=1 in_idx=0 channel=ok values=[]
+Attempted to apply [Comm] rule: applied=True, new_proc=!x'(x).x̅'⟨x⟩.0, log=Communication channel(ok̅)(Communication message: )
+Discrete reduction: Applied [Comm] rule (Communication channel(ok̅)(Communication message: ))
+Check process termination: !x'(x).x̅'⟨x⟩.0
+System terminated
+=== Simulation completed: 7 steps, total time 0.000000 seconds ===

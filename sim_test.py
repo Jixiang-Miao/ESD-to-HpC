@@ -44,7 +44,8 @@ TEST_CASES = [
     ("example\\example38.txt", ["Alice", "Bob"], 38),
     ("example\\example39.txt", ["Alice", "Bob"], 39),
     ("example\\example40.txt", ["Alice", "Bob"], 40),
-    ("example\\example41.txt", ["Alice", "Bob"], 41)
+    ("example\\example41.txt", ["Alice", "Bob"], 41),
+    ("example\\example42.txt", ["Alice", "Bob", "Charlie"], 42)
 ]
 
 def run_single_case(input_file, roles, case_num):

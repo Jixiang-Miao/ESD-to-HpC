@@ -1,0 +1,13 @@
+@startuml
+par [1]
+  critical [1] Bob
+    Alice -> Bob: Bob Request
+    Bob -> Alice: Bob Response
+  end
+else
+  critical [2] Charlie
+    Alice -> Charlie: Charlie Request
+    Charlie -> Alice: Charlie Response
+  end
+end
+@enduml

@@ -11,7 +11,7 @@ Initialized allocation constant: x=1
 --- Step 1 ---
 Attempted to apply [Pass] rule: applied=False, new_proc=x̅'⟨1⟩.x'(x).([x > 0].alt1_1_Bob⟨⟩.send̅⟨⟩.finalize̅⟨⟩.0 + [(¬x > 0)].alt2_1_Bob⟨⟩.finalize̅⟨⟩.0) || (alt1_1_Bob().send().finalize().0 + alt2_1_Bob().finalize().0) || !x'(x).x̅'⟨x⟩.0, log=None
 Attempted to apply [Stop] rule: applied=False, new_proc=x̅'⟨1⟩.x'(x).([x > 0].alt1_1_Bob⟨⟩.send̅⟨⟩.finalize̅⟨⟩.0 + [(¬x > 0)].alt2_1_Bob⟨⟩.finalize̅⟨⟩.0) || (alt1_1_Bob().send().finalize().0 + alt2_1_Bob().finalize().0) || !x'(x).x̅'⟨x⟩.0, log=None
-input process: 2,[(1, <hpc.Sum object at 0x0000023EAE121E70>, <hpc.PrefixProcess object at 0x0000023EAE123FD0>, True, 0), (1, <hpc.Sum object at 0x0000023EAE121E70>, <hpc.PrefixProcess object at 0x0000023EAE1317B0>, True, 1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x0000023EAE123CD0>, <hpc.PrefixProcess object at 0x0000023EAE123CD0>, False, -1)]
+input process: 2,[(1, <hpc.Sum object at 0x000001F38041C910>, <hpc.PrefixProcess object at 0x000001F38041D990>, True, 0), (1, <hpc.Sum object at 0x000001F38041C910>, <hpc.PrefixProcess object at 0x000001F38041DEA0>, True, 1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x000001F38041D7B0>, <hpc.PrefixProcess object at 0x000001F38041D7B0>, False, -1)]
 output variable list: ['1']
 evaluate output expression: 1 -> val=1, missing=set()
 communication injection: x = 1
@@ -19,7 +19,7 @@ output expression evaluation result: valid=True, values=[1]
 Attempted to apply [Comm] rule: applied=False, new_proc=x̅'⟨1⟩.x'(x).([x > 0].alt1_1_Bob⟨⟩.send̅⟨⟩.finalize̅⟨⟩.0 + [(¬x > 0)].alt2_1_Bob⟨⟩.finalize̅⟨⟩.0) || (alt1_1_Bob().send().finalize().0 + alt2_1_Bob().finalize().0) || !x'(x).x̅'⟨x⟩.0, log=None
 Attempted to apply [Sense] rule: applied=False, new_proc=x̅'⟨1⟩.x'(x).([x > 0].alt1_1_Bob⟨⟩.send̅⟨⟩.finalize̅⟨⟩.0 + [(¬x > 0)].alt2_1_Bob⟨⟩.finalize̅⟨⟩.0) || (alt1_1_Bob().send().finalize().0 + alt2_1_Bob().finalize().0) || !x'(x).x̅'⟨x⟩.0, log=None
 Attempted to apply [Actuate] rule: applied=False, new_proc=x̅'⟨1⟩.x'(x).([x > 0].alt1_1_Bob⟨⟩.send̅⟨⟩.finalize̅⟨⟩.0 + [(¬x > 0)].alt2_1_Bob⟨⟩.finalize̅⟨⟩.0) || (alt1_1_Bob().send().finalize().0 + alt2_1_Bob().finalize().0) || !x'(x).x̅'⟨x⟩.0, log=None
-new_processes after Rep rule: [<hpc.PrefixProcess object at 0x0000023EAE1225C0>, <hpc.Sum object at 0x0000023EAE121E70>, <hpc.Replication object at 0x0000023EAE131DB0>, <hpc.PrefixProcess object at 0x0000023EAE1200A0>]
+new_processes after Rep rule: [<hpc.PrefixProcess object at 0x000001F38041D8A0>, <hpc.Sum object at 0x000001F38041C910>, <hpc.Replication object at 0x000001F38041CBE0>, <hpc.PrefixProcess object at 0x000001F380413760>]
 Protecting Sum process during canonical form conversion
 Protecting Sum process during canonical form conversion
 Attempted to apply [Rep] rule: applied=True, new_proc=x'(x).([x > 0].alt1_1_Bob⟨⟩.send̅⟨⟩.finalize̅⟨⟩.0 + [(¬x > 0)].alt2_1_Bob⟨⟩.finalize̅⟨⟩.0) || (alt1_1_Bob().send().finalize().0 + alt2_1_Bob().finalize().0) || x̅'⟨1⟩.0 || !x'(x).x̅'⟨x⟩.0, log=Communication channel (x̅') (message: 1) - [Rep] rule
@@ -29,7 +29,7 @@ Check process termination: x'(x).([x > 0].alt1_1_Bob⟨⟩.send̅⟨⟩.finalize
 --- Step 2 ---
 Attempted to apply [Pass] rule: applied=False, new_proc=x'(x).([x > 0].alt1_1_Bob⟨⟩.send̅⟨⟩.finalize̅⟨⟩.0 + [(¬x > 0)].alt2_1_Bob⟨⟩.finalize̅⟨⟩.0) || (alt1_1_Bob().send().finalize().0 + alt2_1_Bob().finalize().0) || x̅'⟨1⟩.0 || !x'(x).x̅'⟨x⟩.0, log=None
 Attempted to apply [Stop] rule: applied=False, new_proc=x'(x).([x > 0].alt1_1_Bob⟨⟩.send̅⟨⟩.finalize̅⟨⟩.0 + [(¬x > 0)].alt2_1_Bob⟨⟩.finalize̅⟨⟩.0) || (alt1_1_Bob().send().finalize().0 + alt2_1_Bob().finalize().0) || x̅'⟨1⟩.0 || !x'(x).x̅'⟨x⟩.0, log=None
-input process: 3,[(0, <hpc.PrefixProcess object at 0x0000023EAE1238E0>, <hpc.PrefixProcess object at 0x0000023EAE1238E0>, False, -1), (1, <hpc.Sum object at 0x0000023EAE122770>, <hpc.PrefixProcess object at 0x0000023EAE1218D0>, True, 0), (1, <hpc.Sum object at 0x0000023EAE122770>, <hpc.PrefixProcess object at 0x0000023EAE121900>, True, 1)]，output process: 1,[(2, <hpc.PrefixProcess object at 0x0000023EAE1311B0>, <hpc.PrefixProcess object at 0x0000023EAE1311B0>, False, -1)]
+input process: 3,[(0, <hpc.PrefixProcess object at 0x000001F3803F1BD0>, <hpc.PrefixProcess object at 0x000001F3803F1BD0>, False, -1), (1, <hpc.Sum object at 0x000001F3803F1690>, <hpc.PrefixProcess object at 0x000001F3803F2F20>, True, 0), (1, <hpc.Sum object at 0x000001F3803F1690>, <hpc.PrefixProcess object at 0x000001F3803F3B50>, True, 1)]，output process: 1,[(2, <hpc.PrefixProcess object at 0x000001F38041EE30>, <hpc.PrefixProcess object at 0x000001F38041EE30>, False, -1)]
 output variable list: ['1']
 evaluate output expression: 1 -> val=1, missing=set()
 communication injection: x = 1
@@ -51,7 +51,7 @@ Check process termination: alt1_1_Bob⟨⟩.send̅⟨⟩.finalize̅⟨⟩.0 || (
 --- Step 4 ---
 Attempted to apply [Pass] rule: applied=False, new_proc=alt1_1_Bob⟨⟩.send̅⟨⟩.finalize̅⟨⟩.0 || (alt1_1_Bob().send().finalize().0 + alt2_1_Bob().finalize().0) || !x'(x).x̅'⟨x⟩.0, log=None
 Attempted to apply [Stop] rule: applied=False, new_proc=alt1_1_Bob⟨⟩.send̅⟨⟩.finalize̅⟨⟩.0 || (alt1_1_Bob().send().finalize().0 + alt2_1_Bob().finalize().0) || !x'(x).x̅'⟨x⟩.0, log=None
-input process: 2,[(1, <hpc.Sum object at 0x0000023EAE123910>, <hpc.PrefixProcess object at 0x0000023EAE1226B0>, True, 0), (1, <hpc.Sum object at 0x0000023EAE123910>, <hpc.PrefixProcess object at 0x0000023EAE121FC0>, True, 1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x0000023EAE133A00>, <hpc.PrefixProcess object at 0x0000023EAE133A00>, False, -1)]
+input process: 2,[(1, <hpc.Sum object at 0x000001F3803F1780>, <hpc.PrefixProcess object at 0x000001F3803F3730>, True, 0), (1, <hpc.Sum object at 0x000001F3803F1780>, <hpc.PrefixProcess object at 0x000001F3803F1390>, True, 1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x000001F3803F3F40>, <hpc.PrefixProcess object at 0x000001F3803F3F40>, False, -1)]
 output variable list: []
 output expression evaluation result: valid=True, values=[]
 COMM consumption: out_idx=0 in_idx=1 channel=alt1_1_Bob values=[]
@@ -62,7 +62,7 @@ Check process termination: send̅⟨⟩.finalize̅⟨⟩.0 || send().finalize().
 --- Step 5 ---
 Attempted to apply [Pass] rule: applied=False, new_proc=send̅⟨⟩.finalize̅⟨⟩.0 || send().finalize().0 || !x'(x).x̅'⟨x⟩.0, log=None
 Attempted to apply [Stop] rule: applied=False, new_proc=send̅⟨⟩.finalize̅⟨⟩.0 || send().finalize().0 || !x'(x).x̅'⟨x⟩.0, log=None
-input process: 1,[(1, <hpc.PrefixProcess object at 0x0000023EAE120070>, <hpc.PrefixProcess object at 0x0000023EAE120070>, False, -1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x0000023EAE131630>, <hpc.PrefixProcess object at 0x0000023EAE131630>, False, -1)]
+input process: 1,[(1, <hpc.PrefixProcess object at 0x000001F3803F37C0>, <hpc.PrefixProcess object at 0x000001F3803F37C0>, False, -1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x000001F3803F35B0>, <hpc.PrefixProcess object at 0x000001F3803F35B0>, False, -1)]
 output variable list: ['']
 evaluate output expression:  -> val=None, missing=set()
 output expression evaluation result: valid=True, values=[]
@@ -74,7 +74,7 @@ Check process termination: finalize̅⟨⟩.0 || finalize().0 || !x'(x).x̅'⟨x
 --- Step 6 ---
 Attempted to apply [Pass] rule: applied=False, new_proc=finalize̅⟨⟩.0 || finalize().0 || !x'(x).x̅'⟨x⟩.0, log=None
 Attempted to apply [Stop] rule: applied=False, new_proc=finalize̅⟨⟩.0 || finalize().0 || !x'(x).x̅'⟨x⟩.0, log=None
-input process: 1,[(1, <hpc.PrefixProcess object at 0x0000023EAE131DB0>, <hpc.PrefixProcess object at 0x0000023EAE131DB0>, False, -1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x0000023EAE131960>, <hpc.PrefixProcess object at 0x0000023EAE131960>, False, -1)]
+input process: 1,[(1, <hpc.PrefixProcess object at 0x000001F3803F1660>, <hpc.PrefixProcess object at 0x000001F3803F1660>, False, -1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x000001F3803F2FB0>, <hpc.PrefixProcess object at 0x000001F3803F2FB0>, False, -1)]
 output variable list: ['']
 evaluate output expression:  -> val=None, missing=set()
 output expression evaluation result: valid=True, values=[]

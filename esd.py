@@ -570,6 +570,29 @@ class Par(Fragment):
         return b[0] if len(b) == 1 else hpc.Sum(b)
 
     def translate(self, roles):
+        def get_first_step(frag, role):
+            if frag is None:
+                return None
+            
+            if isinstance(frag, Critical):
+                return ("critical", frag)
+            elif isinstance(frag, (Assignment, Communication, Sensation, Actuation)):
+                return ("action", frag)
+            elif isinstance(frag, Alternative):
+                return ("choice", frag)
+            elif isinstance(frag, (Loop, Option)):
+                return ("structured", frag)
+            elif isinstance(frag, Par):
+                first0 = get_first_step(frag.frag0, role)
+                first1 = get_first_step(frag.frag1, role)
+                return ("par", (first0, first1))
+            return None
+        
+        for role in roles:
+            first0 = get_first_step(self.frag0, role)
+            first1 = get_first_step(self.frag1, role)
+            print(f"Par first steps for {role}: frag0={first0}, frag1={first1}")
+        
         proc0 = self.frag0.translate(roles)
         proc1 = self.frag1.translate(roles)
         cont_proc = self.cont.translate(roles) if self.cont else {r: hpc.Inaction() for r in roles}
@@ -597,6 +620,26 @@ class Critical(Fragment):
     def __init__(self, frag: Fragment, cont: Fragment):
         self.frag = frag
         self.cont = cont
+    
+    def __repr__(self):
+        return f"Critical(frag={self.frag})"
+    
+    def translate(self, roles):
+        if self.frag is None:
+            cont_proc = self.cont.translate(roles) if self.cont else {r: hpc.Inaction() for r in roles}
+            return cont_proc
+        
+        frag_proc = self.frag.translate(roles)
+        
+        cont_proc = self.cont.translate(roles) if self.cont else {r: hpc.Inaction() for r in roles}
+        
+        ret = {}
+        for role in roles:
+            critical_p = frag_proc.get(role, hpc.Inaction())
+            continue_p = cont_proc.get(role, hpc.Inaction())
+            ret[role] = sequence(critical_p, continue_p)
+        
+        return ret
 
 
 def get_ready_set(role: str, frag: Fragment) -> List[hpc.Channel]:
@@ -852,7 +895,7 @@ def parse_example(example: str) -> Fragment:
         if block_stack:
             top = block_stack[-1]
             t = top["type"]
-            if t in ("opt", "loop", "break"):
+            if t in ("opt", "loop", "break", "critical"):
                 top["nodes"].append(node)
             elif t == "alt":
                 if top["phase"] == "then":
@@ -957,6 +1000,15 @@ def parse_example(example: str) -> Fragment:
             if body:
                 append_node(body)
             return
+        
+        if t == "critical":
+            body = link_nodes(item["nodes"])
+            node = Critical(
+                frag=body if body else Fragment(),
+                cont=Fragment()
+            )
+            append_node(node)
+            return
 
         raise ValueError(f"Unsupported block type on close: {t}")
 
@@ -1021,6 +1073,16 @@ def parse_example(example: str) -> Fragment:
                 "index": int(idx),
                 "role": role,
                 "cond": cond,
+                "nodes": []
+            })
+            continue
+
+        m = re.match(r"critical \[(\d+)\]", line)
+        if m:
+            idx = m.group(1)
+            block_stack.append({
+                "type": "critical",
+                "index": int(idx),
                 "nodes": []
             })
             continue

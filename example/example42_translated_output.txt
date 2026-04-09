@@ -1,0 +1,1 @@
+Alice ::= (Bob Request̅⟨⟩.Bob Response().Charlie Request̅⟨⟩.Charlie Response().0 + Charlie Request̅⟨⟩.Charlie Response().Bob Request̅⟨⟩.Bob Response().0) || Bob ::= Bob Request().Bob Response̅⟨⟩.0 || Charlie ::= Charlie Request().Charlie Response̅⟨⟩.0

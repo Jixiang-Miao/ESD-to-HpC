@@ -6,6 +6,7 @@ Removing restriction: ['t']
 
 --- Step 1 ---
 Warning: Input process is not in canonical form: Standard form is missing M-type processes (Sum processes)
+Attempted to apply [Assign-Expand] rule: applied=False, new_proc={0 | t_dot=1 & t<1.0, {}}.0, log=None
 Attempted to apply [Pass] rule: applied=False, new_proc={0 | t_dot=1 & t<1.0, {}}.0, log=None
 Attempted to apply [Stop] rule: applied=False, new_proc={0 | t_dot=1 & t<1.0, {}}.0, log=None
 input process: 0,[]，output process: 0,[]
@@ -14,7 +15,7 @@ Attempted to apply [Sense] rule: applied=False, new_proc={0 | t_dot=1 & t<1.0, {
 Attempted to apply [Actuate] rule: applied=False, new_proc={0 | t_dot=1 & t<1.0, {}}.0, log=None
 Attempted to apply [Rep] rule: applied=False, new_proc={0 | t_dot=1 & t<1.0, {}}.0, log=None
 Collected 1 continuous processes for evolution
-ODE system information idx=0: {'idx': 0, 'comp': <hpc.PrefixProcess object at 0x000001F3803F1660>, 'ode': <hpc.ODE object at 0x000001F38041D6C0>, 'repl': <hpc.Inaction object at 0x000001F38041D2D0>, 'vars_list': ['t'], 'derivs_list': ['1'], 'bound_expr': 't<1.0', 'init_vals': ['0']}
+ODE system information idx=0: {'idx': 0, 'comp': <hpc.PrefixProcess object at 0x000001A4BA70A140>, 'ode': <hpc.ODE object at 0x000001A4BA70BDC0>, 'repl': <hpc.Inaction object at 0x000001A4BA709630>, 'vars_list': ['t'], 'derivs_list': ['1'], 'bound_expr': 't<1.0', 'init_vals': ['0']}
 Iterating initial values i: 0, var: t, init_vals[i]: 0
 ODE initial value expression idx=0, var=t: expr=0
 ODE initial value evaluation idx=0, var=t: v=0, missing=set()

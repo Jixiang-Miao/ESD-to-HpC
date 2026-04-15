@@ -527,7 +527,7 @@ def classify_process_type(proc: hpc.Process) -> str:
 
     if isinstance(proc, hpc.PrefixProcess):
         pref = getattr(proc, 'prefix', None)
-        if isinstance(pref, (hpc.Guard, hpc.Input, hpc.Output)):
+        if isinstance(pref, (hpc.Guard, hpc.Input, hpc.Output, hpc.Assignment)):
             return "M"
         
         return classify_process_type(getattr(proc, 'continuation', None))
@@ -1596,6 +1596,135 @@ def extract_constant_from_sum(par: hpc.Parallel, var_name: str) -> Optional[floa
 
     return None
 
+def fresh_assignment_channel(base_var: str, par: hpc.Parallel, used_fresh: Optional[Set[str]] = None) -> str:
+    existing = set()
+
+    try:
+        existing |= extract_all_variables(par)
+    except Exception:
+        pass
+
+    try:
+        existing |= set(global_env.keys())
+    except Exception:
+        pass
+
+    try:
+        existing |= set(hidden_vars)
+    except Exception:
+        pass
+
+    if used_fresh:
+        existing |= set(used_fresh)
+
+    fresh = f"{base_var}'"
+    while fresh in existing:
+        fresh += "'"
+    return fresh
+
+
+def make_assignment_memory_process(fresh: str) -> hpc.PrefixProcess:
+    """
+    memory ::= fresh(y).fresh̅<y>.0
+    """
+    return hpc.PrefixProcess(
+        hpc.Input(hpc.InChannel(fresh), ["y"]),
+        hpc.PrefixProcess(
+            hpc.Output(hpc.OutChannel(fresh), ["y"]),
+            hpc.Inaction()
+        )
+    )
+
+
+def make_assignment_expansion(prefix_proc: hpc.PrefixProcess, fresh: str) -> List[hpc.Process]:
+    assign_prefix = prefix_proc.prefix
+    cont = prefix_proc.continuation
+
+    var_name = str(assign_prefix.var)
+    expr = assign_prefix.expr
+
+    lhs_proc = hpc.PrefixProcess(
+        hpc.Output(hpc.OutChannel(fresh), [expr]),
+        hpc.PrefixProcess(
+            hpc.Input(hpc.InChannel(fresh), [var_name]),
+            cont
+        )
+    )
+
+    memory_proc = make_assignment_memory_process(fresh)
+    return [lhs_proc, memory_proc]
+
+
+def apply_assignment_expansion_rule(par: hpc.Parallel) -> Tuple[bool, hpc.Process, Optional[str]]:
+    if not isinstance(par, hpc.Parallel):
+        return False, par, None
+
+    changed = False
+    used_fresh = set()
+    produced_hidden = []
+    new_processes: List[hpc.Process] = []
+    logs = []
+
+    for i, proc in enumerate(par.processes):
+        if isinstance(proc, hpc.PrefixProcess) and isinstance(proc.prefix, hpc.Assignment):
+            assign = proc.prefix
+            var_name = str(assign.var)
+            fresh = fresh_assignment_channel(var_name, par, used_fresh)
+            used_fresh.add(fresh)
+            produced_hidden.append(fresh)
+
+            expanded_parts = make_assignment_expansion(proc, fresh)
+            new_processes.extend(expanded_parts)
+
+            logs.append(f"{var_name}:={assign.expr} via {fresh}")
+            log_event(f"ASSIGN expansion: idx={i}, var={var_name}, expr={assign.expr}, fresh={fresh}")
+            changed = True
+            continue
+
+        elif isinstance(proc, hpc.Sum):
+            branches = get_sum_branches(proc)
+            chosen = False
+
+            for j, branch in enumerate(branches):
+                if isinstance(branch, hpc.PrefixProcess) and isinstance(branch.prefix, hpc.Assignment):
+                    assign = branch.prefix
+                    var_name = str(assign.var)
+                    fresh = fresh_assignment_channel(var_name, par, used_fresh)
+                    used_fresh.add(fresh)
+                    produced_hidden.append(fresh)
+
+                    expanded_parts = make_assignment_expansion(branch, fresh)  # 直接是 list
+                    new_processes.extend(expanded_parts)
+
+                    logs.append(f"{var_name}:={assign.expr} chosen from Sum branch {j} via {fresh}")
+                    log_event(
+                        f"ASSIGN expansion in Sum (choice consumed): "
+                        f"idx={i}, branch={j}, var={var_name}, expr={assign.expr}, fresh={fresh}"
+                    )
+                    changed = True
+                    chosen = True
+                    break
+
+            if chosen:
+                continue
+
+            new_processes.append(proc)
+            continue
+
+        new_processes.append(proc)
+
+    if not changed:
+        return False, par, None
+
+    if produced_hidden:
+        add_hidden_vars(produced_hidden)
+
+    new_par = to_strict_canonical_form_preserve_sums(hpc.Parallel(new_processes))
+    if not isinstance(new_par, hpc.Parallel):
+        new_par = hpc.Parallel([new_par])
+
+    return True, new_par, "; ".join(logs)
+
 # ---------- Reduction rules implementation ----------
 def apply_reduction_rules(par: hpc.Parallel) -> Tuple[bool, hpc.Process, Optional[str]]:
     """
@@ -1606,6 +1735,11 @@ def apply_reduction_rules(par: hpc.Parallel) -> Tuple[bool, hpc.Process, Optiona
     if not is_valid:
         log_event(f"Warning: Input process is not in canonical form: {message}")
     
+    applied, new_proc, log = apply_assignment_expansion_rule(par)
+    log_event(f"Attempted to apply [Assign-Expand] rule: applied={applied}, new_proc={new_proc}, log={log}")
+    if applied:
+        return True, new_proc, f"Applied [Assign-Expand] rule ({log})"
+
     # (a) [Pass] rule: [B].P + M → P (condition true)
     applied, new_proc, log = apply_pass_rule(par)
     log_event(f"Attempted to apply [Pass] rule: applied={applied}, new_proc={new_proc}, log={log}")

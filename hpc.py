@@ -126,29 +126,6 @@ class Assignment(Prefix):
         self.var = var
         self.expr = expr
         
-    def to_restriction(self, is_first: bool = True):
-        terminus = f"{self.var.name}"
-        
-        if is_first:
-            # (ν terminus) allocation(var)⟨expr⟩.terminus(x).store(var)⟨x⟩
-            allocation = Output(OutChannel(f"allocation({self.var.name})"), [self.expr])
-            store = Output(OutChannel(f"store({self.var.name})"), [Var("x")])
-            
-            process = allocation
-        else:
-            # (ν terminus) load(var)(x).terminus⟨x+expr⟩.store(var)⟨x+expr⟩
-            load = Output(OutChannel(f"{self.var.name}"), [self.expr])
-            sum_expr = BinOp(Var("x"), "+", self.expr)
-            output_terminus = Output(OutChannel(terminus), [sum_expr])
-            store = Output(OutChannel(f"store({self.var.name})"), [self.expr])
-            
-            process = load
-            
-        return Restriction(
-            names=[terminus],
-            process=process
-        )
-        
     def __str__(self):
         return f"⟨{self.var}:={self.expr}⟩"
     

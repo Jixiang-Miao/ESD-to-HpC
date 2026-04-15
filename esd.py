@@ -35,53 +35,21 @@ class AssignmentTracker:
             return True
         return False
 class Assignment(Fragment):
-    def __init__(self, role: str, var: str, expr: str, cont: Fragment, assignment_tracker=None):
-        super().__init__(assignment_tracker)
+    def __init__(self, role: str, var: str, expr: str, cont: Fragment):
+        super().__init__()
         self.role = role
         self.var = var
         self.expr = expr
         self.cont = cont
 
-    def translate(self, roles: List[str]):
-        self._propagate_tracker()
-        assert self.role in roles
+    def translate(self, roles):
         ret = self.cont.translate(roles) if self.cont else {role: hpc.Inaction() for role in roles}
+        assignment = hpc.Assignment(
+            hpc.Var(self.var),
+            hpc.Var(self.expr)
+        )
 
-        is_ode_var = False
-        if hasattr(self.cont, 'ode') and self.var in getattr(self.cont.ode, 'v', []):
-            is_ode_var = True
-
-        if is_ode_var:
-            assignment = hpc.Assignment(hpc.Var(self.var), hpc.Var(self.expr))
-            prefix = assignment.to_restriction(is_first=False)
-            ret[self.role] = hpc.PrefixProcess(prefix, ret[self.role])
-        else:
-            is_first = self.assignment_tracker.is_first_assignment(self.var)
-            input_prefix = hpc.Output(hpc.OutChannel(f"{self.var}\u0305'"), [self.expr])
-            output_prefix = hpc.Input(hpc.InChannel(f"{self.var}'"), [self.var])
-            assignment_process = hpc.PrefixProcess(input_prefix, 
-                                                  hpc.PrefixProcess(output_prefix, ret[self.role]))
-            ret[self.role] = assignment_process            
-            if is_first:
-                mem_index = len(self.assignment_tracker.allocated_vars) - 1
-                
-                memory_proc = hpc.NamedProcess(
-                    f"Memory{mem_index}",
-                    hpc.Replication(
-                        hpc.PrefixProcess(
-                            hpc.Input(hpc.InChannel(f"{self.var}'"), [self.var]),
-                            hpc.PrefixProcess(
-                                hpc.Output(hpc.OutChannel(f"{self.var}\u0305'"), [self.var]),
-                                hpc.Inaction()
-                            )
-                        )
-                    )
-                )
-
-                if not hasattr(self.assignment_tracker, "memory_processes"):
-                    self.assignment_tracker.memory_processes = []
-                self.assignment_tracker.memory_processes.append(memory_proc)
-
+        ret[self.role] = hpc.PrefixProcess(assignment, ret[self.role])
         return ret
 
 class Communication(Fragment):
@@ -312,8 +280,7 @@ def rewrite_break_in_loop(loop: "Loop") -> Fragment:
         role=loop.role,
         var=break_var,
         expr="0",
-        cont=None,
-        assignment_tracker=loop.assignment_tracker
+        cont=None
     )
     
     visited = set()
@@ -334,8 +301,7 @@ def rewrite_break_in_loop(loop: "Loop") -> Fragment:
                 role=frag.role,
                 var=break_var,
                 expr="1",
-                cont=None,
-                assignment_tracker=loop.assignment_tracker
+                cont=None
             )
             
             break_body = compose(frag.body, set_break) if frag.body else set_break

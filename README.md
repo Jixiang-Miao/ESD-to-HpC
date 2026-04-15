@@ -88,24 +88,17 @@ deactivate Train
 
 Translated output (`example_translated_output.txt`):
 ```
-Train ::= terminus̅'⟨10000⟩.terminus'(terminus).{0, 0, 0 | p_dot=v, v_dot=a, a_dot=0 & p<terminus and v>=0, {p̅, v̅, a}}.0 || LeftSector ::= handover_point_1̅'⟨4000⟩.handover_point_1'(handover_point_1).endpoint_1̅'⟨5000⟩.endpoint_1'(endpoint_1).p(p0).(ν loop[1]) loop[1]⟨p0, handover_point_1⟩.0 || !loop[1](p0, handover_point_1).([p0 < handover_point_1].v(v0).a0_1̅'⟨f(p0, v0, endpoint_1)⟩.a0_1'(a0_1).a̅⟨a0_1⟩.(ν t) {0 | t_dot=1 & t<1.0, {}}.p(p0).loop[1]⟨p0, handover_point_1⟩.0 + [(¬p0 < handover_point_1)].handover̅⟨⟩.yes().channels̅⟨p, v, a⟩.0) || RightSector ::= handover_point_2̅'⟨9000⟩.handover_point_2'(handover_point_2).endpoint_2̅'⟨10000⟩.endpoint_2'(endpoint_2).handover().yes̅⟨⟩.channels(p1, v1, a1).p1(p0).(ν loop[2]) loop[2]⟨p0, handover_point_2⟩.0 || !loop[2](p0, handover_point_2).([p0 < handover_point_2].v1(v0).a0_2̅'⟨f(p0, v0, endpoint_2)⟩.a0_2'(a0_2).a1̅⟨a0_2⟩.(ν t) {0 | t_dot=1 & t<1.0, {}}.p1(p0).loop[2]⟨p0, handover_point_2⟩.0 + [(¬p0 < handover_point_2)].a1̅⟨-1⟩.0) || Memory0 ::= !a0_1'(a0_1).a0_1̅'⟨a0_1⟩.0 || Memory1 ::= !a0_2'(a0_2).a0_2̅'⟨a0_2⟩.0 || Memory2 ::= !endpoint_2'(endpoint_2).endpoint_2̅'⟨endpoint_2⟩.0 || Memory3 ::= !handover_point_2'(handover_point_2).handover_point_2̅'⟨handover_point_2⟩.0 || Memory4 ::= !endpoint_1'(endpoint_1).endpoint_1̅'⟨endpoint_1⟩.0 || Memory5 ::= !handover_point_1'(handover_point_1).handover_point_1̅'⟨handover_point_1⟩.0 || Memory6 ::= !terminus'(terminus).terminus̅'⟨terminus⟩.0
+Train ::= ⟨terminus:=10000⟩.{0, 0, 0 | p_dot=v, v_dot=a, a_dot=0 & p<terminus and v>=0, {p̅, v̅, a}}.0 || LeftSector ::= ⟨handover_point_1:=4000⟩.⟨endpoint_1:=5000⟩.p(p0).(ν loop[1]) loop[1]⟨p0, handover_point_1⟩.0 || !loop[1](p0, handover_point_1).([p0 < handover_point_1].v(v0).⟨a0_1:=f(p0, v0, endpoint_1)⟩.a̅⟨a0_1⟩.(ν t) {0 | t_dot=1 & t<1.0, {}}.p(p0).loop[1]⟨p0, handover_point_1⟩.0 + [(¬p0 < handover_point_1)].handover̅⟨⟩.yes().channels̅⟨p, v, a⟩.0) || RightSector ::= ⟨handover_point_2:=9000⟩.⟨endpoint_2:=10000⟩.handover().yes̅⟨⟩.channels(p1, v1, a1).p1(p0).(ν loop[2]) loop[2]⟨p0, handover_point_2⟩.0 || !loop[2](p0, handover_point_2).([p0 < handover_point_2].v1(v0).⟨a0_2:=f(p0, v0, endpoint_2)⟩.a1̅⟨a0_2⟩.(ν t) {0 | t_dot=1 & t<1.0, {}}.p1(p0).loop[2]⟨p0, handover_point_2⟩.0 + [(¬p0 < handover_point_2)].a1̅⟨-1⟩.0)
 ```
 
 Standardized output (`example_standardized_output.txt`):
 ```
-Train ::= terminus̅'⟨10000⟩.terminus'(terminus).{0, 0, 0 | p_dot=v, v_dot=a, a_dot=0 & p<terminus and v>=0, {p̅, v̅, a}}.0
-LeftSector ::= handover_point_1̅'⟨4000⟩.handover_point_1'(handover_point_1).endpoint_1̅'⟨5000⟩.endpoint_1'(endpoint_1).p(p0).loop[1]⟨p0, handover_point_1⟩.0
-Replication 1 ::= !loop[1](p0, handover_point_1).([p0 < handover_point_1].v(v0).a0_1̅'⟨f(p0, v0, endpoint_1)⟩.a0_1'(a0_1).a̅⟨a0_1⟩.{0 | t_dot=1 & t<1.0, {}}.p(p0).loop[1]⟨p0, handover_point_1⟩.0 + [(¬p0 < handover_point_1)].handover̅⟨⟩.yes().channels̅⟨p, v, a⟩.0)
-RightSector ::= handover_point_2̅'⟨9000⟩.handover_point_2'(handover_point_2).endpoint_2̅'⟨10000⟩.endpoint_2'(endpoint_2).handover().yes̅⟨⟩.channels(p1, v1, a1).p1(p0).loop[2]⟨p0, handover_point_2⟩.0
-Replication 2 ::= !loop[2](p0, handover_point_2).([p0 < handover_point_2].v1(v0).a0_2̅'⟨f(p0, v0, endpoint_2)⟩.a0_2'(a0_2).a1̅⟨a0_2⟩.{0 | t'_dot=1 & t'<1.0, {}}.p1(p0).loop[2]⟨p0, handover_point_2⟩.0 + [(¬p0 < handover_point_2)].a1̅⟨-1⟩.0)
-Memory0 ::= !a0_1'(a0_1).a0_1̅'⟨a0_1⟩.0
-Memory1 ::= !a0_2'(a0_2).a0_2̅'⟨a0_2⟩.0
-Memory2 ::= !endpoint_2'(endpoint_2).endpoint_2̅'⟨endpoint_2⟩.0
-Memory3 ::= !handover_point_2'(handover_point_2).handover_point_2̅'⟨handover_point_2⟩.0
-Memory4 ::= !endpoint_1'(endpoint_1).endpoint_1̅'⟨endpoint_1⟩.0
-Memory5 ::= !handover_point_1'(handover_point_1).handover_point_1̅'⟨handover_point_1⟩.0
-Memory6 ::= !terminus'(terminus).terminus̅'⟨terminus⟩.0
-System ::= (ν loop[1]) (ν loop[2]) (ν t) (ν t') Train || LeftSector || Replication 1 || RightSector || Replication 2 || Memory0 || Memory1 || Memory2 || Memory3 || Memory4 || Memory5 || Memory6
+Train ::= ⟨terminus:=10000⟩.{0, 0, 0 | p_dot=v, v_dot=a, a_dot=0 & p<terminus and v>=0, {p̅, v̅, a}}.0
+LeftSector ::= ⟨handover_point_1:=4000⟩.⟨endpoint_1:=5000⟩.p(p0).loop[1]⟨p0, handover_point_1⟩.0
+Replication 1 ::= !loop[1](p0, handover_point_1).([p0 < handover_point_1].v(v0).⟨a0_1:=f(p0, v0, endpoint_1)⟩.a̅⟨a0_1⟩.{0 | t_dot=1 & t<1.0, {}}.p(p0).loop[1]⟨p0, handover_point_1⟩.0 + [(¬p0 < handover_point_1)].handover̅⟨⟩.yes().channels̅⟨p, v, a⟩.0)
+RightSector ::= ⟨handover_point_2:=9000⟩.⟨endpoint_2:=10000⟩.handover().yes̅⟨⟩.channels(p1, v1, a1).p1(p0).loop[2]⟨p0, handover_point_2⟩.0
+Replication 2 ::= !loop[2](p0, handover_point_2).([p0 < handover_point_2].v1(v0).⟨a0_2:=f(p0, v0, endpoint_2)⟩.a1̅⟨a0_2⟩.{0 | t'_dot=1 & t'<1.0, {}}.p1(p0).loop[2]⟨p0, handover_point_2⟩.0 + [(¬p0 < handover_point_2)].a1̅⟨-1⟩.0)
+System ::= (ν loop[1]) (ν loop[2]) (ν t) (ν t') Train || LeftSector || Replication 1 || RightSector || Replication 2
 ```
 ## Development Environment
 

@@ -1,48 +1,51 @@
 # Step log
 
 === STEP 1 time: 0.000000 ===
-  [0] M: x̅'⟨0⟩.x'(x).([x > 0].alt1_1_Bob⟨⟩.{0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0 + [(¬x > 0)].alt2_1_Bob⟨⟩.finalize̅⟨⟩.0)
+  [0] M: ⟨x:=0⟩.([x > 0].alt1_1_Bob⟨⟩.{0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0 + [(¬x > 0)].alt2_1_Bob⟨⟩.finalize̅⟨⟩.0)
   [1] M: (alt1_1_Bob().finalize().0 + alt2_1_Bob().finalize().0)
-  [2] R: !x'(x).x̅'⟨x⟩.0
-Process counts: M=2, C=0, R=1, Other=0
+Process counts: M=2, C=0, R=0, Other=0
 ================================
 
 
 === STEP 2 time: 0.000000 ===
-  [0] M: x'(x).([x > 0].alt1_1_Bob⟨⟩.{0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0 + [(¬x > 0)].alt2_1_Bob⟨⟩.finalize̅⟨⟩.0)
-  [1] M: (alt1_1_Bob().finalize().0 + alt2_1_Bob().finalize().0)
-  [2] M: x̅'⟨0⟩.0
-  [3] R: !x'(x).x̅'⟨x⟩.0
-Process counts: M=3, C=0, R=1, Other=0
+  [0] M: x'''''''''''''''''''''''⟨0⟩.x'''''''''''''''''''''''(x).([x > 0].alt1_1_Bob⟨⟩.{0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0 + [(¬x > 0)].alt2_1_Bob⟨⟩.finalize̅⟨⟩.0)
+  [1] M: x'''''''''''''''''''''''(y).x'''''''''''''''''''''''⟨y⟩.0
+  [2] M: (alt1_1_Bob().finalize().0 + alt2_1_Bob().finalize().0)
+Process counts: M=3, C=0, R=0, Other=0
 ================================
 
 
 === STEP 3 time: 0.000000 ===
-  [0] M: ([0 > 0].alt1_1_Bob⟨⟩.{0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0 + [(¬0 > 0)].alt2_1_Bob⟨⟩.finalize̅⟨⟩.0)
-  [1] M: (alt1_1_Bob().finalize().0 + alt2_1_Bob().finalize().0)
-  [2] R: !x'(x).x̅'⟨x⟩.0
-Process counts: M=2, C=0, R=1, Other=0
+  [0] M: x'''''''''''''''''''''''(x).([x > 0].alt1_1_Bob⟨⟩.{0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0 + [(¬x > 0)].alt2_1_Bob⟨⟩.finalize̅⟨⟩.0)
+  [1] M: x'''''''''''''''''''''''⟨0⟩.0
+  [2] M: (alt1_1_Bob().finalize().0 + alt2_1_Bob().finalize().0)
+Process counts: M=3, C=0, R=0, Other=0
 ================================
 
 
 === STEP 4 time: 0.000000 ===
+  [0] M: ([0 > 0].alt1_1_Bob⟨⟩.{0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0 + [(¬0 > 0)].alt2_1_Bob⟨⟩.finalize̅⟨⟩.0)
+  [1] M: (alt1_1_Bob().finalize().0 + alt2_1_Bob().finalize().0)
+Process counts: M=2, C=0, R=0, Other=0
+================================
+
+
+=== STEP 5 time: 0.000000 ===
   [0] M: alt2_1_Bob⟨⟩.finalize̅⟨⟩.0
   [1] M: (alt1_1_Bob().finalize().0 + alt2_1_Bob().finalize().0)
-  [2] R: !x'(x).x̅'⟨x⟩.0
-Process counts: M=2, C=0, R=1, Other=0
+Process counts: M=2, C=0, R=0, Other=0
 ================================
 
 
-=== STEP 5 time: 0.000000 ===
+=== STEP 6 time: 0.000000 ===
   [0] M: finalize̅⟨⟩.0
   [1] M: finalize().0
-  [2] R: !x'(x).x̅'⟨x⟩.0
-Process counts: M=2, C=0, R=1, Other=0
+Process counts: M=2, C=0, R=0, Other=0
 ================================
 
 
-=== STEP 5 time: 0.000000 ===
-  [0] R: !x'(x).x̅'⟨x⟩.0
-Process counts: M=0, C=0, R=1, Other=0
+=== STEP 6 time: 0.000000 ===
+  [0] M: 0
+Process counts: M=1, C=0, R=0, Other=0
 ================================
 

@@ -5,6 +5,7 @@ Collected named definition[1]: System
 
 --- Step 1 ---
 Warning: Input process is not in canonical form: Standard form is missing M-type processes (Sum processes)
+Attempted to apply [Assign-Expand] rule: applied=False, new_proc={0 | x_dot=1 & x<10, {}}.0, log=None
 Attempted to apply [Pass] rule: applied=False, new_proc={0 | x_dot=1 & x<10, {}}.0, log=None
 Attempted to apply [Stop] rule: applied=False, new_proc={0 | x_dot=1 & x<10, {}}.0, log=None
 input process: 0,[]，output process: 0,[]
@@ -13,7 +14,7 @@ Attempted to apply [Sense] rule: applied=False, new_proc={0 | x_dot=1 & x<10, {}
 Attempted to apply [Actuate] rule: applied=False, new_proc={0 | x_dot=1 & x<10, {}}.0, log=None
 Attempted to apply [Rep] rule: applied=False, new_proc={0 | x_dot=1 & x<10, {}}.0, log=None
 Collected 1 continuous processes for evolution
-ODE system information idx=0: {'idx': 0, 'comp': <hpc.PrefixProcess object at 0x000001F3803F13F0>, 'ode': <hpc.ODE object at 0x000001F3803F3340>, 'repl': <hpc.Inaction object at 0x000001F3803F1CF0>, 'vars_list': ['x'], 'derivs_list': ['1'], 'bound_expr': 'x<10', 'init_vals': ['0']}
+ODE system information idx=0: {'idx': 0, 'comp': <hpc.PrefixProcess object at 0x000001A4BA70BB50>, 'ode': <hpc.ODE object at 0x000001A4BA7095D0>, 'repl': <hpc.Inaction object at 0x000001A4BA70B940>, 'vars_list': ['x'], 'derivs_list': ['1'], 'bound_expr': 'x<10', 'init_vals': ['0']}
 Iterating initial values i: 0, var: x, init_vals[i]: 0
 ODE initial value expression idx=0, var=x: expr=0
 ODE initial value evaluation idx=0, var=x: v=0, missing=set()
@@ -24,6 +25,7 @@ Check process termination: {9.999999999999998 | x_dot=1 & x<10, {}}.0
 
 --- Step 2 ---
 Warning: Input process is not in canonical form: Standard form is missing M-type processes (Sum processes)
+Attempted to apply [Assign-Expand] rule: applied=False, new_proc={9.999999999999998 | x_dot=1 & x<10, {}}.0, log=None
 Attempted to apply [Pass] rule: applied=False, new_proc={9.999999999999998 | x_dot=1 & x<10, {}}.0, log=None
 Attempted to apply [Stop] rule: applied=False, new_proc={9.999999999999998 | x_dot=1 & x<10, {}}.0, log=None
 input process: 0,[]，output process: 0,[]
@@ -32,7 +34,7 @@ Attempted to apply [Sense] rule: applied=False, new_proc={9.999999999999998 | x_
 Attempted to apply [Actuate] rule: applied=False, new_proc={9.999999999999998 | x_dot=1 & x<10, {}}.0, log=None
 Attempted to apply [Rep] rule: applied=False, new_proc={9.999999999999998 | x_dot=1 & x<10, {}}.0, log=None
 Collected 1 continuous processes for evolution
-ODE system information idx=0: {'idx': 0, 'comp': <hpc.PrefixProcess object at 0x000001F38041CB20>, 'ode': <hpc.ODE object at 0x000001F3803F1E10>, 'repl': <hpc.Inaction object at 0x000001F3803F1CF0>, 'vars_list': ['x'], 'derivs_list': ['1'], 'bound_expr': 'x<10', 'init_vals': ['9.999999999999998']}
+ODE system information idx=0: {'idx': 0, 'comp': <hpc.PrefixProcess object at 0x000001A4BA72C4F0>, 'ode': <hpc.ODE object at 0x000001A4BA70B0D0>, 'repl': <hpc.Inaction object at 0x000001A4BA70B940>, 'vars_list': ['x'], 'derivs_list': ['1'], 'bound_expr': 'x<10', 'init_vals': ['9.999999999999998']}
 Iterating initial values i: 0, var: x, init_vals[i]: 9.999999999999998
 ODE initial value expression idx=0, var=x: expr=9.999999999999998
 ODE initial value evaluation idx=0, var=x: v=9.999999999999998, missing=set()

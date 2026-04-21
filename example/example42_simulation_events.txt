@@ -10,9 +10,8 @@ Protecting Sum process during canonical form conversion
 Attempted to apply [Assign-Expand] rule: applied=False, new_proc=(Bob Request̅⟨⟩.Bob Response().Charlie Request̅⟨⟩.Charlie Response().0 + Charlie Request̅⟨⟩.Charlie Response().Bob Request̅⟨⟩.Bob Response().0) || Bob Request().Bob Response̅⟨⟩.0 || Charlie Request().Charlie Response̅⟨⟩.0, log=None
 Attempted to apply [Pass] rule: applied=False, new_proc=(Bob Request̅⟨⟩.Bob Response().Charlie Request̅⟨⟩.Charlie Response().0 + Charlie Request̅⟨⟩.Charlie Response().Bob Request̅⟨⟩.Bob Response().0) || Bob Request().Bob Response̅⟨⟩.0 || Charlie Request().Charlie Response̅⟨⟩.0, log=None
 Attempted to apply [Stop] rule: applied=False, new_proc=(Bob Request̅⟨⟩.Bob Response().Charlie Request̅⟨⟩.Charlie Response().0 + Charlie Request̅⟨⟩.Charlie Response().Bob Request̅⟨⟩.Bob Response().0) || Bob Request().Bob Response̅⟨⟩.0 || Charlie Request().Charlie Response̅⟨⟩.0, log=None
-input process: 2,[(1, <hpc.PrefixProcess object at 0x000001A4BA795A80>, <hpc.PrefixProcess object at 0x000001A4BA795A80>, False, -1), (2, <hpc.PrefixProcess object at 0x000001A4BA796530>, <hpc.PrefixProcess object at 0x000001A4BA796530>, False, -1)]，output process: 2,[(0, <hpc.Sum object at 0x000001A4BA70A7D0>, <hpc.PrefixProcess object at 0x000001A4BA797100>, True, 0), (0, <hpc.Sum object at 0x000001A4BA70A7D0>, <hpc.PrefixProcess object at 0x000001A4BA794910>, True, 1)]
-output variable list: ['']
-evaluate output expression:  -> val=None, missing=set()
+input process: 2,[(1, <hpc.PrefixProcess object at 0x000001901E842680>, <hpc.PrefixProcess object at 0x000001901E842680>, False, -1), (2, <hpc.PrefixProcess object at 0x000001901E8429B0>, <hpc.PrefixProcess object at 0x000001901E8429B0>, False, -1)]，output process: 2,[(0, <hpc.Sum object at 0x000001901E825FF0>, <hpc.PrefixProcess object at 0x000001901E840A30>, True, 0), (0, <hpc.Sum object at 0x000001901E825FF0>, <hpc.PrefixProcess object at 0x000001901E840FD0>, True, 1)]
+output variable list: []
 output expression evaluation result: valid=True, values=[]
 COMM consumption: out_idx=0 in_idx=1 channel=BobRequest values=[]
 Attempted to apply [Comm] rule: applied=True, new_proc=Bob Response().Charlie Request̅⟨⟩.Charlie Response().0 || Bob Response̅⟨⟩.0 || Charlie Request().Charlie Response̅⟨⟩.0, log=Communication channel(Bob Request̅)(Communication message: )
@@ -23,9 +22,8 @@ Check process termination: Bob Response().Charlie Request̅⟨⟩.Charlie Respon
 Attempted to apply [Assign-Expand] rule: applied=False, new_proc=Bob Response().Charlie Request̅⟨⟩.Charlie Response().0 || Bob Response̅⟨⟩.0 || Charlie Request().Charlie Response̅⟨⟩.0, log=None
 Attempted to apply [Pass] rule: applied=False, new_proc=Bob Response().Charlie Request̅⟨⟩.Charlie Response().0 || Bob Response̅⟨⟩.0 || Charlie Request().Charlie Response̅⟨⟩.0, log=None
 Attempted to apply [Stop] rule: applied=False, new_proc=Bob Response().Charlie Request̅⟨⟩.Charlie Response().0 || Bob Response̅⟨⟩.0 || Charlie Request().Charlie Response̅⟨⟩.0, log=None
-input process: 2,[(0, <hpc.PrefixProcess object at 0x000001A4BA7972E0>, <hpc.PrefixProcess object at 0x000001A4BA7972E0>, False, -1), (2, <hpc.PrefixProcess object at 0x000001A4BA794BE0>, <hpc.PrefixProcess object at 0x000001A4BA794BE0>, False, -1)]，output process: 1,[(1, <hpc.PrefixProcess object at 0x000001A4BA795C90>, <hpc.PrefixProcess object at 0x000001A4BA795C90>, False, -1)]
-output variable list: ['']
-evaluate output expression:  -> val=None, missing=set()
+input process: 2,[(0, <hpc.PrefixProcess object at 0x000001901E841CF0>, <hpc.PrefixProcess object at 0x000001901E841CF0>, False, -1), (2, <hpc.PrefixProcess object at 0x000001901E8437F0>, <hpc.PrefixProcess object at 0x000001901E8437F0>, False, -1)]，output process: 1,[(1, <hpc.PrefixProcess object at 0x000001901E841090>, <hpc.PrefixProcess object at 0x000001901E841090>, False, -1)]
+output variable list: []
 output expression evaluation result: valid=True, values=[]
 COMM consumption: out_idx=1 in_idx=0 channel=BobResponse values=[]
 Attempted to apply [Comm] rule: applied=True, new_proc=Charlie Request̅⟨⟩.Charlie Response().0 || Charlie Request().Charlie Response̅⟨⟩.0, log=Communication channel(Bob Response̅)(Communication message: )
@@ -36,9 +34,8 @@ Check process termination: Charlie Request̅⟨⟩.Charlie Response().0 || Charl
 Attempted to apply [Assign-Expand] rule: applied=False, new_proc=Charlie Request̅⟨⟩.Charlie Response().0 || Charlie Request().Charlie Response̅⟨⟩.0, log=None
 Attempted to apply [Pass] rule: applied=False, new_proc=Charlie Request̅⟨⟩.Charlie Response().0 || Charlie Request().Charlie Response̅⟨⟩.0, log=None
 Attempted to apply [Stop] rule: applied=False, new_proc=Charlie Request̅⟨⟩.Charlie Response().0 || Charlie Request().Charlie Response̅⟨⟩.0, log=None
-input process: 1,[(1, <hpc.PrefixProcess object at 0x000001A4BA7955D0>, <hpc.PrefixProcess object at 0x000001A4BA7955D0>, False, -1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x000001A4BA795FC0>, <hpc.PrefixProcess object at 0x000001A4BA795FC0>, False, -1)]
-output variable list: ['']
-evaluate output expression:  -> val=None, missing=set()
+input process: 1,[(1, <hpc.PrefixProcess object at 0x000001901E8410F0>, <hpc.PrefixProcess object at 0x000001901E8410F0>, False, -1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x000001901E840D30>, <hpc.PrefixProcess object at 0x000001901E840D30>, False, -1)]
+output variable list: []
 output expression evaluation result: valid=True, values=[]
 COMM consumption: out_idx=0 in_idx=1 channel=CharlieRequest values=[]
 Attempted to apply [Comm] rule: applied=True, new_proc=Charlie Response().0 || Charlie Response̅⟨⟩.0, log=Communication channel(Charlie Request̅)(Communication message: )
@@ -49,9 +46,8 @@ Check process termination: Charlie Response().0 || Charlie Response̅⟨⟩.0
 Attempted to apply [Assign-Expand] rule: applied=False, new_proc=Charlie Response().0 || Charlie Response̅⟨⟩.0, log=None
 Attempted to apply [Pass] rule: applied=False, new_proc=Charlie Response().0 || Charlie Response̅⟨⟩.0, log=None
 Attempted to apply [Stop] rule: applied=False, new_proc=Charlie Response().0 || Charlie Response̅⟨⟩.0, log=None
-input process: 1,[(0, <hpc.PrefixProcess object at 0x000001A4BA795660>, <hpc.PrefixProcess object at 0x000001A4BA795660>, False, -1)]，output process: 1,[(1, <hpc.PrefixProcess object at 0x000001A4BA795FF0>, <hpc.PrefixProcess object at 0x000001A4BA795FF0>, False, -1)]
-output variable list: ['']
-evaluate output expression:  -> val=None, missing=set()
+input process: 1,[(0, <hpc.PrefixProcess object at 0x000001901E841150>, <hpc.PrefixProcess object at 0x000001901E841150>, False, -1)]，output process: 1,[(1, <hpc.PrefixProcess object at 0x000001901E840190>, <hpc.PrefixProcess object at 0x000001901E840190>, False, -1)]
+output variable list: []
 output expression evaluation result: valid=True, values=[]
 COMM consumption: out_idx=1 in_idx=0 channel=CharlieResponse values=[]
 Attempted to apply [Comm] rule: applied=True, new_proc=0, log=Communication channel(Charlie Response̅)(Communication message: )

@@ -1,0 +1,1 @@
+Alice ::= clock(t0_9).instant̅⟨3⟩.clock(t1_10).[(t1_10-t0_9) == 0.0].finish̅⟨⟩.0 || Bob ::= clock(t0_11).instant(x).clock(t1_12).[(t1_12-t0_11) == 0.0].finish().0 || GlobalClock ::= {0 | clock_dot=1 & clock<1000000.0, {clock}}.0

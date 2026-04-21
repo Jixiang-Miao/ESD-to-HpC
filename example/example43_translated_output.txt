@@ -1,0 +1,1 @@
+Alice ::= (ν t) {0 | t_dot=1 & t<1.0, {}}.clock(t0_1).tick̅⟨42⟩.clock(t1_2).[t0_1 == t1_2 == 1.0].finish̅⟨⟩.0 || Bob ::= (ν t) {0 | t_dot=1 & t<1.0, {}}.clock(t0_3).tick(x).clock(t1_4).[t0_3 == t1_4 == 1.0].finish().0 || GlobalClock ::= {0 | clock_dot=1 & clock<1000000.0, {clock}}.0

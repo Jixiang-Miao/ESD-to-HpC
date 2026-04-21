@@ -1,0 +1,4 @@
+@startuml
+Alice -> Bob: [before(1)] fast(x := 7)
+Alice -> Bob: finish
+@enduml

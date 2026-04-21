@@ -1,0 +1,4 @@
+@startuml
+Alice -> Bob: [after(0)] instant(x := 3)
+Alice -> Bob: finish
+@enduml

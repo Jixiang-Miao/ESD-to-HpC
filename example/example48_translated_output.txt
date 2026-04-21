@@ -1,0 +1,1 @@
+Alice ::= (ν t) {0 | t_dot=1 & t<0.5, {}}.clock(t0_21).offsetSample̅⟨13⟩.clock(t1_22).[t0_21 == t1_22 and (t0_21-0.5) % 1.0 == 0].finish̅⟨⟩.0 || Bob ::= (ν t) {0 | t_dot=1 & t<0.5, {}}.clock(t0_23).offsetSample(x).clock(t1_24).[t0_23 == t1_24 and (t0_23-0.5) % 1.0 == 0].finish().0 || GlobalClock ::= {0 | clock_dot=1 & clock<1000000.0, {clock}}.0

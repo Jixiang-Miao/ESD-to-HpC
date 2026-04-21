@@ -1,0 +1,1 @@
+Alice ::= clock(t0_13).windowed̅⟨9⟩.clock(t1_14).[0.0 <= (t1_14-t0_13) and (t1_14-t0_13) <= 1.0].finish̅⟨⟩.0 || Bob ::= clock(t0_15).windowed(x).clock(t1_16).[0.0 <= (t1_16-t0_15) and (t1_16-t0_15) <= 1.0].finish().0 || GlobalClock ::= {0 | clock_dot=1 & clock<1000000.0, {clock}}.0

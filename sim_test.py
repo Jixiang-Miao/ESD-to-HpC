@@ -45,7 +45,13 @@ TEST_CASES = [
     ("example\\example39.txt", ["Alice", "Bob"], 39),
     ("example\\example40.txt", ["Alice", "Bob"], 40),
     ("example\\example41.txt", ["Alice", "Bob"], 41),
-    ("example\\example42.txt", ["Alice", "Bob", "Charlie"], 42)
+    ("example\\example42.txt", ["Alice", "Bob", "Charlie"], 42),
+    ("example\\example43.txt", ["Alice", "Bob"], 43),
+    ("example\\example44.txt", ["Alice", "Bob"], 44),
+    ("example\\example45.txt", ["Alice", "Bob"], 45),
+    ("example\\example46.txt", ["Alice", "Bob"], 46),
+    ("example\\example47.txt", ["Alice", "Bob"], 47),
+    ("example\\example48.txt", ["Alice", "Bob"], 48)
 ]
 
 def run_single_case(input_file, roles, case_num):
@@ -74,6 +80,7 @@ def run_single_case(input_file, roles, case_num):
         sim.EVENTS_FILE = events_file
         sim.TRACE_FILE = trace_file
         sim.STEP_FILE = step_file
+        sim.MAX_CONTINUOUS_STEP = 0.1 if case_num >= 43 else sim.MAX_CONTINUOUS_STEP
 
         sim.simulate_block(standardized_result, max_steps=10000, init_state={"roles": roles})
         sim.flush_logs()

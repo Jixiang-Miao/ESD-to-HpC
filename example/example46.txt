@@ -1,0 +1,4 @@
+@startuml
+Alice -> Bob: [between(0,1)] windowed(x := 9)
+Alice -> Bob: finish
+@enduml

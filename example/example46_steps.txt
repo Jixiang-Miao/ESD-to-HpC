@@ -1,0 +1,71 @@
+# Step log
+
+=== STEP 1 time: 0.000000 ===
+  [0] M: clock(t0_13).windowed̅⟨9⟩.clock(t1_14).[0.0 <= (t1_14-t0_13) and (t1_14-t0_13) <= 1.0].finish̅⟨⟩.0
+  [1] M: clock(t0_15).windowed(x).clock(t1_16).[0.0 <= (t1_16-t0_15) and (t1_16-t0_15) <= 1.0].finish().0
+  [2] C: {0 | clock_dot=1 & clock<1000000.0, {clock}}.0
+Process counts: M=2, C=1, R=0, Other=0
+================================
+
+
+=== STEP 2 time: 0.000000 ===
+  [0] M: windowed̅⟨9⟩.clock(t1_14).[0.0 <= (t1_14-0) and (t1_14-0) <= 1.0].finish̅⟨⟩.0
+  [1] M: clock(t0_15).windowed(x).clock(t1_16).[0.0 <= (t1_16-t0_15) and (t1_16-t0_15) <= 1.0].finish().0
+  [2] C: {0 | clock_dot=1 & clock<1000000.0, {clock}}.0
+Process counts: M=2, C=1, R=0, Other=0
+================================
+
+
+=== STEP 3 time: 0.000000 ===
+  [0] M: windowed̅⟨9⟩.clock(t1_14).[0.0 <= (t1_14-0) and (t1_14-0) <= 1.0].finish̅⟨⟩.0
+  [1] M: windowed(x).clock(t1_16).[0.0 <= (t1_16-0) and (t1_16-0) <= 1.0].finish().0
+  [2] C: {0 | clock_dot=1 & clock<1000000.0, {clock}}.0
+Process counts: M=2, C=1, R=0, Other=0
+================================
+
+
+=== STEP 4 time: 0.000000 ===
+  [0] M: clock(t1_14).[0.0 <= (t1_14-0) and (t1_14-0) <= 1.0].finish̅⟨⟩.0
+  [1] M: clock(t1_16).[0.0 <= (t1_16-0) and (t1_16-0) <= 1.0].finish().0
+  [2] C: {0 | clock_dot=1 & clock<1000000.0, {clock}}.0
+Process counts: M=2, C=1, R=0, Other=0
+================================
+
+
+=== STEP 5 time: 0.000000 ===
+  [0] M: [0.0 <= (0-0) and (0-0) <= 1.0].finish̅⟨⟩.0
+  [1] M: clock(t1_16).[0.0 <= (t1_16-0) and (t1_16-0) <= 1.0].finish().0
+  [2] C: {0 | clock_dot=1 & clock<1000000.0, {clock}}.0
+Process counts: M=2, C=1, R=0, Other=0
+================================
+
+
+=== STEP 6 time: 0.000000 ===
+  [0] M: finish̅⟨⟩.0
+  [1] M: clock(t1_16).[0.0 <= (t1_16-0) and (t1_16-0) <= 1.0].finish().0
+  [2] C: {0 | clock_dot=1 & clock<1000000.0, {clock}}.0
+Process counts: M=2, C=1, R=0, Other=0
+================================
+
+
+=== STEP 7 time: 0.000000 ===
+  [0] M: finish̅⟨⟩.0
+  [1] M: [0.0 <= (0-0) and (0-0) <= 1.0].finish().0
+  [2] C: {0 | clock_dot=1 & clock<1000000.0, {clock}}.0
+Process counts: M=2, C=1, R=0, Other=0
+================================
+
+
+=== STEP 8 time: 0.000000 ===
+  [0] M: finish̅⟨⟩.0
+  [1] M: finish().0
+  [2] C: {0 | clock_dot=1 & clock<1000000.0, {clock}}.0
+Process counts: M=2, C=1, R=0, Other=0
+================================
+
+
+=== STEP 8 time: 0.000000 ===
+  [0] C: {0 | clock_dot=1 & clock<1000000.0, {clock}}.0
+Process counts: M=0, C=1, R=0, Other=0
+================================
+

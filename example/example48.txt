@@ -1,0 +1,10 @@
+@startuml
+activate Alice
+note right of Alice: delay(0.5)
+deactivate Alice
+activate Bob
+note right of Bob: delay(0.5)
+deactivate Bob
+Alice -> Bob: [periodic(0.5,1)] offsetSample(x := 13)
+Alice -> Bob: finish
+@enduml

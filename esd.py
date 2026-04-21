@@ -55,7 +55,7 @@ class Assignment(Fragment):
 class Communication(Fragment):
     def __init__(self, sender: str, receiver: str, channel: hpc.Channel,
                  var_list: List[str], expr_list: List[str], cont: Fragment, 
-                 assignment_tracker=None):
+                 assignment_tracker=None, temporal: hpc.TemporalPrimitive = None):
         super().__init__(assignment_tracker)
         self.sender = sender
         self.receiver = receiver
@@ -63,9 +63,10 @@ class Communication(Fragment):
         self.var_list = var_list
         self.expr_list = expr_list
         self.cont = cont
+        self.temporal = temporal
 
     def __repr__(self):
-        return f"Communication(sender={self.sender}, receiver={self.receiver}, channel={self.channel}, var_list={self.var_list},expr_list={self.expr_list})"
+        return f"Communication(sender={self.sender}, receiver={self.receiver}, channel={self.channel}, temporal={self.temporal}, var_list={self.var_list},expr_list={self.expr_list})"
 
     def translate(self, roles):
         print(f"Translating Communication: sender={self.sender}, receiver={self.receiver}")
@@ -73,15 +74,66 @@ class Communication(Fragment):
 
         ret = self.cont.translate(roles)
         output_channel = f"{self.channel.name}\u0305"
-        ret[self.sender] = hpc.PrefixProcess(
+        sender_action = hpc.PrefixProcess(
             hpc.Output(hpc.OutChannel(output_channel, self.channel.para), self.expr_list),
             ret[self.sender]
         )
-        ret[self.receiver] = hpc.PrefixProcess(
+        receiver_action = hpc.PrefixProcess(
             hpc.Input(hpc.InChannel(self.channel.name, self.channel.para), self.var_list),
             ret[self.receiver]
         )
+        if self.temporal:
+            ret[self.sender] = add_temporal_constraint(sender_action, self.temporal)
+            ret[self.receiver] = add_temporal_constraint(receiver_action, self.temporal)
+        else:
+            ret[self.sender] = sender_action
+            ret[self.receiver] = receiver_action
         return ret
+
+_temporal_var_counter = 0
+
+def _fresh_temporal_var(prefix: str) -> str:
+    global _temporal_var_counter
+    _temporal_var_counter += 1
+    return f"{prefix}_{_temporal_var_counter}"
+
+def temporal_condition(temporal: hpc.TemporalPrimitive, t0: str, t1: str) -> str:
+    eps = "5e-2"
+    kind = temporal.kind
+    args = temporal.args
+
+    if kind == "at":
+        d = args[0]
+        return f"{t0} == {t1} == {d}"
+    if kind == "before":
+        d = args[0]
+        return f"0 <= ({t1}-{t0}) and ({t1}-{t0}) <= {d}"
+    if kind == "after":
+        d = args[0]
+        return f"({t1}-{t0}) == {d}"
+    if kind == "between":
+        d0, d1 = args
+        return f"{d0} <= ({t1}-{t0}) and ({t1}-{t0}) <= {d1}"
+    if kind == "every":
+        d = args[0]
+        return f"{t0} == {t1} and ({t0}) % {d} == 0"
+    if kind == "periodic":
+        d0, d1 = args
+        return f"{t0} == {t1} and ({t0}-{d0}) % {d1} == 0"
+
+    raise ValueError(f"Unsupported temporal primitive: {temporal}")
+
+def add_temporal_constraint(action: hpc.Process, temporal: hpc.TemporalPrimitive) -> hpc.Process:
+    t0 = _fresh_temporal_var("t0")
+    t1 = _fresh_temporal_var("t1")
+    condition = temporal_condition(temporal, t0, t1)
+    checked = hpc.PrefixProcess(hpc.Guard(condition), action.continuation)
+    post_clock = hpc.PrefixProcess(hpc.Input(hpc.InChannel("clock"), [t1]), checked)
+
+    action_with_post_clock = hpc.PrefixProcess(action.prefix, post_clock)
+    action_with_clocks = hpc.PrefixProcess(hpc.Input(hpc.InChannel("clock"), [t0]), action_with_post_clock)
+
+    return action_with_clocks
 
 class Sensation(Fragment):
     def __init__(self, sender: str, receiver: str, var_x: str, var_v: str, 
@@ -795,6 +847,8 @@ class ESD:
         ret = self.frag.translate(self.roles)
 
         named_procs = [hpc.NamedProcess(role, ret[role]) for role in self.roles]
+        if has_temporal_communication(self.frag):
+            named_procs.append(hpc.NamedProcess("GlobalClock", hpc.make_global_clock()))
 
         tracker = self.frag.assignment_tracker
         if hasattr(tracker, "memory_processes"):
@@ -824,7 +878,11 @@ def set_tail_cont_to_fragment(head: Fragment):
         node.cont = Fragment()
 
 def parse_channel_content(content: str):
-    m = re.match(r'([\w\s,]+):=\s*([\w\s,]+)', content)
+    content = (content or "").strip()
+    if not content:
+        return [], []
+
+    m = re.match(r'(.+?):=\s*(.+)', content)
     if m:
         left_vars = [v.strip() for v in m.group(1).split(',')]
         right_exprs = [e.strip() for e in m.group(2).split(',')]
@@ -836,6 +894,30 @@ def parse_channel_content(content: str):
         raise ValueError("Number of variables and expressions do not match!")
 
     return left_vars, right_exprs
+
+def parse_temporal_primitive(tmp: str) -> hpc.TemporalPrimitive:
+    tmp = tmp.strip()
+    m = re.match(r"(at|before|after|every)\((\d+(?:\.\d+)?)\)$", tmp)
+    if m:
+        kind, d = m.groups()
+        return hpc.TemporalPrimitive(kind, [float(d)])
+
+    m = re.match(r"(between|periodic)\((\d+(?:\.\d+)?)\s*,\s*(\d+(?:\.\d+)?)\)$", tmp)
+    if m:
+        kind, d0, d1 = m.groups()
+        return hpc.TemporalPrimitive(kind, [float(d0), float(d1)])
+
+    raise ValueError(f"Unsupported temporal primitive syntax: [{tmp}]")
+
+def has_temporal_communication(frag: Fragment) -> bool:
+    if frag is None:
+        return False
+    if isinstance(frag, Communication) and frag.temporal is not None:
+        return True
+    for attr in ["cont", "body", "branch0", "branch1", "frag0", "frag1", "frag"]:
+        if hasattr(frag, attr) and has_temporal_communication(getattr(frag, attr)):
+            return True
+    return False
 
 def parse_example(example: str) -> Fragment:
     lines = [line.strip() for line in example.strip().splitlines() if line.strip()]
@@ -1169,6 +1251,25 @@ def parse_example(example: str) -> Fragment:
         if act_match:
             sender, receiver, var, expr = act_match.groups()
             node = Actuation(sender=sender, receiver=receiver, var_v=var, expr=expr.strip(), cont=Fragment())
+            append_node(node)
+            continue
+
+        temporal_comm_match = re.match(
+            r"(\w+)\s*->\s*(\w+)\s*:\s*\[(.+?)\]\s*([A-Za-z_]\w*)\s*(?:\(([^()]*)\))?$",
+            line
+        )
+        if temporal_comm_match:
+            sender, receiver, tmp, channel_name, content = temporal_comm_match.groups()
+            var_list, expr_list = parse_channel_content(content or "")
+            node = Communication(
+                sender=sender,
+                receiver=receiver,
+                channel=hpc.Channel(channel_name),
+                var_list=var_list,
+                expr_list=expr_list,
+                cont=Fragment(),
+                temporal=parse_temporal_primitive(tmp)
+            )
             append_node(node)
             continue
 

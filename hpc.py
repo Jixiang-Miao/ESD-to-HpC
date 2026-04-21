@@ -91,6 +91,15 @@ class Guard(Prefix):
     def __str__(self):
         return f"[{self.condition}]"
 
+class TemporalPrimitive:
+    def __init__(self, kind: str, args: List[float]):
+        self.kind = kind
+        self.args = args
+
+    def __str__(self):
+        args = ", ".join(str(arg) for arg in self.args)
+        return f"{self.kind}({args})"
+
 class ODE:
     def __init__(self, e0: List[str], v: List[str], e: List[str], bound: str,
                  ready_set: Optional[List[Channel]] = None,
@@ -120,6 +129,17 @@ class Continuous(Prefix):
         deriv = ", ".join(deriv_strs)
         ready_channels = ", ".join(str(ch) for ch in self.ode.ready_set)
         return f"{{{e0} | {deriv} & {self.ode.bound}, {{{ready_channels}}}}}"
+
+def make_global_clock(clock_name: str = "clock", horizon: float = 1000000.0):
+    ode = ODE(
+        e0=["0"],
+        v=[clock_name],
+        e=["1"],
+        bound=f"{clock_name}<{horizon}",
+        ready_set=[InChannel(clock_name)],
+        final_v=[clock_name]
+    )
+    return PrefixProcess(Continuous(ode), Inaction())
 
 class Assignment(Prefix):
     def __init__(self, var: Var, expr: Expr):
@@ -280,7 +300,6 @@ class System(Process):
     def __str__(self) -> str:
         return str(self.process)
 
-# 测试代码
 if __name__ == "__main__":
     # Train ≜ (ν p, v, a)(overline{channels}⟨p,v,a⟩ . Run || Observer)
 

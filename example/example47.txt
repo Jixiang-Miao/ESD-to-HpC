@@ -1,0 +1,10 @@
+@startuml
+activate Alice
+note right of Alice: delay(1)
+deactivate Alice
+activate Bob
+note right of Bob: delay(1)
+deactivate Bob
+Alice -> Bob: [every(1)] sample(x := 11)
+Alice -> Bob: finish
+@enduml

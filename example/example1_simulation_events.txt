@@ -8,9 +8,8 @@ Collected named definition[2]: System
 Attempted to apply [Assign-Expand] rule: applied=False, new_proc=Authentication Request̅⟨⟩.Authentication Response().0 || Authentication Request().Authentication Response̅⟨⟩.0, log=None
 Attempted to apply [Pass] rule: applied=False, new_proc=Authentication Request̅⟨⟩.Authentication Response().0 || Authentication Request().Authentication Response̅⟨⟩.0, log=None
 Attempted to apply [Stop] rule: applied=False, new_proc=Authentication Request̅⟨⟩.Authentication Response().0 || Authentication Request().Authentication Response̅⟨⟩.0, log=None
-input process: 1,[(1, <hpc.PrefixProcess object at 0x000001A4BA70A950>, <hpc.PrefixProcess object at 0x000001A4BA70A950>, False, -1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x000001A4BA70A9E0>, <hpc.PrefixProcess object at 0x000001A4BA70A9E0>, False, -1)]
-output variable list: ['']
-evaluate output expression:  -> val=None, missing=set()
+input process: 1,[(1, <hpc.PrefixProcess object at 0x000001907FF40E80>, <hpc.PrefixProcess object at 0x000001907FF40E80>, False, -1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x000001907FF40EE0>, <hpc.PrefixProcess object at 0x000001907FF40EE0>, False, -1)]
+output variable list: []
 output expression evaluation result: valid=True, values=[]
 COMM consumption: out_idx=0 in_idx=1 channel=AuthenticationRequest values=[]
 Attempted to apply [Comm] rule: applied=True, new_proc=Authentication Response().0 || Authentication Response̅⟨⟩.0, log=Communication channel(Authentication Request̅)(Communication message: )
@@ -21,9 +20,8 @@ Check process termination: Authentication Response().0 || Authentication Respons
 Attempted to apply [Assign-Expand] rule: applied=False, new_proc=Authentication Response().0 || Authentication Response̅⟨⟩.0, log=None
 Attempted to apply [Pass] rule: applied=False, new_proc=Authentication Response().0 || Authentication Response̅⟨⟩.0, log=None
 Attempted to apply [Stop] rule: applied=False, new_proc=Authentication Response().0 || Authentication Response̅⟨⟩.0, log=None
-input process: 1,[(0, <hpc.PrefixProcess object at 0x000001A4BA70AF20>, <hpc.PrefixProcess object at 0x000001A4BA70AF20>, False, -1)]，output process: 1,[(1, <hpc.PrefixProcess object at 0x000001A4BA70B370>, <hpc.PrefixProcess object at 0x000001A4BA70B370>, False, -1)]
-output variable list: ['']
-evaluate output expression:  -> val=None, missing=set()
+input process: 1,[(0, <hpc.PrefixProcess object at 0x000001907FF414E0>, <hpc.PrefixProcess object at 0x000001907FF414E0>, False, -1)]，output process: 1,[(1, <hpc.PrefixProcess object at 0x000001907FF41000>, <hpc.PrefixProcess object at 0x000001907FF41000>, False, -1)]
+output variable list: []
 output expression evaluation result: valid=True, values=[]
 COMM consumption: out_idx=1 in_idx=0 channel=AuthenticationResponse values=[]
 Attempted to apply [Comm] rule: applied=True, new_proc=0, log=Communication channel(Authentication Response̅)(Communication message: )

@@ -1,0 +1,396 @@
+# HpC simulation event log
+=== Starting HPC continuous process simulation ===
+Collected named definition[0]: Alice
+Collected named definition[1]: Bob
+Collected named definition[2]: GlobalClock
+Collected named definition[3]: System
+Removing restriction: ['t']
+Removing restriction: ["t'"]
+
+--- Step 1 ---
+Attempted to apply [Assign-Expand] rule: applied=False, new_proc={0 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Pass] rule: applied=False, new_proc={0 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc={0 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+input process: 0,[]，output process: 0,[]
+Attempted to apply [Comm] rule: applied=False, new_proc={0 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Sense] rule: applied=False, new_proc={0 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Actuate] rule: applied=False, new_proc={0 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Rep] rule: applied=False, new_proc={0 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Check process termination: {0 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0
+Collected 3 continuous processes for evolution
+ODE system information idx=0: {'idx': 0, 'comp': <hpc.PrefixProcess object at 0x000001901E832FB0>, 'ode': <hpc.ODE object at 0x000001901E842590>, 'repl': <hpc.PrefixProcess object at 0x000001901E8300D0>, 'vars_list': ['t'], 'derivs_list': ['1'], 'bound_expr': 't<1.0', 'init_vals': ['0']}
+Iterating initial values i: 0, var: t, init_vals[i]: 0
+ODE initial value expression idx=0, var=t: expr=0
+ODE initial value evaluation idx=0, var=t: v=0, missing=set()
+ODE initial state idx=0: y0=[0.0]
+ODE system information idx=1: {'idx': 1, 'comp': <hpc.PrefixProcess object at 0x000001901E832F20>, 'ode': <hpc.ODE object at 0x000001901E842FE0>, 'repl': <hpc.PrefixProcess object at 0x000001901E8323B0>, 'vars_list': ["t'"], 'derivs_list': ['1'], 'bound_expr': "t'<1.0", 'init_vals': ['0']}
+Iterating initial values i: 0, var: t', init_vals[i]: 0
+ODE initial value expression idx=1, var=t': expr=0
+ODE initial value evaluation idx=1, var=t': v=0, missing=set()
+ODE initial state idx=1: y0=[0.0]
+ODE system information idx=2: {'idx': 2, 'comp': <hpc.PrefixProcess object at 0x000001901E832CE0>, 'ode': <hpc.ODE object at 0x000001901E830490>, 'repl': <hpc.Inaction object at 0x000001901E830250>, 'vars_list': ['clock'], 'derivs_list': ['1'], 'bound_expr': 'clock<1000000.0', 'init_vals': ['0']}
+Iterating initial values i: 0, var: clock, init_vals[i]: 0
+ODE initial value expression idx=2, var=clock: expr=0
+ODE initial value evaluation idx=2, var=clock: v=0, missing=set()
+ODE initial state idx=2: y0=[0.0]
+Continuous evolution completed: advanced 0.100000 seconds
+Checking {0.10000000000000002 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.10000000000000002 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.10000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0
+Check process termination: {0.10000000000000002 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.10000000000000002 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.10000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0
+
+--- Step 2 ---
+Attempted to apply [Assign-Expand] rule: applied=False, new_proc={0.10000000000000002 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.10000000000000002 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.10000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Pass] rule: applied=False, new_proc={0.10000000000000002 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.10000000000000002 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.10000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc={0.10000000000000002 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.10000000000000002 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.10000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+input process: 0,[]，output process: 0,[]
+Attempted to apply [Comm] rule: applied=False, new_proc={0.10000000000000002 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.10000000000000002 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.10000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Sense] rule: applied=False, new_proc={0.10000000000000002 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.10000000000000002 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.10000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Actuate] rule: applied=False, new_proc={0.10000000000000002 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.10000000000000002 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.10000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Rep] rule: applied=False, new_proc={0.10000000000000002 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.10000000000000002 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.10000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Check process termination: {0.10000000000000002 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.10000000000000002 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.10000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0
+Collected 3 continuous processes for evolution
+ODE system information idx=0: {'idx': 0, 'comp': <hpc.PrefixProcess object at 0x000001901E815BD0>, 'ode': <hpc.ODE object at 0x000001901E845990>, 'repl': <hpc.PrefixProcess object at 0x000001901E814F40>, 'vars_list': ['t'], 'derivs_list': ['1'], 'bound_expr': 't<1.0', 'init_vals': ['0.10000000000000002']}
+Iterating initial values i: 0, var: t, init_vals[i]: 0.10000000000000002
+ODE initial value expression idx=0, var=t: expr=0.10000000000000002
+ODE initial value evaluation idx=0, var=t: v=0.10000000000000002, missing=set()
+ODE initial state idx=0: y0=[0.10000000000000002]
+ODE system information idx=1: {'idx': 1, 'comp': <hpc.PrefixProcess object at 0x000001907FF41C90>, 'ode': <hpc.ODE object at 0x000001901E814190>, 'repl': <hpc.PrefixProcess object at 0x000001907FF432E0>, 'vars_list': ["t'"], 'derivs_list': ['1'], 'bound_expr': "t'<1.0", 'init_vals': ['0.10000000000000002']}
+Iterating initial values i: 0, var: t', init_vals[i]: 0.10000000000000002
+ODE initial value expression idx=1, var=t': expr=0.10000000000000002
+ODE initial value evaluation idx=1, var=t': v=0.10000000000000002, missing=set()
+ODE initial state idx=1: y0=[0.10000000000000002]
+ODE system information idx=2: {'idx': 2, 'comp': <hpc.PrefixProcess object at 0x000001907FF41D50>, 'ode': <hpc.ODE object at 0x000001901E815930>, 'repl': <hpc.Inaction object at 0x000001901E830250>, 'vars_list': ['clock'], 'derivs_list': ['1'], 'bound_expr': 'clock<1000000.0', 'init_vals': ['0.10000000000000002']}
+Iterating initial values i: 0, var: clock, init_vals[i]: 0.10000000000000002
+ODE initial value expression idx=2, var=clock: expr=0.10000000000000002
+ODE initial value evaluation idx=2, var=clock: v=0.10000000000000002, missing=set()
+ODE initial state idx=2: y0=[0.10000000000000002]
+Continuous evolution completed: advanced 0.100000 seconds
+Checking {0.20000000000000004 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.20000000000000004 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.20000000000000004 | clock_dot=1 & clock<1000000.0, {clock}}.0
+Check process termination: {0.20000000000000004 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.20000000000000004 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.20000000000000004 | clock_dot=1 & clock<1000000.0, {clock}}.0
+
+--- Step 3 ---
+Attempted to apply [Assign-Expand] rule: applied=False, new_proc={0.20000000000000004 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.20000000000000004 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.20000000000000004 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Pass] rule: applied=False, new_proc={0.20000000000000004 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.20000000000000004 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.20000000000000004 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc={0.20000000000000004 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.20000000000000004 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.20000000000000004 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+input process: 0,[]，output process: 0,[]
+Attempted to apply [Comm] rule: applied=False, new_proc={0.20000000000000004 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.20000000000000004 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.20000000000000004 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Sense] rule: applied=False, new_proc={0.20000000000000004 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.20000000000000004 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.20000000000000004 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Actuate] rule: applied=False, new_proc={0.20000000000000004 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.20000000000000004 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.20000000000000004 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Rep] rule: applied=False, new_proc={0.20000000000000004 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.20000000000000004 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.20000000000000004 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Check process termination: {0.20000000000000004 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.20000000000000004 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.20000000000000004 | clock_dot=1 & clock<1000000.0, {clock}}.0
+Collected 3 continuous processes for evolution
+ODE system information idx=0: {'idx': 0, 'comp': <hpc.PrefixProcess object at 0x000001907FF43280>, 'ode': <hpc.ODE object at 0x000001901E833490>, 'repl': <hpc.PrefixProcess object at 0x000001907FF41F90>, 'vars_list': ['t'], 'derivs_list': ['1'], 'bound_expr': 't<1.0', 'init_vals': ['0.20000000000000004']}
+Iterating initial values i: 0, var: t, init_vals[i]: 0.20000000000000004
+ODE initial value expression idx=0, var=t: expr=0.20000000000000004
+ODE initial value evaluation idx=0, var=t: v=0.20000000000000004, missing=set()
+ODE initial state idx=0: y0=[0.20000000000000004]
+ODE system information idx=1: {'idx': 1, 'comp': <hpc.PrefixProcess object at 0x000001907FF40FD0>, 'ode': <hpc.ODE object at 0x000001907FF401C0>, 'repl': <hpc.PrefixProcess object at 0x000001907FF41CC0>, 'vars_list': ["t'"], 'derivs_list': ['1'], 'bound_expr': "t'<1.0", 'init_vals': ['0.20000000000000004']}
+Iterating initial values i: 0, var: t', init_vals[i]: 0.20000000000000004
+ODE initial value expression idx=1, var=t': expr=0.20000000000000004
+ODE initial value evaluation idx=1, var=t': v=0.20000000000000004, missing=set()
+ODE initial state idx=1: y0=[0.20000000000000004]
+ODE system information idx=2: {'idx': 2, 'comp': <hpc.PrefixProcess object at 0x000001907FF40D00>, 'ode': <hpc.ODE object at 0x000001907FF41E70>, 'repl': <hpc.Inaction object at 0x000001901E830250>, 'vars_list': ['clock'], 'derivs_list': ['1'], 'bound_expr': 'clock<1000000.0', 'init_vals': ['0.20000000000000004']}
+Iterating initial values i: 0, var: clock, init_vals[i]: 0.20000000000000004
+ODE initial value expression idx=2, var=clock: expr=0.20000000000000004
+ODE initial value evaluation idx=2, var=clock: v=0.20000000000000004, missing=set()
+ODE initial state idx=2: y0=[0.20000000000000004]
+Continuous evolution completed: advanced 0.100000 seconds
+Checking {0.30000000000000004 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.30000000000000004 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.30000000000000004 | clock_dot=1 & clock<1000000.0, {clock}}.0
+Check process termination: {0.30000000000000004 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.30000000000000004 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.30000000000000004 | clock_dot=1 & clock<1000000.0, {clock}}.0
+
+--- Step 4 ---
+Attempted to apply [Assign-Expand] rule: applied=False, new_proc={0.30000000000000004 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.30000000000000004 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.30000000000000004 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Pass] rule: applied=False, new_proc={0.30000000000000004 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.30000000000000004 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.30000000000000004 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc={0.30000000000000004 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.30000000000000004 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.30000000000000004 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+input process: 0,[]，output process: 0,[]
+Attempted to apply [Comm] rule: applied=False, new_proc={0.30000000000000004 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.30000000000000004 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.30000000000000004 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Sense] rule: applied=False, new_proc={0.30000000000000004 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.30000000000000004 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.30000000000000004 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Actuate] rule: applied=False, new_proc={0.30000000000000004 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.30000000000000004 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.30000000000000004 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Rep] rule: applied=False, new_proc={0.30000000000000004 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.30000000000000004 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.30000000000000004 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Check process termination: {0.30000000000000004 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.30000000000000004 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.30000000000000004 | clock_dot=1 & clock<1000000.0, {clock}}.0
+Collected 3 continuous processes for evolution
+ODE system information idx=0: {'idx': 0, 'comp': <hpc.PrefixProcess object at 0x000001901E8245E0>, 'ode': <hpc.ODE object at 0x000001907FF424A0>, 'repl': <hpc.PrefixProcess object at 0x000001901E826EC0>, 'vars_list': ['t'], 'derivs_list': ['1'], 'bound_expr': 't<1.0', 'init_vals': ['0.30000000000000004']}
+Iterating initial values i: 0, var: t, init_vals[i]: 0.30000000000000004
+ODE initial value expression idx=0, var=t: expr=0.30000000000000004
+ODE initial value evaluation idx=0, var=t: v=0.30000000000000004, missing=set()
+ODE initial state idx=0: y0=[0.30000000000000004]
+ODE system information idx=1: {'idx': 1, 'comp': <hpc.PrefixProcess object at 0x000001901E824640>, 'ode': <hpc.ODE object at 0x000001907FF42950>, 'repl': <hpc.PrefixProcess object at 0x000001901E826BC0>, 'vars_list': ["t'"], 'derivs_list': ['1'], 'bound_expr': "t'<1.0", 'init_vals': ['0.30000000000000004']}
+Iterating initial values i: 0, var: t', init_vals[i]: 0.30000000000000004
+ODE initial value expression idx=1, var=t': expr=0.30000000000000004
+ODE initial value evaluation idx=1, var=t': v=0.30000000000000004, missing=set()
+ODE initial state idx=1: y0=[0.30000000000000004]
+ODE system information idx=2: {'idx': 2, 'comp': <hpc.PrefixProcess object at 0x000001901E824C70>, 'ode': <hpc.ODE object at 0x000001907FF43A60>, 'repl': <hpc.Inaction object at 0x000001901E830250>, 'vars_list': ['clock'], 'derivs_list': ['1'], 'bound_expr': 'clock<1000000.0', 'init_vals': ['0.30000000000000004']}
+Iterating initial values i: 0, var: clock, init_vals[i]: 0.30000000000000004
+ODE initial value expression idx=2, var=clock: expr=0.30000000000000004
+ODE initial value evaluation idx=2, var=clock: v=0.30000000000000004, missing=set()
+ODE initial state idx=2: y0=[0.30000000000000004]
+Continuous evolution completed: advanced 0.100000 seconds
+Checking {0.4000000000000001 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.4000000000000001 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.4000000000000001 | clock_dot=1 & clock<1000000.0, {clock}}.0
+Check process termination: {0.4000000000000001 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.4000000000000001 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.4000000000000001 | clock_dot=1 & clock<1000000.0, {clock}}.0
+
+--- Step 5 ---
+Attempted to apply [Assign-Expand] rule: applied=False, new_proc={0.4000000000000001 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.4000000000000001 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.4000000000000001 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Pass] rule: applied=False, new_proc={0.4000000000000001 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.4000000000000001 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.4000000000000001 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc={0.4000000000000001 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.4000000000000001 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.4000000000000001 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+input process: 0,[]，output process: 0,[]
+Attempted to apply [Comm] rule: applied=False, new_proc={0.4000000000000001 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.4000000000000001 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.4000000000000001 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Sense] rule: applied=False, new_proc={0.4000000000000001 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.4000000000000001 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.4000000000000001 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Actuate] rule: applied=False, new_proc={0.4000000000000001 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.4000000000000001 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.4000000000000001 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Rep] rule: applied=False, new_proc={0.4000000000000001 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.4000000000000001 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.4000000000000001 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Check process termination: {0.4000000000000001 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.4000000000000001 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.4000000000000001 | clock_dot=1 & clock<1000000.0, {clock}}.0
+Collected 3 continuous processes for evolution
+ODE system information idx=0: {'idx': 0, 'comp': <hpc.PrefixProcess object at 0x000001901E825CF0>, 'ode': <hpc.ODE object at 0x000001901E824400>, 'repl': <hpc.PrefixProcess object at 0x000001901E827A60>, 'vars_list': ['t'], 'derivs_list': ['1'], 'bound_expr': 't<1.0', 'init_vals': ['0.4000000000000001']}
+Iterating initial values i: 0, var: t, init_vals[i]: 0.4000000000000001
+ODE initial value expression idx=0, var=t: expr=0.4000000000000001
+ODE initial value evaluation idx=0, var=t: v=0.4000000000000001, missing=set()
+ODE initial state idx=0: y0=[0.4000000000000001]
+ODE system information idx=1: {'idx': 1, 'comp': <hpc.PrefixProcess object at 0x000001901E824D60>, 'ode': <hpc.ODE object at 0x000001901E826410>, 'repl': <hpc.PrefixProcess object at 0x000001901E8261A0>, 'vars_list': ["t'"], 'derivs_list': ['1'], 'bound_expr': "t'<1.0", 'init_vals': ['0.4000000000000001']}
+Iterating initial values i: 0, var: t', init_vals[i]: 0.4000000000000001
+ODE initial value expression idx=1, var=t': expr=0.4000000000000001
+ODE initial value evaluation idx=1, var=t': v=0.4000000000000001, missing=set()
+ODE initial state idx=1: y0=[0.4000000000000001]
+ODE system information idx=2: {'idx': 2, 'comp': <hpc.PrefixProcess object at 0x000001901E825FF0>, 'ode': <hpc.ODE object at 0x000001901E826230>, 'repl': <hpc.Inaction object at 0x000001901E830250>, 'vars_list': ['clock'], 'derivs_list': ['1'], 'bound_expr': 'clock<1000000.0', 'init_vals': ['0.4000000000000001']}
+Iterating initial values i: 0, var: clock, init_vals[i]: 0.4000000000000001
+ODE initial value expression idx=2, var=clock: expr=0.4000000000000001
+ODE initial value evaluation idx=2, var=clock: v=0.4000000000000001, missing=set()
+ODE initial state idx=2: y0=[0.4000000000000001]
+Continuous evolution completed: advanced 0.100000 seconds
+Checking {0.5000000000000001 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.5000000000000001 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.5000000000000001 | clock_dot=1 & clock<1000000.0, {clock}}.0
+Check process termination: {0.5000000000000001 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.5000000000000001 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.5000000000000001 | clock_dot=1 & clock<1000000.0, {clock}}.0
+
+--- Step 6 ---
+Attempted to apply [Assign-Expand] rule: applied=False, new_proc={0.5000000000000001 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.5000000000000001 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.5000000000000001 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Pass] rule: applied=False, new_proc={0.5000000000000001 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.5000000000000001 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.5000000000000001 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc={0.5000000000000001 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.5000000000000001 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.5000000000000001 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+input process: 0,[]，output process: 0,[]
+Attempted to apply [Comm] rule: applied=False, new_proc={0.5000000000000001 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.5000000000000001 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.5000000000000001 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Sense] rule: applied=False, new_proc={0.5000000000000001 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.5000000000000001 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.5000000000000001 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Actuate] rule: applied=False, new_proc={0.5000000000000001 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.5000000000000001 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.5000000000000001 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Rep] rule: applied=False, new_proc={0.5000000000000001 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.5000000000000001 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.5000000000000001 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Check process termination: {0.5000000000000001 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.5000000000000001 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.5000000000000001 | clock_dot=1 & clock<1000000.0, {clock}}.0
+Collected 3 continuous processes for evolution
+ODE system information idx=0: {'idx': 0, 'comp': <hpc.PrefixProcess object at 0x000001901E826AD0>, 'ode': <hpc.ODE object at 0x000001901E827010>, 'repl': <hpc.PrefixProcess object at 0x000001901E8246D0>, 'vars_list': ['t'], 'derivs_list': ['1'], 'bound_expr': 't<1.0', 'init_vals': ['0.5000000000000001']}
+Iterating initial values i: 0, var: t, init_vals[i]: 0.5000000000000001
+ODE initial value expression idx=0, var=t: expr=0.5000000000000001
+ODE initial value evaluation idx=0, var=t: v=0.5000000000000001, missing=set()
+ODE initial state idx=0: y0=[0.5000000000000001]
+ODE system information idx=1: {'idx': 1, 'comp': <hpc.PrefixProcess object at 0x000001901E803FA0>, 'ode': <hpc.ODE object at 0x000001901E827B80>, 'repl': <hpc.PrefixProcess object at 0x000001901E803C70>, 'vars_list': ["t'"], 'derivs_list': ['1'], 'bound_expr': "t'<1.0", 'init_vals': ['0.5000000000000001']}
+Iterating initial values i: 0, var: t', init_vals[i]: 0.5000000000000001
+ODE initial value expression idx=1, var=t': expr=0.5000000000000001
+ODE initial value evaluation idx=1, var=t': v=0.5000000000000001, missing=set()
+ODE initial state idx=1: y0=[0.5000000000000001]
+ODE system information idx=2: {'idx': 2, 'comp': <hpc.PrefixProcess object at 0x000001901E802BC0>, 'ode': <hpc.ODE object at 0x000001901E826D10>, 'repl': <hpc.Inaction object at 0x000001901E830250>, 'vars_list': ['clock'], 'derivs_list': ['1'], 'bound_expr': 'clock<1000000.0', 'init_vals': ['0.5000000000000001']}
+Iterating initial values i: 0, var: clock, init_vals[i]: 0.5000000000000001
+ODE initial value expression idx=2, var=clock: expr=0.5000000000000001
+ODE initial value evaluation idx=2, var=clock: v=0.5000000000000001, missing=set()
+ODE initial state idx=2: y0=[0.5000000000000001]
+Continuous evolution completed: advanced 0.100000 seconds
+Checking {0.6000000000000001 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.6000000000000001 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.6000000000000001 | clock_dot=1 & clock<1000000.0, {clock}}.0
+Check process termination: {0.6000000000000001 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.6000000000000001 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.6000000000000001 | clock_dot=1 & clock<1000000.0, {clock}}.0
+
+--- Step 7 ---
+Attempted to apply [Assign-Expand] rule: applied=False, new_proc={0.6000000000000001 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.6000000000000001 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.6000000000000001 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Pass] rule: applied=False, new_proc={0.6000000000000001 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.6000000000000001 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.6000000000000001 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc={0.6000000000000001 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.6000000000000001 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.6000000000000001 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+input process: 0,[]，output process: 0,[]
+Attempted to apply [Comm] rule: applied=False, new_proc={0.6000000000000001 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.6000000000000001 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.6000000000000001 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Sense] rule: applied=False, new_proc={0.6000000000000001 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.6000000000000001 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.6000000000000001 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Actuate] rule: applied=False, new_proc={0.6000000000000001 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.6000000000000001 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.6000000000000001 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Rep] rule: applied=False, new_proc={0.6000000000000001 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.6000000000000001 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.6000000000000001 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Check process termination: {0.6000000000000001 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.6000000000000001 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.6000000000000001 | clock_dot=1 & clock<1000000.0, {clock}}.0
+Collected 3 continuous processes for evolution
+ODE system information idx=0: {'idx': 0, 'comp': <hpc.PrefixProcess object at 0x000001901E800F70>, 'ode': <hpc.ODE object at 0x000001901E8023E0>, 'repl': <hpc.PrefixProcess object at 0x000001901E8018D0>, 'vars_list': ['t'], 'derivs_list': ['1'], 'bound_expr': 't<1.0', 'init_vals': ['0.6000000000000001']}
+Iterating initial values i: 0, var: t, init_vals[i]: 0.6000000000000001
+ODE initial value expression idx=0, var=t: expr=0.6000000000000001
+ODE initial value evaluation idx=0, var=t: v=0.6000000000000001, missing=set()
+ODE initial state idx=0: y0=[0.6000000000000001]
+ODE system information idx=1: {'idx': 1, 'comp': <hpc.PrefixProcess object at 0x000001901E800C10>, 'ode': <hpc.ODE object at 0x000001901E802AD0>, 'repl': <hpc.PrefixProcess object at 0x000001901E8015A0>, 'vars_list': ["t'"], 'derivs_list': ['1'], 'bound_expr': "t'<1.0", 'init_vals': ['0.6000000000000001']}
+Iterating initial values i: 0, var: t', init_vals[i]: 0.6000000000000001
+ODE initial value expression idx=1, var=t': expr=0.6000000000000001
+ODE initial value evaluation idx=1, var=t': v=0.6000000000000001, missing=set()
+ODE initial state idx=1: y0=[0.6000000000000001]
+ODE system information idx=2: {'idx': 2, 'comp': <hpc.PrefixProcess object at 0x000001901E803E20>, 'ode': <hpc.ODE object at 0x000001901E8005B0>, 'repl': <hpc.Inaction object at 0x000001901E830250>, 'vars_list': ['clock'], 'derivs_list': ['1'], 'bound_expr': 'clock<1000000.0', 'init_vals': ['0.6000000000000001']}
+Iterating initial values i: 0, var: clock, init_vals[i]: 0.6000000000000001
+ODE initial value expression idx=2, var=clock: expr=0.6000000000000001
+ODE initial value evaluation idx=2, var=clock: v=0.6000000000000001, missing=set()
+ODE initial state idx=2: y0=[0.6000000000000001]
+Continuous evolution completed: advanced 0.100000 seconds
+Checking {0.7000000000000002 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.7000000000000002 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.7000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0
+Check process termination: {0.7000000000000002 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.7000000000000002 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.7000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0
+
+--- Step 8 ---
+Attempted to apply [Assign-Expand] rule: applied=False, new_proc={0.7000000000000002 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.7000000000000002 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.7000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Pass] rule: applied=False, new_proc={0.7000000000000002 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.7000000000000002 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.7000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc={0.7000000000000002 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.7000000000000002 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.7000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+input process: 0,[]，output process: 0,[]
+Attempted to apply [Comm] rule: applied=False, new_proc={0.7000000000000002 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.7000000000000002 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.7000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Sense] rule: applied=False, new_proc={0.7000000000000002 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.7000000000000002 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.7000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Actuate] rule: applied=False, new_proc={0.7000000000000002 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.7000000000000002 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.7000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Rep] rule: applied=False, new_proc={0.7000000000000002 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.7000000000000002 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.7000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Check process termination: {0.7000000000000002 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.7000000000000002 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.7000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0
+Collected 3 continuous processes for evolution
+ODE system information idx=0: {'idx': 0, 'comp': <hpc.PrefixProcess object at 0x000001901E8427D0>, 'ode': <hpc.ODE object at 0x000001901E8036D0>, 'repl': <hpc.PrefixProcess object at 0x000001901E840D00>, 'vars_list': ['t'], 'derivs_list': ['1'], 'bound_expr': 't<1.0', 'init_vals': ['0.7000000000000002']}
+Iterating initial values i: 0, var: t, init_vals[i]: 0.7000000000000002
+ODE initial value expression idx=0, var=t: expr=0.7000000000000002
+ODE initial value evaluation idx=0, var=t: v=0.7000000000000002, missing=set()
+ODE initial state idx=0: y0=[0.7000000000000002]
+ODE system information idx=1: {'idx': 1, 'comp': <hpc.PrefixProcess object at 0x000001901E825630>, 'ode': <hpc.ODE object at 0x000001901E843DF0>, 'repl': <hpc.PrefixProcess object at 0x000001901E8262C0>, 'vars_list': ["t'"], 'derivs_list': ['1'], 'bound_expr': "t'<1.0", 'init_vals': ['0.7000000000000002']}
+Iterating initial values i: 0, var: t', init_vals[i]: 0.7000000000000002
+ODE initial value expression idx=1, var=t': expr=0.7000000000000002
+ODE initial value evaluation idx=1, var=t': v=0.7000000000000002, missing=set()
+ODE initial state idx=1: y0=[0.7000000000000002]
+ODE system information idx=2: {'idx': 2, 'comp': <hpc.PrefixProcess object at 0x000001901E825CF0>, 'ode': <hpc.ODE object at 0x000001901E843F10>, 'repl': <hpc.Inaction object at 0x000001901E830250>, 'vars_list': ['clock'], 'derivs_list': ['1'], 'bound_expr': 'clock<1000000.0', 'init_vals': ['0.7000000000000002']}
+Iterating initial values i: 0, var: clock, init_vals[i]: 0.7000000000000002
+ODE initial value expression idx=2, var=clock: expr=0.7000000000000002
+ODE initial value evaluation idx=2, var=clock: v=0.7000000000000002, missing=set()
+ODE initial state idx=2: y0=[0.7000000000000002]
+Continuous evolution completed: advanced 0.100000 seconds
+Checking {0.8000000000000002 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.8000000000000002 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.8000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0
+Check process termination: {0.8000000000000002 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.8000000000000002 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.8000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0
+
+--- Step 9 ---
+Attempted to apply [Assign-Expand] rule: applied=False, new_proc={0.8000000000000002 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.8000000000000002 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.8000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Pass] rule: applied=False, new_proc={0.8000000000000002 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.8000000000000002 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.8000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc={0.8000000000000002 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.8000000000000002 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.8000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+input process: 0,[]，output process: 0,[]
+Attempted to apply [Comm] rule: applied=False, new_proc={0.8000000000000002 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.8000000000000002 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.8000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Sense] rule: applied=False, new_proc={0.8000000000000002 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.8000000000000002 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.8000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Actuate] rule: applied=False, new_proc={0.8000000000000002 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.8000000000000002 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.8000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Rep] rule: applied=False, new_proc={0.8000000000000002 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.8000000000000002 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.8000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Check process termination: {0.8000000000000002 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.8000000000000002 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.8000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0
+Collected 3 continuous processes for evolution
+ODE system information idx=0: {'idx': 0, 'comp': <hpc.PrefixProcess object at 0x000001901E826110>, 'ode': <hpc.ODE object at 0x000001901E824CA0>, 'repl': <hpc.PrefixProcess object at 0x000001901E826950>, 'vars_list': ['t'], 'derivs_list': ['1'], 'bound_expr': 't<1.0', 'init_vals': ['0.8000000000000002']}
+Iterating initial values i: 0, var: t, init_vals[i]: 0.8000000000000002
+ODE initial value expression idx=0, var=t: expr=0.8000000000000002
+ODE initial value evaluation idx=0, var=t: v=0.8000000000000002, missing=set()
+ODE initial state idx=0: y0=[0.8000000000000002]
+ODE system information idx=1: {'idx': 1, 'comp': <hpc.PrefixProcess object at 0x000001901E827190>, 'ode': <hpc.ODE object at 0x000001901E826290>, 'repl': <hpc.PrefixProcess object at 0x000001901E824BB0>, 'vars_list': ["t'"], 'derivs_list': ['1'], 'bound_expr': "t'<1.0", 'init_vals': ['0.8000000000000002']}
+Iterating initial values i: 0, var: t', init_vals[i]: 0.8000000000000002
+ODE initial value expression idx=1, var=t': expr=0.8000000000000002
+ODE initial value evaluation idx=1, var=t': v=0.8000000000000002, missing=set()
+ODE initial state idx=1: y0=[0.8000000000000002]
+ODE system information idx=2: {'idx': 2, 'comp': <hpc.PrefixProcess object at 0x000001901E8260E0>, 'ode': <hpc.ODE object at 0x000001901E8251E0>, 'repl': <hpc.Inaction object at 0x000001901E830250>, 'vars_list': ['clock'], 'derivs_list': ['1'], 'bound_expr': 'clock<1000000.0', 'init_vals': ['0.8000000000000002']}
+Iterating initial values i: 0, var: clock, init_vals[i]: 0.8000000000000002
+ODE initial value expression idx=2, var=clock: expr=0.8000000000000002
+ODE initial value evaluation idx=2, var=clock: v=0.8000000000000002, missing=set()
+ODE initial state idx=2: y0=[0.8000000000000002]
+Continuous evolution completed: advanced 0.100000 seconds
+Checking {0.9000000000000001 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.9000000000000001 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.9000000000000001 | clock_dot=1 & clock<1000000.0, {clock}}.0
+Check process termination: {0.9000000000000001 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.9000000000000001 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.9000000000000001 | clock_dot=1 & clock<1000000.0, {clock}}.0
+
+--- Step 10 ---
+Attempted to apply [Assign-Expand] rule: applied=False, new_proc={0.9000000000000001 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.9000000000000001 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.9000000000000001 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Pass] rule: applied=False, new_proc={0.9000000000000001 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.9000000000000001 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.9000000000000001 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc={0.9000000000000001 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.9000000000000001 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.9000000000000001 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+input process: 0,[]，output process: 0,[]
+Attempted to apply [Comm] rule: applied=False, new_proc={0.9000000000000001 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.9000000000000001 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.9000000000000001 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Sense] rule: applied=False, new_proc={0.9000000000000001 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.9000000000000001 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.9000000000000001 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Actuate] rule: applied=False, new_proc={0.9000000000000001 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.9000000000000001 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.9000000000000001 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Rep] rule: applied=False, new_proc={0.9000000000000001 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.9000000000000001 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.9000000000000001 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Check process termination: {0.9000000000000001 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || {0.9000000000000001 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {0.9000000000000001 | clock_dot=1 & clock<1000000.0, {clock}}.0
+Collected 3 continuous processes for evolution
+ODE system information idx=0: {'idx': 0, 'comp': <hpc.PrefixProcess object at 0x000001907FF43B50>, 'ode': <hpc.ODE object at 0x000001901E8255D0>, 'repl': <hpc.PrefixProcess object at 0x000001907FF417B0>, 'vars_list': ['t'], 'derivs_list': ['1'], 'bound_expr': 't<1.0', 'init_vals': ['0.9000000000000001']}
+Iterating initial values i: 0, var: t, init_vals[i]: 0.9000000000000001
+ODE initial value expression idx=0, var=t: expr=0.9000000000000001
+ODE initial value evaluation idx=0, var=t: v=0.9000000000000001, missing=set()
+ODE initial state idx=0: y0=[0.9000000000000001]
+ODE system information idx=1: {'idx': 1, 'comp': <hpc.PrefixProcess object at 0x000001907FF42F50>, 'ode': <hpc.ODE object at 0x000001901E8265F0>, 'repl': <hpc.PrefixProcess object at 0x000001907FF420B0>, 'vars_list': ["t'"], 'derivs_list': ['1'], 'bound_expr': "t'<1.0", 'init_vals': ['0.9000000000000001']}
+Iterating initial values i: 0, var: t', init_vals[i]: 0.9000000000000001
+ODE initial value expression idx=1, var=t': expr=0.9000000000000001
+ODE initial value evaluation idx=1, var=t': v=0.9000000000000001, missing=set()
+ODE initial state idx=1: y0=[0.9000000000000001]
+ODE system information idx=2: {'idx': 2, 'comp': <hpc.PrefixProcess object at 0x000001907FF43220>, 'ode': <hpc.ODE object at 0x000001907FF40EB0>, 'repl': <hpc.Inaction object at 0x000001901E830250>, 'vars_list': ['clock'], 'derivs_list': ['1'], 'bound_expr': 'clock<1000000.0', 'init_vals': ['0.9000000000000001']}
+Iterating initial values i: 0, var: clock, init_vals[i]: 0.9000000000000001
+ODE initial value expression idx=2, var=clock: expr=0.9000000000000001
+ODE initial value evaluation idx=2, var=clock: v=0.9000000000000001, missing=set()
+ODE initial state idx=2: y0=[0.9000000000000001]
+Continuous evolution completed: advanced 0.100000 seconds
+Checking clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0
+Check process termination: clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0
+
+--- Step 11 ---
+Attempted to apply [Assign-Expand] rule: applied=False, new_proc=clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Pass] rule: applied=False, new_proc=clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc=clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+input process: 2,[(0, <hpc.PrefixProcess object at 0x000001907FF41180>, <hpc.PrefixProcess object at 0x000001907FF41180>, False, -1), (1, <hpc.PrefixProcess object at 0x000001907FF42470>, <hpc.PrefixProcess object at 0x000001907FF42470>, False, -1)]，output process: 0,[]
+Attempted to apply [Comm] rule: applied=False, new_proc=clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0 || clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Sense] rule: applied=True, new_proc=sample̅⟨11⟩.clock(t1_18).[1.0 == t1_18 and (1.0) % 1.0 == 0].finish̅⟨⟩.0 || clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=Sense channel matched (clock) value=1.0
+Discrete reduction: Applied [Sense] rule (Sense channel matched (clock) value=1.0)
+Check process termination: sample̅⟨11⟩.clock(t1_18).[1.0 == t1_18 and (1.0) % 1.0 == 0].finish̅⟨⟩.0 || clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0
+
+--- Step 12 ---
+Attempted to apply [Assign-Expand] rule: applied=False, new_proc=sample̅⟨11⟩.clock(t1_18).[1.0 == t1_18 and (1.0) % 1.0 == 0].finish̅⟨⟩.0 || clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Pass] rule: applied=False, new_proc=sample̅⟨11⟩.clock(t1_18).[1.0 == t1_18 and (1.0) % 1.0 == 0].finish̅⟨⟩.0 || clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc=sample̅⟨11⟩.clock(t1_18).[1.0 == t1_18 and (1.0) % 1.0 == 0].finish̅⟨⟩.0 || clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+input process: 1,[(1, <hpc.PrefixProcess object at 0x000001907FF43220>, <hpc.PrefixProcess object at 0x000001907FF43220>, False, -1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x000001907FF420B0>, <hpc.PrefixProcess object at 0x000001907FF420B0>, False, -1)]
+output variable list: ['11']
+evaluate output expression: 11 -> val=11, missing=set()
+communication injection: sample = 11
+output expression evaluation result: valid=True, values=[11]
+Attempted to apply [Comm] rule: applied=False, new_proc=sample̅⟨11⟩.clock(t1_18).[1.0 == t1_18 and (1.0) % 1.0 == 0].finish̅⟨⟩.0 || clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0 || {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Sense] rule: applied=True, new_proc=sample̅⟨11⟩.clock(t1_18).[1.0 == t1_18 and (1.0) % 1.0 == 0].finish̅⟨⟩.0 || sample(x).clock(t1_20).[1.0 == t1_20 and (1.0) % 1.0 == 0].finish().0 || {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=Sense channel matched (clock) value=1.0
+Discrete reduction: Applied [Sense] rule (Sense channel matched (clock) value=1.0)
+Check process termination: sample̅⟨11⟩.clock(t1_18).[1.0 == t1_18 and (1.0) % 1.0 == 0].finish̅⟨⟩.0 || sample(x).clock(t1_20).[1.0 == t1_20 and (1.0) % 1.0 == 0].finish().0 || {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0
+
+--- Step 13 ---
+Attempted to apply [Assign-Expand] rule: applied=False, new_proc=sample̅⟨11⟩.clock(t1_18).[1.0 == t1_18 and (1.0) % 1.0 == 0].finish̅⟨⟩.0 || sample(x).clock(t1_20).[1.0 == t1_20 and (1.0) % 1.0 == 0].finish().0 || {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Pass] rule: applied=False, new_proc=sample̅⟨11⟩.clock(t1_18).[1.0 == t1_18 and (1.0) % 1.0 == 0].finish̅⟨⟩.0 || sample(x).clock(t1_20).[1.0 == t1_20 and (1.0) % 1.0 == 0].finish().0 || {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc=sample̅⟨11⟩.clock(t1_18).[1.0 == t1_18 and (1.0) % 1.0 == 0].finish̅⟨⟩.0 || sample(x).clock(t1_20).[1.0 == t1_20 and (1.0) % 1.0 == 0].finish().0 || {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+input process: 1,[(1, <hpc.PrefixProcess object at 0x000001907FF419F0>, <hpc.PrefixProcess object at 0x000001907FF419F0>, False, -1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x000001907FF414E0>, <hpc.PrefixProcess object at 0x000001907FF414E0>, False, -1)]
+output variable list: ['11']
+evaluate output expression: 11 -> val=11, missing=set()
+communication injection: sample = 11
+output expression evaluation result: valid=True, values=[11]
+COMM consumption: out_idx=0 in_idx=1 channel=sample values=[11]
+Attempted to apply [Comm] rule: applied=True, new_proc=clock(t1_18).[1.0 == t1_18 and (1.0) % 1.0 == 0].finish̅⟨⟩.0 || clock(t1_20).[1.0 == t1_20 and (1.0) % 1.0 == 0].finish().0 || {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=Communication channel(sample̅)(Communication message: 11)
+Discrete reduction: Applied [Comm] rule (Communication channel(sample̅)(Communication message: 11))
+Check process termination: clock(t1_18).[1.0 == t1_18 and (1.0) % 1.0 == 0].finish̅⟨⟩.0 || clock(t1_20).[1.0 == t1_20 and (1.0) % 1.0 == 0].finish().0 || {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0
+
+--- Step 14 ---
+Attempted to apply [Assign-Expand] rule: applied=False, new_proc=clock(t1_18).[1.0 == t1_18 and (1.0) % 1.0 == 0].finish̅⟨⟩.0 || clock(t1_20).[1.0 == t1_20 and (1.0) % 1.0 == 0].finish().0 || {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Pass] rule: applied=False, new_proc=clock(t1_18).[1.0 == t1_18 and (1.0) % 1.0 == 0].finish̅⟨⟩.0 || clock(t1_20).[1.0 == t1_20 and (1.0) % 1.0 == 0].finish().0 || {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc=clock(t1_18).[1.0 == t1_18 and (1.0) % 1.0 == 0].finish̅⟨⟩.0 || clock(t1_20).[1.0 == t1_20 and (1.0) % 1.0 == 0].finish().0 || {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+input process: 2,[(0, <hpc.PrefixProcess object at 0x000001907FF43040>, <hpc.PrefixProcess object at 0x000001907FF43040>, False, -1), (1, <hpc.PrefixProcess object at 0x000001907FF43CD0>, <hpc.PrefixProcess object at 0x000001907FF43CD0>, False, -1)]，output process: 0,[]
+Attempted to apply [Comm] rule: applied=False, new_proc=clock(t1_18).[1.0 == t1_18 and (1.0) % 1.0 == 0].finish̅⟨⟩.0 || clock(t1_20).[1.0 == t1_20 and (1.0) % 1.0 == 0].finish().0 || {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Sense] rule: applied=True, new_proc=[1.0 == 1.0 and (1.0) % 1.0 == 0].finish̅⟨⟩.0 || clock(t1_20).[1.0 == t1_20 and (1.0) % 1.0 == 0].finish().0 || {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=Sense channel matched (clock) value=1.0
+Discrete reduction: Applied [Sense] rule (Sense channel matched (clock) value=1.0)
+Check process termination: [1.0 == 1.0 and (1.0) % 1.0 == 0].finish̅⟨⟩.0 || clock(t1_20).[1.0 == t1_20 and (1.0) % 1.0 == 0].finish().0 || {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0
+
+--- Step 15 ---
+Attempted to apply [Assign-Expand] rule: applied=False, new_proc=[1.0 == 1.0 and (1.0) % 1.0 == 0].finish̅⟨⟩.0 || clock(t1_20).[1.0 == t1_20 and (1.0) % 1.0 == 0].finish().0 || {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+PASS rule applied: idx=0 msg=Condition satisfied: 1.0 == 1.0 and (1.0) % 1.0 == 0
+Attempted to apply [Pass] rule: applied=True, new_proc=finish̅⟨⟩.0 || clock(t1_20).[1.0 == t1_20 and (1.0) % 1.0 == 0].finish().0 || {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=Condition satisfied: 1.0 == 1.0 and (1.0) % 1.0 == 0
+Discrete reduction: Applied [Pass] rule (Condition satisfied: 1.0 == 1.0 and (1.0) % 1.0 == 0)
+Check process termination: finish̅⟨⟩.0 || clock(t1_20).[1.0 == t1_20 and (1.0) % 1.0 == 0].finish().0 || {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0
+
+--- Step 16 ---
+Attempted to apply [Assign-Expand] rule: applied=False, new_proc=finish̅⟨⟩.0 || clock(t1_20).[1.0 == t1_20 and (1.0) % 1.0 == 0].finish().0 || {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Pass] rule: applied=False, new_proc=finish̅⟨⟩.0 || clock(t1_20).[1.0 == t1_20 and (1.0) % 1.0 == 0].finish().0 || {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc=finish̅⟨⟩.0 || clock(t1_20).[1.0 == t1_20 and (1.0) % 1.0 == 0].finish().0 || {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+input process: 1,[(1, <hpc.PrefixProcess object at 0x000001907FF41270>, <hpc.PrefixProcess object at 0x000001907FF41270>, False, -1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x000001901E825CF0>, <hpc.PrefixProcess object at 0x000001901E825CF0>, False, -1)]
+output variable list: []
+output expression evaluation result: valid=True, values=[]
+Attempted to apply [Comm] rule: applied=False, new_proc=finish̅⟨⟩.0 || clock(t1_20).[1.0 == t1_20 and (1.0) % 1.0 == 0].finish().0 || {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Sense] rule: applied=True, new_proc=finish̅⟨⟩.0 || [1.0 == 1.0 and (1.0) % 1.0 == 0].finish().0 || {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=Sense channel matched (clock) value=1.0
+Discrete reduction: Applied [Sense] rule (Sense channel matched (clock) value=1.0)
+Check process termination: finish̅⟨⟩.0 || [1.0 == 1.0 and (1.0) % 1.0 == 0].finish().0 || {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0
+
+--- Step 17 ---
+Attempted to apply [Assign-Expand] rule: applied=False, new_proc=finish̅⟨⟩.0 || [1.0 == 1.0 and (1.0) % 1.0 == 0].finish().0 || {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+PASS rule applied: idx=1 msg=Condition satisfied: 1.0 == 1.0 and (1.0) % 1.0 == 0
+Attempted to apply [Pass] rule: applied=True, new_proc=finish̅⟨⟩.0 || finish().0 || {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=Condition satisfied: 1.0 == 1.0 and (1.0) % 1.0 == 0
+Discrete reduction: Applied [Pass] rule (Condition satisfied: 1.0 == 1.0 and (1.0) % 1.0 == 0)
+Check process termination: finish̅⟨⟩.0 || finish().0 || {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0
+
+--- Step 18 ---
+Attempted to apply [Assign-Expand] rule: applied=False, new_proc=finish̅⟨⟩.0 || finish().0 || {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Pass] rule: applied=False, new_proc=finish̅⟨⟩.0 || finish().0 || {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc=finish̅⟨⟩.0 || finish().0 || {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
+input process: 1,[(1, <hpc.PrefixProcess object at 0x000001901E827190>, <hpc.PrefixProcess object at 0x000001901E827190>, False, -1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x000001901E8258D0>, <hpc.PrefixProcess object at 0x000001901E8258D0>, False, -1)]
+output variable list: []
+output expression evaluation result: valid=True, values=[]
+COMM consumption: out_idx=0 in_idx=1 channel=finish values=[]
+Attempted to apply [Comm] rule: applied=True, new_proc={1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=Communication channel(finish̅)(Communication message: )
+Discrete reduction: Applied [Comm] rule (Communication channel(finish̅)(Communication message: ))
+Check process termination: {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0
+System terminated
+=== Simulation completed: 18 steps, total time 1.000000 seconds ===

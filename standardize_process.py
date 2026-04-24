@@ -332,7 +332,6 @@ def rename_variable_in_process(process: Process, old_name: str, new_name: str) -
         return Sum(new_branches)
     
     if isinstance(process, (Loop, Replication)):
-        # 保持类型一致地重写内部
         if hasattr(process, 'process'):
             new_body = rename_variable_in_process(process.process, old_name, new_name)
             return type(process)(new_body)

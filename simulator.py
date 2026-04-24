@@ -1699,7 +1699,7 @@ def apply_assignment_expansion_rule(par: hpc.Parallel) -> Tuple[bool, hpc.Proces
                     used_fresh.add(fresh)
                     produced_hidden.append(fresh)
 
-                    expanded_parts = make_assignment_expansion(branch, fresh)  # 直接是 list
+                    expanded_parts = make_assignment_expansion(branch, fresh)
                     new_processes.extend(expanded_parts)
 
                     logs.append(f"{var_name}:={assign.expr} chosen from Sum branch {j} via {fresh}")

@@ -9,7 +9,7 @@ Collected named definition[3]: System
 Attempted to apply [Assign-Expand] rule: applied=False, new_proc=clock(t0_5).fast̅⟨7⟩.clock(t1_6).[0 <= (t1_6-t0_5) and (t1_6-t0_5) <= 1.0].finish̅⟨⟩.0 || clock(t0_7).fast(x).clock(t1_8).[0 <= (t1_8-t0_7) and (t1_8-t0_7) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
 Attempted to apply [Pass] rule: applied=False, new_proc=clock(t0_5).fast̅⟨7⟩.clock(t1_6).[0 <= (t1_6-t0_5) and (t1_6-t0_5) <= 1.0].finish̅⟨⟩.0 || clock(t0_7).fast(x).clock(t1_8).[0 <= (t1_8-t0_7) and (t1_8-t0_7) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
 Attempted to apply [Stop] rule: applied=False, new_proc=clock(t0_5).fast̅⟨7⟩.clock(t1_6).[0 <= (t1_6-t0_5) and (t1_6-t0_5) <= 1.0].finish̅⟨⟩.0 || clock(t0_7).fast(x).clock(t1_8).[0 <= (t1_8-t0_7) and (t1_8-t0_7) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
-input process: 2,[(0, <hpc.PrefixProcess object at 0x000001901E8274C0>, <hpc.PrefixProcess object at 0x000001901E8274C0>, False, -1), (1, <hpc.PrefixProcess object at 0x000001901E824100>, <hpc.PrefixProcess object at 0x000001901E824100>, False, -1)]，output process: 0,[]
+input process: 2,[(0, <hpc.PrefixProcess object at 0x000001DEE472A3E0>, <hpc.PrefixProcess object at 0x000001DEE472A3E0>, False, -1), (1, <hpc.PrefixProcess object at 0x000001DEE473D1E0>, <hpc.PrefixProcess object at 0x000001DEE473D1E0>, False, -1)]，output process: 0,[]
 Attempted to apply [Comm] rule: applied=False, new_proc=clock(t0_5).fast̅⟨7⟩.clock(t1_6).[0 <= (t1_6-t0_5) and (t1_6-t0_5) <= 1.0].finish̅⟨⟩.0 || clock(t0_7).fast(x).clock(t1_8).[0 <= (t1_8-t0_7) and (t1_8-t0_7) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
 Attempted to apply [Sense] rule: applied=True, new_proc=fast̅⟨7⟩.clock(t1_6).[0 <= (t1_6-0) and (t1_6-0) <= 1.0].finish̅⟨⟩.0 || clock(t0_7).fast(x).clock(t1_8).[0 <= (t1_8-t0_7) and (t1_8-t0_7) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=Sense channel matched (clock) value=0
 Discrete reduction: Applied [Sense] rule (Sense channel matched (clock) value=0)
@@ -19,7 +19,7 @@ Check process termination: fast̅⟨7⟩.clock(t1_6).[0 <= (t1_6-0) and (t1_6-0)
 Attempted to apply [Assign-Expand] rule: applied=False, new_proc=fast̅⟨7⟩.clock(t1_6).[0 <= (t1_6-0) and (t1_6-0) <= 1.0].finish̅⟨⟩.0 || clock(t0_7).fast(x).clock(t1_8).[0 <= (t1_8-t0_7) and (t1_8-t0_7) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
 Attempted to apply [Pass] rule: applied=False, new_proc=fast̅⟨7⟩.clock(t1_6).[0 <= (t1_6-0) and (t1_6-0) <= 1.0].finish̅⟨⟩.0 || clock(t0_7).fast(x).clock(t1_8).[0 <= (t1_8-t0_7) and (t1_8-t0_7) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
 Attempted to apply [Stop] rule: applied=False, new_proc=fast̅⟨7⟩.clock(t1_6).[0 <= (t1_6-0) and (t1_6-0) <= 1.0].finish̅⟨⟩.0 || clock(t0_7).fast(x).clock(t1_8).[0 <= (t1_8-t0_7) and (t1_8-t0_7) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
-input process: 1,[(1, <hpc.PrefixProcess object at 0x000001901E827FD0>, <hpc.PrefixProcess object at 0x000001901E827FD0>, False, -1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x000001901E827C10>, <hpc.PrefixProcess object at 0x000001901E827C10>, False, -1)]
+input process: 1,[(1, <hpc.PrefixProcess object at 0x000001DEE473CA90>, <hpc.PrefixProcess object at 0x000001DEE473CA90>, False, -1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x000001DEE473F1C0>, <hpc.PrefixProcess object at 0x000001DEE473F1C0>, False, -1)]
 output variable list: ['7']
 evaluate output expression: 7 -> val=7, missing=set()
 communication injection: fast = 7
@@ -33,7 +33,7 @@ Check process termination: fast̅⟨7⟩.clock(t1_6).[0 <= (t1_6-0) and (t1_6-0)
 Attempted to apply [Assign-Expand] rule: applied=False, new_proc=fast̅⟨7⟩.clock(t1_6).[0 <= (t1_6-0) and (t1_6-0) <= 1.0].finish̅⟨⟩.0 || fast(x).clock(t1_8).[0 <= (t1_8-0) and (t1_8-0) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
 Attempted to apply [Pass] rule: applied=False, new_proc=fast̅⟨7⟩.clock(t1_6).[0 <= (t1_6-0) and (t1_6-0) <= 1.0].finish̅⟨⟩.0 || fast(x).clock(t1_8).[0 <= (t1_8-0) and (t1_8-0) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
 Attempted to apply [Stop] rule: applied=False, new_proc=fast̅⟨7⟩.clock(t1_6).[0 <= (t1_6-0) and (t1_6-0) <= 1.0].finish̅⟨⟩.0 || fast(x).clock(t1_8).[0 <= (t1_8-0) and (t1_8-0) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
-input process: 1,[(1, <hpc.PrefixProcess object at 0x000001901E8250F0>, <hpc.PrefixProcess object at 0x000001901E8250F0>, False, -1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x000001901E824BB0>, <hpc.PrefixProcess object at 0x000001901E824BB0>, False, -1)]
+input process: 1,[(1, <hpc.PrefixProcess object at 0x000001DEE473E440>, <hpc.PrefixProcess object at 0x000001DEE473E440>, False, -1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x000001DEE472B910>, <hpc.PrefixProcess object at 0x000001DEE472B910>, False, -1)]
 output variable list: ['7']
 evaluate output expression: 7 -> val=7, missing=set()
 communication injection: fast = 7
@@ -47,7 +47,7 @@ Check process termination: clock(t1_6).[0 <= (t1_6-0) and (t1_6-0) <= 1.0].finis
 Attempted to apply [Assign-Expand] rule: applied=False, new_proc=clock(t1_6).[0 <= (t1_6-0) and (t1_6-0) <= 1.0].finish̅⟨⟩.0 || clock(t1_8).[0 <= (t1_8-0) and (t1_8-0) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
 Attempted to apply [Pass] rule: applied=False, new_proc=clock(t1_6).[0 <= (t1_6-0) and (t1_6-0) <= 1.0].finish̅⟨⟩.0 || clock(t1_8).[0 <= (t1_8-0) and (t1_8-0) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
 Attempted to apply [Stop] rule: applied=False, new_proc=clock(t1_6).[0 <= (t1_6-0) and (t1_6-0) <= 1.0].finish̅⟨⟩.0 || clock(t1_8).[0 <= (t1_8-0) and (t1_8-0) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
-input process: 2,[(0, <hpc.PrefixProcess object at 0x000001901E8258D0>, <hpc.PrefixProcess object at 0x000001901E8258D0>, False, -1), (1, <hpc.PrefixProcess object at 0x000001901E826B60>, <hpc.PrefixProcess object at 0x000001901E826B60>, False, -1)]，output process: 0,[]
+input process: 2,[(0, <hpc.PrefixProcess object at 0x000001DEE473DA50>, <hpc.PrefixProcess object at 0x000001DEE473DA50>, False, -1), (1, <hpc.PrefixProcess object at 0x000001DEE473EDD0>, <hpc.PrefixProcess object at 0x000001DEE473EDD0>, False, -1)]，output process: 0,[]
 Attempted to apply [Comm] rule: applied=False, new_proc=clock(t1_6).[0 <= (t1_6-0) and (t1_6-0) <= 1.0].finish̅⟨⟩.0 || clock(t1_8).[0 <= (t1_8-0) and (t1_8-0) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
 Attempted to apply [Sense] rule: applied=True, new_proc=[0 <= (0-0) and (0-0) <= 1.0].finish̅⟨⟩.0 || clock(t1_8).[0 <= (t1_8-0) and (t1_8-0) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=Sense channel matched (clock) value=0
 Discrete reduction: Applied [Sense] rule (Sense channel matched (clock) value=0)
@@ -64,7 +64,7 @@ Check process termination: finish̅⟨⟩.0 || clock(t1_8).[0 <= (t1_8-0) and (t
 Attempted to apply [Assign-Expand] rule: applied=False, new_proc=finish̅⟨⟩.0 || clock(t1_8).[0 <= (t1_8-0) and (t1_8-0) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
 Attempted to apply [Pass] rule: applied=False, new_proc=finish̅⟨⟩.0 || clock(t1_8).[0 <= (t1_8-0) and (t1_8-0) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
 Attempted to apply [Stop] rule: applied=False, new_proc=finish̅⟨⟩.0 || clock(t1_8).[0 <= (t1_8-0) and (t1_8-0) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
-input process: 1,[(1, <hpc.PrefixProcess object at 0x000001901E8262C0>, <hpc.PrefixProcess object at 0x000001901E8262C0>, False, -1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x000001901E827FD0>, <hpc.PrefixProcess object at 0x000001901E827FD0>, False, -1)]
+input process: 1,[(1, <hpc.PrefixProcess object at 0x000001DEE472AAD0>, <hpc.PrefixProcess object at 0x000001DEE472AAD0>, False, -1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x000001DEE46E3A30>, <hpc.PrefixProcess object at 0x000001DEE46E3A30>, False, -1)]
 output variable list: []
 output expression evaluation result: valid=True, values=[]
 Attempted to apply [Comm] rule: applied=False, new_proc=finish̅⟨⟩.0 || clock(t1_8).[0 <= (t1_8-0) and (t1_8-0) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
@@ -83,7 +83,7 @@ Check process termination: finish̅⟨⟩.0 || finish().0 || {0 | clock_dot=1 & 
 Attempted to apply [Assign-Expand] rule: applied=False, new_proc=finish̅⟨⟩.0 || finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
 Attempted to apply [Pass] rule: applied=False, new_proc=finish̅⟨⟩.0 || finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
 Attempted to apply [Stop] rule: applied=False, new_proc=finish̅⟨⟩.0 || finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
-input process: 1,[(1, <hpc.PrefixProcess object at 0x000001901E8262C0>, <hpc.PrefixProcess object at 0x000001901E8262C0>, False, -1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x000001901E8256C0>, <hpc.PrefixProcess object at 0x000001901E8256C0>, False, -1)]
+input process: 1,[(1, <hpc.PrefixProcess object at 0x000001DEE46E3BB0>, <hpc.PrefixProcess object at 0x000001DEE46E3BB0>, False, -1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x000001DEE46E1630>, <hpc.PrefixProcess object at 0x000001DEE46E1630>, False, -1)]
 output variable list: []
 output expression evaluation result: valid=True, values=[]
 COMM consumption: out_idx=0 in_idx=1 channel=finish values=[]

@@ -222,7 +222,6 @@ class Sum(Process):
         self.branches = branches
 
     def __str__(self):
-        # 为Sum添加括号以匹配所需格式
         if len(self.branches) > 1:
             return f"({' + '.join(str(branch) for branch in self.branches)})"
         return str(self.branches[0]) if self.branches else "0"

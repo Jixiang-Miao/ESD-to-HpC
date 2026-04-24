@@ -348,7 +348,6 @@ def rewrite_break_in_loop(loop: "Loop") -> Fragment:
         visited.add(id(frag))
         
         if isinstance(frag, Break) and frag.in_loop:
-            # 设置 break 变量为 1
             set_break = Assignment(
                 role=frag.role,
                 var=break_var,

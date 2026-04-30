@@ -1,71 +1,55 @@
 # Step log
 
 === STEP 1 time: 0.000000 ===
-  [0] M: clock(t0_9).instant̅⟨3⟩.clock(t1_10).[(t1_10-t0_9) == 0.0].finish̅⟨⟩.0
-  [1] M: clock(t0_11).instant(x).clock(t1_12).[(t1_12-t0_11) == 0.0].finish().0
-  [2] C: {0 | clock_dot=1 & clock<1000000.0, {clock}}.0
+  [0] M: instant̅⟨3⟩.clock(t_5).[t_5 >= 0.0].finish̅⟨⟩.0
+  [1] M: instant(x).clock(t_6).[t_6 >= 0.0].finish().0
+  [2] C: {0 | clock_dot=1 & clock<1000000.0, {clock̅}}.0
 Process counts: M=2, C=1, R=0, Other=0
 ================================
 
 
 === STEP 2 time: 0.000000 ===
-  [0] M: instant̅⟨3⟩.clock(t1_10).[(t1_10-0) == 0.0].finish̅⟨⟩.0
-  [1] M: clock(t0_11).instant(x).clock(t1_12).[(t1_12-t0_11) == 0.0].finish().0
-  [2] C: {0 | clock_dot=1 & clock<1000000.0, {clock}}.0
+  [0] M: clock(t_5).[t_5 >= 0.0].finish̅⟨⟩.0
+  [1] M: clock(t_6).[t_6 >= 0.0].finish().0
+  [2] C: {0 | clock_dot=1 & clock<1000000.0, {clock̅}}.0
 Process counts: M=2, C=1, R=0, Other=0
 ================================
 
 
 === STEP 3 time: 0.000000 ===
-  [0] M: instant̅⟨3⟩.clock(t1_10).[(t1_10-0) == 0.0].finish̅⟨⟩.0
-  [1] M: instant(x).clock(t1_12).[(t1_12-0) == 0.0].finish().0
-  [2] C: {0 | clock_dot=1 & clock<1000000.0, {clock}}.0
+  [0] M: [0 >= 0.0].finish̅⟨⟩.0
+  [1] M: clock(t_6).[t_6 >= 0.0].finish().0
+  [2] C: {0 | clock_dot=1 & clock<1000000.0, {clock̅}}.0
 Process counts: M=2, C=1, R=0, Other=0
 ================================
 
 
 === STEP 4 time: 0.000000 ===
-  [0] M: clock(t1_10).[(t1_10-0) == 0.0].finish̅⟨⟩.0
-  [1] M: clock(t1_12).[(t1_12-0) == 0.0].finish().0
-  [2] C: {0 | clock_dot=1 & clock<1000000.0, {clock}}.0
+  [0] M: finish̅⟨⟩.0
+  [1] M: clock(t_6).[t_6 >= 0.0].finish().0
+  [2] C: {0 | clock_dot=1 & clock<1000000.0, {clock̅}}.0
 Process counts: M=2, C=1, R=0, Other=0
 ================================
 
 
 === STEP 5 time: 0.000000 ===
-  [0] M: [(0-0) == 0.0].finish̅⟨⟩.0
-  [1] M: clock(t1_12).[(t1_12-0) == 0.0].finish().0
-  [2] C: {0 | clock_dot=1 & clock<1000000.0, {clock}}.0
+  [0] M: finish̅⟨⟩.0
+  [1] M: [0 >= 0.0].finish().0
+  [2] C: {0 | clock_dot=1 & clock<1000000.0, {clock̅}}.0
 Process counts: M=2, C=1, R=0, Other=0
 ================================
 
 
 === STEP 6 time: 0.000000 ===
   [0] M: finish̅⟨⟩.0
-  [1] M: clock(t1_12).[(t1_12-0) == 0.0].finish().0
-  [2] C: {0 | clock_dot=1 & clock<1000000.0, {clock}}.0
-Process counts: M=2, C=1, R=0, Other=0
-================================
-
-
-=== STEP 7 time: 0.000000 ===
-  [0] M: finish̅⟨⟩.0
-  [1] M: [(0-0) == 0.0].finish().0
-  [2] C: {0 | clock_dot=1 & clock<1000000.0, {clock}}.0
-Process counts: M=2, C=1, R=0, Other=0
-================================
-
-
-=== STEP 8 time: 0.000000 ===
-  [0] M: finish̅⟨⟩.0
   [1] M: finish().0
-  [2] C: {0 | clock_dot=1 & clock<1000000.0, {clock}}.0
+  [2] C: {0 | clock_dot=1 & clock<1000000.0, {clock̅}}.0
 Process counts: M=2, C=1, R=0, Other=0
 ================================
 
 
-=== STEP 8 time: 0.000000 ===
-  [0] C: {0 | clock_dot=1 & clock<1000000.0, {clock}}.0
+=== STEP 6 time: 0.000000 ===
+  [0] C: {0 | clock_dot=1 & clock<1000000.0, {clock̅}}.0
 Process counts: M=0, C=1, R=0, Other=0
 ================================
 

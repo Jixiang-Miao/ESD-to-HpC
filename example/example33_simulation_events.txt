@@ -10,7 +10,7 @@ Protecting Sum process during canonical form conversion
 Attempted to apply [Assign-Expand] rule: applied=False, new_proc=({0 | t_dot=1 & t<1.0, {}}.Bob Request̅⟨⟩.Bob Response().finalize̅⟨⟩.0 + Bob Request̅⟨⟩.Bob Response().{0 | t_dot=1 & t<1.0, {}}.finalize̅⟨⟩.0) || Bob Request().Bob Response̅⟨⟩.finalize().0, log=None
 Attempted to apply [Pass] rule: applied=False, new_proc=({0 | t_dot=1 & t<1.0, {}}.Bob Request̅⟨⟩.Bob Response().finalize̅⟨⟩.0 + Bob Request̅⟨⟩.Bob Response().{0 | t_dot=1 & t<1.0, {}}.finalize̅⟨⟩.0) || Bob Request().Bob Response̅⟨⟩.finalize().0, log=None
 Attempted to apply [Stop] rule: applied=False, new_proc=({0 | t_dot=1 & t<1.0, {}}.Bob Request̅⟨⟩.Bob Response().finalize̅⟨⟩.0 + Bob Request̅⟨⟩.Bob Response().{0 | t_dot=1 & t<1.0, {}}.finalize̅⟨⟩.0) || Bob Request().Bob Response̅⟨⟩.finalize().0, log=None
-input process: 1,[(1, <hpc.PrefixProcess object at 0x000001DEE4715720>, <hpc.PrefixProcess object at 0x000001DEE4715720>, False, -1)]，output process: 1,[(0, <hpc.Sum object at 0x000001DEE4723C40>, <hpc.PrefixProcess object at 0x000001DEE4726260>, True, 1)]
+input process: 1,[(1, <hpc.PrefixProcess object at 0x000001AEFEDA78B0>, <hpc.PrefixProcess object at 0x000001AEFEDA78B0>, False, -1)]，output process: 1,[(0, <hpc.Sum object at 0x000001AEFEDD1F30>, <hpc.PrefixProcess object at 0x000001AEFEDA7F70>, True, 1)]
 output variable list: []
 output expression evaluation result: valid=True, values=[]
 COMM consumption: out_idx=0 in_idx=1 channel=BobRequest values=[]
@@ -22,7 +22,7 @@ Check process termination: Bob Response().{0 | t_dot=1 & t<1.0, {}}.finalize̅�
 Attempted to apply [Assign-Expand] rule: applied=False, new_proc=Bob Response().{0 | t_dot=1 & t<1.0, {}}.finalize̅⟨⟩.0 || Bob Response̅⟨⟩.finalize().0, log=None
 Attempted to apply [Pass] rule: applied=False, new_proc=Bob Response().{0 | t_dot=1 & t<1.0, {}}.finalize̅⟨⟩.0 || Bob Response̅⟨⟩.finalize().0, log=None
 Attempted to apply [Stop] rule: applied=False, new_proc=Bob Response().{0 | t_dot=1 & t<1.0, {}}.finalize̅⟨⟩.0 || Bob Response̅⟨⟩.finalize().0, log=None
-input process: 1,[(0, <hpc.PrefixProcess object at 0x000001DEE47301C0>, <hpc.PrefixProcess object at 0x000001DEE47301C0>, False, -1)]，output process: 1,[(1, <hpc.PrefixProcess object at 0x000001DEE4731810>, <hpc.PrefixProcess object at 0x000001DEE4731810>, False, -1)]
+input process: 1,[(0, <hpc.PrefixProcess object at 0x000001AEFEDE1BD0>, <hpc.PrefixProcess object at 0x000001AEFEDE1BD0>, False, -1)]，output process: 1,[(1, <hpc.PrefixProcess object at 0x000001AEFEDE3EB0>, <hpc.PrefixProcess object at 0x000001AEFEDE3EB0>, False, -1)]
 output variable list: []
 output expression evaluation result: valid=True, values=[]
 COMM consumption: out_idx=1 in_idx=0 channel=BobResponse values=[]
@@ -34,14 +34,14 @@ Check process termination: finalize().0 || {0 | t_dot=1 & t<1.0, {}}.finalize̅�
 Attempted to apply [Assign-Expand] rule: applied=False, new_proc=finalize().0 || {0 | t_dot=1 & t<1.0, {}}.finalize̅⟨⟩.0, log=None
 Attempted to apply [Pass] rule: applied=False, new_proc=finalize().0 || {0 | t_dot=1 & t<1.0, {}}.finalize̅⟨⟩.0, log=None
 Attempted to apply [Stop] rule: applied=False, new_proc=finalize().0 || {0 | t_dot=1 & t<1.0, {}}.finalize̅⟨⟩.0, log=None
-input process: 1,[(0, <hpc.PrefixProcess object at 0x000001DEE4726260>, <hpc.PrefixProcess object at 0x000001DEE4726260>, False, -1)]，output process: 0,[]
+input process: 1,[(0, <hpc.PrefixProcess object at 0x000001AEFEDE0730>, <hpc.PrefixProcess object at 0x000001AEFEDE0730>, False, -1)]，output process: 0,[]
 Attempted to apply [Comm] rule: applied=False, new_proc=finalize().0 || {0 | t_dot=1 & t<1.0, {}}.finalize̅⟨⟩.0, log=None
 Attempted to apply [Sense] rule: applied=False, new_proc=finalize().0 || {0 | t_dot=1 & t<1.0, {}}.finalize̅⟨⟩.0, log=None
 Attempted to apply [Actuate] rule: applied=False, new_proc=finalize().0 || {0 | t_dot=1 & t<1.0, {}}.finalize̅⟨⟩.0, log=None
 Attempted to apply [Rep] rule: applied=False, new_proc=finalize().0 || {0 | t_dot=1 & t<1.0, {}}.finalize̅⟨⟩.0, log=None
 Check process termination: finalize().0 || {0 | t_dot=1 & t<1.0, {}}.finalize̅⟨⟩.0
 Collected 1 continuous processes for evolution
-ODE system information idx=1: {'idx': 1, 'comp': <hpc.PrefixProcess object at 0x000001DEE4726590>, 'ode': <hpc.ODE object at 0x000001DEE4727400>, 'repl': <hpc.PrefixProcess object at 0x000001DEE4724430>, 'vars_list': ['t'], 'derivs_list': ['1'], 'bound_expr': 't<1.0', 'init_vals': ['0']}
+ODE system information idx=1: {'idx': 1, 'comp': <hpc.PrefixProcess object at 0x000001AEFEDE2770>, 'ode': <hpc.ODE object at 0x000001AEFEDE0910>, 'repl': <hpc.PrefixProcess object at 0x000001AEFEDE3340>, 'vars_list': ['t'], 'derivs_list': ['1'], 'bound_expr': 't<1.0', 'init_vals': ['0']}
 Iterating initial values i: 0, var: t, init_vals[i]: 0
 ODE initial value expression idx=1, var=t: expr=0
 ODE initial value evaluation idx=1, var=t: v=0, missing=set()
@@ -54,7 +54,7 @@ Check process termination: finalize().0 || finalize̅⟨⟩.0
 Attempted to apply [Assign-Expand] rule: applied=False, new_proc=finalize().0 || finalize̅⟨⟩.0, log=None
 Attempted to apply [Pass] rule: applied=False, new_proc=finalize().0 || finalize̅⟨⟩.0, log=None
 Attempted to apply [Stop] rule: applied=False, new_proc=finalize().0 || finalize̅⟨⟩.0, log=None
-input process: 1,[(0, <hpc.PrefixProcess object at 0x000001DEE47312A0>, <hpc.PrefixProcess object at 0x000001DEE47312A0>, False, -1)]，output process: 1,[(1, <hpc.PrefixProcess object at 0x000001DEE47301C0>, <hpc.PrefixProcess object at 0x000001DEE47301C0>, False, -1)]
+input process: 1,[(0, <hpc.PrefixProcess object at 0x000001AEFEDD2050>, <hpc.PrefixProcess object at 0x000001AEFEDD2050>, False, -1)]，output process: 1,[(1, <hpc.PrefixProcess object at 0x000001AEFEDA43A0>, <hpc.PrefixProcess object at 0x000001AEFEDA43A0>, False, -1)]
 output variable list: []
 output expression evaluation result: valid=True, values=[]
 COMM consumption: out_idx=1 in_idx=0 channel=finalize values=[]

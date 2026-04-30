@@ -1,4 +1,4 @@
-Alice ::= ⟨x:=1⟩.([x > 0].alt1_1_Charlie⟨⟩.alt1_1_Bob⟨⟩.(Bob Request̅⟨⟩.Bob Response().Charlie Request̅⟨⟩.Charlie Response().finalize̅⟨⟩.0 + Charlie Request̅⟨⟩.Charlie Response().Bob Request̅⟨⟩.Bob Response().finalize̅⟨⟩.0) + [(¬x > 0)].alt2_1_Charlie⟨⟩.alt2_1_Bob⟨⟩.finalize̅⟨⟩.0)
+Alice ::= ⟨x:=1⟩.([x > 0].alt1_1_Bob⟨⟩.alt1_1_Charlie⟨⟩.(Bob Request̅⟨⟩.Bob Response().Charlie Request̅⟨⟩.Charlie Response().finalize̅⟨⟩.0 + Charlie Request̅⟨⟩.Charlie Response().Bob Request̅⟨⟩.Bob Response().finalize̅⟨⟩.0) + [(¬x > 0)].alt2_1_Bob⟨⟩.alt2_1_Charlie⟨⟩.finalize̅⟨⟩.0)
 Bob ::= (alt1_1_Bob().Bob Request().Bob Response̅⟨⟩.finalize().0 + alt2_1_Bob().finalize().0)
 Charlie ::= (alt1_1_Charlie().Charlie Request().Charlie Response̅⟨⟩.0 + alt2_1_Charlie().0)
 System ::= Alice || Bob || Charlie

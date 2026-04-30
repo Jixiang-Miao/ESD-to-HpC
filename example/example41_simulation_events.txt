@@ -10,7 +10,7 @@ Protecting Sum process during canonical form conversion
 Attempted to apply [Assign-Expand] rule: applied=False, new_proc=initialize̅⟨⟩.ok().⟨x:=0⟩.(restart̅⟨⟩.ok().0 + finish̅⟨⟩.ok().0) || initialize().ok̅⟨⟩.([x == 0].restart().ok̅⟨⟩.0 + [(¬x == 0)].finish().ok̅⟨⟩.0), log=None
 Attempted to apply [Pass] rule: applied=False, new_proc=initialize̅⟨⟩.ok().⟨x:=0⟩.(restart̅⟨⟩.ok().0 + finish̅⟨⟩.ok().0) || initialize().ok̅⟨⟩.([x == 0].restart().ok̅⟨⟩.0 + [(¬x == 0)].finish().ok̅⟨⟩.0), log=None
 Attempted to apply [Stop] rule: applied=False, new_proc=initialize̅⟨⟩.ok().⟨x:=0⟩.(restart̅⟨⟩.ok().0 + finish̅⟨⟩.ok().0) || initialize().ok̅⟨⟩.([x == 0].restart().ok̅⟨⟩.0 + [(¬x == 0)].finish().ok̅⟨⟩.0), log=None
-input process: 1,[(1, <hpc.PrefixProcess object at 0x000001DEE4746710>, <hpc.PrefixProcess object at 0x000001DEE4746710>, False, -1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x000001DEE4746110>, <hpc.PrefixProcess object at 0x000001DEE4746110>, False, -1)]
+input process: 1,[(1, <hpc.PrefixProcess object at 0x000001AEFEDD97B0>, <hpc.PrefixProcess object at 0x000001AEFEDD97B0>, False, -1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x000001AEFEDD9F60>, <hpc.PrefixProcess object at 0x000001AEFEDD9F60>, False, -1)]
 output variable list: []
 output expression evaluation result: valid=True, values=[]
 Protecting Sum process during canonical form conversion
@@ -24,7 +24,7 @@ Check process termination: ok().⟨x:=0⟩.(restart̅⟨⟩.ok().0 + finish̅⟨
 Attempted to apply [Assign-Expand] rule: applied=False, new_proc=ok().⟨x:=0⟩.(restart̅⟨⟩.ok().0 + finish̅⟨⟩.ok().0) || ok̅⟨⟩.([x == 0].restart().ok̅⟨⟩.0 + [(¬x == 0)].finish().ok̅⟨⟩.0), log=None
 Attempted to apply [Pass] rule: applied=False, new_proc=ok().⟨x:=0⟩.(restart̅⟨⟩.ok().0 + finish̅⟨⟩.ok().0) || ok̅⟨⟩.([x == 0].restart().ok̅⟨⟩.0 + [(¬x == 0)].finish().ok̅⟨⟩.0), log=None
 Attempted to apply [Stop] rule: applied=False, new_proc=ok().⟨x:=0⟩.(restart̅⟨⟩.ok().0 + finish̅⟨⟩.ok().0) || ok̅⟨⟩.([x == 0].restart().ok̅⟨⟩.0 + [(¬x == 0)].finish().ok̅⟨⟩.0), log=None
-input process: 1,[(0, <hpc.PrefixProcess object at 0x000001DEE4744550>, <hpc.PrefixProcess object at 0x000001DEE4744550>, False, -1)]，output process: 1,[(1, <hpc.PrefixProcess object at 0x000001DEE4746080>, <hpc.PrefixProcess object at 0x000001DEE4746080>, False, -1)]
+input process: 1,[(0, <hpc.PrefixProcess object at 0x000001AEFEDDB700>, <hpc.PrefixProcess object at 0x000001AEFEDDB700>, False, -1)]，output process: 1,[(1, <hpc.PrefixProcess object at 0x000001AEFEDDAE60>, <hpc.PrefixProcess object at 0x000001AEFEDDAE60>, False, -1)]
 output variable list: []
 output expression evaluation result: valid=True, values=[]
 Protecting Sum process during canonical form conversion
@@ -46,8 +46,8 @@ Check process termination: x'''''''''''''''''''''''''''⟨0⟩.x''''''''''''''''
 Attempted to apply [Assign-Expand] rule: applied=False, new_proc=x'''''''''''''''''''''''''''⟨0⟩.x'''''''''''''''''''''''''''(x).(restart̅⟨⟩.ok().0 + finish̅⟨⟩.ok().0) || x'''''''''''''''''''''''''''(y).x'''''''''''''''''''''''''''⟨y⟩.0 || ([x == 0].restart().ok̅⟨⟩.0 + [(¬x == 0)].finish().ok̅⟨⟩.0), log=None
 Attempted to apply [Pass] rule: applied=False, new_proc=x'''''''''''''''''''''''''''⟨0⟩.x'''''''''''''''''''''''''''(x).(restart̅⟨⟩.ok().0 + finish̅⟨⟩.ok().0) || x'''''''''''''''''''''''''''(y).x'''''''''''''''''''''''''''⟨y⟩.0 || ([x == 0].restart().ok̅⟨⟩.0 + [(¬x == 0)].finish().ok̅⟨⟩.0), log=None
 Attempted to apply [Stop] rule: applied=False, new_proc=x'''''''''''''''''''''''''''⟨0⟩.x'''''''''''''''''''''''''''(x).(restart̅⟨⟩.ok().0 + finish̅⟨⟩.ok().0) || x'''''''''''''''''''''''''''(y).x'''''''''''''''''''''''''''⟨y⟩.0 || ([x == 0].restart().ok̅⟨⟩.0 + [(¬x == 0)].finish().ok̅⟨⟩.0), log=None
-input process: 1,[(1, <hpc.PrefixProcess object at 0x000001DEE4745990>, <hpc.PrefixProcess object at 0x000001DEE4745990>, False, -1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x000001DEE4745180>, <hpc.PrefixProcess object at 0x000001DEE4745180>, False, -1)]
-output variable list: [<expr.Var object at 0x000001DEE47270A0>]
+input process: 1,[(1, <hpc.PrefixProcess object at 0x000001AEFEDD8FA0>, <hpc.PrefixProcess object at 0x000001AEFEDD8FA0>, False, -1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x000001AEFEDD8220>, <hpc.PrefixProcess object at 0x000001AEFEDD8220>, False, -1)]
+output variable list: [<expr.Var object at 0x000001AEFEDF3A90>]
 evaluate output expression: 0 -> val=0, missing=set()
 communication injection: x = 0
 output expression evaluation result: valid=True, values=[0]
@@ -70,7 +70,7 @@ Check process termination: x'''''''''''''''''''''''''''(x).(restart̅⟨⟩.ok()
 Attempted to apply [Assign-Expand] rule: applied=False, new_proc=x'''''''''''''''''''''''''''(x).(restart̅⟨⟩.ok().0 + finish̅⟨⟩.ok().0) || x'''''''''''''''''''''''''''⟨0⟩.0 || restart().ok̅⟨⟩.0, log=None
 Attempted to apply [Pass] rule: applied=False, new_proc=x'''''''''''''''''''''''''''(x).(restart̅⟨⟩.ok().0 + finish̅⟨⟩.ok().0) || x'''''''''''''''''''''''''''⟨0⟩.0 || restart().ok̅⟨⟩.0, log=None
 Attempted to apply [Stop] rule: applied=False, new_proc=x'''''''''''''''''''''''''''(x).(restart̅⟨⟩.ok().0 + finish̅⟨⟩.ok().0) || x'''''''''''''''''''''''''''⟨0⟩.0 || restart().ok̅⟨⟩.0, log=None
-input process: 2,[(0, <hpc.PrefixProcess object at 0x000001DEE47241F0>, <hpc.PrefixProcess object at 0x000001DEE47241F0>, False, -1), (2, <hpc.PrefixProcess object at 0x000001DEE4746350>, <hpc.PrefixProcess object at 0x000001DEE4746350>, False, -1)]，output process: 1,[(1, <hpc.PrefixProcess object at 0x000001DEE4746E90>, <hpc.PrefixProcess object at 0x000001DEE4746E90>, False, -1)]
+input process: 2,[(0, <hpc.PrefixProcess object at 0x000001AEFEDF3C70>, <hpc.PrefixProcess object at 0x000001AEFEDF3C70>, False, -1), (2, <hpc.PrefixProcess object at 0x000001AEFEDD9A80>, <hpc.PrefixProcess object at 0x000001AEFEDD9A80>, False, -1)]，output process: 1,[(1, <hpc.PrefixProcess object at 0x000001AEFEDD8100>, <hpc.PrefixProcess object at 0x000001AEFEDD8100>, False, -1)]
 output variable list: ['0']
 evaluate output expression: 0 -> val=0, missing=set()
 communication injection: x = 0
@@ -85,7 +85,7 @@ Check process termination: (restart̅⟨⟩.ok().0 + finish̅⟨⟩.ok().0) || r
 Attempted to apply [Assign-Expand] rule: applied=False, new_proc=(restart̅⟨⟩.ok().0 + finish̅⟨⟩.ok().0) || restart().ok̅⟨⟩.0, log=None
 Attempted to apply [Pass] rule: applied=False, new_proc=(restart̅⟨⟩.ok().0 + finish̅⟨⟩.ok().0) || restart().ok̅⟨⟩.0, log=None
 Attempted to apply [Stop] rule: applied=False, new_proc=(restart̅⟨⟩.ok().0 + finish̅⟨⟩.ok().0) || restart().ok̅⟨⟩.0, log=None
-input process: 1,[(1, <hpc.PrefixProcess object at 0x000001DEE4744C40>, <hpc.PrefixProcess object at 0x000001DEE4744C40>, False, -1)]，output process: 2,[(0, <hpc.Sum object at 0x000001DEE4746FB0>, <hpc.PrefixProcess object at 0x000001DEE47474C0>, True, 0), (0, <hpc.Sum object at 0x000001DEE4746FB0>, <hpc.PrefixProcess object at 0x000001DEE4747370>, True, 1)]
+input process: 1,[(1, <hpc.PrefixProcess object at 0x000001AEFEDD9CC0>, <hpc.PrefixProcess object at 0x000001AEFEDD9CC0>, False, -1)]，output process: 2,[(0, <hpc.Sum object at 0x000001AEFEDD8BE0>, <hpc.PrefixProcess object at 0x000001AEFEDD9D80>, True, 0), (0, <hpc.Sum object at 0x000001AEFEDD8BE0>, <hpc.PrefixProcess object at 0x000001AEFEDDA0B0>, True, 1)]
 output variable list: []
 output expression evaluation result: valid=True, values=[]
 COMM consumption: out_idx=0 in_idx=1 channel=restart values=[]
@@ -97,7 +97,7 @@ Check process termination: ok().0 || ok̅⟨⟩.0
 Attempted to apply [Assign-Expand] rule: applied=False, new_proc=ok().0 || ok̅⟨⟩.0, log=None
 Attempted to apply [Pass] rule: applied=False, new_proc=ok().0 || ok̅⟨⟩.0, log=None
 Attempted to apply [Stop] rule: applied=False, new_proc=ok().0 || ok̅⟨⟩.0, log=None
-input process: 1,[(0, <hpc.PrefixProcess object at 0x000001DEE4724DC0>, <hpc.PrefixProcess object at 0x000001DEE4724DC0>, False, -1)]，output process: 1,[(1, <hpc.PrefixProcess object at 0x000001DEE4727CA0>, <hpc.PrefixProcess object at 0x000001DEE4727CA0>, False, -1)]
+input process: 1,[(0, <hpc.PrefixProcess object at 0x000001AEFEDF0730>, <hpc.PrefixProcess object at 0x000001AEFEDF0730>, False, -1)]，output process: 1,[(1, <hpc.PrefixProcess object at 0x000001AEFEDF3A90>, <hpc.PrefixProcess object at 0x000001AEFEDF3A90>, False, -1)]
 output variable list: []
 output expression evaluation result: valid=True, values=[]
 COMM consumption: out_idx=1 in_idx=0 channel=ok values=[]

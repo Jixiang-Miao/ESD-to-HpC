@@ -18,8 +18,8 @@ Check process termination: x'''''''''''''''''''''''⟨0⟩.x''''''''''''''''''''
 Attempted to apply [Assign-Expand] rule: applied=False, new_proc=x'''''''''''''''''''''''⟨0⟩.x'''''''''''''''''''''''(x).([x > 0].alt1_1_Bob⟨⟩.{0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0 + [(¬x > 0)].alt2_1_Bob⟨⟩.finalize̅⟨⟩.0) || x'''''''''''''''''''''''(y).x'''''''''''''''''''''''⟨y⟩.0 || (alt1_1_Bob().finalize().0 + alt2_1_Bob().finalize().0), log=None
 Attempted to apply [Pass] rule: applied=False, new_proc=x'''''''''''''''''''''''⟨0⟩.x'''''''''''''''''''''''(x).([x > 0].alt1_1_Bob⟨⟩.{0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0 + [(¬x > 0)].alt2_1_Bob⟨⟩.finalize̅⟨⟩.0) || x'''''''''''''''''''''''(y).x'''''''''''''''''''''''⟨y⟩.0 || (alt1_1_Bob().finalize().0 + alt2_1_Bob().finalize().0), log=None
 Attempted to apply [Stop] rule: applied=False, new_proc=x'''''''''''''''''''''''⟨0⟩.x'''''''''''''''''''''''(x).([x > 0].alt1_1_Bob⟨⟩.{0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0 + [(¬x > 0)].alt2_1_Bob⟨⟩.finalize̅⟨⟩.0) || x'''''''''''''''''''''''(y).x'''''''''''''''''''''''⟨y⟩.0 || (alt1_1_Bob().finalize().0 + alt2_1_Bob().finalize().0), log=None
-input process: 3,[(1, <hpc.PrefixProcess object at 0x000001DEE47272E0>, <hpc.PrefixProcess object at 0x000001DEE47272E0>, False, -1), (2, <hpc.Sum object at 0x000001DEE4724E50>, <hpc.PrefixProcess object at 0x000001DEE4726B00>, True, 0), (2, <hpc.Sum object at 0x000001DEE4724E50>, <hpc.PrefixProcess object at 0x000001DEE4726440>, True, 1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x000001DEE4726470>, <hpc.PrefixProcess object at 0x000001DEE4726470>, False, -1)]
-output variable list: [<expr.Var object at 0x000001DEE4726230>]
+input process: 3,[(1, <hpc.PrefixProcess object at 0x000001AEFEDD20E0>, <hpc.PrefixProcess object at 0x000001AEFEDD20E0>, False, -1), (2, <hpc.Sum object at 0x000001AEFEDD0EB0>, <hpc.PrefixProcess object at 0x000001AEFEDD3A00>, True, 0), (2, <hpc.Sum object at 0x000001AEFEDD0EB0>, <hpc.PrefixProcess object at 0x000001AEFEDD3940>, True, 1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x000001AEFEDD0D60>, <hpc.PrefixProcess object at 0x000001AEFEDD0D60>, False, -1)]
+output variable list: [<expr.Var object at 0x000001AEFEDD2620>]
 evaluate output expression: 0 -> val=0, missing=set()
 communication injection: x = 0
 output expression evaluation result: valid=True, values=[0]
@@ -34,7 +34,7 @@ Check process termination: x'''''''''''''''''''''''(x).([x > 0].alt1_1_Bob⟨⟩
 Attempted to apply [Assign-Expand] rule: applied=False, new_proc=x'''''''''''''''''''''''(x).([x > 0].alt1_1_Bob⟨⟩.{0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0 + [(¬x > 0)].alt2_1_Bob⟨⟩.finalize̅⟨⟩.0) || x'''''''''''''''''''''''⟨0⟩.0 || (alt1_1_Bob().finalize().0 + alt2_1_Bob().finalize().0), log=None
 Attempted to apply [Pass] rule: applied=False, new_proc=x'''''''''''''''''''''''(x).([x > 0].alt1_1_Bob⟨⟩.{0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0 + [(¬x > 0)].alt2_1_Bob⟨⟩.finalize̅⟨⟩.0) || x'''''''''''''''''''''''⟨0⟩.0 || (alt1_1_Bob().finalize().0 + alt2_1_Bob().finalize().0), log=None
 Attempted to apply [Stop] rule: applied=False, new_proc=x'''''''''''''''''''''''(x).([x > 0].alt1_1_Bob⟨⟩.{0 | x_dot=1 & x<10, {}}.finalize̅⟨⟩.0 + [(¬x > 0)].alt2_1_Bob⟨⟩.finalize̅⟨⟩.0) || x'''''''''''''''''''''''⟨0⟩.0 || (alt1_1_Bob().finalize().0 + alt2_1_Bob().finalize().0), log=None
-input process: 3,[(0, <hpc.PrefixProcess object at 0x000001DEE4724B50>, <hpc.PrefixProcess object at 0x000001DEE4724B50>, False, -1), (2, <hpc.Sum object at 0x000001DEE4727D60>, <hpc.PrefixProcess object at 0x000001DEE47244F0>, True, 0), (2, <hpc.Sum object at 0x000001DEE4727D60>, <hpc.PrefixProcess object at 0x000001DEE4725180>, True, 1)]，output process: 1,[(1, <hpc.PrefixProcess object at 0x000001DEE4726410>, <hpc.PrefixProcess object at 0x000001DEE4726410>, False, -1)]
+input process: 3,[(0, <hpc.PrefixProcess object at 0x000001AEFEDD32B0>, <hpc.PrefixProcess object at 0x000001AEFEDD32B0>, False, -1), (2, <hpc.Sum object at 0x000001AEFEDD0580>, <hpc.PrefixProcess object at 0x000001AEFEDD2CB0>, True, 0), (2, <hpc.Sum object at 0x000001AEFEDD0580>, <hpc.PrefixProcess object at 0x000001AEFEDD1D50>, True, 1)]，output process: 1,[(1, <hpc.PrefixProcess object at 0x000001AEFEDD16C0>, <hpc.PrefixProcess object at 0x000001AEFEDD16C0>, False, -1)]
 output variable list: ['0']
 evaluate output expression: 0 -> val=0, missing=set()
 communication injection: x = 0
@@ -58,7 +58,7 @@ Check process termination: alt2_1_Bob⟨⟩.finalize̅⟨⟩.0 || (alt1_1_Bob().
 Attempted to apply [Assign-Expand] rule: applied=False, new_proc=alt2_1_Bob⟨⟩.finalize̅⟨⟩.0 || (alt1_1_Bob().finalize().0 + alt2_1_Bob().finalize().0), log=None
 Attempted to apply [Pass] rule: applied=False, new_proc=alt2_1_Bob⟨⟩.finalize̅⟨⟩.0 || (alt1_1_Bob().finalize().0 + alt2_1_Bob().finalize().0), log=None
 Attempted to apply [Stop] rule: applied=False, new_proc=alt2_1_Bob⟨⟩.finalize̅⟨⟩.0 || (alt1_1_Bob().finalize().0 + alt2_1_Bob().finalize().0), log=None
-input process: 2,[(1, <hpc.Sum object at 0x000001DEE4724C40>, <hpc.PrefixProcess object at 0x000001DEE4725390>, True, 0), (1, <hpc.Sum object at 0x000001DEE4724C40>, <hpc.PrefixProcess object at 0x000001DEE4727EB0>, True, 1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x000001DEE47270D0>, <hpc.PrefixProcess object at 0x000001DEE47270D0>, False, -1)]
+input process: 2,[(1, <hpc.Sum object at 0x000001AEFEDD0070>, <hpc.PrefixProcess object at 0x000001AEFEDD39A0>, True, 0), (1, <hpc.Sum object at 0x000001AEFEDD0070>, <hpc.PrefixProcess object at 0x000001AEFEDD18D0>, True, 1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x000001AEFEDD2710>, <hpc.PrefixProcess object at 0x000001AEFEDD2710>, False, -1)]
 output variable list: []
 output expression evaluation result: valid=True, values=[]
 COMM consumption: out_idx=0 in_idx=1 channel=alt2_1_Bob values=[]
@@ -70,7 +70,7 @@ Check process termination: finalize̅⟨⟩.0 || finalize().0
 Attempted to apply [Assign-Expand] rule: applied=False, new_proc=finalize̅⟨⟩.0 || finalize().0, log=None
 Attempted to apply [Pass] rule: applied=False, new_proc=finalize̅⟨⟩.0 || finalize().0, log=None
 Attempted to apply [Stop] rule: applied=False, new_proc=finalize̅⟨⟩.0 || finalize().0, log=None
-input process: 1,[(1, <hpc.PrefixProcess object at 0x000001DEE4726140>, <hpc.PrefixProcess object at 0x000001DEE4726140>, False, -1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x000001DEE47276D0>, <hpc.PrefixProcess object at 0x000001DEE47276D0>, False, -1)]
+input process: 1,[(1, <hpc.PrefixProcess object at 0x000001AEFEDD0EB0>, <hpc.PrefixProcess object at 0x000001AEFEDD0EB0>, False, -1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x000001AEFEDD3A00>, <hpc.PrefixProcess object at 0x000001AEFEDD3A00>, False, -1)]
 output variable list: []
 output expression evaluation result: valid=True, values=[]
 COMM consumption: out_idx=0 in_idx=1 channel=finalize values=[]

@@ -136,7 +136,7 @@ def make_global_clock(clock_name: str = "clock", horizon: float = 1000000.0):
         v=[clock_name],
         e=["1"],
         bound=f"{clock_name}<{horizon}",
-        ready_set=[InChannel(clock_name)],
+        ready_set=[OutChannel(f"{clock_name}\u0305")],
         final_v=[clock_name]
     )
     return PrefixProcess(Continuous(ode), Inaction())

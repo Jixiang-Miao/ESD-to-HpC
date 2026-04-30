@@ -1,1 +1,1 @@
-Alice ::= clock(t0_5).fast̅⟨7⟩.clock(t1_6).[0 <= (t1_6-t0_5) and (t1_6-t0_5) <= 1.0].finish̅⟨⟩.0 || Bob ::= clock(t0_7).fast(x).clock(t1_8).[0 <= (t1_8-t0_7) and (t1_8-t0_7) <= 1.0].finish().0 || GlobalClock ::= {0 | clock_dot=1 & clock<1000000.0, {clock}}.0
+Alice ::= fast̅⟨7⟩.clock(t_3).[t_3 <= 1.0].finish̅⟨⟩.0 || Bob ::= fast(x).clock(t_4).[t_4 <= 1.0].finish().0 || GlobalClock ::= {0 | clock_dot=1 & clock<1000000.0, {clock̅}}.0

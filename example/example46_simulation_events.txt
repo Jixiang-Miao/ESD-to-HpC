@@ -4,91 +4,68 @@ Collected named definition[0]: Alice
 Collected named definition[1]: Bob
 Collected named definition[2]: GlobalClock
 Collected named definition[3]: System
+Initialized allocation constant: windowed=9
 
 --- Step 1 ---
-Attempted to apply [Assign-Expand] rule: applied=False, new_proc=clock(t0_13).windowed̅⟨9⟩.clock(t1_14).[0.0 <= (t1_14-t0_13) and (t1_14-t0_13) <= 1.0].finish̅⟨⟩.0 || clock(t0_15).windowed(x).clock(t1_16).[0.0 <= (t1_16-t0_15) and (t1_16-t0_15) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
-Attempted to apply [Pass] rule: applied=False, new_proc=clock(t0_13).windowed̅⟨9⟩.clock(t1_14).[0.0 <= (t1_14-t0_13) and (t1_14-t0_13) <= 1.0].finish̅⟨⟩.0 || clock(t0_15).windowed(x).clock(t1_16).[0.0 <= (t1_16-t0_15) and (t1_16-t0_15) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
-Attempted to apply [Stop] rule: applied=False, new_proc=clock(t0_13).windowed̅⟨9⟩.clock(t1_14).[0.0 <= (t1_14-t0_13) and (t1_14-t0_13) <= 1.0].finish̅⟨⟩.0 || clock(t0_15).windowed(x).clock(t1_16).[0.0 <= (t1_16-t0_15) and (t1_16-t0_15) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
-input process: 2,[(0, <hpc.PrefixProcess object at 0x000001DEE4731A80>, <hpc.PrefixProcess object at 0x000001DEE4731A80>, False, -1), (1, <hpc.PrefixProcess object at 0x000001DEE4744D30>, <hpc.PrefixProcess object at 0x000001DEE4744D30>, False, -1)]，output process: 0,[]
-Attempted to apply [Comm] rule: applied=False, new_proc=clock(t0_13).windowed̅⟨9⟩.clock(t1_14).[0.0 <= (t1_14-t0_13) and (t1_14-t0_13) <= 1.0].finish̅⟨⟩.0 || clock(t0_15).windowed(x).clock(t1_16).[0.0 <= (t1_16-t0_15) and (t1_16-t0_15) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
-Attempted to apply [Sense] rule: applied=True, new_proc=windowed̅⟨9⟩.clock(t1_14).[0.0 <= (t1_14-0) and (t1_14-0) <= 1.0].finish̅⟨⟩.0 || clock(t0_15).windowed(x).clock(t1_16).[0.0 <= (t1_16-t0_15) and (t1_16-t0_15) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=Sense channel matched (clock) value=0
-Discrete reduction: Applied [Sense] rule (Sense channel matched (clock) value=0)
-Check process termination: windowed̅⟨9⟩.clock(t1_14).[0.0 <= (t1_14-0) and (t1_14-0) <= 1.0].finish̅⟨⟩.0 || clock(t0_15).windowed(x).clock(t1_16).[0.0 <= (t1_16-t0_15) and (t1_16-t0_15) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0
-
---- Step 2 ---
-Attempted to apply [Assign-Expand] rule: applied=False, new_proc=windowed̅⟨9⟩.clock(t1_14).[0.0 <= (t1_14-0) and (t1_14-0) <= 1.0].finish̅⟨⟩.0 || clock(t0_15).windowed(x).clock(t1_16).[0.0 <= (t1_16-t0_15) and (t1_16-t0_15) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
-Attempted to apply [Pass] rule: applied=False, new_proc=windowed̅⟨9⟩.clock(t1_14).[0.0 <= (t1_14-0) and (t1_14-0) <= 1.0].finish̅⟨⟩.0 || clock(t0_15).windowed(x).clock(t1_16).[0.0 <= (t1_16-t0_15) and (t1_16-t0_15) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
-Attempted to apply [Stop] rule: applied=False, new_proc=windowed̅⟨9⟩.clock(t1_14).[0.0 <= (t1_14-0) and (t1_14-0) <= 1.0].finish̅⟨⟩.0 || clock(t0_15).windowed(x).clock(t1_16).[0.0 <= (t1_16-t0_15) and (t1_16-t0_15) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
-input process: 1,[(1, <hpc.PrefixProcess object at 0x000001DEE4744250>, <hpc.PrefixProcess object at 0x000001DEE4744250>, False, -1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x000001DEE4746E90>, <hpc.PrefixProcess object at 0x000001DEE4746E90>, False, -1)]
-output variable list: ['9']
-evaluate output expression: 9 -> val=9, missing=set()
-communication injection: windowed = 9
-output expression evaluation result: valid=True, values=[9]
-Attempted to apply [Comm] rule: applied=False, new_proc=windowed̅⟨9⟩.clock(t1_14).[0.0 <= (t1_14-0) and (t1_14-0) <= 1.0].finish̅⟨⟩.0 || clock(t0_15).windowed(x).clock(t1_16).[0.0 <= (t1_16-t0_15) and (t1_16-t0_15) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
-Attempted to apply [Sense] rule: applied=True, new_proc=windowed̅⟨9⟩.clock(t1_14).[0.0 <= (t1_14-0) and (t1_14-0) <= 1.0].finish̅⟨⟩.0 || windowed(x).clock(t1_16).[0.0 <= (t1_16-0) and (t1_16-0) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=Sense channel matched (clock) value=0
-Discrete reduction: Applied [Sense] rule (Sense channel matched (clock) value=0)
-Check process termination: windowed̅⟨9⟩.clock(t1_14).[0.0 <= (t1_14-0) and (t1_14-0) <= 1.0].finish̅⟨⟩.0 || windowed(x).clock(t1_16).[0.0 <= (t1_16-0) and (t1_16-0) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0
-
---- Step 3 ---
-Attempted to apply [Assign-Expand] rule: applied=False, new_proc=windowed̅⟨9⟩.clock(t1_14).[0.0 <= (t1_14-0) and (t1_14-0) <= 1.0].finish̅⟨⟩.0 || windowed(x).clock(t1_16).[0.0 <= (t1_16-0) and (t1_16-0) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
-Attempted to apply [Pass] rule: applied=False, new_proc=windowed̅⟨9⟩.clock(t1_14).[0.0 <= (t1_14-0) and (t1_14-0) <= 1.0].finish̅⟨⟩.0 || windowed(x).clock(t1_16).[0.0 <= (t1_16-0) and (t1_16-0) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
-Attempted to apply [Stop] rule: applied=False, new_proc=windowed̅⟨9⟩.clock(t1_14).[0.0 <= (t1_14-0) and (t1_14-0) <= 1.0].finish̅⟨⟩.0 || windowed(x).clock(t1_16).[0.0 <= (t1_16-0) and (t1_16-0) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
-input process: 1,[(1, <hpc.PrefixProcess object at 0x000001DEE4746830>, <hpc.PrefixProcess object at 0x000001DEE4746830>, False, -1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x000001DEE4744E20>, <hpc.PrefixProcess object at 0x000001DEE4744E20>, False, -1)]
+Attempted to apply [Assign-Expand] rule: applied=False, new_proc=windowed̅⟨9⟩.clock(t_7).[0.0 <= t_7 and t_7 <= 1.0].finish̅⟨⟩.0 || windowed(x).clock(t_8).[0.0 <= t_8 and t_8 <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock̅}}.0, log=None
+Attempted to apply [Pass] rule: applied=False, new_proc=windowed̅⟨9⟩.clock(t_7).[0.0 <= t_7 and t_7 <= 1.0].finish̅⟨⟩.0 || windowed(x).clock(t_8).[0.0 <= t_8 and t_8 <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock̅}}.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc=windowed̅⟨9⟩.clock(t_7).[0.0 <= t_7 and t_7 <= 1.0].finish̅⟨⟩.0 || windowed(x).clock(t_8).[0.0 <= t_8 and t_8 <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock̅}}.0, log=None
+input process: 1,[(1, <hpc.PrefixProcess object at 0x000001AEFEDD4AF0>, <hpc.PrefixProcess object at 0x000001AEFEDD4AF0>, False, -1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x000001AEFEDF01F0>, <hpc.PrefixProcess object at 0x000001AEFEDF01F0>, False, -1)]
 output variable list: ['9']
 evaluate output expression: 9 -> val=9, missing=set()
 communication injection: windowed = 9
 output expression evaluation result: valid=True, values=[9]
 COMM consumption: out_idx=0 in_idx=1 channel=windowed values=[9]
-Attempted to apply [Comm] rule: applied=True, new_proc=clock(t1_14).[0.0 <= (t1_14-0) and (t1_14-0) <= 1.0].finish̅⟨⟩.0 || clock(t1_16).[0.0 <= (t1_16-0) and (t1_16-0) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=Communication channel(windowed̅)(Communication message: 9)
+Attempted to apply [Comm] rule: applied=True, new_proc=clock(t_7).[0.0 <= t_7 and t_7 <= 1.0].finish̅⟨⟩.0 || clock(t_8).[0.0 <= t_8 and t_8 <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock̅}}.0, log=Communication channel(windowed̅)(Communication message: 9)
 Discrete reduction: Applied [Comm] rule (Communication channel(windowed̅)(Communication message: 9))
-Check process termination: clock(t1_14).[0.0 <= (t1_14-0) and (t1_14-0) <= 1.0].finish̅⟨⟩.0 || clock(t1_16).[0.0 <= (t1_16-0) and (t1_16-0) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0
+Check process termination: clock(t_7).[0.0 <= t_7 and t_7 <= 1.0].finish̅⟨⟩.0 || clock(t_8).[0.0 <= t_8 and t_8 <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock̅}}.0
+
+--- Step 2 ---
+Attempted to apply [Assign-Expand] rule: applied=False, new_proc=clock(t_7).[0.0 <= t_7 and t_7 <= 1.0].finish̅⟨⟩.0 || clock(t_8).[0.0 <= t_8 and t_8 <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock̅}}.0, log=None
+Attempted to apply [Pass] rule: applied=False, new_proc=clock(t_7).[0.0 <= t_7 and t_7 <= 1.0].finish̅⟨⟩.0 || clock(t_8).[0.0 <= t_8 and t_8 <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock̅}}.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc=clock(t_7).[0.0 <= t_7 and t_7 <= 1.0].finish̅⟨⟩.0 || clock(t_8).[0.0 <= t_8 and t_8 <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock̅}}.0, log=None
+input process: 2,[(0, <hpc.PrefixProcess object at 0x000001AEFEDD46D0>, <hpc.PrefixProcess object at 0x000001AEFEDD46D0>, False, -1), (1, <hpc.PrefixProcess object at 0x000001AEFEDD4940>, <hpc.PrefixProcess object at 0x000001AEFEDD4940>, False, -1)]，output process: 0,[]
+Attempted to apply [Comm] rule: applied=False, new_proc=clock(t_7).[0.0 <= t_7 and t_7 <= 1.0].finish̅⟨⟩.0 || clock(t_8).[0.0 <= t_8 and t_8 <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock̅}}.0, log=None
+Attempted to apply [Sense] rule: applied=True, new_proc=[0.0 <= 0 and 0 <= 1.0].finish̅⟨⟩.0 || clock(t_8).[0.0 <= t_8 and t_8 <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock̅}}.0, log=Sense channel matched (clock) value=0
+Discrete reduction: Applied [Sense] rule (Sense channel matched (clock) value=0)
+Check process termination: [0.0 <= 0 and 0 <= 1.0].finish̅⟨⟩.0 || clock(t_8).[0.0 <= t_8 and t_8 <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock̅}}.0
+
+--- Step 3 ---
+Attempted to apply [Assign-Expand] rule: applied=False, new_proc=[0.0 <= 0 and 0 <= 1.0].finish̅⟨⟩.0 || clock(t_8).[0.0 <= t_8 and t_8 <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock̅}}.0, log=None
+PASS rule applied: idx=0 msg=Condition satisfied: 0.0 <= 0 and 0 <= 1.0
+Attempted to apply [Pass] rule: applied=True, new_proc=finish̅⟨⟩.0 || clock(t_8).[0.0 <= t_8 and t_8 <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock̅}}.0, log=Condition satisfied: 0.0 <= 0 and 0 <= 1.0
+Discrete reduction: Applied [Pass] rule (Condition satisfied: 0.0 <= 0 and 0 <= 1.0)
+Check process termination: finish̅⟨⟩.0 || clock(t_8).[0.0 <= t_8 and t_8 <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock̅}}.0
 
 --- Step 4 ---
-Attempted to apply [Assign-Expand] rule: applied=False, new_proc=clock(t1_14).[0.0 <= (t1_14-0) and (t1_14-0) <= 1.0].finish̅⟨⟩.0 || clock(t1_16).[0.0 <= (t1_16-0) and (t1_16-0) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
-Attempted to apply [Pass] rule: applied=False, new_proc=clock(t1_14).[0.0 <= (t1_14-0) and (t1_14-0) <= 1.0].finish̅⟨⟩.0 || clock(t1_16).[0.0 <= (t1_16-0) and (t1_16-0) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
-Attempted to apply [Stop] rule: applied=False, new_proc=clock(t1_14).[0.0 <= (t1_14-0) and (t1_14-0) <= 1.0].finish̅⟨⟩.0 || clock(t1_16).[0.0 <= (t1_16-0) and (t1_16-0) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
-input process: 2,[(0, <hpc.PrefixProcess object at 0x000001DEE4744D90>, <hpc.PrefixProcess object at 0x000001DEE4744D90>, False, -1), (1, <hpc.PrefixProcess object at 0x000001DEE47460E0>, <hpc.PrefixProcess object at 0x000001DEE47460E0>, False, -1)]，output process: 0,[]
-Attempted to apply [Comm] rule: applied=False, new_proc=clock(t1_14).[0.0 <= (t1_14-0) and (t1_14-0) <= 1.0].finish̅⟨⟩.0 || clock(t1_16).[0.0 <= (t1_16-0) and (t1_16-0) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
-Attempted to apply [Sense] rule: applied=True, new_proc=[0.0 <= (0-0) and (0-0) <= 1.0].finish̅⟨⟩.0 || clock(t1_16).[0.0 <= (t1_16-0) and (t1_16-0) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=Sense channel matched (clock) value=0
-Discrete reduction: Applied [Sense] rule (Sense channel matched (clock) value=0)
-Check process termination: [0.0 <= (0-0) and (0-0) <= 1.0].finish̅⟨⟩.0 || clock(t1_16).[0.0 <= (t1_16-0) and (t1_16-0) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0
-
---- Step 5 ---
-Attempted to apply [Assign-Expand] rule: applied=False, new_proc=[0.0 <= (0-0) and (0-0) <= 1.0].finish̅⟨⟩.0 || clock(t1_16).[0.0 <= (t1_16-0) and (t1_16-0) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
-PASS rule applied: idx=0 msg=Condition satisfied: 0.0 <= (0-0) and (0-0) <= 1.0
-Attempted to apply [Pass] rule: applied=True, new_proc=finish̅⟨⟩.0 || clock(t1_16).[0.0 <= (t1_16-0) and (t1_16-0) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=Condition satisfied: 0.0 <= (0-0) and (0-0) <= 1.0
-Discrete reduction: Applied [Pass] rule (Condition satisfied: 0.0 <= (0-0) and (0-0) <= 1.0)
-Check process termination: finish̅⟨⟩.0 || clock(t1_16).[0.0 <= (t1_16-0) and (t1_16-0) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0
-
---- Step 6 ---
-Attempted to apply [Assign-Expand] rule: applied=False, new_proc=finish̅⟨⟩.0 || clock(t1_16).[0.0 <= (t1_16-0) and (t1_16-0) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
-Attempted to apply [Pass] rule: applied=False, new_proc=finish̅⟨⟩.0 || clock(t1_16).[0.0 <= (t1_16-0) and (t1_16-0) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
-Attempted to apply [Stop] rule: applied=False, new_proc=finish̅⟨⟩.0 || clock(t1_16).[0.0 <= (t1_16-0) and (t1_16-0) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
-input process: 1,[(1, <hpc.PrefixProcess object at 0x000001DEE47465C0>, <hpc.PrefixProcess object at 0x000001DEE47465C0>, False, -1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x000001DEE472A6E0>, <hpc.PrefixProcess object at 0x000001DEE472A6E0>, False, -1)]
+Attempted to apply [Assign-Expand] rule: applied=False, new_proc=finish̅⟨⟩.0 || clock(t_8).[0.0 <= t_8 and t_8 <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock̅}}.0, log=None
+Attempted to apply [Pass] rule: applied=False, new_proc=finish̅⟨⟩.0 || clock(t_8).[0.0 <= t_8 and t_8 <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock̅}}.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc=finish̅⟨⟩.0 || clock(t_8).[0.0 <= t_8 and t_8 <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock̅}}.0, log=None
+input process: 1,[(1, <hpc.PrefixProcess object at 0x000001AEFEDF3CD0>, <hpc.PrefixProcess object at 0x000001AEFEDF3CD0>, False, -1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x000001AEFEDBD000>, <hpc.PrefixProcess object at 0x000001AEFEDBD000>, False, -1)]
 output variable list: []
 output expression evaluation result: valid=True, values=[]
-Attempted to apply [Comm] rule: applied=False, new_proc=finish̅⟨⟩.0 || clock(t1_16).[0.0 <= (t1_16-0) and (t1_16-0) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
-Attempted to apply [Sense] rule: applied=True, new_proc=finish̅⟨⟩.0 || [0.0 <= (0-0) and (0-0) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=Sense channel matched (clock) value=0
+Attempted to apply [Comm] rule: applied=False, new_proc=finish̅⟨⟩.0 || clock(t_8).[0.0 <= t_8 and t_8 <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock̅}}.0, log=None
+Attempted to apply [Sense] rule: applied=True, new_proc=finish̅⟨⟩.0 || [0.0 <= 0 and 0 <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock̅}}.0, log=Sense channel matched (clock) value=0
 Discrete reduction: Applied [Sense] rule (Sense channel matched (clock) value=0)
-Check process termination: finish̅⟨⟩.0 || [0.0 <= (0-0) and (0-0) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0
+Check process termination: finish̅⟨⟩.0 || [0.0 <= 0 and 0 <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock̅}}.0
 
---- Step 7 ---
-Attempted to apply [Assign-Expand] rule: applied=False, new_proc=finish̅⟨⟩.0 || [0.0 <= (0-0) and (0-0) <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
-PASS rule applied: idx=1 msg=Condition satisfied: 0.0 <= (0-0) and (0-0) <= 1.0
-Attempted to apply [Pass] rule: applied=True, new_proc=finish̅⟨⟩.0 || finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=Condition satisfied: 0.0 <= (0-0) and (0-0) <= 1.0
-Discrete reduction: Applied [Pass] rule (Condition satisfied: 0.0 <= (0-0) and (0-0) <= 1.0)
-Check process termination: finish̅⟨⟩.0 || finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0
+--- Step 5 ---
+Attempted to apply [Assign-Expand] rule: applied=False, new_proc=finish̅⟨⟩.0 || [0.0 <= 0 and 0 <= 1.0].finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock̅}}.0, log=None
+PASS rule applied: idx=1 msg=Condition satisfied: 0.0 <= 0 and 0 <= 1.0
+Attempted to apply [Pass] rule: applied=True, new_proc=finish̅⟨⟩.0 || finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock̅}}.0, log=Condition satisfied: 0.0 <= 0 and 0 <= 1.0
+Discrete reduction: Applied [Pass] rule (Condition satisfied: 0.0 <= 0 and 0 <= 1.0)
+Check process termination: finish̅⟨⟩.0 || finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock̅}}.0
 
---- Step 8 ---
-Attempted to apply [Assign-Expand] rule: applied=False, new_proc=finish̅⟨⟩.0 || finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
-Attempted to apply [Pass] rule: applied=False, new_proc=finish̅⟨⟩.0 || finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
-Attempted to apply [Stop] rule: applied=False, new_proc=finish̅⟨⟩.0 || finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=None
-input process: 1,[(1, <hpc.PrefixProcess object at 0x000001DEE472A560>, <hpc.PrefixProcess object at 0x000001DEE472A560>, False, -1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x000001DEE472B040>, <hpc.PrefixProcess object at 0x000001DEE472B040>, False, -1)]
+--- Step 6 ---
+Attempted to apply [Assign-Expand] rule: applied=False, new_proc=finish̅⟨⟩.0 || finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock̅}}.0, log=None
+Attempted to apply [Pass] rule: applied=False, new_proc=finish̅⟨⟩.0 || finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock̅}}.0, log=None
+Attempted to apply [Stop] rule: applied=False, new_proc=finish̅⟨⟩.0 || finish().0 || {0 | clock_dot=1 & clock<1000000.0, {clock̅}}.0, log=None
+input process: 1,[(1, <hpc.PrefixProcess object at 0x000001AEFEDF3160>, <hpc.PrefixProcess object at 0x000001AEFEDF3160>, False, -1)]，output process: 1,[(0, <hpc.PrefixProcess object at 0x000001AEFEDBD000>, <hpc.PrefixProcess object at 0x000001AEFEDBD000>, False, -1)]
 output variable list: []
 output expression evaluation result: valid=True, values=[]
 COMM consumption: out_idx=0 in_idx=1 channel=finish values=[]
-Attempted to apply [Comm] rule: applied=True, new_proc={0 | clock_dot=1 & clock<1000000.0, {clock}}.0, log=Communication channel(finish̅)(Communication message: )
+Attempted to apply [Comm] rule: applied=True, new_proc={0 | clock_dot=1 & clock<1000000.0, {clock̅}}.0, log=Communication channel(finish̅)(Communication message: )
 Discrete reduction: Applied [Comm] rule (Communication channel(finish̅)(Communication message: ))
-Check process termination: {0 | clock_dot=1 & clock<1000000.0, {clock}}.0
+Check process termination: {0 | clock_dot=1 & clock<1000000.0, {clock̅}}.0
 System terminated
-=== Simulation completed: 8 steps, total time 0.000000 seconds ===
+=== Simulation completed: 6 steps, total time 0.000000 seconds ===

@@ -97,43 +97,37 @@ def _fresh_temporal_var(prefix: str) -> str:
     _temporal_var_counter += 1
     return f"{prefix}_{_temporal_var_counter}"
 
-def temporal_condition(temporal: hpc.TemporalPrimitive, t0: str, t1: str) -> str:
-    eps = "5e-2"
+def temporal_condition(temporal: hpc.TemporalPrimitive, t: str) -> str:
     kind = temporal.kind
     args = temporal.args
 
     if kind == "at":
         d = args[0]
-        return f"{t0} == {t1} == {d}"
+        return f"{t} == {d}"
     if kind == "before":
         d = args[0]
-        return f"0 <= ({t1}-{t0}) and ({t1}-{t0}) <= {d}"
+        return f"{t} <= {d}"
     if kind == "after":
         d = args[0]
-        return f"({t1}-{t0}) == {d}"
+        return f"{t} >= {d}"
     if kind == "between":
         d0, d1 = args
-        return f"{d0} <= ({t1}-{t0}) and ({t1}-{t0}) <= {d1}"
+        return f"{d0} <= {t} and {t} <= {d1}"
     if kind == "every":
         d = args[0]
-        return f"{t0} == {t1} and ({t0}) % {d} == 0"
+        return f"{t} % {d} == 0"
     if kind == "periodic":
         d0, d1 = args
-        return f"{t0} == {t1} and ({t0}-{d0}) % {d1} == 0"
+        return f"({t}-{d0}) % {d1} == 0"
 
     raise ValueError(f"Unsupported temporal primitive: {temporal}")
 
 def add_temporal_constraint(action: hpc.Process, temporal: hpc.TemporalPrimitive) -> hpc.Process:
-    t0 = _fresh_temporal_var("t0")
-    t1 = _fresh_temporal_var("t1")
-    condition = temporal_condition(temporal, t0, t1)
+    t = _fresh_temporal_var("t")
+    condition = temporal_condition(temporal, t)
     checked = hpc.PrefixProcess(hpc.Guard(condition), action.continuation)
-    post_clock = hpc.PrefixProcess(hpc.Input(hpc.InChannel("clock"), [t1]), checked)
-
-    action_with_post_clock = hpc.PrefixProcess(action.prefix, post_clock)
-    action_with_clocks = hpc.PrefixProcess(hpc.Input(hpc.InChannel("clock"), [t0]), action_with_post_clock)
-
-    return action_with_clocks
+    post_clock = hpc.PrefixProcess(hpc.Input(hpc.InChannel("clock"), [t]), checked)
+    return hpc.PrefixProcess(action.prefix, post_clock)
 
 class Sensation(Fragment):
     def __init__(self, sender: str, receiver: str, var_x: str, var_v: str, 

@@ -1,151 +1,135 @@
 # Step log
 
 === STEP 1 time: 0.000000 ===
-  [0] C: {0 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0
-  [1] C: {0 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0
-  [2] C: {0 | clock_dot=1 & clock<1000000.0, {clock}}.0
+  [0] C: {0 | t_dot=1 & t<1.0, {}}.sample̅⟨11⟩.clock(t_9).[t_9 % 1.0 == 0].finish̅⟨⟩.0
+  [1] C: {0 | t'_dot=1 & t'<1.0, {}}.sample(x).clock(t_10).[t_10 % 1.0 == 0].finish().0
+  [2] C: {0 | clock_dot=1 & clock<1000000.0, {clock̅}}.0
 Process counts: M=0, C=3, R=0, Other=0
 ================================
 
 
 === STEP 2 time: 0.100000 ===
-  [0] C: {0.10000000000000002 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0
-  [1] C: {0.10000000000000002 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0
-  [2] C: {0.10000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0
+  [0] C: {0.10000000000000002 | t_dot=1 & t<1.0, {}}.sample̅⟨11⟩.clock(t_9).[t_9 % 1.0 == 0].finish̅⟨⟩.0
+  [1] C: {0.10000000000000002 | t'_dot=1 & t'<1.0, {}}.sample(x).clock(t_10).[t_10 % 1.0 == 0].finish().0
+  [2] C: {0.10000000000000002 | clock_dot=1 & clock<1000000.0, {clock̅}}.0
 Process counts: M=0, C=3, R=0, Other=0
 ================================
 
 
 === STEP 3 time: 0.200000 ===
-  [0] C: {0.20000000000000004 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0
-  [1] C: {0.20000000000000004 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0
-  [2] C: {0.20000000000000004 | clock_dot=1 & clock<1000000.0, {clock}}.0
+  [0] C: {0.20000000000000004 | t_dot=1 & t<1.0, {}}.sample̅⟨11⟩.clock(t_9).[t_9 % 1.0 == 0].finish̅⟨⟩.0
+  [1] C: {0.20000000000000004 | t'_dot=1 & t'<1.0, {}}.sample(x).clock(t_10).[t_10 % 1.0 == 0].finish().0
+  [2] C: {0.20000000000000004 | clock_dot=1 & clock<1000000.0, {clock̅}}.0
 Process counts: M=0, C=3, R=0, Other=0
 ================================
 
 
 === STEP 4 time: 0.300000 ===
-  [0] C: {0.30000000000000004 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0
-  [1] C: {0.30000000000000004 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0
-  [2] C: {0.30000000000000004 | clock_dot=1 & clock<1000000.0, {clock}}.0
+  [0] C: {0.30000000000000004 | t_dot=1 & t<1.0, {}}.sample̅⟨11⟩.clock(t_9).[t_9 % 1.0 == 0].finish̅⟨⟩.0
+  [1] C: {0.30000000000000004 | t'_dot=1 & t'<1.0, {}}.sample(x).clock(t_10).[t_10 % 1.0 == 0].finish().0
+  [2] C: {0.30000000000000004 | clock_dot=1 & clock<1000000.0, {clock̅}}.0
 Process counts: M=0, C=3, R=0, Other=0
 ================================
 
 
 === STEP 5 time: 0.400000 ===
-  [0] C: {0.4000000000000001 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0
-  [1] C: {0.4000000000000001 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0
-  [2] C: {0.4000000000000001 | clock_dot=1 & clock<1000000.0, {clock}}.0
+  [0] C: {0.4000000000000001 | t_dot=1 & t<1.0, {}}.sample̅⟨11⟩.clock(t_9).[t_9 % 1.0 == 0].finish̅⟨⟩.0
+  [1] C: {0.4000000000000001 | t'_dot=1 & t'<1.0, {}}.sample(x).clock(t_10).[t_10 % 1.0 == 0].finish().0
+  [2] C: {0.4000000000000001 | clock_dot=1 & clock<1000000.0, {clock̅}}.0
 Process counts: M=0, C=3, R=0, Other=0
 ================================
 
 
 === STEP 6 time: 0.500000 ===
-  [0] C: {0.5000000000000001 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0
-  [1] C: {0.5000000000000001 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0
-  [2] C: {0.5000000000000001 | clock_dot=1 & clock<1000000.0, {clock}}.0
+  [0] C: {0.5000000000000001 | t_dot=1 & t<1.0, {}}.sample̅⟨11⟩.clock(t_9).[t_9 % 1.0 == 0].finish̅⟨⟩.0
+  [1] C: {0.5000000000000001 | t'_dot=1 & t'<1.0, {}}.sample(x).clock(t_10).[t_10 % 1.0 == 0].finish().0
+  [2] C: {0.5000000000000001 | clock_dot=1 & clock<1000000.0, {clock̅}}.0
 Process counts: M=0, C=3, R=0, Other=0
 ================================
 
 
 === STEP 7 time: 0.600000 ===
-  [0] C: {0.6000000000000001 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0
-  [1] C: {0.6000000000000001 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0
-  [2] C: {0.6000000000000001 | clock_dot=1 & clock<1000000.0, {clock}}.0
+  [0] C: {0.6000000000000001 | t_dot=1 & t<1.0, {}}.sample̅⟨11⟩.clock(t_9).[t_9 % 1.0 == 0].finish̅⟨⟩.0
+  [1] C: {0.6000000000000001 | t'_dot=1 & t'<1.0, {}}.sample(x).clock(t_10).[t_10 % 1.0 == 0].finish().0
+  [2] C: {0.6000000000000001 | clock_dot=1 & clock<1000000.0, {clock̅}}.0
 Process counts: M=0, C=3, R=0, Other=0
 ================================
 
 
 === STEP 8 time: 0.700000 ===
-  [0] C: {0.7000000000000002 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0
-  [1] C: {0.7000000000000002 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0
-  [2] C: {0.7000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0
+  [0] C: {0.7000000000000002 | t_dot=1 & t<1.0, {}}.sample̅⟨11⟩.clock(t_9).[t_9 % 1.0 == 0].finish̅⟨⟩.0
+  [1] C: {0.7000000000000002 | t'_dot=1 & t'<1.0, {}}.sample(x).clock(t_10).[t_10 % 1.0 == 0].finish().0
+  [2] C: {0.7000000000000002 | clock_dot=1 & clock<1000000.0, {clock̅}}.0
 Process counts: M=0, C=3, R=0, Other=0
 ================================
 
 
 === STEP 9 time: 0.800000 ===
-  [0] C: {0.8000000000000002 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0
-  [1] C: {0.8000000000000002 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0
-  [2] C: {0.8000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0
+  [0] C: {0.8000000000000002 | t_dot=1 & t<1.0, {}}.sample̅⟨11⟩.clock(t_9).[t_9 % 1.0 == 0].finish̅⟨⟩.0
+  [1] C: {0.8000000000000002 | t'_dot=1 & t'<1.0, {}}.sample(x).clock(t_10).[t_10 % 1.0 == 0].finish().0
+  [2] C: {0.8000000000000002 | clock_dot=1 & clock<1000000.0, {clock̅}}.0
 Process counts: M=0, C=3, R=0, Other=0
 ================================
 
 
 === STEP 10 time: 0.900000 ===
-  [0] C: {0.9000000000000001 | t_dot=1 & t<1.0, {}}.clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0
-  [1] C: {0.9000000000000001 | t'_dot=1 & t'<1.0, {}}.clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0
-  [2] C: {0.9000000000000001 | clock_dot=1 & clock<1000000.0, {clock}}.0
+  [0] C: {0.9000000000000001 | t_dot=1 & t<1.0, {}}.sample̅⟨11⟩.clock(t_9).[t_9 % 1.0 == 0].finish̅⟨⟩.0
+  [1] C: {0.9000000000000001 | t'_dot=1 & t'<1.0, {}}.sample(x).clock(t_10).[t_10 % 1.0 == 0].finish().0
+  [2] C: {0.9000000000000001 | clock_dot=1 & clock<1000000.0, {clock̅}}.0
 Process counts: M=0, C=3, R=0, Other=0
 ================================
 
 
 === STEP 11 time: 1.000000 ===
-  [0] M: clock(t0_17).sample̅⟨11⟩.clock(t1_18).[t0_17 == t1_18 and (t0_17) % 1.0 == 0].finish̅⟨⟩.0
-  [1] M: clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0
-  [2] C: {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0
+  [0] M: sample̅⟨11⟩.clock(t_9).[t_9 % 1.0 == 0].finish̅⟨⟩.0
+  [1] M: sample(x).clock(t_10).[t_10 % 1.0 == 0].finish().0
+  [2] C: {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock̅}}.0
 Process counts: M=2, C=1, R=0, Other=0
 ================================
 
 
 === STEP 12 time: 1.000000 ===
-  [0] M: sample̅⟨11⟩.clock(t1_18).[1.0 == t1_18 and (1.0) % 1.0 == 0].finish̅⟨⟩.0
-  [1] M: clock(t0_19).sample(x).clock(t1_20).[t0_19 == t1_20 and (t0_19) % 1.0 == 0].finish().0
-  [2] C: {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0
+  [0] M: clock(t_9).[t_9 % 1.0 == 0].finish̅⟨⟩.0
+  [1] M: clock(t_10).[t_10 % 1.0 == 0].finish().0
+  [2] C: {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock̅}}.0
 Process counts: M=2, C=1, R=0, Other=0
 ================================
 
 
 === STEP 13 time: 1.000000 ===
-  [0] M: sample̅⟨11⟩.clock(t1_18).[1.0 == t1_18 and (1.0) % 1.0 == 0].finish̅⟨⟩.0
-  [1] M: sample(x).clock(t1_20).[1.0 == t1_20 and (1.0) % 1.0 == 0].finish().0
-  [2] C: {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0
+  [0] M: [1.0 % 1.0 == 0].finish̅⟨⟩.0
+  [1] M: clock(t_10).[t_10 % 1.0 == 0].finish().0
+  [2] C: {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock̅}}.0
 Process counts: M=2, C=1, R=0, Other=0
 ================================
 
 
 === STEP 14 time: 1.000000 ===
-  [0] M: clock(t1_18).[1.0 == t1_18 and (1.0) % 1.0 == 0].finish̅⟨⟩.0
-  [1] M: clock(t1_20).[1.0 == t1_20 and (1.0) % 1.0 == 0].finish().0
-  [2] C: {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0
+  [0] M: finish̅⟨⟩.0
+  [1] M: clock(t_10).[t_10 % 1.0 == 0].finish().0
+  [2] C: {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock̅}}.0
 Process counts: M=2, C=1, R=0, Other=0
 ================================
 
 
 === STEP 15 time: 1.000000 ===
-  [0] M: [1.0 == 1.0 and (1.0) % 1.0 == 0].finish̅⟨⟩.0
-  [1] M: clock(t1_20).[1.0 == t1_20 and (1.0) % 1.0 == 0].finish().0
-  [2] C: {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0
+  [0] M: finish̅⟨⟩.0
+  [1] M: [1.0 % 1.0 == 0].finish().0
+  [2] C: {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock̅}}.0
 Process counts: M=2, C=1, R=0, Other=0
 ================================
 
 
 === STEP 16 time: 1.000000 ===
   [0] M: finish̅⟨⟩.0
-  [1] M: clock(t1_20).[1.0 == t1_20 and (1.0) % 1.0 == 0].finish().0
-  [2] C: {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0
-Process counts: M=2, C=1, R=0, Other=0
-================================
-
-
-=== STEP 17 time: 1.000000 ===
-  [0] M: finish̅⟨⟩.0
-  [1] M: [1.0 == 1.0 and (1.0) % 1.0 == 0].finish().0
-  [2] C: {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0
-Process counts: M=2, C=1, R=0, Other=0
-================================
-
-
-=== STEP 18 time: 1.000000 ===
-  [0] M: finish̅⟨⟩.0
   [1] M: finish().0
-  [2] C: {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0
+  [2] C: {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock̅}}.0
 Process counts: M=2, C=1, R=0, Other=0
 ================================
 
 
-=== STEP 18 time: 1.000000 ===
-  [0] C: {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock}}.0
+=== STEP 16 time: 1.000000 ===
+  [0] C: {1.0000000000000002 | clock_dot=1 & clock<1000000.0, {clock̅}}.0
 Process counts: M=0, C=1, R=0, Other=0
 ================================
 

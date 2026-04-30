@@ -1,7 +1,7 @@
 # Step log
 
 === STEP 1 time: 0.000000 ===
-  [0] M: ⟨x:=0⟩.([x > 0].alt1_1_Charlie⟨⟩.alt1_1_Bob⟨⟩.(Bob Request̅⟨⟩.Bob Response().Charlie Request̅⟨⟩.Charlie Response().finalize̅⟨⟩.0 + Charlie Request̅⟨⟩.Charlie Response().Bob Request̅⟨⟩.Bob Response().finalize̅⟨⟩.0) + [(¬x > 0)].alt2_1_Charlie⟨⟩.alt2_1_Bob⟨⟩.finalize̅⟨⟩.0)
+  [0] M: ⟨x:=0⟩.([x > 0].alt1_1_Bob⟨⟩.alt1_1_Charlie⟨⟩.(Bob Request̅⟨⟩.Bob Response().Charlie Request̅⟨⟩.Charlie Response().finalize̅⟨⟩.0 + Charlie Request̅⟨⟩.Charlie Response().Bob Request̅⟨⟩.Bob Response().finalize̅⟨⟩.0) + [(¬x > 0)].alt2_1_Bob⟨⟩.alt2_1_Charlie⟨⟩.finalize̅⟨⟩.0)
   [1] M: (alt1_1_Bob().Bob Request().Bob Response̅⟨⟩.finalize().0 + alt2_1_Bob().finalize().0)
   [2] M: (alt1_1_Charlie().Charlie Request().Charlie Response̅⟨⟩.0 + alt2_1_Charlie().0)
 Process counts: M=3, C=0, R=0, Other=0
@@ -9,7 +9,7 @@ Process counts: M=3, C=0, R=0, Other=0
 
 
 === STEP 2 time: 0.000000 ===
-  [0] M: x'''''''''''''''''⟨0⟩.x'''''''''''''''''(x).([x > 0].alt1_1_Charlie⟨⟩.alt1_1_Bob⟨⟩.(Bob Request̅⟨⟩.Bob Response().Charlie Request̅⟨⟩.Charlie Response().finalize̅⟨⟩.0 + Charlie Request̅⟨⟩.Charlie Response().Bob Request̅⟨⟩.Bob Response().finalize̅⟨⟩.0) + [(¬x > 0)].alt2_1_Charlie⟨⟩.alt2_1_Bob⟨⟩.finalize̅⟨⟩.0)
+  [0] M: x'''''''''''''''''⟨0⟩.x'''''''''''''''''(x).([x > 0].alt1_1_Bob⟨⟩.alt1_1_Charlie⟨⟩.(Bob Request̅⟨⟩.Bob Response().Charlie Request̅⟨⟩.Charlie Response().finalize̅⟨⟩.0 + Charlie Request̅⟨⟩.Charlie Response().Bob Request̅⟨⟩.Bob Response().finalize̅⟨⟩.0) + [(¬x > 0)].alt2_1_Bob⟨⟩.alt2_1_Charlie⟨⟩.finalize̅⟨⟩.0)
   [1] M: x'''''''''''''''''(y).x'''''''''''''''''⟨y⟩.0
   [2] M: (alt1_1_Bob().Bob Request().Bob Response̅⟨⟩.finalize().0 + alt2_1_Bob().finalize().0)
   [3] M: (alt1_1_Charlie().Charlie Request().Charlie Response̅⟨⟩.0 + alt2_1_Charlie().0)
@@ -18,7 +18,7 @@ Process counts: M=4, C=0, R=0, Other=0
 
 
 === STEP 3 time: 0.000000 ===
-  [0] M: x'''''''''''''''''(x).([x > 0].alt1_1_Charlie⟨⟩.alt1_1_Bob⟨⟩.(Bob Request̅⟨⟩.Bob Response().Charlie Request̅⟨⟩.Charlie Response().finalize̅⟨⟩.0 + Charlie Request̅⟨⟩.Charlie Response().Bob Request̅⟨⟩.Bob Response().finalize̅⟨⟩.0) + [(¬x > 0)].alt2_1_Charlie⟨⟩.alt2_1_Bob⟨⟩.finalize̅⟨⟩.0)
+  [0] M: x'''''''''''''''''(x).([x > 0].alt1_1_Bob⟨⟩.alt1_1_Charlie⟨⟩.(Bob Request̅⟨⟩.Bob Response().Charlie Request̅⟨⟩.Charlie Response().finalize̅⟨⟩.0 + Charlie Request̅⟨⟩.Charlie Response().Bob Request̅⟨⟩.Bob Response().finalize̅⟨⟩.0) + [(¬x > 0)].alt2_1_Bob⟨⟩.alt2_1_Charlie⟨⟩.finalize̅⟨⟩.0)
   [1] M: x'''''''''''''''''⟨0⟩.0
   [2] M: (alt1_1_Bob().Bob Request().Bob Response̅⟨⟩.finalize().0 + alt2_1_Bob().finalize().0)
   [3] M: (alt1_1_Charlie().Charlie Request().Charlie Response̅⟨⟩.0 + alt2_1_Charlie().0)
@@ -27,7 +27,7 @@ Process counts: M=4, C=0, R=0, Other=0
 
 
 === STEP 4 time: 0.000000 ===
-  [0] M: ([0 > 0].alt1_1_Charlie⟨⟩.alt1_1_Bob⟨⟩.(Bob Request̅⟨⟩.Bob Response().Charlie Request̅⟨⟩.Charlie Response().finalize̅⟨⟩.0 + Charlie Request̅⟨⟩.Charlie Response().Bob Request̅⟨⟩.Bob Response().finalize̅⟨⟩.0) + [(¬0 > 0)].alt2_1_Charlie⟨⟩.alt2_1_Bob⟨⟩.finalize̅⟨⟩.0)
+  [0] M: ([0 > 0].alt1_1_Bob⟨⟩.alt1_1_Charlie⟨⟩.(Bob Request̅⟨⟩.Bob Response().Charlie Request̅⟨⟩.Charlie Response().finalize̅⟨⟩.0 + Charlie Request̅⟨⟩.Charlie Response().Bob Request̅⟨⟩.Bob Response().finalize̅⟨⟩.0) + [(¬0 > 0)].alt2_1_Bob⟨⟩.alt2_1_Charlie⟨⟩.finalize̅⟨⟩.0)
   [1] M: (alt1_1_Bob().Bob Request().Bob Response̅⟨⟩.finalize().0 + alt2_1_Bob().finalize().0)
   [2] M: (alt1_1_Charlie().Charlie Request().Charlie Response̅⟨⟩.0 + alt2_1_Charlie().0)
 Process counts: M=3, C=0, R=0, Other=0
@@ -35,7 +35,7 @@ Process counts: M=3, C=0, R=0, Other=0
 
 
 === STEP 5 time: 0.000000 ===
-  [0] M: alt2_1_Charlie⟨⟩.alt2_1_Bob⟨⟩.finalize̅⟨⟩.0
+  [0] M: alt2_1_Bob⟨⟩.alt2_1_Charlie⟨⟩.finalize̅⟨⟩.0
   [1] M: (alt1_1_Bob().Bob Request().Bob Response̅⟨⟩.finalize().0 + alt2_1_Bob().finalize().0)
   [2] M: (alt1_1_Charlie().Charlie Request().Charlie Response̅⟨⟩.0 + alt2_1_Charlie().0)
 Process counts: M=3, C=0, R=0, Other=0
@@ -43,9 +43,10 @@ Process counts: M=3, C=0, R=0, Other=0
 
 
 === STEP 6 time: 0.000000 ===
-  [0] M: alt2_1_Bob⟨⟩.finalize̅⟨⟩.0
-  [1] M: (alt1_1_Bob().Bob Request().Bob Response̅⟨⟩.finalize().0 + alt2_1_Bob().finalize().0)
-Process counts: M=2, C=0, R=0, Other=0
+  [0] M: alt2_1_Charlie⟨⟩.finalize̅⟨⟩.0
+  [1] M: finalize().0
+  [2] M: (alt1_1_Charlie().Charlie Request().Charlie Response̅⟨⟩.0 + alt2_1_Charlie().0)
+Process counts: M=3, C=0, R=0, Other=0
 ================================
 
 

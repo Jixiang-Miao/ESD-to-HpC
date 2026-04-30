@@ -264,7 +264,11 @@ Visualisation:
 ## Development Environment
 
 Python 3.9.18
+
 typing_extensions 4.12.2
+
 scipy 1.13.1
+
 pandas 2.2.3
+
 matplotlib 3.9.4.
